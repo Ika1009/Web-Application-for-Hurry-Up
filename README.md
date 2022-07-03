@@ -1,3 +1,3 @@
 # Hurry up web application
 
-WEB APPLICATION FOR THE COMPANY NAMED: "HURRY UP";
+This is a web application for the company named: "Hurry up";
