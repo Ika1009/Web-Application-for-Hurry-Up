@@ -22,10 +22,13 @@
         </div>
         <div id="signup-form">
             <form>
-                <input type="text" name="korisnicko_ime" id="korisnicko_ime" placeholder="Ime firme *" />
-                <input type="email" name="email" id="email" placeholder="Email *" />
-                <input type="password" name="lozinka" id="lozinka" placeholder="Nova lozinka *" />
-
+                <input type="text" name="ime" id="ime" placeholder="Ime" required />
+                <input type="text" name="prezime" id="prezime" placeholder="Prezime" required />
+                <input type="text" name="ime_firme" id="ime_firme" placeholder="Ime firme" required />
+                <input type="email" name="email" id="email" placeholder="Email" required />
+                <input type="text" name="broj_telefona" id="broj_telefona" placeholder="Broj telefona" />
+                <input type="password" name="lozinka" id="lozinka" placeholder="Lozinka" required />
+                <input type="password" name="pin" id="pin" placeholder="Pin" required />
                 <div class="g-recaptcha" data-sitekey="6LdmfMUgAAAAAP-sdISKb56HDx07YOXSvpRGTlo9"></div>
                 <button type="submit" class="btn signup">Kreiraj nalog</button>
                 <p>Registrovanjem na sajt se slazete sa nasim <a href="javascript:void(0)">uslovima koriscenja</a>.</p>

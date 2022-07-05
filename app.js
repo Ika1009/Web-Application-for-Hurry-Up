@@ -17,8 +17,26 @@ function toggleLogin() {
 }
 
 let config = {
-    'korisnicko_ime': {
+    'ime': {
         required: true,
+        minlength: 5,
+        maxlength: 50
+    },
+
+    'prezime': {
+        required: true,
+        minlength: 5,
+        maxlength: 50
+    },
+
+    'ime_firme': {
+        required: true,
+        minlength: 5,
+        maxlength: 50
+    },
+
+    'broj_telefona': {
+        required: false,
         minlength: 5,
         maxlength: 50
     },
@@ -43,9 +61,13 @@ document.querySelector('#signup-form').addEventListener('submit', e => {
     e.preventDefault();
     if (validator.validationPassed()) {
         let user = new User();
-        user.username = document.querySelector('#korisnicko_ime').value;
+        user.ime = document.querySelector('#ime').value;
+        user.prezime = document.querySelector('#prezime').value;
+        user.ime_firme = document.querySelector('#ime_firme').value;
         user.email = document.querySelector('#email').value;
-        user.password = document.querySelector('#lozinka').value;
+        user.broj_telefona = document.querySelector('#broj_telefona').value;
+        user.lozinka = document.querySelector('#lozinka').value;
+        user.pin = document.querySelector('#pin').value;
         user.create();
     } else {
         alert('Polja nisu dobro popunjena');
