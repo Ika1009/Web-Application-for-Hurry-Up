@@ -1,15 +1,23 @@
 class User {
     user_id = '';
-    username = '';
+    ime = '';
+    prezime = '';
+    ime_firme = '';
     email = '';
-    password = '';
+    broj_telefona = '';
+    lozinka = '';
+    pin = '';
     api_url = 'https://62c31dbcff594c65676e219d.mockapi.io';
 
     create() {
         let data = {
-            username: this.username,
+            ime: this.ime,
+            prezime: this.prezime,
+            ime_firme: this.ime_firme,
             email: this.email,
-            password: this.password
+            broj_telefona: this.broj_telefona,
+            lozinka: this.lozinka,
+            pin: this.pin
         }
 
         data = JSON.stringify(data);
