@@ -54,6 +54,7 @@
             .form-modal .login, .form-modal .signup {
                 background: #333;
                 color: #ffb257;
+                text-align: center;
             }
 
                 .form-modal .login:hover, .form-modal .signup:hover {
@@ -101,6 +102,7 @@
         }
 
         #login-form, #signup-form {
+            text-align: center;
             position: relative;
             width: 100%;
             height: auto;
@@ -109,6 +111,7 @@
 
         #signup-form {
             display: none;
+            text-align: center;
         }
 
 
@@ -192,7 +195,11 @@
                 display: none !important;
             }
         }
+        .g-rechapta {
+            display: inline-block;
+        }
     </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <div class="form-modal">
@@ -214,8 +221,9 @@
                 <input type="text" name="korisnicko_ime" id="korisnicko_ime" placeholder="Ime firme *" />
                 <input type="email" name="email" id="email" placeholder="Email *" />
                 <input type="password" name="lozinka" id="lozinka" placeholder="Nova lozinka *" />
+                <div class="g-recaptcha" data-sitekey="6LdmfMUgAAAAAP-sdISKb56HDx07YOXSvpRGTlo9"></div>
                 <button type="submit" class="btn signup">Napravi novi nalog</button>
-                <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p>
+                <p>Registrovanjem na sajt se slazete sa nasim <a href="javascript:void(0)">uslovima koriscenja</a>.</p>
                 <hr />
             </form>
         </div>
