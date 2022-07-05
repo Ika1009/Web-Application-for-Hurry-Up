@@ -1,3 +1,4 @@
+
 class Validator {
     constructor(config, formID) {
         this.elementsConfig = config;
