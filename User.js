@@ -7,6 +7,7 @@ class User {
     broj_telefona = '';
     lozinka = '';
     pin = '';
+    createdAt = '';
     api_url = 'https://62c31dbcff594c65676e219d.mockapi.io';
 
     create() {
@@ -17,7 +18,8 @@ class User {
             email: this.email,
             broj_telefona: this.broj_telefona,
             lozinka: this.lozinka,
-            pin: this.pin
+            pin: this.pin,
+            createdAt: this.createdAt
         }
 
         data = JSON.stringify(data);
