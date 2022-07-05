@@ -207,7 +207,7 @@
             <form>
                 <input type="text" placeholder="Enter email or username" />
                 <input type="password" placeholder="Enter password" />
-                <button type="button" class="btn login">Prijavi se</button>
+                <button type="button" class="btn login" id="prijaviSeButton">Prijavi se</button>
                 <p><a href="javascript:void(0)">Forgot password?</a></p>
                 <hr />
             </form>
@@ -217,9 +217,12 @@
                 <input type="text" name="korisnicko_ime" id="korisnicko_ime" placeholder="Ime firme *" />
                 <input type="email" name="email" id="email" placeholder="Email *" />
                 <input type="password" name="lozinka" id="lozinka" placeholder="Nova lozinka *" />
+
                 <div class="g-recaptcha" data-sitekey="6LdmfMUgAAAAAP-sdISKb56HDx07YOXSvpRGTlo9"></div>
                 <button type="submit" class="btn signup">Napravi novi nalog</button>
                 <p>Registrovanjem na sajt se slazete sa nasim <a href="javascript:void(0)">uslovima koriscenja</a>.</p>
+                <button type="submit" class="btn signup" id="napraviNalogButton">Napravi novi nalog</button>
+                <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p>
                 <hr />
             </form>
         </div>
@@ -316,6 +319,8 @@
 
                 return false;
             }
+
+
         }
     </script>
     <script>
@@ -404,6 +409,21 @@
                 alert('Polja nisu dobro popunjena');
             }
         });
+
+        document.getElementById("prijaviSeButton").onclick = function() //funkcija odlazi u index.html kad se klikne dugme login
+        {
+            document.location.href = 'index.html'
+            //treba da se doda provera da su podaci uneseni
+        }
+
+        document.getElementById("napraviNalogButton").onclick = function() //funkcija odlazi u index.html kad se klikne dugme signup
+        {
+            document.location.href = 'index.html'
+            //treba da se doda provera da su podaci uneseni
+            //treba da se doda upisivanje u bazu podataka
+        }
+
+
     </script>
 </body>
 </html>
