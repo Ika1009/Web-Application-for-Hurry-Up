@@ -46,3 +46,11 @@ nav {
 .linkovi li a.aktivan{
     background-color: #f9f9f9;
 }
+img {
+    width: 100;
+    height: 70px;
+}
+.pocetna {
+    float: right;
+    padding-top: 30px;
+}

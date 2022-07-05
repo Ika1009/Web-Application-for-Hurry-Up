@@ -47,10 +47,10 @@ nav {
     background-color: #f9f9f9;
 }
 img {
-    float: left;
-    width: 70px;
+    width: 100;
     height: 70px;
 }
-.header {
-    margin-left: 100px;
+.pocetna {
+    float: right;
+    padding-top: 30px;
 }
