@@ -46,6 +46,11 @@ nav {
 .linkovi li a.aktivan{
     background-color: #f9f9f9;
 }
-.header {
+img {
     float: left;
+    width: 70px;
+    height: 70px;
+}
+.header {
+    margin-left: 100px;
 }
