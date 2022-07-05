@@ -68,46 +68,46 @@ document.querySelector('#signup-form').addEventListener('submit', e => {
         user.broj_telefona = document.querySelector('#broj_telefona').value;
         user.lozinka = document.querySelector('#lozinka').value;
         user.pin = document.querySelector('#pin').value;
+        user.createdAt = vreme();
         user.create();
     } else {
         alert('Polja nisu dobro popunjena');
     }
 });
 
-document.getElementById("prijaviSeButton").onclick = function () //funkcija odlazi u index.html kad se klikne dugme login
+document.getElementById("prijaviSeButton").onclick = function ()
 {
     document.location.href = 'index.html';
-    
-    // vreme(); // !!! ----> odkomentiraj kad dodas upisivanje u bazu podataka u funkciju vreme()
-
-    //treba da se doda provera da su podaci uneseni
 }
 
-document.getElementById("napraviNalogButton").onclick = function () //funkcija odlazi u index.html kad se klikne dugme signup
+document.getElementById("napraviNalogButton").onclick = function () 
 {
     document.location.href = 'index.html';
-
-    // vreme(); // !!! ----> odkomentiraj kad dodas upisivanje u bazu podataka u funkciju vreme()
-
-    //treba da se doda provera da su podaci uneseni
 }
 
-function proveriVreme(i) { //dodaje 0 za jednocifreno vreme
+function proveriVreme(i) {
     if (i < 10) {
-      i = "0" + i;
+        i = "0" + i;
     }
+
     return i;
-  }
+}
   
-  function vreme() {
-    var date = new Date();
-    var sati = date.getHours();
-    var minuti = date.getMinutes();
-    var sekunde = date.getSeconds();
+function vreme() {
+    let date = new Date();
+    let sati = date.getHours();
+    let minuti = date.getMinutes();
+    let sekunde = date.getSeconds();
+    let dan = date.getDate();
+    let mesec = date.getMonth();
+    let godina = date.getFullYear();
     
     sati = proveriVreme(sati);
     minuti = proveriVreme(minuti);
     sekunde = proveriVreme(sekunde);
-    
-    //dodati ovde upisivanje podataka u bazu !!!
-  }
+    dan = proveriVreme(dan);
+    mesec = proveriVreme(mesec);
+    godina = proveriVreme(godina);
+
+    return (dan + "/" + mesec + "/" + godina + " " + sati + ":" + minuti + ':' + sekunde);
+}
