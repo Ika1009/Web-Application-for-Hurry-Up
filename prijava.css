@@ -9,6 +9,10 @@ body {
     background: #fff;
 }
 
+.g-recaptcha {
+    margin-left: 50px;
+}
+
 .form-modal {
     position: relative;
     width: 450px;
