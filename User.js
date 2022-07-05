@@ -33,7 +33,10 @@ class User {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Korinik kreiran!');
+                let session = new Session();
+                session.user_id = data.id;
+                session.startSession();
+                window.location.href = 'index.html';
             })
     }
 }

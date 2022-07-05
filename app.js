@@ -75,16 +75,6 @@ document.querySelector('#signup-form').addEventListener('submit', e => {
     }
 });
 
-document.getElementById("prijaviSeButton").onclick = function ()
-{
-    document.location.href = 'index.html';
-}
-
-document.getElementById("napraviNalogButton").onclick = function () 
-{
-    document.location.href = 'index.html';
-}
-
 function proveriVreme(i) {
     if (i < 10) {
         i = "0" + i;
