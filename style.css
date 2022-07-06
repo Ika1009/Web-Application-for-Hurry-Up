@@ -1,16 +1,17 @@
-*{
+* {
     margin:0px;
     padding: 0px;
     box-sizing: border-box;
 }
+
 .text {
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     align-items: center;
     justify-content: center;
     margin-top: 250px;
-    
 }
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -25,35 +26,41 @@ nav {
     justify-content: space-around;
     width: 30%;
 }
-.linkovi li{
+
+.linkovi li {
     list-style: none;
 }
+
 .header {
     color: #ffb266;
     letter-spacing: 5px;
     font-size: 20px;
 }
-.linkovi a{
+
+.linkovi a {
     color:#ffb266;
     text-decoration: none;
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 14px;
     padding: 14px 16px;
-}
-.linkovi li a.hover:not(.aktivan){
+} 
+
+.linkovi li a.hover:not(.aktivan) {
     background-color: #ffb266;
 }
 
-.linkovi li a.aktivan{
+.linkovi li a.aktivan {
     background-color: #f9f9f9;
     color: #333;
     font-weight: bolder;
 }
+
 img {
-    width: 100;
+    width: 100px;
     height: 70px;
 }
+
 .pocetna {
     float: right;
     padding-top: 30px;
