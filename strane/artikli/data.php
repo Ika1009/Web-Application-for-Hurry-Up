@@ -1,4 +1,5 @@
 <?php
+
 $servername = "localhost";  
 $username   = "hurryupr_milos";  
 $password   = "miloskralj";  
@@ -17,3 +18,5 @@ while ($row = mysqli_fetch_object($result))
 }
 echo json_encode($data);
 exit();
+
+?>
