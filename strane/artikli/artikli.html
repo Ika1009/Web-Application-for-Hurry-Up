@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artikli</title>
-    <link rel="stylesheet" href="artikli.css">
-    <link href="../../slike/hurryup_logo2.ico" rel="icon">
-</head>
-<body>
-    <nav>
-        <div class="header">
-            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-            <h4 class="pocetna">HurryUp</h4>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Artikli</title>
+        <link rel="stylesheet" href="artikli.css">
+        <link href="../../slike/hurryup_logo2.ico" rel="icon">
+    </head>
+    <body>
+        <nav>
+            <div class="header">
+                <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
+                <h4 class="pocetna">HurryUp</h4>
+            </div>
+            <ul class="linkovi">
+                <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+                <li><a class="aktivan" href="artikli.html">Artikli</a></li>
+                <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+            </ul>
+        </nav>
+        <div class="text">
+            <table>
+                <tr>
+                <th>Ime</th>
+                <th>Cena</th>
+                <th>Slika</th>
+                <th>Opis</th>
+                </tr>
+                <tbody id="data"></tbody>
+            </table>
+            
+            <script src="izvlacenjeIzDB.js"> </script>
         </div>
-        <ul class="linkovi">
-            <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-            <li><a class="aktivan" href="artikli.html">Artikli</a></li>
-            <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
-        </ul>
-    </nav>
-    <div class="text">
-        <h1>Ovo su Artikli</h1>
-    </div>
-
-</body>
-
-
+    </body>
 </html>
