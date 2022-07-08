@@ -74,37 +74,37 @@
             <div class="plusDugme" onclick="plusButtonClick"> + </div>
         </a>    
         <div id="popupbox"> 
-            <form name="login" action="" method="post">
-            <center>Ime Artikla:</center>
-            <center><input name="ime" size="14" /></center>
-            <center>Cena Artikla:</center>
-            <center><input name="cena" size="14" /></center>
-            <center>Cena Artikla:</center>
-            <center><input name="Opis" size="14" /></center>
-            <center><input type="submit" name="submit" value="Unesi Artikal" /></center>
+            <form name="login" action="" method="post" enctype="multipart/form-data">
+                <center>Ime Artikla:</center>
+                <center><input name="ime" size="14" id="ime"/></center>
+                <center>Cena Artikla:</center>
+                <center><input name="cena" size="14" id="cena"/></center>
+                <center>Cena Artikla:</center>
+                <center><input name="opis" size="14" id="opis" /></center>
             </form>
             <br />
             <center><a href="javascript:login('hide');">zatvori</a></center> 
-            </div> 
-            <?php
-            if (isset($_POST['submit'])) {  
-                extract($_POST);  
-                $servername = "localhost";  
-                $username   = "hurryupr_milos";  
-                $password   = "miloskralj";  
-                $dbname     = "hurryupr_database1";  
-                // Create connection  
-                $conn = new mysqli($servername, $username, $password, $dbname);  
-                // Check connection  
-                if ($conn->connect_error) {  
-                    die("Connection failed: " . $conn->connect_error);  
-                }
-                $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena','neamsliku','$opis')";
-                if ($conn->query($sql) === FALSE) {  
-                    echo "Greska: " . $sql . "<br>" . $conn->error;      
-                }
-                $conn->close();  
-            }  
-            ?>
+        </div> 
+            
     </body>
 </html>
+<?php
+    if (isset($_POST['submit'])) {  
+        extract($_POST);  
+        $servername = "localhost";  
+        $username   = "hurryupr_milos";  
+        $password   = "miloskralj";  
+        $dbname     = "hurryupr_database1";  
+        // Create connection  
+        $conn = new mysqli($servername, $username, $password, $dbname);  
+        // Check connection  
+        if ($conn->connect_error) {  
+            die("Connection failed: " . $conn->connect_error);  
+        }
+        $sql = "INSERT INTO `artikli` (ime, cena, opis) VALUES ('$ime','$cena','$opis')";
+        if ($conn->query($sql) === FALSE) {  
+            echo "Greska: " . $sql . "<br>" . $conn->error;      
+        }
+        $conn->close();  
+    }  
+?>
