@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\strane",
+    "\\strane\\ponuda"
   ],
-  "SelectedNode": "\\app.js",
+  "SelectedNode": "\\strane\\ponuda",
   "PreviewInSolutionExplorer": false
 }
