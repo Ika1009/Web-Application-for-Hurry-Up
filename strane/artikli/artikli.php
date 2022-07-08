@@ -16,7 +16,7 @@
                 margin-top: 50px; 
                 padding-top: 10px; 
                 width: 20%; 
-                height: 150px; 
+                height: 250px; 
                 position: absolute; 
                 background: #FBFBF0; 
                 border: solid #000000 2px; 
@@ -86,6 +86,25 @@
             <br />
             <center><a href="javascript:login('hide');">zatvori</a></center> 
             </div> 
-            
+            <?php
+            if (isset($_POST['submit'])) {  
+                extract($_POST);  
+                $servername = "localhost";  
+                $username   = "hurryupr_milos";  
+                $password   = "miloskralj";  
+                $dbname     = "hurryupr_database1";  
+                // Create connection  
+                $conn = new mysqli($servername, $username, $password, $dbname);  
+                // Check connection  
+                if ($conn->connect_error) {  
+                    die("Connection failed: " . $conn->connect_error);  
+                }
+                $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena','neamsliku','$opis')";
+                if ($conn->query($sql) === FALSE) {  
+                    echo "Greska: " . $sql . "<br>" . $conn->error;      
+                }
+                $conn->close();  
+            }  
+            ?>
     </body>
 </html>
