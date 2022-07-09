@@ -6,7 +6,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Artikli</title>
-        <link rel="stylesheet" href="artikli.css">
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <style type="text/css">
             #popupbox{
@@ -47,6 +46,7 @@
                 <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
             </ul>
         </nav>
+        <h1>sjkdfnjsdbgjfehsrbdg</h1>
         <div class="text">
             <table class="tabelaArtikli">
                 <style type="text/css">
@@ -67,25 +67,23 @@
                       </style>
                 </tbody>
             </table>
-            
-            <script src="izvlacenjeIzDB.js"> </script>
         </div>
-        <a href="javascript:login('show');">
+        <a >
             <div class="plusDugme" onclick="plusButtonClick"> + </div>
         </a>    
         <div id="popupbox"> 
-            <form name="login" action="" method="post" enctype="multipart/form-data">
+            <form name="loginn" action="" method="post" enctype="multipart/form-data">
                 <center>Ime Artikla:</center>
                 <center><input name="ime" size="14" id="ime"/></center>
                 <center>Cena Artikla:</center>
                 <center><input name="cena" size="14" id="cena"/></center>
-                <center>Cena Artikla:</center>
+                <center>Opis JSDNJABSHJBAHSBHASB:</center>
                 <center><input name="opis" size="14" id="opis" /></center>
             </form>
             <br />
             <center><a href="javascript:login('hide');">zatvori</a></center> 
         </div> 
-            
+        <h2>nesto</h2>    
     </body>
 </html>
 <?php
