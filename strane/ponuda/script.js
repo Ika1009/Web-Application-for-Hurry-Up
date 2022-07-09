@@ -1,21 +1,25 @@
 let sveUkupno = 0;
+let kolicina = 1;
+
 
 function addToCart(element) {
 	let mainEl = element.closest('.single-item');
 	let price = mainEl.querySelector('.price').innerText;
 	let name = mainEl.querySelector('h3').innerText;
-	let kolicina = 1;
 	let cartItems = document.querySelector('.cart-items');
 
 	if(cartItems.textContent.includes(name)) // ovo je dobar if ali ne znam kod unutra kako treba da bude!
 	{
+		//elementIzbacivanje = cartItems.getElementsByClassName(".cart-single-item");
+		//console.log(elementIzbacivanje);
+		removeFromCart(elementIzbacivanje);    // ne radi dobro
 		price = price.substring();
 		kolicina += 1;
 		let ukupno = parseInt(price) * parseInt(kolicina);
 		sveUkupno += ukupno;
-		cartItems.innerHTML +=  `<div class="cart-single-item">
+		cartItems.innerHTML +=  `<div class="cart-single-item" id="${name}">
 									<h3>${name}</h3>
-									<p id="name">${price} * ${kolicina} = <span>${ukupno} RSD</span></p>
+									<p>${price} * ${kolicina} = <span>${ukupno} RSD</span></p>
 									<button onclick="removeFromCart(this)" class="remove-item">-</button>
 								 </div>`;
 		document.querySelector('.ispis').style.visibility = 'hidden';
@@ -53,4 +57,5 @@ function removeFromCart(element) {
 		document.querySelector('.total').innerText = `Naruči za: ${sveUkupno} RSD`;	
     }
 	mainEl.remove();
+	kolicina=1;
 }
