@@ -1,70 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponuda</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="ponuda.css">
-    <link href="../../slike/hurryup_logo2.ico" rel="icon">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+	<link href="ponuda.css" rel="stylesheet" />
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<title>Ponuda</title>
 </head>
 <body>
-    <nav>
-        <div class="header">
-            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-            <h4 class="pocetna">HurryUp</h4>
-        </div>
-        <ul class="linkovi">
-            <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-            <li><a href="../artikli/artikli.html">Artikli</a></li>
-            <li><a class="aktivan" href="ponuda.html">Ponuda</a></li>
-        </ul>
-    </nav>
-    <h1>Ponuda</h1>
+	<header>
+		<div class="overlay"></div>
+		<nav>
+			<h2>Korpa</h2>
+			<ul>
+				<li><a href="ponuda.html">Home</a></li>
+				<li class="cart">
+					<a href="cart.html">
+						<ion-icon name="basket"></ion-icon>Korpa<span>0</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
 	<div class="container">
-		<div class="items">
-			<h2>Hladne kafe</h2>
-			<div class="single-item">
-				<img src="img/iced_coffee.jpg">
-				<div class="si-content">
-					<h3>Iced Coffee</h3>
-					<p class="price">340 RSD</p>
-				</div>
-				<div class="actions">
-					<button onclick="addToCart(this)">+</button>
-				</div>
-			</div>
-			<div class="single-item">
-				<img src="img/iced_mocha.jpg">
-				<div class="si-content">
-					<h3>Iced Mocha</h3>
-					<p class="price">350 RSD</p>
-				</div>
-				<div class="actions">
-					<button onclick="addToCart(this)">+</button>
-				</div>
-			</div>
-			<div class="single-item">
-				<img src="img/frape_coffee.jpg">
-				<div class="si-content">
-					<h3>Frape Coffee</h3>
-					<p class="price">360 RSD</p>
-				</div>
-				<div class="actions">
-					<button onclick="addToCart(this)">+</button>
-				</div>
-			</div>
+		<div class="image">
+			<img src="img/iced_coffee.jpg" alt="Iced Coffee" />
+			<h3>Iced Coffee</h3>
+			<h3>340 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
 		</div>
-		<div class="cart">
-			<h2>Tvoja narudžbina</h2>
-			
-			<div class="cart-items"></div>
-
-			<button class="total"></button>
-
-			<p class="ispis">Još uvek nisi dodao/la nijedan proizvod. Kad to uradiš, videćeš ih ovde!</p>
+		<div class="image">
+			<img src="img/iced_mocha.jpg" alt="Iced Mocha" />
+			<h3>Iced Mocha</h3>
+			<h3>350 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/frape_coffee.jpg" alt="Frape Coffee" />
+			<h3>Frape Coffee</h3>
+			<h3>360 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/frape_mocha.jpg" alt="Frape Mocha" />
+			<h3>Frape Mocha</h3>
+			<h3>360 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/flat_white.jpg" alt="Flat white" />
+			<h3>Flat white</h3>
+			<h3>250 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/crna_kafa.jpg" alt="Crna kafa" />
+			<h3>Crna kafa</h3>
+			<h3>220 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/coca-cola.jpg" alt="Coca Cola" />
+			<h3>Coca Cola</h3>
+			<h3>230 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/coca-cola-zero.jpg" alt="Coca Cola Zero" />
+			<h3>Coca Cola Zero</h3>
+			<h3>230 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/fanta.jpg" alt="Fanta" />
+			<h3>Fanta</h3>
+			<h3>230 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/rauch_crveno_voce.jpg" alt="Rauch crveno voće" />
+			<h3>Rauch crveno voće</h3>
+			<h3>200 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/rauch_multivitamin.jpg" alt="Rauch multivitamin" />
+			<h3>Rauch multivitamin</h3>
+			<h3>200 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/rosa.jpg" alt="Rosa flašica" />
+			<h3>Rosa flašica</h3>
+			<h3>150 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/muffin_coko.jpg" alt="Muffin čoko" />
+			<h3>Muffin čoko</h3>
+			<h3>270 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/caesar_salata.jpg" alt="Caesar salata" />
+			<h3>Caesar salata</h3>
+			<h3>610 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
+		</div>
+		<div class="image">
+			<img src="img/grilled_chicken_salad.jpg" alt="Grilled Chicken salata" />
+			<h3>Grilled Chicken salata</h3>
+			<h3>610 RSD</h3>
+			<a class="add-cart cart" href="#">Dodaj u korpu</a>
 		</div>
 	</div>
 	<script src="script.js"></script>
