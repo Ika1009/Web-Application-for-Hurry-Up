@@ -1,78 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Artikli</title>
-        <link rel="stylesheet" href="artikli.css">
-        <link href="../../slike/hurryup_logo2.ico" rel="icon">
-        <script src="artikli.js"></script>
-    </head>
-    <body>
-        <nav>
-            <div class="header">
-                <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-                <h4 class="pocetna">HurryUp</h4>
-            </div>
-            <ul class="linkovi">
-                <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-                <li><a class="aktivan" href="artikli.html">Artikli</a></li>
-                <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
-            </ul>
-        </nav>
-        <div class="text">
-            <table class="tabelaArtikli">
-                <style type="text/css">
-                    td {
-                      padding: 0 15px;
-                    }
-                  </style>
-                  <tr>
-                <th>Ime     </th>
-                <th>Cena    </th>
-                <th>Slika   </th>
-                <th>Opis    </th>
-                </tr>
-                <tbody id="data" >
-                    <style type="text/css">
-                        td {
-                          padding: 0 15px;
-                        }
-                      </style>
-                </tbody>
-            </table>
-        </div>
-        <script src="izvlacenjeIzDB.js"> </script>
 
-        <a href="dodajArtikl.php">
-            <div class="plusDugme"> + </div>
-        </a>
-        <script>
-        function getCookie() {
-            let cname = "createdAt";
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-        
-        let session = getCookie();
-    
-        if (session !== "") {
-            
-        } else {
-            window.location = "http://www.hurryup.rs";
-        }
-    </script>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikli</title>
+    <link rel="stylesheet" href="artikli.css">
+    <link href="../../slike/hurryup_logo2.ico" rel="icon">
+    <script src="artikli.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="header">
+            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
+            <h4 class="pocetna">HurryUp</h4>
+        </div>
+        <ul class="linkovi">
+            <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+            <li><a class="aktivan" href="artikli.html">Artikli</a></li>
+            <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+        </ul>
+    </nav>
+    <div class="text">
+        <h1>Ovo su Artikli</h1>
+    </div>
+
+</body>
+
+
 </html>
