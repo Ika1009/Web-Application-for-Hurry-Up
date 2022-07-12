@@ -26,9 +26,12 @@
     <div class="text">
         <div class="kutija">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">Dodaj</button>
-            <div class="popup" id="popup">
-                <h2>Ide Gas</h2>
-                <button type="button" onclick="ZatvoriPopUp()">OK</button>
+                <div class="popup" id="popup">
+                <h3>Dodaj novi artikal:</h3>
+                <input id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
+                <input id="cena" type="text" name="cena" required placeholder="Cena" />
+                <input id="opis" type="text" name="opis" required placeholder="Opis" />
+                <button type="submit" name="submit" value="add"  onclick="ZatvoriPopUp()">Dodaj</button>
             </div>
         </div>
     </div>
@@ -45,3 +48,24 @@
 
 
 </html>
+
+<?php
+    if (isset($_POST['submit'])) {  
+        extract($_POST);  
+        $servername = "localhost";  
+        $username   = "hurryupr_milos";  
+        $password   = "miloskralj";  
+        $dbname     = "hurryupr_database1";  
+        // Create connection  
+        $conn = new mysqli($servername, $username, $password, $dbname);  
+        // Check connection  
+        if ($conn->connect_error) {  
+            die("Connection failed: " . $conn->connect_error);  
+        }
+        $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '', '$opis')";
+        if ($conn->query($sql) === FALSE) {  
+            echo "Greska: " . $sql . "<br>" . $conn->error;      
+        }
+        $conn->close();  
+    }  
+?>
