@@ -257,6 +257,37 @@
         if ($conn->query($sql) === FALSE) {  
             echo "Greska: " . $sql . "<br>" . $conn->error;      
         }
+        $conn->close(); 
+        ?>
+        <script type="text/javascript"> location.reload(); </script>
+        <?php
+    }
+
+    if (isset($_POST['dugmeZaBrisanje'])) {  
+        extract($_POST);  
+        $servername = "localhost";  
+        $username   = "hurryupr_milos";  
+        $password   = "miloskralj";  
+        $dbname     = "hurryupr_database1";  
+        // Create connection  
+        $conn = new mysqli($servername, $username, $password, $dbname);  
+        // Check connection  
+        if ($conn->connect_error) {  
+            die("Connection failed: " . $conn->connect_error);  
+        }
+        
+        $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+        }
+
+        $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '', '$opis')";
+        if ($conn->query($sql) === FALSE) {  
+            echo "Greska: " . $sql . "<br>" . $conn->error;      
+        }
         $conn->close();  
-    }  
+    }
 ?>
