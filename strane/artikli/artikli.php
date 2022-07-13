@@ -287,4 +287,6 @@
         $conn->close();  
     }
     //menjanje iz baze
+    //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
+
 ?>
