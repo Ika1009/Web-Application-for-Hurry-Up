@@ -95,8 +95,7 @@
         }
 
         .opis::-webkit-input-placeholder {
-            color: #333;
-            text-align: right;
+            vertical-align: top;
         }
 
 
