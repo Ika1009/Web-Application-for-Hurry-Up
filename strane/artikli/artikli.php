@@ -282,11 +282,6 @@
         } else {
             echo "Error deleting record: " . $conn->error;
         }
-
-        $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '', '$opis')";
-        if ($conn->query($sql) === FALSE) {  
-            echo "Greska: " . $sql . "<br>" . $conn->error;      
-        }
         $conn->close();  
     }
 ?>
