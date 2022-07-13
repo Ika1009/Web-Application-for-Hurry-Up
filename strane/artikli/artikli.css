@@ -1,5 +1,5 @@
-*{
-    margin:0px;
+* {
+    margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
@@ -14,7 +14,7 @@
     max-height: 100%;
 }
 
-.dugmeZaDodavanje{
+.dugmeZaDodavanje {
     padding: 10px 60px;
     background-color: #333;
     color: #FFB266;
@@ -25,27 +25,92 @@
     font-weight: 500;
     border-radius: 30px;
 }
+.naslov {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    font-weight: bold;
+}
 
-.popup{
-    width: 400px;
+.file {
+    float: left;
+    position: relative;
+    width: 40%;
+    font-size: 1em;
+    padding: 1.2em 1.7em 1.2em 1.7em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    transition: 0.4s;
+}
+.popuptext {
+    float: right;
+    position: relative;
+    width: 51%;
+    height: 40px;
+    font-size: 1em;
+    padding: 1.2em 1.7em 1.2em 1.7em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    border-radius: 20px;
+    border: none;
+    background: #ebebeb;
+    outline: none;
+    font-weight: bold;
+    transition: 0.4s;
+}
+.opis {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    font-size: 1em;
+    padding: 1.2em 1.7em 1.2em 1.7em;
+    margin-top: 1em;
+    margin-bottom: 0.6em;
+    border-radius: 20px;
+    border: none;
+    background: #ebebeb;
+    outline: none;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.popup input:focus,
+.popup input:active {
+    transform: scaleX(1.02);
+}
+
+.opis::-webkit-input-placeholder {
+    color: #333;
+    text-align: right;
+}
+
+
+.popup {
+    text-align: center;
+    padding: 0 30px 30px;
+    width: 550px;
+
+
     background-color: #FFB266;
     border-radius: 6px;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
-    text-align: center;
-    padding: 0 30px 30px;
     color: #333;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
-.otvori-Popup{
+
+.otvori-Popup {
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
-.popup button{
+
+.popup button {
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
@@ -73,16 +138,19 @@ nav {
     justify-content: space-around;
     width: 30%;
 }
-.linkovi li{
+
+.linkovi li {
     list-style: none;
 }
+
 .header {
     color: #ffb266;
     letter-spacing: 5px;
     font-size: 20px;
 }
-.linkovi a{
-    color:#ffb266;
+
+.linkovi a {
+    color: #ffb266;
     text-decoration: none;
     letter-spacing: 3px;
     font-weight: bold;
@@ -90,11 +158,11 @@ nav {
     padding: 14px 16px;
 }
 
-.linkovi li a.hover:not(.aktivan){
+.linkovi li a.hover:not(.aktivan) {
     background-color: #ffb266;
 }
 
-.linkovi li a.aktivan{
+.linkovi li a.aktivan {
     background-color: #f9f9f9;
     color: #333;
     font-weight: bolder;
@@ -108,87 +176,4 @@ img {
 .pocetna {
     float: right;
     padding-top: 30px;
-}
-
-.plusDugme {
-    width: 70px;
-    height: 70px;
-    background-color: #FFB266;
-    border-radius: 50%;
-    box-shadow: 0 6px 10px 0 #666;
-    transition: all 0.1s ease-in-out;
-  
-    font-size: 50px;
-    color: white;
-    text-align: center;
-    line-height: 70px;
-  
-    position: fixed;
-    right: 50px;
-    bottom: 50px;
- }
-  
- .plusDugme:hover {
-    box-shadow: 0 6px 14px 0 #666;
-    transform: scale(1.05);
- }
-
- .plusDugme .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-  }
-  
-  /* Popup arrow */
-  .plusDugme .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
-  .plusDugme .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-  }
-  
-  /* Add animation (fade in the popup) */
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
-  #popupbox{
-    margin: 0; 
-    margin-left: 40%; 
-    margin-right: 40%;
-    margin-top: 50px; 
-    padding-top: 10px; 
-    width: 20%; 
-    height: 150px; 
-    position: absolute; 
-    background: #FBFBF0; 
-    border: solid #000000 2px; 
-    z-index: 9; 
-    font-family: arial; 
-    visibility: hidden; 
 }

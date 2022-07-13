@@ -27,15 +27,18 @@
         <div class="kutija">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">Dodaj</button>
                 <div class="popup" id="popup">
-                <h3>Dodaj novi artikal:</h3>
+                <h3 class="naslov">Dodaj novi artikal:</h3>
                 <div id="signup-form">
                     <form name="form1" action="" method="post" enctype="multipart/form-data">
-                        <input id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                        <input id="cena" type="text" name="cena" required placeholder="Cena" />
-                        <input id="opis" type="text" name="opis" required placeholder="Opis" />
+                        <input class="file" id="file" type="file" name="file" required>
+                        <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
+                        <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
+                        <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
+                        <input class="opis" id="opis" type="text" name="opis" required placeholder="Opis" />
+                        <button type="submit" name="submit" value="add"  onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
                 </div>
-                <button type="submit" name="submit" value="add"  onclick="ZatvoriPopUp()">Dodaj</button>
+
             </div>
         </div>
     </div>
