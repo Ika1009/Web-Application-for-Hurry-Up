@@ -240,7 +240,8 @@
 </html>
 
 <?php
-    if (isset($_POST['submit'])) {  
+    //dodavanje u bazu 
+    if (isset($_POST['submit'])) {   
         extract($_POST);  
         $servername = "localhost";  
         $username   = "hurryupr_milos";  
@@ -262,6 +263,7 @@
         <?php
     }
 
+    //brisanje iz baze
     if (isset($_POST['dugmeZaBrisanje'])) {  
         extract($_POST);  
         $servername = "localhost";  
@@ -284,4 +286,5 @@
         }
         $conn->close();  
     }
+    //menjanje iz baze
 ?>
