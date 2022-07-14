@@ -278,18 +278,52 @@
         $servername = "localhost";  
         $username   = "hurryupr_milos";  
         $password   = "miloskralj";  
-        $dbname     = "hurryupr_database1";  
+        $dbname     = "hurryupr_database1";
         // Create connection  
         $conn = new mysqli($servername, $username, $password, $dbname);  
         // Check connection  
         if ($conn->connect_error) {  
             die("Connection failed: " . $conn->connect_error);  
         }
-        $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '', '$opis')";
-        if ($conn->query($sql) === FALSE) {  
-            echo "Greska: " . $sql . "<br>" . $conn->error;      
+
+        // daje podatke slike
+        $slika = $_FILES['file'];
+        $slikaVelicina = $_FILES['file']['size'];
+        $slikaError = $_FILES['file']['error'];
+        $slikaTip = $_FILES['file']['type'];
+        $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+        
+        $slikaEkstNiz = explode('.', $slika);
+        $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
+        
+        $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
+
+        if (in_array($slikaEkstenzija, $dozvoljeni))) {
+            if($slikaError === 0)
+            {
+                if($slikaVelicina < 1000){ // promenjivo - sad je manje od 1MB
+                    
+                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis')";
+                    if ($conn->query($sql) === FALSE) {  
+                        echo "Greska: " . $sql . "<br>" . $conn->error;      
+                    }
+                    
+                    $conn->close(); 
+                } 
+                else{
+                    echo "Fajl ne sme biti veci od 1MB";
+                } 
+
+            } 
+            else {
+                echo "BIlo je gresaka tokom otpremanja fajla"
+            }
+        } 
+        else {
+            echo "Ne moze se ubaciti fajlovi ovog tipa!";
         }
-        $conn->close(); 
+
+        
         ?>
         <script type="text/javascript"> location.reload(); </script>
         <?php
@@ -320,5 +354,6 @@
     }
     //menjanje iz baze
     //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
+
 
 ?>
