@@ -138,22 +138,22 @@
         .dropdown-list {
             float: right;
             border-radius: 4px;
-            background-color: #ebebeb;
-            width: 100%;
-            position: relative;
-            left: 0;
-            right: 0;
+            height: inherit;
+            background-color: #f9f9f9;
+            width: 51%;
+            position: absolute;
             opacity: 0;
             display: none;
             transition: opacity 0.2s linear, visibility 0.2s linear;
         }
 
         .dropdown-list-item {
-            padding: 1rem;
+            padding: 1.5rem;
             font-size: 1em;
         }
 
         .opis {
+            z-index: -1;
             position: relative;
             width: 100%;
             height: 150px;
