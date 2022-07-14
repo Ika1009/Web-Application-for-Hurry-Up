@@ -104,6 +104,55 @@
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
 
+        .dropdown {
+            float: right;
+            width: 51%;
+            text-align: left;
+        }
+        .dropdown:hover .dropdown-list {
+            opacity: 1;
+            display: block;
+        }
+
+        .dropdown-select {
+            margin-bottom: 0.6em;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            margin-top: 0.6em;
+            height: 40px;
+            padding: 1.5rem;
+            border-radius: 20px;
+            background-color: #ebebeb;
+            color: #6d6d6d;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);  
+        }
+
+        .dropdown-list {
+            float: right;
+            border-radius: 4px;
+            background-color: #ebebeb;
+            width: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            display: none;
+            transition: opacity 0.2s linear, visibility 0.2s linear;
+        }
+
+        .dropdown-list-item {
+            padding: 1rem;
+            font-size: 1em;
+        }
+
         .opis {
             position: relative;
             width: 100%;
@@ -251,7 +300,16 @@
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        
+                        <div class="dropdown">
+                            <div class="dropdown-select">
+                                <span class="select">Kategorija</span>
+                                <i class="fa fa-caret-down icon"></i>
+                            </div>
+                            <div class="dropdown-list">
+                                <option class="dropdown-list-item">Hrana</option>
+                                <option class="dropdown-list-item">Pice</option>
+                            </div>
+                        </div>
                         <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                         <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
