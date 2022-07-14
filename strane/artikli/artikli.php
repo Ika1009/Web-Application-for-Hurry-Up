@@ -217,6 +217,11 @@
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
+                        <select class="kategorija" name="kategorija" id="kategorija">
+                            <option>-izaberite kategoriju-</option>
+                            <option>hrana</option>
+                            <option>pice</option>
+                        </select>
                         <input class="opis" id="opis" type="text" name="opis" required placeholder="Opis" />
                         <button type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
