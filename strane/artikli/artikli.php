@@ -259,6 +259,7 @@
 
             </div>
         </div>
+        
     </div>
     <script>
         let popup = document.getElementById("popup");
@@ -269,7 +270,32 @@
             popup.classList.remove("otvori-Popup");
         }
     </script>
-</body>
+
+    <div class="text">
+            <table class="tabelaArtikli">
+                <style type="text/css">
+                    td {
+                      padding: 0 15px;
+                    }
+                  </style>
+                  <tr>
+                <th>Ime     </th>
+                <th>Cena    </th>
+                <th>Slika   </th>
+                <th>Opis    </th>
+                </tr>
+                <tbody id="data" >
+                    <style type="text/css">
+                        td {
+                          padding: 0 15px;
+                        }
+                      </style>
+                </tbody>
+            </table>
+        </div>
+        <script src="izvlacenjeIzDB.js"> </script>
+        
+    </body>
 
 
 </html>
