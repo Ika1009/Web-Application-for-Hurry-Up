@@ -88,8 +88,8 @@
             width: 100%;
             height: 250px;
             background-color: red;
-            z-index: -5;
             opacity: 0;
+            z-index: 5;
         }
 
         .upload-label {
@@ -384,7 +384,6 @@
 
 
 </html>
-
 <?php
     //dodavanje u bazu 
     if (isset($_POST['submit'])) {   
