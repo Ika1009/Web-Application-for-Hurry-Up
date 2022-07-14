@@ -291,17 +291,18 @@
 
         // daje podatke slike
         $slika = $_FILES['file'];
+        $slikaIme = $_FILES['file']['name'];
         $slikaVelicina = $_FILES['file']['size'];
         $slikaError = $_FILES['file']['error'];
         $slikaTip = $_FILES['file']['type'];
         $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
         
-        $slikaEkstNiz = explode('.', $slika);
+        $slikaEkstNiz = explode('.', $slikaIme);
         $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
         
         $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
 
-        if (in_array($slikaEkstenzija, $dozvoljeni))) {
+        if (in_array($slikaEkstenzija, $dozvoljeni)) {
             if($slikaError === 0)
             {
                 if($slikaVelicina < 1000){ // promenjivo - sad je manje od 1MB
@@ -312,6 +313,10 @@
                     }
                     
                     $conn->close(); 
+                            
+                    ?>
+                    <script type="text/javascript"> location.reload(); </script>
+                    <?php
                 } 
                 else{
                     echo "Fajl ne sme biti veci od 1MB";
@@ -319,17 +324,13 @@
 
             } 
             else {
-                echo "BIlo je gresaka tokom otpremanja fajla"
+                echo "BIlo je gresaka tokom otpremanja fajla";
             }
         } 
         else {
             echo "Ne moze se ubaciti fajlovi ovog tipa!";
         }
 
-        
-        ?>
-        <script type="text/javascript"> location.reload(); </script>
-        <?php
     }
 
     //brisanje iz baze
