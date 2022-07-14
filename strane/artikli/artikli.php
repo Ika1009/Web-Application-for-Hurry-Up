@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Artikli</title>
     <style>
         * {
@@ -21,22 +23,23 @@
             display: flex;
             font-family: Arial, Helvetica, sans-serif;
             align-items: center;
-            justify-content: center;
+            justify-content: left;
             margin: auto;
             max-width: 70%;
             max-height: 100%;
         }
 
         .dugmeZaDodavanje {
-            padding: 10px 60px;
+            width: 50px;
+            height: 50px;
+            justify-items: center;
             background-color: #333;
-            color: #FFB266;
+            border-radius: 50%;
+            color: #ffb266;
+            font-size: 50px;
             border: 0;
             outline: none;
             cursor: pointer;
-            font-size: 22px;
-            font-weight: 500;
-            border-radius: 30px;
             margin-top: 0.6em;
             margin-bottom: 0.6em;
         }
@@ -238,7 +241,7 @@
     </nav>
     <div class="text">
         <div class="kutija">
-            <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">Dodaj</button>
+            <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()"><ion-icon name="add"></ion-icon></i></button>
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
                 <h3 class="naslov">Dodaj novi artikal:</h3>
