@@ -443,7 +443,7 @@
             {
                 if($slikaVelicina < 1000000){ // promenjivo - sad je manje od 1MB
                     
-                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis')";
+                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
                     if ($conn->query($sql) === FALSE) {  
                         echo "Greska: " . $sql . "<br>" . $conn->error;      
                     }
