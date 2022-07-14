@@ -1,3 +1,5 @@
+application/x-httpd-php artikli.php ( HTML document, ASCII text )
+
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Artikli</title>
     <style>
         * {
@@ -34,12 +37,37 @@
             font-size: 22px;
             font-weight: 500;
             border-radius: 30px;
+            margin-top: 0.6em;
+            margin-bottom: 0.6em;
+        }
+        .dugmeZaDodavanje:hover {
+            background-color: black;
         }
 
         .naslov {
             margin-top: 0.6em;
             margin-bottom: 0.6em;
             font-weight: bold;
+            justify-items: center;
+        }
+
+        .btn {
+            float: right;
+            margin-top: 0.6em;
+            margin-bottom: 0.6em;
+            margin-right: auto;
+            background-color: #333;
+            border: none;
+            border-radius: 50%;
+            color: #f9f9f9;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: black;
         }
 
         .file {
@@ -71,22 +99,23 @@
             outline: none;
             font-weight: bold;
             transition: 0.4s;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
 
         .opis {
             position: relative;
             width: 100%;
-            height: 100px;
-            font-size: 1em;
+            height: 150px;
+            font-size: 1.4em;
             padding: 1.2em 1.7em 1.2em 1.7em;
-            margin-top: 1em;
-            margin-bottom: 0.6em;
+            margin-top: 2em;
             border-radius: 20px;
             border: none;
             background: #ebebeb;
             outline: none;
             font-weight: bold;
             transition: 0.4s;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
 
         .popup input:focus,
@@ -102,9 +131,8 @@
         .popup {
             text-align: center;
             padding: 0 30px 30px;
-            width: 550px;
-
-
+            width: 500px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
             background-color: #FFB266;
             border-radius: 6px;
             position: absolute;
@@ -122,7 +150,7 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        .popup button {
+        .submit {
             width: 100%;
             margin-top: 50px;
             padding: 10px 0;
@@ -134,6 +162,9 @@
             border-radius: 4px;
             cursor: pointer;
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        .submit:hover {
+            background-color: black;
         }
 
         nav {
@@ -210,6 +241,7 @@
         <div class="kutija">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">Dodaj</button>
             <div class="popup" id="popup">
+                <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
                 <h3 class="naslov">Dodaj novi artikal:</h3>
                 <div id="signup-form">
                     <form name="form1" action="" method="post" enctype="multipart/form-data">
@@ -217,13 +249,9 @@
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        <select class="kategorija" name="kategorija" id="kategorija">
-                            <option>-izaberite kategoriju-</option>
-                            <option>hrana</option>
-                            <option>pice</option>
-                        </select>
-                        <input class="opis" id="opis" type="text" name="opis" required placeholder="Opis" />
-                        <button type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
+                        <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis"
+                            placeholder="Opis"></textarea>
+                        <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
                 </div>
 
@@ -245,8 +273,7 @@
 </html>
 
 <?php
-    //dodavanje u bazu 
-    if (isset($_POST['submit'])) {   
+    if (isset($_POST['submit'])) {  
         extract($_POST);  
         $servername = "localhost";  
         $username   = "hurryupr_milos";  
@@ -262,36 +289,6 @@
         if ($conn->query($sql) === FALSE) {  
             echo "Greska: " . $sql . "<br>" . $conn->error;      
         }
-        $conn->close(); 
-        ?>
-        <script type="text/javascript"> location.reload(); </script>
-        <?php
-    }
-
-    //brisanje iz baze
-    if (isset($_POST['dugmeZaBrisanje'])) {  
-        extract($_POST);  
-        $servername = "localhost";  
-        $username   = "hurryupr_milos";  
-        $password   = "miloskralj";  
-        $dbname     = "hurryupr_database1";  
-        // Create connection  
-        $conn = new mysqli($servername, $username, $password, $dbname);  
-        // Check connection  
-        if ($conn->connect_error) {  
-            die("Connection failed: " . $conn->connect_error);  
-        }
-        
-        $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
-            echo "Error deleting record: " . $conn->error;
-        }
         $conn->close();  
-    }
-    //menjanje iz baze
-    //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
-
+    }  
 ?>
