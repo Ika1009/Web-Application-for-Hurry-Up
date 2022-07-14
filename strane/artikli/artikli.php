@@ -273,7 +273,8 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
 </html>
 
 <?php
-    if (isset($_POST['submit'])) {  
+    //dodavanje u bazu 
+    if (isset($_POST['submit'])) {   
         extract($_POST);  
         $servername = "localhost";  
         $username   = "hurryupr_milos";  
@@ -289,6 +290,36 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
         if ($conn->query($sql) === FALSE) {  
             echo "Greska: " . $sql . "<br>" . $conn->error;      
         }
+        $conn->close(); 
+        ?>
+        <script type="text/javascript"> location.reload(); </script>
+        <?php
+    }
+
+    //brisanje iz baze
+    if (isset($_POST['dugmeZaBrisanje'])) {  
+        extract($_POST);  
+        $servername = "localhost";  
+        $username   = "hurryupr_milos";  
+        $password   = "miloskralj";  
+        $dbname     = "hurryupr_database1";  
+        // Create connection  
+        $conn = new mysqli($servername, $username, $password, $dbname);  
+        // Check connection  
+        if ($conn->connect_error) {  
+            die("Connection failed: " . $conn->connect_error);  
+        }
+        
+        $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+        }
         $conn->close();  
-    }  
+    }
+    //menjanje iz baze
+    //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
+
 ?>
