@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +41,7 @@
             margin-top: 0.6em;
             margin-bottom: 0.6em;
         }
+
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
@@ -61,7 +60,7 @@
             background-color: #333;
             border: none;
             border-radius: 50%;
-            color: #f9f9f9;
+            color: #ffb266;
             padding: 12px 16px;
             font-size: 14px;
             cursor: pointer;
@@ -72,18 +71,61 @@
             background-color: black;
         }
 
-        .file {
+        .fajl {
+            margin-top: 0.6em;
             float: left;
             position: relative;
-            width: 40%;
+            width: 45%;
             font-size: 1em;
-            padding: 1.2em 1.7em 1.2em 1.7em;
-            margin-top: 0.6em;
-            margin-bottom: 0.6em;
+            background-color: #ebebeb;
+            height: 250px;
             border-radius: 20px;
-            border: none;
+        }
+
+        .file {
+            position: absolute;
+            right: 0px;
+            width: 100%;
+            height: 250px;
+            background-color: red;
+            z-index: -5;
+            opacity: 0;
+        }
+
+        .upload-label {
+            position: absolute;
+            width: 100%;
+            height: 250px;
+            border: 1px dashed #333;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction: column;
+        }
+
+        .upload-label > ion-icon {
+            margin: 5px auto;
+            color: #333;
+            font-size: 50px;
+        }
+
+        .drag-text {
+            color: #6d6d6d;
             font-weight: bold;
-            transition: 0.4s;
+            font-size: 1em;
+        }
+
+        .choose-file {
+            margin: 30px auto;
+            width: 100px;
+            height: 37px;
+            border: none;
+            color: #ffb266;
+            background-color: #333;
+            border-radius: 13px;
+            font-weight: bold;
+            pointer-events: none;
         }
 
         .popuptext {
@@ -109,6 +151,7 @@
             width: 51%;
             text-align: left;
         }
+
         .dropdown:hover .dropdown-list {
             opacity: 1;
             display: block;
@@ -132,7 +175,7 @@
             font-size: 1em;
             cursor: pointer;
             transition: 0.4s;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);  
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
 
         .dropdown-list {
@@ -206,7 +249,7 @@
             margin-top: 50px;
             padding: 10px 0;
             background-color: #333;
-            color: #f9f9f9;
+            color: #ffb266;
             border: 0;
             outline: none;
             font-size: 18px;
@@ -214,6 +257,7 @@
             cursor: pointer;
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
+
         .submit:hover {
             background-color: black;
         }
@@ -290,13 +334,22 @@
     </nav>
     <div class="text">
         <div class="kutija">
-            <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()"><ion-icon name="add"></ion-icon></i></button>
+            <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">
+                <ion-icon name="add"></ion-icon></i>
+            </button>
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
                 <h3 class="naslov">Dodaj novi artikal:</h3>
                 <div id="signup-form">
                     <form name="form1" action="" method="post" enctype="multipart/form-data">
-                        <input class="file" id="file" type="file" name="file" required>
+                        <div class="fajl">
+                            <input class="file" id="file" type="file" name="file">
+                            <label for="file" class="upload-label">
+                                <ion-icon  name="cloud-upload"></ion-icon>
+                                <p class="drag_text"> Prevuci da otpremis fajl</p>
+                                <button class="choose-file">Izaberi Fajl</button>
+                            </label>
+                        </div>
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
