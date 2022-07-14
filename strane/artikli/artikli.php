@@ -353,7 +353,7 @@
         $slikaVelicina = $_FILES['file']['size'];
         $slikaError = $_FILES['file']['error'];
         $slikaTip = $_FILES['file']['type'];
-        // $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['name']));
+        $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
         
         $slikaEkstNiz = explode('.', $slikaIme);
         $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
@@ -365,16 +365,18 @@
             {
                 if($slikaVelicina < 1000000){ // promenjivo - sad je manje od 1MB
                     
-                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaIme', '$opis')";
+                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis')";
                     if ($conn->query($sql) === FALSE) {  
                         echo "Greska: " . $sql . "<br>" . $conn->error;      
                     }
                     
                     $conn->close(); 
-                            
+                    
+                    /*
                     ?>
                     <script type="text/javascript"> location.reload(); </script>
                     <?php
+                    */
                 } 
                 else{
                     echo "Fajl ne sme biti veci od 1MB";
