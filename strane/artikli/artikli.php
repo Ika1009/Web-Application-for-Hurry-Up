@@ -295,7 +295,7 @@
         $slikaVelicina = $_FILES['file']['size'];
         $slikaError = $_FILES['file']['error'];
         $slikaTip = $_FILES['file']['type'];
-        $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+        // $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['name']));
         
         $slikaEkstNiz = explode('.', $slikaIme);
         $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
@@ -305,9 +305,9 @@
         if (in_array($slikaEkstenzija, $dozvoljeni)) {
             if($slikaError === 0)
             {
-                if($slikaVelicina < 1000){ // promenjivo - sad je manje od 1MB
+                if($slikaVelicina < 1000000){ // promenjivo - sad je manje od 1MB
                     
-                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis')";
+                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaIme', '$opis')";
                     if ($conn->query($sql) === FALSE) {  
                         echo "Greska: " . $sql . "<br>" . $conn->error;      
                     }
