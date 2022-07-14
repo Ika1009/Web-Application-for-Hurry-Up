@@ -1,4 +1,4 @@
-application/x-httpd-php artikli.php ( HTML document, ASCII text )
+
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,6 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
             margin-top: 0.6em;
             margin-bottom: 0.6em;
             font-weight: bold;
-            justify-items: center;
         }
 
         .btn {
@@ -61,7 +60,7 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
             border-radius: 50%;
             color: #f9f9f9;
             padding: 12px 16px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
@@ -130,7 +129,7 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
 
         .popup {
             text-align: center;
-            padding: 0 30px 30px;
+            padding: 0 15px 15px;
             width: 500px;
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
             background-color: #FFB266;
@@ -249,8 +248,8 @@ application/x-httpd-php artikli.php ( HTML document, ASCII text )
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis"
-                            placeholder="Opis"></textarea>
+                        
+                        <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                         <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
                 </div>
