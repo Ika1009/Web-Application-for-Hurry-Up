@@ -1,3 +1,4 @@
+
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "data.php", true);
 ajax.send();

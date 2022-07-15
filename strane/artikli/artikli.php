@@ -363,15 +363,6 @@
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
-        let popup = document.getElementById("popup");
-
-        function otvoriPopup() {
-            popup.classList.add("otvori-Popup");
-        }
-
-        function ZatvoriPopUp() {
-            popup.classList.remove("otvori-Popup");
-        }
     </script>
 
     <div class="text" id=>
@@ -398,26 +389,27 @@
             </tbody>
         </table>
     </div>
-    <script>
+    <script>/*
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
                 let data = JSON.parse(this.responseText);
                 console.log(data);
                 let html = "";
                 for (let i = 0; i < data.length; i++) {
                     let ime = data[i].ime;
                     let cena = data[i].cena;
-                    let slika = data[i].slika;
+                    // let slika = data[i].slika;
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<tr>";
                     html += "<td>" + ime + "</td>";
                     html += "<td>" + cena + "</td>";
-                    html += "<td>" + slika + "</td>";
+                    // html += "<td>" + slika + "</td>";
                     html += "<td>" + opis + "</td>";
                     html += "<td>" + popust + "</td>";
                     html += "<td>" + kategorija + "</td>";
@@ -425,7 +417,7 @@
                 }
                 document.getElementById("data").innerHTML += html;
             }
-        };
+        };*/
     </script>
 
 </body>
@@ -473,7 +465,7 @@ if (isset($_POST['submit'])) {
 
                 /*
                     ?>
-                    <script type="text/javascript"> location.reload(); </script>
+                    <script type="text/javascript">// location.reload(); </script>
                     <?php
                     */
             } else {
@@ -513,5 +505,31 @@ if (isset($_POST['dugmeZaBrisanje'])) {
 //menjanje iz baze
 //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
 
+// da izbacuje slike - proba
+
+/* ne radi
+if (isset($_POST['submit'])) {
+    header("Content-Type: image/jpeg");
+    $servername = "localhost";  
+    $username   = "hurryupr_milos";  
+    $password   = "miloskralj";  
+    $dbname     = "hurryupr_database1";  
+    // Create connection  
+    $conn = new mysqli($servername, $username, $password, $dbname);  
+    // Check connection  
+    if ($conn->connect_error) {  
+        die("Connection failed: " . $conn->connect_error);  
+    } 
+    $sql = "SELECT * FROM 'artikli'";
+    $stmt = $db->prepare($sql);
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_array();
+    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/>';
+    header("Content-Type: image/jpeg");
+}
+*/
+    
 
 ?>
