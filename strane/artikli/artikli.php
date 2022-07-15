@@ -545,7 +545,8 @@ if (isset($_POST['submit'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    
+    /* 
     // daje podatke slike
     $slika = $_FILES['file'];
     $slikaIme = $_FILES['file']['name'];
@@ -574,7 +575,7 @@ if (isset($_POST['submit'])) {
                     ?>
                     <script type="text/javascript">// location.reload(); </script>
                     <?php
-                    */
+                    
             } else {
                 echo "Fajl ne sme biti veci od 1MB";
             }
@@ -584,7 +585,9 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Ne moze se ubaciti fajlovi ovog tipa!";
     }
+    */
 }
+
 
 //brisanje iz baze
 if (isset($_POST['dugmeZaBrisanje'])) {
@@ -609,34 +612,12 @@ if (isset($_POST['dugmeZaBrisanje'])) {
     }
     $conn->close();
 }
-//menjanje iz baze
-//ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
+
+//menjanje iz baze - u buducnosti mozda
 
 // da izbacuje slike - proba
 
-/* ne radi
-if (isset($_POST['submit'])) {
-    header("Content-Type: image/jpeg");
-    $servername = "localhost";  
-    $username   = "hurryupr_milos";  
-    $password   = "miloskralj";  
-    $dbname     = "hurryupr_database1";  
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);  
-    // Check connection  
-    if ($conn->connect_error) {  
-        die("Connection failed: " . $conn->connect_error);  
-    } 
-    $sql = "SELECT * FROM 'artikli'";
-    $stmt = $db->prepare($sql);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_array();
-    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/>';
-    header("Content-Type: image/jpeg");
-}
-*/
+
     
 
 ?>
