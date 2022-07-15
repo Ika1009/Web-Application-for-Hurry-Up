@@ -262,13 +262,24 @@
             padding-top: 30px;
         }
 
-        .dugmeZaDodavanje {
-            width: 50px;
+        .search {
+            display: flex;
+            margin-top: 10px;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 15px;
             height: 50px;
+            width: 300px;
+            border-color: #333;
+        }
+
+        .dugmeZaDodavanje {
+            width: 100px;
+            height: 100px;
             background-color: #333;
             border-radius: 50%;
             color: #ffb266;
-            font-size: 50px;
+            font-size: 100px;
             border: 0;
             outline: none;
             cursor: pointer;
@@ -330,6 +341,22 @@
         .product:hover img {
             transform: scale(1.1);
         }
+
+        .popuptext:hover {
+            transform: scale(1.05);
+        }
+
+        .opis:hover {
+            transform: scale(1.05);
+        }
+
+        .kategorija:hover {
+            transform: scale(1.05);
+        }
+
+        .fajl:hover {
+            transform: scale(1.05);
+        }
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script src="artikli.js"></script>
@@ -347,8 +374,8 @@
             <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
         </ul>
     </nav>
-
-    <div class="text">
+    <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
+    <div class="text" id="product-list">
         <div class="divdugme">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">
                 <ion-icon name="add"></ion-icon></i>
@@ -362,13 +389,11 @@
 
     </div>
 
-
-
     <div class="popup" id="popup">
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form name="form1" action="" method="post" enctype="multipart/form-data">
+            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
                     <input class="file" id="file" type="file" name="file">
                     <label for="file" class="upload-label">
@@ -405,6 +430,30 @@
         </div>
     </div>
     <script>
+        const search = () => {
+            const searchbox = document.getElementById("search-item").value.toUpperCase();
+            const storeitems = document.getElementById("product-list");
+            const product = document.querySelectorAll(".product");
+            const productname = storeitems.getElementsByTagName("h3");
+
+            for (let i = 0; i < productname.length; i++) {
+                let match = product[i].getElementsByTagName("h3")[0];
+
+                if (match) {
+                    let textvalue = match.textContent || match.innerHTML
+
+                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+                        product[i].style.display = "";
+                    } else {
+                        product[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
         let popup = document.getElementById("popup");
 
         function otvoriPopup() {
@@ -414,6 +463,8 @@
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
+
+        
     </script>
     <script src="izvlacenjeIzDB.js"> </script>
 
@@ -446,7 +497,7 @@
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
-        ajax.onreadystatechange = function() {
+        ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let data = JSON.parse(this.responseText);
                 console.log(data);
@@ -475,8 +526,7 @@
 </body>
 
 
-</html>
-<?php
+</html><?php
 //dodavanje u bazu 
 if (isset($_POST['submit'])) {
     extract($_POST);
