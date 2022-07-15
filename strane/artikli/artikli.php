@@ -17,35 +17,6 @@
             box-sizing: border-box;
         }
 
-        .text {
-            display: flex;
-            font-family: Arial, Helvetica, sans-serif;
-            align-items: center;
-            justify-content: left;
-            margin: auto;
-            max-width: 70%;
-            max-height: 100%;
-        }
-
-        .dugmeZaDodavanje {
-            width: 50px;
-            height: 50px;
-            justify-items: center;
-            background-color: #333;
-            border-radius: 50%;
-            color: #ffb266;
-            font-size: 50px;
-            border: 0;
-            outline: none;
-            cursor: pointer;
-            margin-top: 0.6em;
-            margin-bottom: 0.6em;
-        }
-
-        .dugmeZaDodavanje:hover {
-            background-color: black;
-        }
-
         .naslov {
             margin-top: 0.6em;
             margin-bottom: 0.6em;
@@ -290,6 +261,75 @@
             float: right;
             padding-top: 30px;
         }
+
+        .dugmeZaDodavanje {
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #ffb266;
+            font-size: 50px;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        .dugmeZaDodavanje:hover {
+            background-color: black;
+        }
+
+        .text {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(13rem, 10rem));
+            gap: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+            width: 70%;
+            margin-top: 1em;
+        }
+
+        .product {
+            text-align: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            background: #ebebeb;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            outline: .2rem solid #ffb266;
+            border-radius: 0.5em;
+        }
+
+
+        .divdugme {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            border: solid #ffb266;
+            background: #ebebeb;
+            border-radius: 0.5em;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        }
+
+        .product h3 {
+            padding: .5rem 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .price {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .product img {
+            height: 5rem;
+            border-radius: 0.5em;
+            display: fill;
+        }
+
+        .product:hover img {
+            transform: scale(1.1);
+        }
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script src="artikli.js"></script>
@@ -307,50 +347,63 @@
             <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
         </ul>
     </nav>
+
     <div class="text">
-        <div class="kutija">
+        <div class="divdugme">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">
                 <ion-icon name="add"></ion-icon></i>
             </button>
-            <div class="popup" id="popup">
-                <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
-                <h3 class="naslov">Dodaj novi artikal:</h3>
-                <div id="signup-form">
-                    <form name="form1" action="" method="post" enctype="multipart/form-data">
-                        <div class="fajl">
-                            <input class="file" id="file" type="file" name="file">
-                            <label for="file" class="upload-label">
-                                <ion-icon name="cloud-upload"></ion-icon>
-                                <p class="drag_text"> Prevuci da otpremis fajl</p>
-                                <button class="choose-file">Izaberi Fajl</button>
-                            </label>
-                        </div>
-                        <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                        <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
-                        <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        <select class="kategorija" name="kategorija" id="kategorija" required>
-                            <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
-                            <optgroup label="Hrana">
-                                <option value="burger">Burgeri</option>
-                                <option value="pica">Pice</option>
-                                <option value="pasta">Paste</option>
-                                <option value="gotova_jela">Gotova jela</option>
-                            </optgroup>
-                            <optgroup label="Piće">
-                                <option value="sok">Sokovi</option>
-                                <option value="tople_kafe">Tople kafe</option>
-                                <option value="hladne_kafe">Hladne kafe</option>
-                            </optgroup>
-                            <optgroup label="Ostalo">
-                                <option value="nesto">Dodajte ne znam</option>
-                            </optgroup>
-                        </select>
-                        <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
-                        <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
-                    </form>
-                </div>
+        </div>
+        <div class="product">
+            <img src="../../slike/caesar_salata.jpg" alt="">
+            <h3>O moja muda</h3>
+            <div class="price">neporcenjivo</div>
+        </div>
 
-            </div>
+    </div>
+
+
+<<<<<<< HEAD
+=======
+
+    <div class="popup" id="popup">
+        <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
+        <h3 class="naslov">Dodaj novi artikal:</h3>
+        <div id="signup-form">
+            <form name="form1" action="" method="post" enctype="multipart/form-data">
+                <div class="fajl">
+                    <input class="file" id="file" type="file" name="file">
+                    <label for="file" class="upload-label">
+                        <ion-icon name="cloud-upload"></ion-icon>
+                        <p class="drag_text"> Prevuci da otpremis fajl</p>
+                        <button class="choose-file">Izaberi Fajl</button>
+                    </label>
+                </div>
+                <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
+                <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
+                <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
+                <select class="kategorija" name="kategorija" id="kategorija" required>
+                    <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju
+                    </option>
+                    <optgroup label="Hrana">
+                        <option value="burger">Burgeri</option>
+                        <option value="pica">Pice</option>
+                        <option value="pasta">Paste</option>
+                        <option value="gotova_jela">Gotova jela</option>
+                    </optgroup>
+                    <optgroup label="Piće">
+                        <option value="sok">Sokovi</option>
+                        <option value="tople_kafe">Tople kafe</option>
+                        <option value="hladne_kafe">Hladne kafe</option>
+                    </optgroup>
+                    <optgroup label="Ostalo">
+                        <option value="nesto">Dodajte ne znam</option>
+                    </optgroup>
+                </select>
+                <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis"
+                    placeholder="Opis"></textarea>
+                <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
+            </form>
         </div>
     </div>
     <script>
@@ -360,10 +413,13 @@
             popup.classList.add("otvori-Popup");
         }
 
+>>>>>>> 01905748d570780e013e3ed60cbd5a4c876b3634
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
     </script>
+    <script src="izvlacenjeIzDB.js"> </script>
+
 
     <div class="text" id=>
         <table class="tabelaArtikli" id="data">
