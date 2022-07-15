@@ -350,7 +350,7 @@
                 </div>
 
             </div>
-        </div>      
+    </div>
     </div>
     <script>
         let popup = document.getElementById("popup");
