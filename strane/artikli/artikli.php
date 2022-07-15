@@ -362,10 +362,6 @@
 
     </div>
 
-
-<<<<<<< HEAD
-=======
-
     <div class="popup" id="popup">
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
@@ -412,8 +408,6 @@
         function otvoriPopup() {
             popup.classList.add("otvori-Popup");
         }
-
->>>>>>> 01905748d570780e013e3ed60cbd5a4c876b3634
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
