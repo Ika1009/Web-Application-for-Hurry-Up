@@ -428,8 +428,7 @@
                         <option value="nesto">Dodajte ne znam</option>
                     </optgroup>
                 </select>
-                <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis"
-                    placeholder="Opis"></textarea>
+                <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                 <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
             </form>
         </div>
@@ -455,20 +454,19 @@
                 }
             }
         }
-        
-        
-        
-        
+
+
+
+
         let popup = document.getElementById("popup");
 
         function otvoriPopup() {
             popup.classList.add("otvori-Popup");
         }
+
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
-
-        
     </script>
     <script src="izvlacenjeIzDB.js"> </script>
 
@@ -497,7 +495,8 @@
             </tbody>
         </table>
     </div>
-    <script>/*
+    <script>
+        /*
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
@@ -531,93 +530,119 @@
 </body>
 
 
-</html><?php
-//dodavanje u bazu 
-if (isset($_POST['submit'])) {
-    extract($_POST);
-    $servername = "localhost";
-    $username   = "hurryupr_milos";
-    $password   = "miloskralj";
-    $dbname     = "hurryupr_database1";
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection  
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    /* 
-    // daje podatke slike
-    $slika = $_FILES['file'];
-    $slikaIme = $_FILES['file']['name'];
-    $slikaVelicina = $_FILES['file']['size'];
-    $slikaError = $_FILES['file']['error'];
-    $slikaTip = $_FILES['file']['type'];
-    $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+</html>
 
-    $slikaEkstNiz = explode('.', $slikaIme);
-    $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
+<?php
+        //dodavanje u bazu 
+        if (isset($_POST['submit'])) {
+            extract($_POST);
 
-    $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
+            // daje podatke slike
+            $slika = $_FILES['file'];
+            $slikaIme = $_FILES['file']['name'];
+            $slikaVelicina = $_FILES['file']['size'];
+            $slikaError = $_FILES['file']['error'];
+            $slikaTip = $_FILES['file']['type'];
+            // $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
 
-    if (in_array($slikaEkstenzija, $dozvoljeni)) {
-        if ($slikaError === 0) {
-            if ($slikaVelicina < 1000000) { // promenjivo - sad je manje od 1MB
+            $servername = "localhost";
+            $username   = "hurryupr_milos";
+            $password   = "miloskralj";
+            $dbname     = "hurryupr_database1";
+            // Create connection  
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection  
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-                $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
-                if ($conn->query($sql) === FALSE) {
-                    echo "Greska: " . $sql . "<br>" . $conn->error;
+            $target_dir = "artikliSlike";
+            $target_file = $target_dir . basename($sliakIme);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+            // Check if image file is a actual image or fake image
+            /*$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]); 
+            if ($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }*/
+
+            /*
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                echo "Fajl vec postoji.";
+                $uploadOk = 0;
+            }
+
+            // Check file size
+            if ($slikaVelicina > 500000) {
+                echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
+                $uploadOk = 0;
+            }
+
+            // Allow certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            ) {
+                echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
+                $uploadOk = 0;
+            }
+            */
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Doslo je do greske, fajl nije otpremljen.";
+                // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                    echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+                } else {
+                    echo "Doslo je do greske, fajl nije otpremljen.";
                 }
 
-                $conn->close();
+            $path = realpath($slikaIme); // uzima path do slike
+            echo $path; // nadams se da radi
 
-                /*
-                    ?>
-                    <script type="text/javascript">// location.reload(); </script>
-                    <?php
-                    
-            } else {
-                echo "Fajl ne sme biti veci od 1MB";
+            $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaIme', '$opis', '$popust', '$kategorija')";
+
+            if ($conn->query($sql) === FALSE) {
+                echo "Greska: " . $sql . "<br>" . $conn->error;
             }
-        } else {
-            echo "BIlo je gresaka tokom otpremanja fajla";
+
+            $conn->close();
+
+        ?>
+            <script type="text/javascript">
+                //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
+            </script>
+<?php
+
         }
-    } else {
-        echo "Ne moze se ubaciti fajlovi ovog tipa!";
-    }
-    */
-}
 
+        //brisanje iz baze
+        if (isset($_POST['dugmeZaBrisanje'])) {
+            extract($_POST);
+            $servername = "localhost";
+            $username   = "hurryupr_milos";
+            $password   = "miloskralj";
+            $dbname     = "hurryupr_database1";
+            // Create connection  
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection  
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-//brisanje iz baze
-if (isset($_POST['dugmeZaBrisanje'])) {
-    extract($_POST);
-    $servername = "localhost";
-    $username   = "hurryupr_milos";
-    $password   = "miloskralj";
-    $dbname     = "hurryupr_database1";
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection  
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+            $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
 
-    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-    } else {
-        echo "Error deleting record: " . $conn->error;
-    }
-    $conn->close();
-}
-
-//menjanje iz baze - u buducnosti mozda
-
-// da izbacuje slike - proba
-
-
-    
-
+            if ($conn->query($sql) === TRUE) {
+                echo "Record deleted successfully";
+            } else {
+                echo "Error deleting record: " . $conn->error;
+            }
+            $conn->close();
+        }
 ?>
