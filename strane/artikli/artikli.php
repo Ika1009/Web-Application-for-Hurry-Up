@@ -264,13 +264,18 @@
 
         .search {
             display: flex;
-            margin-top: 10px;
+            margin-top: 1rem;
             margin-right: auto;
             margin-left: auto;
             padding: 15px;
             height: 50px;
-            width: 300px;
-            border-color: #333;
+            width: 400px;
+            border-radius: 15px;
+            border-color: #ffb266;
+            background-color: #333;
+            font-size: 22px;
+            font-style: italic;
+            color: #FFB266;
         }
 
         .dugmeZaDodavanje {
@@ -283,7 +288,7 @@
             border: 0;
             outline: none;
             cursor: pointer;
-            margin: auto;
+            margin: 4rem;
         }
 
         .dugmeZaDodavanje:hover {
@@ -292,12 +297,12 @@
 
         .text {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(13rem, 10rem));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
+            gap: 4rem;
             font-family: Arial, Helvetica, sans-serif;
             margin: auto;
             width: 70%;
-            margin-top: 1em;
+            margin-top: 5rem;
         }
 
         .product {
@@ -374,7 +379,7 @@
             <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
         </ul>
     </nav>
-    <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
+    <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
     <div class="text" id="product-list">
         <div class="divdugme">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">
