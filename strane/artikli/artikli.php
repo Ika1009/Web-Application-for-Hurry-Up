@@ -104,7 +104,7 @@
             flex-direction: column;
         }
 
-        .upload-label > ion-icon {
+        .upload-label>ion-icon {
             margin: 5px auto;
             color: #333;
             font-size: 50px;
@@ -192,10 +192,11 @@
             padding: 0;
             color: #6d6d6d;
         }
+
         .optgroup {
             color: #333;
         }
-        
+
         .popup {
             text-align: center;
             padding: 0 15px 15px;
@@ -319,7 +320,7 @@
                         <div class="fajl">
                             <input class="file" id="file" type="file" name="file">
                             <label for="file" class="upload-label">
-                                <ion-icon  name="cloud-upload"></ion-icon>
+                                <ion-icon name="cloud-upload"></ion-icon>
                                 <p class="drag_text"> Prevuci da otpremis fajl</p>
                                 <button class="choose-file">Izaberi Fajl</button>
                             </label>
@@ -327,7 +328,7 @@
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        <select class="kategorija" name="kategorija" id="kategorija"required>  
+                        <select class="kategorija" name="kategorija" id="kategorija" required>
                             <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                             <optgroup label="Hrana">
                                 <option value="burger">Burgeri</option>
@@ -350,140 +351,167 @@
                 </div>
 
             </div>
-    </div>
+        </div>
     </div>
     <script>
         let popup = document.getElementById("popup");
+
         function otvoriPopup() {
             popup.classList.add("otvori-Popup");
         }
+
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
-        <script>
         let popup = document.getElementById("popup");
+
         function otvoriPopup() {
             popup.classList.add("otvori-Popup");
         }
+
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
     </script>
 
-    <div class="text">
-            <table class="tabelaArtikli">
+    <div class="text" id=>
+        <table class="tabelaArtikli" id="data">
+            <style type="text/css">
+                td {
+                    padding: 0 15px;
+                }
+            </style>
+            <tr>
+                <th>Ime </th>
+                <th>Cena </th>
+                <th>Slika </th>
+                <th>Opis </th>
+                <th>Kategorija </th>
+                <th>Opis </th>
+            </tr>
+            <tbody id="data">
                 <style type="text/css">
                     td {
-                      padding: 0 15px;
+                        padding: 0 15px;
                     }
-                  </style>
-                  <tr>
-                <th>Ime     </th>
-                <th>Cena    </th>
-                <th>Slika   </th>
-                <th>Opis    </th>
-                </tr>
-                <tbody id="data" >
-                    <style type="text/css">
-                        td {
-                          padding: 0 15px;
-                        }
-                      </style>
-                </tbody>
-            </table>
-        </div>
-        <script src="izvlacenjeIzDB.js"> </script>
-        
-    </body>
+                </style>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET", "data.php", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(this.responseText);
+                console.log(data);
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    let ime = data[i].ime;
+                    let cena = data[i].cena;
+                    let slika = data[i].slika;
+                    let opis = data[i].opis;
+                    let popust = data[i].popust;
+                    let kategorija = data[i].kategorija;
+                    html += "<tr>";
+                    html += "<td>" + ime + "</td>";
+                    html += "<td>" + cena + "</td>";
+                    html += "<td>" + slika + "</td>";
+                    html += "<td>" + opis + "</td>";
+                    html += "<td>" + popust + "</td>";
+                    html += "<td>" + kategorija + "</td>";
+                    html += "</tr>";
+                }
+                document.getElementById("data").innerHTML += html;
+            }
+        };
+    </script>
+
+</body>
 
 
 </html>
 <?php
-    //dodavanje u bazu 
-    if (isset($_POST['submit'])) {   
-        extract($_POST);  
-        $servername = "localhost";  
-        $username   = "hurryupr_milos";  
-        $password   = "miloskralj";  
-        $dbname     = "hurryupr_database1";
-        // Create connection  
-        $conn = new mysqli($servername, $username, $password, $dbname);  
-        // Check connection  
-        if ($conn->connect_error) {  
-            die("Connection failed: " . $conn->connect_error);  
-        }
+//dodavanje u bazu 
+if (isset($_POST['submit'])) {
+    extract($_POST);
+    $servername = "localhost";
+    $username   = "hurryupr_milos";
+    $password   = "miloskralj";
+    $dbname     = "hurryupr_database1";
+    // Create connection  
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection  
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        // daje podatke slike
-        $slika = $_FILES['file'];
-        $slikaIme = $_FILES['file']['name'];
-        $slikaVelicina = $_FILES['file']['size'];
-        $slikaError = $_FILES['file']['error'];
-        $slikaTip = $_FILES['file']['type'];
-        $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-        
-        $slikaEkstNiz = explode('.', $slikaIme);
-        $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
-        
-        $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
+    // daje podatke slike
+    $slika = $_FILES['file'];
+    $slikaIme = $_FILES['file']['name'];
+    $slikaVelicina = $_FILES['file']['size'];
+    $slikaError = $_FILES['file']['error'];
+    $slikaTip = $_FILES['file']['type'];
+    $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
 
-        if (in_array($slikaEkstenzija, $dozvoljeni)) {
-            if($slikaError === 0)
-            {
-                if($slikaVelicina < 1000000){ // promenjivo - sad je manje od 1MB
-                    
-                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
-                    if ($conn->query($sql) === FALSE) {  
-                        echo "Greska: " . $sql . "<br>" . $conn->error;      
-                    }
-                    
-                    $conn->close(); 
-                    
-                    /*
+    $slikaEkstNiz = explode('.', $slikaIme);
+    $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
+
+    $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
+
+    if (in_array($slikaEkstenzija, $dozvoljeni)) {
+        if ($slikaError === 0) {
+            if ($slikaVelicina < 1000000) { // promenjivo - sad je manje od 1MB
+
+                $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
+                if ($conn->query($sql) === FALSE) {
+                    echo "Greska: " . $sql . "<br>" . $conn->error;
+                }
+
+                $conn->close();
+
+                /*
                     ?>
                     <script type="text/javascript"> location.reload(); </script>
                     <?php
                     */
-                } 
-                else{
-                    echo "Fajl ne sme biti veci od 1MB";
-                } 
-
-            } 
-            else {
-                echo "BIlo je gresaka tokom otpremanja fajla";
+            } else {
+                echo "Fajl ne sme biti veci od 1MB";
             }
-        } 
-        else {
-            echo "Ne moze se ubaciti fajlovi ovog tipa!";
-        }
-
-    }
-
-    //brisanje iz baze
-    if (isset($_POST['dugmeZaBrisanje'])) {  
-        extract($_POST);  
-        $servername = "localhost";  
-        $username   = "hurryupr_milos";  
-        $password   = "miloskralj";  
-        $dbname     = "hurryupr_database1";  
-        // Create connection  
-        $conn = new mysqli($servername, $username, $password, $dbname);  
-        // Check connection  
-        if ($conn->connect_error) {  
-            die("Connection failed: " . $conn->connect_error);  
-        }
-        
-        $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
         } else {
-            echo "Error deleting record: " . $conn->error;
+            echo "BIlo je gresaka tokom otpremanja fajla";
         }
-        $conn->close();  
+    } else {
+        echo "Ne moze se ubaciti fajlovi ovog tipa!";
     }
-    //menjanje iz baze
-    //ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
+}
+
+//brisanje iz baze
+if (isset($_POST['dugmeZaBrisanje'])) {
+    extract($_POST);
+    $servername = "localhost";
+    $username   = "hurryupr_milos";
+    $password   = "miloskralj";
+    $dbname     = "hurryupr_database1";
+    // Create connection  
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection  
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+    $conn->close();
+}
+//menjanje iz baze
+//ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
 
 
 ?>
