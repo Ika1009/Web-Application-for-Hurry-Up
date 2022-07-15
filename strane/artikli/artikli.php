@@ -146,57 +146,7 @@
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .dropdown {
-            float: right;
-            width: 51%;
-            text-align: left;
-        }
-
-        .dropdown:hover .dropdown-list {
-            opacity: 1;
-            display: block;
-        }
-
-        .dropdown-select {
-            margin-bottom: 0.6em;
-            font-weight: bold;
-            border: none;
-            outline: none;
-            margin-top: 0.6em;
-            height: 40px;
-            padding: 1.5rem;
-            border-radius: 20px;
-            background-color: #ebebeb;
-            color: #6d6d6d;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 1em;
-            cursor: pointer;
-            transition: 0.4s;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .dropdown-list {
-            float: right;
-            border-radius: 4px;
-            height: inherit;
-            background-color: #f9f9f9;
-            width: 51%;
-            position: absolute;
-            opacity: 0;
-            display: none;
-            transition: opacity 0.2s linear, visibility 0.2s linear;
-        }
-
-        .dropdown-list-item {
-            padding: 1.5rem;
-            font-size: 1em;
-        }
-
         .opis {
-            z-index: -1;
             position: relative;
             width: 100%;
             height: 150px;
@@ -221,7 +171,31 @@
             vertical-align: top;
         }
 
-
+        .kategorija {
+            float: right;
+            width: 51%;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            width: 51%;
+            height: 40px;
+            margin-top: 0.6em;
+            margin-bottom: 0.6em;
+            border: none;
+            border-radius: 20px;
+            background: #ebebeb;
+            outline: none;
+            transition: 0.4s;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            font-size: 1em;
+            padding: 0;
+            color: #6d6d6d;
+        }
+        .optgroup {
+            color: #333;
+        }
+        
         .popup {
             text-align: center;
             padding: 0 15px 15px;
@@ -353,23 +327,30 @@
                         <input class="popuptext" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext" id="cena" type="text" name="cena" required placeholder="Cena" />
                         <input class="popuptext" id="popust" type="text" name="popust" required placeholder="Popust" />
-                        <div class="dropdown">
-                            <div class="dropdown-select">
-                                <span class="select">Kategorija</span>
-                                <i class="fa fa-caret-down icon"></i>
-                            </div>
-                            <div class="dropdown-list">
-                                <option class="dropdown-list-item">Hrana</option>
-                                <option class="dropdown-list-item">Pice</option>
-                            </div>
-                        </div>
+                        <select class="kategorija" name="kategorija" id="kategorija"required>  
+                            <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
+                            <optgroup label="Hrana">
+                                <option value="burger">Burgeri</option>
+                                <option value="pica">Pice</option>
+                                <option value="pasta">Paste</option>
+                                <option value="gotova_jela">Gotova jela</option>
+                            </optgroup>
+                            <optgroup label="Piće">
+                                <option value="sok">Sokovi</option>
+                                <option value="tople_kafe">Tople kafe</option>
+                                <option value="hladne_kafe">Hladne kafe</option>
+                            </optgroup>
+                            <optgroup label="Ostalo">
+                                <option value="nesto">Dodajte ne znam</option>
+                            </optgroup>
+                        </select>
                         <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                         <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
                     </form>
                 </div>
 
             </div>
-        </div>
+        </div>      
     </div>
     <script>
         let popup = document.getElementById("popup");
@@ -379,8 +360,41 @@
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
+        <script>
+        let popup = document.getElementById("popup");
+        function otvoriPopup() {
+            popup.classList.add("otvori-Popup");
+        }
+        function ZatvoriPopUp() {
+            popup.classList.remove("otvori-Popup");
+        }
     </script>
-</body>
+
+    <div class="text">
+            <table class="tabelaArtikli">
+                <style type="text/css">
+                    td {
+                      padding: 0 15px;
+                    }
+                  </style>
+                  <tr>
+                <th>Ime     </th>
+                <th>Cena    </th>
+                <th>Slika   </th>
+                <th>Opis    </th>
+                </tr>
+                <tbody id="data" >
+                    <style type="text/css">
+                        td {
+                          padding: 0 15px;
+                        }
+                      </style>
+                </tbody>
+            </table>
+        </div>
+        <script src="izvlacenjeIzDB.js"> </script>
+        
+    </body>
 
 
 </html>
@@ -417,7 +431,7 @@
             {
                 if($slikaVelicina < 1000000){ // promenjivo - sad je manje od 1MB
                     
-                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis')";
+                    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
                     if ($conn->query($sql) === FALSE) {  
                         echo "Greska: " . $sql . "<br>" . $conn->error;      
                     }
