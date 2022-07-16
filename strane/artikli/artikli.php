@@ -533,8 +533,7 @@
                         <option value="nesto">Dodajte ne znam</option>
                     </optgroup>
                 </select>
-                <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis"
-                    placeholder="Opis"></textarea>
+                <textarea style="resize: none;" class="opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                 <button class="submit" type="submit" name="submit" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
             </form>
         </div>
@@ -560,14 +559,23 @@
                 }
             }
         }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
         let popup = document.getElementById("popup");
 
         function otvoriPopup() {
             popup.classList.add("otvori-Popup");
         }
+
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
+<<<<<<< HEAD
 
         const navToggler = document.querySelector(".nav-toggler");
         navToggler.addEventListener("click", navToggle);
@@ -584,10 +592,9 @@
             }
         }
 
+=======
+>>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     </script>
-    <script src="izvlacenjeIzDB.js"> </script>
-
-
     <div class="text" id=>
         <table class="tabelaArtikli" id="data">
             <style type="text/css">
@@ -606,12 +613,13 @@
             <tbody id="data">
                 <style type="text/css">
                     td {
-                        padding: 0 15px;
+                        padding: 0 40px;
                     }
                 </style>
             </tbody>
         </table>
     </div>
+<<<<<<< HEAD
     <script>/*
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "data.php", true);
@@ -641,26 +649,51 @@ ajax.onreadystatechange = function () {
         document.getElementById("data").innerHTML += html;
     }
 };*/
+=======
+    <script async>
+        // dupli kod zato sto cpanel smara
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET", "data.php", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(this.responseText);
+                console.log(data);
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    let ime = data[i].ime;
+                    let cena = data[i].cena;
+                    let slika = data[i].slika;
+                    let opis = data[i].opis;
+                    let popust = data[i].popust;
+                    let kategorija = data[i].kategorija;
+                    html += "<tr>";
+                    html += "<td>" + ime + "</td>";
+                    html += "<td>" + cena + "</td>";
+                    html += "<td><img src=" + slika + "></td>";
+                    html += "<td>" + opis + "</td>";
+                    html += "<td>" + popust + "</td>";
+                    html += "<td>" + kategorija + "</td>";
+                    html += "</tr>";
+                }
+                document.getElementById("data").innerHTML += html;
+            }
+        };
+>>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     </script>
 
 </body>
 
 
 </html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
 <?php
 //dodavanje u bazu 
 if (isset($_POST['submit'])) {
     extract($_POST);
-    $servername = "localhost";
-    $username   = "hurryupr_milos";
-    $password   = "miloskralj";
-    $dbname     = "hurryupr_database1";
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection  
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // daje podatke slike
     $slika = $_FILES['file'];
@@ -668,11 +701,14 @@ if (isset($_POST['submit'])) {
     $slikaVelicina = $_FILES['file']['size'];
     $slikaError = $_FILES['file']['error'];
     $slikaTip = $_FILES['file']['type'];
-    $slikaZaUbacivanje = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+    // $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
 
-    $slikaEkstNiz = explode('.', $slikaIme);
-    $slikaEkstenzija = strtolower(end($slikaEkstNiz));  // daje ekstenziju fajla
+    $target_dir = "";
+    $target_file = $target_dir . basename($slikaIme);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+<<<<<<< HEAD
     $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
 
     if (in_array($slikaEkstenzija, $dozvoljeni)) {
@@ -697,11 +733,113 @@ if (isset($_POST['submit'])) {
         } else {
             echo "BIlo je gresaka tokom otpremanja fajla";
         }
+=======
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["file"]["tmp_name"]);
+    if ($check !== false) {
+        // echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+>>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     } else {
-        echo "Ne moze se ubaciti fajlovi ovog tipa!";
+        ?>
+            <script type="text/javascript">
+                alert("Fajl nije slika!");
+            </script>
+        <?php
+        // echo "Fajl nije slika!";
+        $uploadOk = 0;
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        ?>
+            <script type="text/javascript">
+                alert("Fajl već postoji!");
+            </script>
+        <?php
+        // echo "Fajl vec postoji.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($slikaVelicina > 5000000) { // 5MB
+        ?>
+            <script type="text/javascript">
+                alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
+            </script>
+        <?php
+        // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    ) {
+        ?>
+            <script type="text/javascript">
+                alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
+            </script>
+        <?php
+        // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        ?>
+            <script type="text/javascript">
+                alert("Došlo je do greške, fajl nije otpremljen.");
+            </script>
+        <?php
+        // echo "Doslo je do greske, fajl nije otpremljen.";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+            ?>
+            <script type="text/javascript">
+                alert("Fajl je uspešno otpremljen!");
+            </script>
+            <?php
+            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+        } else {
+        ?>
+            <script type="text/javascript">
+                alert("Došlo je do greške, fajl nije otpremljen.");
+            </script>
+        <?php
+            // echo "Doslo je do greske, fajl nije otpremljen.";
+        }
+
+        $path = realpath($slikaIme); // uzima path do slike
+        echo $path; // nadams se da radi
+
+        $servername = "localhost";
+        $username   = "hurryupr_milos";
+        $password   = "miloskralj";
+        $dbname     = "hurryupr_database1";
+        // Create connection  
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection  
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaIme', '$opis', '$popust', '$kategorija')";
+
+        if ($conn->query($sql) === FALSE) {
+            echo "Greska: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
+
+        ?>
+        <script type="text/javascript">
+            //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
+        </script>
+<?php
+
     }
 }
-
 //brisanje iz baze
 if (isset($_POST['dugmeZaBrisanje'])) {
     extract($_POST);
@@ -716,7 +854,7 @@ if (isset($_POST['dugmeZaBrisanje'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu*/"; //kako sad ja da dobijem bas artikl koji se brise 
+    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu"; //kako sad ja da dobijem bas artikl koji se brise 
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
@@ -725,34 +863,4 @@ if (isset($_POST['dugmeZaBrisanje'])) {
     }
     $conn->close();
 }
-//menjanje iz baze
-//ne treba nego ce samo kad se napravi nova proslu ce obrisemo i tolko
-
-// da izbacuje slike - proba
-
-/* ne radi
-if (isset($_POST['submit'])) {
-    header("Content-Type: image/jpeg");
-    $servername = "localhost";  
-    $username   = "hurryupr_milos";  
-    $password   = "miloskralj";  
-    $dbname     = "hurryupr_database1";  
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);  
-    // Check connection  
-    if ($conn->connect_error) {  
-        die("Connection failed: " . $conn->connect_error);  
-    } 
-    $sql = "SELECT * FROM 'artikli'";
-    $stmt = $db->prepare($sql);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_array();
-    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/>';
-    header("Content-Type: image/jpeg");
-}
-*/
-    
-
 ?>
