@@ -16,6 +16,7 @@
             padding: 0px;
             box-sizing: border-box;
         }
+
         .btn {
             float: right;
             margin-top: 0.6em;
@@ -582,12 +583,10 @@
             nav.classList.toggle("open");
             if (nav.classList.contains("open")) {
                 nav.style.maxHeight = nav.scrollHeight + "px";
-            }
-            else {
+            } else {
                 nav.removeAttribute("style");
             }
         }
-
     </script>
     <div class="text" id=>
         <table class="tabelaArtikli" id="data">
@@ -596,14 +595,6 @@
                     padding: 0 15px;
                 }
             </style>
-            <tr>
-                <th>Ime </th>
-                <th>Cena </th>
-                <th>Slika </th>
-                <th>Opis </th>
-                <th>Kategorija </th>
-                <th>Opis </th>
-            </tr>
             <tbody id="data">
                 <style type="text/css">
                     td {
@@ -673,33 +664,33 @@ if (isset($_POST['submit'])) {
         // echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        ?>
-            <script type="text/javascript">
-                alert("Fajl nije slika!");
-            </script>
-        <?php
+?>
+        <script type="text/javascript">
+            alert("Fajl nije slika!");
+        </script>
+    <?php
         // echo "Fajl nije slika!";
         $uploadOk = 0;
     }
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        ?>
-            <script type="text/javascript">
-                alert("Fajl već postoji!");
-            </script>
-        <?php
+    ?>
+        <script type="text/javascript">
+            alert("Fajl već postoji!");
+        </script>
+    <?php
         // echo "Fajl vec postoji.";
         $uploadOk = 0;
     }
 
     // Check file size
     if ($slikaVelicina > 5000000) { // 5MB
-        ?>
-            <script type="text/javascript">
-                alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
-            </script>
-        <?php
+    ?>
+        <script type="text/javascript">
+            alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
+        </script>
+    <?php
         // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
         $uploadOk = 0;
     }
@@ -708,30 +699,30 @@ if (isset($_POST['submit'])) {
     if (
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     ) {
-        ?>
-            <script type="text/javascript">
-                alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
-            </script>
-        <?php
+    ?>
+        <script type="text/javascript">
+            alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
+        </script>
+    <?php
         // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        ?>
-            <script type="text/javascript">
-                alert("Došlo je do greške, fajl nije otpremljen.");
-            </script>
+    ?>
+        <script type="text/javascript">
+            alert("Došlo je do greške, fajl nije otpremljen.");
+        </script>
         <?php
         // echo "Doslo je do greske, fajl nije otpremljen.";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            ?>
+        ?>
             <script type="text/javascript">
                 alert("Fajl je uspešno otpremljen!");
             </script>
-            <?php
+        <?php
             // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
         } else {
         ?>
