@@ -16,13 +16,6 @@
             padding: 0px;
             box-sizing: border-box;
         }
-
-        .naslov {
-            margin-top: 0.6em;
-            margin-bottom: 0.6em;
-            font-weight: bold;
-        }
-
         .btn {
             float: right;
             margin-top: 0.6em;
@@ -208,60 +201,6 @@
             background-color: black;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 8vh;
-            background-color: #333;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .linkovi {
-            display: flex;
-            justify-content: space-around;
-            width: 30%;
-        }
-
-        .linkovi li {
-            list-style: none;
-        }
-
-        .header {
-            color: #ffb266;
-            letter-spacing: 5px;
-            font-size: 20px;
-        }
-
-        .linkovi a {
-            color: #ffb266;
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-weight: bold;
-            font-size: 14px;
-            padding: 14px 16px;
-        }
-
-        .linkovi li a.hover:not(.aktivan) {
-            background-color: #ffb266;
-        }
-
-        .linkovi li a.aktivan {
-            background-color: #f9f9f9;
-            color: #333;
-            font-weight: bolder;
-        }
-
-        img {
-            width: 100px;
-            height: 70px;
-        }
-
-        .pocetna {
-            float: right;
-            padding-top: 30px;
-        }
-
         .search {
             display: flex;
             margin-top: 1rem;
@@ -362,23 +301,189 @@
         .fajl:hover {
             transform: scale(1.05);
         }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 100%;
+            margin-right: 4%;
+            margin-left: 8%;
+            background-color: #333;
+            min-height: 8vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        /*header*/
+        .header {
+            padding: 12px 0;
+            line-height: normal;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header .logo,
+        .header .nav {
+            padding: 0 15px;
+        }
+
+        .header .logo a {
+            font-size: 40px;
+            color: #ffb266;
+            text-transform: capitalize;
+        }
+
+        .header .nav ul li {
+            display: inline-block;
+            margin-left: 100px;
+        }
+
+        .header .nav ul li a {
+            display: block;
+            font-size: 30px;
+            line-height: 2;
+            text-transform: capitalize;
+            color: #ebebeb;
+            padding: 10px 0;
+            transition: all 0.5s ease;
+        }
+
+        .header .nav ul li a.active,
+        .header .nav ul li a:hover {
+            color: #ffb266;
+        }
+
+        .nav-toggler {
+            height: 34px;
+            width: 44px;
+            color: #ffb266;
+            background-color: #ffb266;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            display: none;
+            margin-right: 15px;
+        }
+
+        .nav-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 15px black;
+        }
+
+        .nav-toggler span {
+            height: 2px;
+            width: 20px;
+            background-color: #333;
+            display: block;
+            margin: auto;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggler.active span {
+            background-color: transparent;
+        }
+
+        .nav-toggler span::before,
+        .nav-toggler span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggler span::before {
+            transform: translateY(-6px);
+        }
+
+        .nav-toggler.active span::before {
+            transform: rotate(45deg);
+        }
+
+        .nav-toggler span::after {
+            transform: translateY(6px);
+        }
+
+        .nav-toggler.active span::after {
+            transform: rotate(135deg);
+        }
+
+        @media(max-width:991px) {
+            .nav-toggler {
+                display: block;
+            }
+
+            .header .nav {
+                width: 100%;
+                padding: 0;
+                max-height: 0px;
+                overflow: hidden;
+                visibility: hidden;
+                transition: all 0.5s ease;
+            }
+
+            .header .nav.open {
+                visibility: visible;
+            }
+
+            .header .nav ul {
+                padding: 12px 15px 0;
+                margin-top: 12px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .header .nav ul li {
+                display: block;
+                margin: 0;
+            }
+        }
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script src="artikli.js"></script>
 </head>
 
 <body>
-    <nav>
-        <div class="header">
-            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-            <h4 class="pocetna">HurryUp</h4>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="logo">
+                    <a href="#">Hurry Up</a>
+                </div>
+                <button type="button" class="nav-toggler">
+                    <span></span>
+                </button>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+                        <li><a class="active" href="artikli.html">Artikli</a></li>
+                        <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <ul class="linkovi">
-            <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-            <li><a class="aktivan" href="artikli.html">Artikli</a></li>
-            <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
-        </ul>
-    </nav>
+    </header>
     <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
     <div class="text" id="product-list">
         <div class="divdugme">
@@ -455,10 +560,6 @@
                 }
             }
         }
-        
-        
-        
-        
         let popup = document.getElementById("popup");
 
         function otvoriPopup() {
@@ -468,7 +569,21 @@
             popup.classList.remove("otvori-Popup");
         }
 
-        
+        const navToggler = document.querySelector(".nav-toggler");
+        navToggler.addEventListener("click", navToggle);
+
+        function navToggle() {
+            navToggler.classList.toggle("active");
+            const nav = document.querySelector(".nav");
+            nav.classList.toggle("open");
+            if (nav.classList.contains("open")) {
+                nav.style.maxHeight = nav.scrollHeight + "px";
+            }
+            else {
+                nav.removeAttribute("style");
+            }
+        }
+
     </script>
     <script src="izvlacenjeIzDB.js"> </script>
 
@@ -498,40 +613,41 @@
         </table>
     </div>
     <script>/*
-        let ajax = new XMLHttpRequest();
-        ajax.open("GET", "data.php", true);
-        ajax.send();
-        ajax.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-                let data = JSON.parse(this.responseText);
-                console.log(data);
-                let html = "";
-                for (let i = 0; i < data.length; i++) {
-                    let ime = data[i].ime;
-                    let cena = data[i].cena;
-                    // let slika = data[i].slika;
-                    let opis = data[i].opis;
-                    let popust = data[i].popust;
-                    let kategorija = data[i].kategorija;
-                    html += "<tr>";
-                    html += "<td>" + ime + "</td>";
-                    html += "<td>" + cena + "</td>";
-                    // html += "<td>" + slika + "</td>";
-                    html += "<td>" + opis + "</td>";
-                    html += "<td>" + popust + "</td>";
-                    html += "<td>" + kategorija + "</td>";
-                    html += "</tr>";
-                }
-                document.getElementById("data").innerHTML += html;
-            }
-        };*/
+let ajax = new XMLHttpRequest();
+ajax.open("GET", "data.php", true);
+ajax.send();
+ajax.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+        let data = JSON.parse(this.responseText);
+        console.log(data);
+        let html = "";
+        for (let i = 0; i < data.length; i++) {
+            let ime = data[i].ime;
+            let cena = data[i].cena;
+            // let slika = data[i].slika;
+            let opis = data[i].opis;
+            let popust = data[i].popust;
+            let kategorija = data[i].kategorija;
+            html += "<tr>";
+            html += "<td>" + ime + "</td>";
+            html += "<td>" + cena + "</td>";
+            // html += "<td>" + slika + "</td>";
+            html += "<td>" + opis + "</td>";
+            html += "<td>" + popust + "</td>";
+            html += "<td>" + kategorija + "</td>";
+            html += "</tr>";
+        }
+        document.getElementById("data").innerHTML += html;
+    }
+};*/
     </script>
 
 </body>
 
 
-</html><?php
+</html>
+<?php
 //dodavanje u bazu 
 if (isset($_POST['submit'])) {
     extract($_POST);
@@ -572,8 +688,8 @@ if (isset($_POST['submit'])) {
 
                 /*
                     ?>
-                    <script type="text/javascript">// location.reload(); </script>
-                    <?php
+<script type="text/javascript">// location.reload(); </script>
+<?php
                     */
             } else {
                 echo "Fajl ne sme biti veci od 1MB";
