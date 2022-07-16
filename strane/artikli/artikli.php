@@ -492,7 +492,8 @@
             </tbody>
         </table>
     </div>
-    <script async>  // dupli kod zato sto cpanel smara
+    <script async>
+        // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
@@ -548,22 +549,37 @@ if (isset($_POST['submit'])) {
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
-        //echo "File is an image - " . $check["mime"] . ".";
+        // echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "Fajl nije slika!";
+        ?>
+            <script type="text/javascript">
+                alert("Fajl nije slika!");
+            </script>
+        <?php
+        // echo "Fajl nije slika!";
         $uploadOk = 0;
     }
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Fajl vec postoji.";
+        ?>
+            <script type="text/javascript">
+                alert("Fajl već postoji!");
+            </script>
+        <?php
+        // echo "Fajl vec postoji.";
         $uploadOk = 0;
     }
 
     // Check file size
-    if ($slikaVelicina > 500000) {
-        echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
+    if ($slikaVelicina > 5000000) { // 5MB
+        ?>
+            <script type="text/javascript">
+                alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
+            </script>
+        <?php
+        // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
         $uploadOk = 0;
     }
 
@@ -571,18 +587,38 @@ if (isset($_POST['submit'])) {
     if (
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     ) {
-        echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
+        ?>
+            <script type="text/javascript">
+                alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
+            </script>
+        <?php
+        // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Doslo je do greske, fajl nije otpremljen.";
+        ?>
+            <script type="text/javascript">
+                alert("Došlo je do greške, fajl nije otpremljen.");
+            </script>
+        <?php
+        // echo "Doslo je do greske, fajl nije otpremljen.";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+            ?>
+            <script type="text/javascript">
+                alert("Fajl je uspešno otpremljen!");
+            </script>
+            <?php
+            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
         } else {
-            echo "Doslo je do greske, fajl nije otpremljen.";
+        ?>
+            <script type="text/javascript">
+                alert("Došlo je do greške, fajl nije otpremljen.");
+            </script>
+        <?php
+            // echo "Doslo je do greske, fajl nije otpremljen.";
         }
 
         $path = realpath($slikaIme); // uzima path do slike
@@ -607,7 +643,7 @@ if (isset($_POST['submit'])) {
 
         $conn->close();
 
-?>
+        ?>
         <script type="text/javascript">
             //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
         </script>
