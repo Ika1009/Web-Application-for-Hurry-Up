@@ -492,7 +492,7 @@
             </tbody>
         </table>
     </div>
-    <script async>
+    <script async>  // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
