@@ -559,13 +559,10 @@
                 }
             }
         }
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
         let popup = document.getElementById("popup");
 
         function otvoriPopup() {
@@ -575,7 +572,6 @@
         function ZatvoriPopUp() {
             popup.classList.remove("otvori-Popup");
         }
-<<<<<<< HEAD
 
         const navToggler = document.querySelector(".nav-toggler");
         navToggler.addEventListener("click", navToggle);
@@ -592,8 +588,6 @@
             }
         }
 
-=======
->>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     </script>
     <div class="text" id=>
         <table class="tabelaArtikli" id="data">
@@ -619,37 +613,6 @@
             </tbody>
         </table>
     </div>
-<<<<<<< HEAD
-    <script>/*
-let ajax = new XMLHttpRequest();
-ajax.open("GET", "data.php", true);
-ajax.send();
-ajax.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
-        let data = JSON.parse(this.responseText);
-        console.log(data);
-        let html = "";
-        for (let i = 0; i < data.length; i++) {
-            let ime = data[i].ime;
-            let cena = data[i].cena;
-            // let slika = data[i].slika;
-            let opis = data[i].opis;
-            let popust = data[i].popust;
-            let kategorija = data[i].kategorija;
-            html += "<tr>";
-            html += "<td>" + ime + "</td>";
-            html += "<td>" + cena + "</td>";
-            // html += "<td>" + slika + "</td>";
-            html += "<td>" + opis + "</td>";
-            html += "<td>" + popust + "</td>";
-            html += "<td>" + kategorija + "</td>";
-            html += "</tr>";
-        }
-        document.getElementById("data").innerHTML += html;
-    }
-};*/
-=======
     <script async>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
@@ -679,17 +642,13 @@ ajax.onreadystatechange = function () {
                 document.getElementById("data").innerHTML += html;
             }
         };
->>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     </script>
 
 </body>
 
 
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
 <?php
 //dodavanje u bazu 
 if (isset($_POST['submit'])) {
@@ -708,38 +667,11 @@ if (isset($_POST['submit'])) {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-<<<<<<< HEAD
-    $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
-
-    if (in_array($slikaEkstenzija, $dozvoljeni)) {
-        if ($slikaError === 0) {
-            if ($slikaVelicina < 1000000) { // promenjivo - sad je manje od 1MB
-
-                $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaZaUbacivanje', '$opis', '$popust', '$kategorija')";
-                if ($conn->query($sql) === FALSE) {
-                    echo "Greska: " . $sql . "<br>" . $conn->error;
-                }
-
-                $conn->close();
-
-                /*
-                    ?>
-<script type="text/javascript">// location.reload(); </script>
-<?php
-                    */
-            } else {
-                echo "Fajl ne sme biti veci od 1MB";
-            }
-        } else {
-            echo "BIlo je gresaka tokom otpremanja fajla";
-        }
-=======
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
         // echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
->>>>>>> 7a0a353c272f069150160866983a9d058cd5e7c1
     } else {
         ?>
             <script type="text/javascript">
