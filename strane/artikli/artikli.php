@@ -486,23 +486,13 @@
         </div>
     </header>
     <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
-    <div class="text" id="product-list">
+    <div class="text" id="data">
         <div class="divdugme">
             <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup()">
                 <ion-icon name="add"></ion-icon></i>
             </button>
         </div>
-        <div class="product">
-            <img src="../../slike/caesar_salata.jpg" alt="">
-            <h3>O moja muda</h3>
-            <div class="price">neporcenjivo</div>
-        </div>
-        <div class="product" id="data">
-                <tbody id="data">
-                    <style type="text/css">
-                    </style>
-                </tbody>
-        </div>
+        
     </div>
 
     <div class="popup" id="popup">
@@ -547,7 +537,7 @@
     <script>
         const search = () => {
             const searchbox = document.getElementById("search-item").value.toUpperCase();
-            const storeitems = document.getElementById("product-list");
+            const storeitems = document.getElementById("data");
             const product = document.querySelectorAll(".product");
             const productname = storeitems.getElementsByTagName("h3");
 
@@ -610,14 +600,14 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<tr>";
-                    html += "<td><h3>" + ime + "</h3></td>";
-                    html += "<td>" + cena + "</td>";
-                    html += "<td><img src=" + slika + "></td>";
-                    html += "<td>" + opis + "</td>";
-                    html += "<td>" + popust + "</td>";
-                    html += "<td>" + kategorija + "</td>";
-                    html += "</tr>";
+                    html += "<div class=product>";
+                    html += "<img src=" + slika + ">";
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<div class=price>" + cena + "</div>";
+                    html += "<h3>" + opis + "</h3>";
+                    html += "<h3>" + popust + "</h3>";
+                    html += "<h3>" + kategorija + "</h3>";
+                    html += "</div>";
                 }
                 document.getElementById("data").innerHTML += html;
             }
