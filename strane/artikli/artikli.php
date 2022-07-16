@@ -497,7 +497,12 @@
             <h3>O moja muda</h3>
             <div class="price">neporcenjivo</div>
         </div>
-
+        <div class="product" id="data">
+                <tbody id="data">
+                    <style type="text/css">
+                    </style>
+                </tbody>
+        </div>
     </div>
 
     <div class="popup" id="popup">
@@ -588,22 +593,6 @@
             }
         }
     </script>
-    <div class="text" id=>
-        <table class="tabelaArtikli" id="data">
-            <style type="text/css">
-                td {
-                    padding: 0 15px;
-                }
-            </style>
-            <tbody id="data">
-                <style type="text/css">
-                    td {
-                        padding: 0 40px;
-                    }
-                </style>
-            </tbody>
-        </table>
-    </div>
     <script async>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
@@ -622,7 +611,7 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<tr>";
-                    html += "<td>" + ime + "</td>";
+                    html += "<td><h3>" + ime + "</h3></td>";
                     html += "<td>" + cena + "</td>";
                     html += "<td><img src=" + slika + "></td>";
                     html += "<td>" + opis + "</td>";
