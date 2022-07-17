@@ -533,7 +533,6 @@
         }
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
-    <script src="artikli.js"></script>
     <script>
         function setCookie() {
             let date = new Date();
@@ -697,7 +696,7 @@
             }
         }
     </script>
-    <script async>
+    <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
@@ -714,34 +713,96 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<div class=product name="+ime+">";
-                    html += "<button class=dugizlaz  name=" + ime + " onClick =" + onClickDugmeZaBrisanje(this.ime) + "><ion-icon class=izlaz name=close-outline></ion-icon></button><br><br>"
-                    html += "<img src=" + slika + " name="+ime+">";
-                    html += "<div class=imecenakat name="+ime+">"
-                    html += "<h3 name="+ime+">" + ime + "</h3>" ;
-                    html += "<div class=price name="+ime+">" + cena + "</div>";
-                    html += "<p class=cat name="+ime+">" + kategorija + "</p>";
+                    html += "<div class=product>";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)></ion-icon><br><br>"
+                    html += "<img src=" + slika + ">";
+                    html += "<div class=imecenakat>"
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<div class=price>" + cena + "</div>";
+                    html += "<p class=cat>" + kategorija + "</p>";
                     html += "</div>"
-                    html += "<div class=disc name="+ime+">" + popust + "</div>";
-                    html += "<p class=desc name="+ime+">" + opis + "</p>";
+                    html += "<div class=disc>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>";
                 }
-                document.getElementsById("data").innerHTML += html;
+                document.getElementById("data").innerHTML += html;
             }
         };
     </script>
 
     <script>
-        function onClickDugmeZaBrisanje(ime) {
-            // let dugme = document.getElementById(dugme_id);
-            // let elementos = dugme.closest(h1); // zavisi od imena artikla, dal je h1, h2...
-            kveri = document.getElementsByName(ime);
-            kveri.foreach(element =>{
-                element.parentNode.removeChild(element);a
-            })
+        function onClickDugmeZaBrisanje(element) {
+            let isExecuted = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
+            console.log(isExecuted); // OK = true, Cancel = false
+            if (isExecuted == true) {
+                //cookie
+                function setCookie() {
+                    let date = new Date();
+                    let ime // = ne znam
+                    date.setTime(date.getTime() + (15 * 1000));
+                    let expires = "expires=" + date.toUTCString();
+                    let cname = "ime";
+                    document.cookie = cname + "=" + ime + ";" + expires;
+                }
+                //cookie
+                function getCookie() {
+                    let cname = "ime";
+                    let name = cname + "=";
+                    let ca = document.cookie.split(';');
+                    for (let i = 0; i < ca.length; i++) {
+                        let c = ca[i];
+                        while (c.charAt(0) === ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) === 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
+                setCookie();
+                let elementos = element.closest('.product');
+                elementos.remove();
+                console.log("kliknuto dugme");
+
+                <?php
+                
+                //$ime = $_COOKIE['ime'];
+                //za brisanje slike iz file system
+                /*$file_pointer = $ime;
+                echo $file_pointer;
+                if (!unlink($file_pointer)) {
+                    echo ("$file_pointer has not been deleted - error");
+                } else {
+                    echo ("$file_pointer has been deleted");
+                }*/
+                /*
+                //brisanje iz baze
+                $servername = "localhost";
+                $username   = "hurryupr_milos";
+                $password   = "miloskralj";
+                $dbname     = "hurryupr_database1";
+                // Create connection  
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection  
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                $sql = "DELETE FROM artikli WHERE ime=$ime"; //kako sad ja da dobijem bas artikl koji se brise 
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                $conn->close();
+                */
+                ?>
+
+            }
         }
     </script>
-
 </body>
 
 
@@ -870,27 +931,3 @@ if (isset($_POST['submit'])) {
 
     }
 }
-//brisanje iz baze
-if (isset($_POST['dugmeZaBrisanje'])) {
-    extract($_POST);
-    $servername = "localhost";
-    $username   = "hurryupr_milos";
-    $password   = "miloskralj";
-    $dbname     = "hurryupr_database1";
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection  
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu"; //kako sad ja da dobijem bas artikl koji se brise 
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-    } else {
-        echo "Error deleting record: " . $conn->error;
-    }
-    $conn->close();
-}
-?>
