@@ -234,29 +234,9 @@
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
-
-        .text {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
-            gap: 4rem;
-            font-family: Arial, Helvetica, sans-serif;
-            margin: auto;
-            width: 70%;
-            margin-top: 5rem;
-        }
-
-        .product {
-            text-align: center;
-            justify-content: center;
-            padding: 3rem 2rem;
-            background: #ebebeb;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-            outline: .2rem solid #ffb266;
-            border-radius: 0.5em;
-        }
-
-
+        
         .divdugme {
+            width: 300px;
             display: flex;
             justify-content: center;
             align-content: center;
@@ -264,11 +244,78 @@
             background: #ebebeb;
             border-radius: 0.5em;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            margin-right: 0;
+        }
+        
+        
+        
+        
+        
+        
+        
+
+        .text {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(7rem, 14rem));
+            gap: 6rem;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+            width: 85%;
+            margin-top: 5rem;
         }
 
+        .product {
+            text-align: left;
+            max-height: 100%;
+            width: 300px;
+            padding: 8px 8px 5px;
+            background: #ebebeb;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            outline: .2rem solid #ffb266;
+            border-radius: 0.5em;
+            margin-left: 0;
+        }
+        
+        .dugizlaz {
+            float: right;
+            border: none;
+            border-radius: 50%;
+            color: #ffb266;
+            background: #333;
+            padding: 6px 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .product:hover .dugizlaz {
+            background: black;
+        }
+        
+        .product img {
+            width: 50%;
+            height: 35%;
+            border-radius: 20%;
+            margin-top: 0.8rem;
+        }
+        
+        .product:hover img {
+            transform: scale(1.1);
+        }
+        
+        .imecenakat {
+            float: right;
+            margin-left: 3%;
+            width: 45%;
+            height: 35%;
+            margin-top: 0.5rem;
+        }
+        
+        
+        
         .product h3 {
             padding: .5rem 0;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #333;
         }
 
@@ -276,16 +323,40 @@
             font-size: 1rem;
             color: #333;
         }
-
-        .product img {
-            height: 5rem;
-            border-radius: 0.5em;
-            display: fill;
+        
+        .cat{
+            padding: .5rem 0;
+        }
+        
+        .disc {
+            display: flex;
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            padding: .5rem 0;
+            font-size: 1.2rem;
+            background: #ffb266;
+            justify-content: center;
+            align-content: center;
+            width: 30%;
+            color: #333;
+            border-radius: 1rem;
+            font-weight: bold;
+        }
+        
+        .desc {
+            padding: .5rem 0;
+            margin-top: 0.5rem;
+            height= 33%;
+            font-size: 0.9rem;
         }
 
-        .product:hover img {
-            transform: scale(1.1);
-        }
+        
+        
+        
+        
+        
+        
+        
 
         .popuptext:hover {
             transform: scale(1.05);
@@ -601,12 +672,15 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<div class=product>";
+                    html += "<button class=dugizlaz><ion-icon class=izlaz name=close-outline></ion-icon></button><br><br>"
                     html += "<img src=" + slika + ">";
+                    html += "<div class=imecenakat>"
                     html += "<h3>" + ime + "</h3>";
                     html += "<div class=price>" + cena + "</div>";
-                    html += "<h3>" + opis + "</h3>";
-                    html += "<h3>" + popust + "</h3>";
-                    html += "<h3>" + kategorija + "</h3>";
+                    html += "<p class=cat>" + kategorija + "</p>";
+                    html += "</div>"
+                    html += "<div class=disc>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>";
                 }
                 document.getElementById("data").innerHTML += html;
