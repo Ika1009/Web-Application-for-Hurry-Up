@@ -539,17 +539,17 @@
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
 
     <script> // za cetvorocifreni PIN
-        function setCookie() {
+        function setCookie(staJeUKeks) {
             let date = new Date();
-            let brojac = 1;
+            let brojac = staJeUKeks;
             date.setTime(date.getTime() + (60 * 60 * 1000));
             let expires = "expires=" + date.toUTCString();
             let cname = "brojac";
             document.cookie = cname + "=" + brojac + ";" + expires;
         }
 
-        function getCookie() {
-            let cname = "brojac";
+        function getCookie(imeVarijable) {
+            let cname = imeVarijable;
             let name = cname + "=";
             let ca = document.cookie.split(';');
             for (let i = 0; i < ca.length; i++) {
@@ -564,7 +564,7 @@
             return "";
         }
 
-        let session = getCookie();
+        let session = getCookie("brojac");
 
         if (session === "") {
             let pin = prompt("Unesite pin:");
@@ -577,7 +577,7 @@
                 alert("Pin mora biti cetvorocifren");
                 location.reload();
             } else {
-                setCookie();
+                setCookie(1);
             }
         }
     </script>
@@ -738,35 +738,12 @@
 
     <script>
         function onClickDugmeZaBrisanje(element) {
-            let isExecuted = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
-            console.log(isExecuted); // OK = true, Cancel = false
-            if (isExecuted == true) {
+            let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
+            console.log(nastavitiProvera); // OK = true, Cancel = false
+            if (nastavitiProvera == true) {
+                
                 //cookie
-                function setCookie() {
-                    let date = new Date();
-                    let ime // = ne znam
-                    date.setTime(date.getTime() + (15 * 1000));
-                    let expires = "expires=" + date.toUTCString();
-                    let cname = "ime";
-                    document.cookie = cname + "=" + ime + ";" + expires;
-                }
-                //cookie
-                function getCookie() {
-                    let cname = "ime";
-                    let name = cname + "=";
-                    let ca = document.cookie.split(';');
-                    for (let i = 0; i < ca.length; i++) {
-                        let c = ca[i];
-                        while (c.charAt(0) === ' ') {
-                            c = c.substring(1);
-                        }
-                        if (c.indexOf(name) === 0) {
-                            return c.substring(name.length, c.length);
-                        }
-                    }
-                    return "";
-                }
-                setCookie();
+                setCookie(neZnamSta);
                 let elementos = element.closest('.product');
                 elementos.remove();
                 console.log("kliknuto dugme");
