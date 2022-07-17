@@ -234,7 +234,7 @@
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
-        
+
         .divdugme {
             width: 300px;
             display: flex;
@@ -246,13 +246,13 @@
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             margin-right: 0;
         }
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 
         .text {
             display: grid;
@@ -275,7 +275,7 @@
             border-radius: 0.5em;
             margin-left: 0;
         }
-        
+
         .dugizlaz {
             float: right;
             border: none;
@@ -287,22 +287,22 @@
             font-weight: bold;
             cursor: pointer;
         }
-        
+
         .product:hover .dugizlaz {
             background: black;
         }
-        
+
         .product img {
             width: 50%;
             height: 35%;
             border-radius: 20%;
             margin-top: 0.8rem;
         }
-        
+
         .product:hover img {
             transform: scale(1.1);
         }
-        
+
         .imecenakat {
             float: right;
             margin-left: 3%;
@@ -310,9 +310,9 @@
             height: 35%;
             margin-top: 0.5rem;
         }
-        
-        
-        
+
+
+
         .product h3 {
             padding: .5rem 0;
             font-size: 1.2rem;
@@ -323,11 +323,11 @@
             font-size: 1rem;
             color: #333;
         }
-        
-        .cat{
+
+        .cat {
             padding: .5rem 0;
         }
-        
+
         .disc {
             display: flex;
             margin-top: 0.5rem;
@@ -342,21 +342,21 @@
             border-radius: 1rem;
             font-weight: bold;
         }
-        
+
         .desc {
             padding: .5rem 0;
             margin-top: 0.5rem;
-            height= 33%;
+            height: 33%;
             font-size: 0.9rem;
         }
 
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 
         .popuptext:hover {
             transform: scale(1.05);
@@ -535,48 +535,47 @@
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script src="artikli.js"></script>
     <script>
-    function setCookie() {
-        let date = new Date();
-        let brojac = 1;
-        date.setTime(date.getTime() + (60 * 60 * 1000));
-        let expires = "expires=" + date.toUTCString();
-        let cname = "brojac";
-        document.cookie = cname + "=" + brojac + ";" + expires;
-    }
-    
-    function getCookie() {
-        let cname = "brojac";
-        let name = cname + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') {
-                c = c.substring(1);
+        function setCookie() {
+            let date = new Date();
+            let brojac = 1;
+            date.setTime(date.getTime() + (60 * 60 * 1000));
+            let expires = "expires=" + date.toUTCString();
+            let cname = "brojac";
+            document.cookie = cname + "=" + brojac + ";" + expires;
+        }
+
+        function getCookie() {
+            let cname = "brojac";
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) === 0) {
+                    return c.substring(name.length, c.length);
+                }
             }
-            if (c.indexOf(name) === 0) {
-                return c.substring(name.length, c.length);
+            return "";
+        }
+
+        let session = getCookie();
+
+        if (session === "") {
+            let pin = prompt("Unesite pin:");
+            if (pin === "") {
+                alert("Neispravan unos! Pokusajte ponovo!");
+                location.reload();
+            } else if (pin === null) {
+                location.href = "https://hurryup.rs/dashboard"
+            } else if (pin.length !== 4) {
+                alert("Pin mora biti cetvorocifren");
+                location.reload();
+            } else {
+                setCookie();
             }
         }
-        return "";
-    }
-    
-    let session = getCookie();
-    
-    if (session === "") {
-        let pin = prompt("Unesite pin:");
-        if (pin === "") {
-            alert("Neispravan unos! Pokusajte ponovo!");
-            location.reload();
-        } else if (pin === null) {
-            location.href = "https://hurryup.rs/dashboard"
-        } else if (pin.length !== 4) {
-            alert("Pin mora biti cetvorocifren");
-            location.reload();
-        }
-        else {
-            setCookie();
-        }
-    }
     </script>
 </head>
 
@@ -607,7 +606,7 @@
                 <ion-icon name="add"></ion-icon></i>
             </button>
         </div>
-        
+
     </div>
 
     <div class="popup" id="popup">
@@ -715,21 +714,32 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<div class=product>";
-                    html += "<button class=dugizlaz><ion-icon class=izlaz name=close-outline></ion-icon></button><br><br>"
-                    html += "<img src=" + slika + ">";
-                    html += "<div class=imecenakat>"
-                    html += "<h3>" + ime + "</h3>";
-                    html += "<div class=price>" + cena + "</div>";
-                    html += "<p class=cat>" + kategorija + "</p>";
+                    html += "<div class=product name="+ime+">";
+                    html += "<button class=dugizlaz  name=" + ime + " onClick =" + onClickDugmeZaBrisanje(this.ime) + "><ion-icon class=izlaz name=close-outline></ion-icon></button><br><br>"
+                    html += "<img src=" + slika + " name="+ime+">";
+                    html += "<div class=imecenakat name="+ime+">"
+                    html += "<h3 name="+ime+">" + ime + "</h3>" ;
+                    html += "<div class=price name="+ime+">" + cena + "</div>";
+                    html += "<p class=cat name="+ime+">" + kategorija + "</p>";
                     html += "</div>"
-                    html += "<div class=disc>" + popust + "</div>";
-                    html += "<p class=desc>" + opis + "</p>";
+                    html += "<div class=disc name="+ime+">" + popust + "</div>";
+                    html += "<p class=desc name="+ime+">" + opis + "</p>";
                     html += "</div>";
                 }
-                document.getElementById("data").innerHTML += html;
+                document.getElementsById("data").innerHTML += html;
             }
         };
+    </script>
+
+    <script>
+        function onClickDugmeZaBrisanje(ime) {
+            // let dugme = document.getElementById(dugme_id);
+            // let elementos = dugme.closest(h1); // zavisi od imena artikla, dal je h1, h2...
+            kveri = document.getElementsByName(ime);
+            kveri.foreach(element =>{
+                element.parentNode.removeChild(element);a
+            })
+        }
     </script>
 
 </body>
