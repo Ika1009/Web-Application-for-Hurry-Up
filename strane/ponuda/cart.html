@@ -36,10 +36,43 @@
             <h5 class="total">Ukupno</h5>
         </div>
 
-        <div class="products">
+        <ul class="data">
 
-        </div>
+        </ul>
     </div>
+    <script>
+        // dupli kod zato sto cpanel smara
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET", "data.php", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(this.responseText);
+                console.log(data);
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    let ime = data[i].ime;
+                    let cena = data[i].cena;
+                    let slika = data[i].slika;
+                    let opis = data[i].opis;
+                    let popust = data[i].popust;
+                    let kategorija = data[i].kategorija;
+                    html += "<div class=product>";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)></ion-icon><br><br>"
+                    html += "<img src=artikliSlike/" + slika + ">";
+                    html += "<div class=imecenakat>"
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<div class=price>" + cena + "</div>";
+                    html += "<p class=cat>" + kategorija + "</p>";
+                    html += "</div>"
+                    html += "<div class=disc>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
+                    html += "</div>";
+                }
+                document.getElementById("data").innerHTML += html;
+            }
+        };
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
