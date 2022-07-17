@@ -209,7 +209,7 @@
             margin-left: auto;
             padding: 15px;
             height: 50px;
-            width: 400px;
+            width: 30%;
             border-radius: 15px;
             border-color: #ffb266;
             background-color: #333;
@@ -219,8 +219,8 @@
         }
 
         .dugmeZaDodavanje {
-            width: 100px;
-            height: 100px;
+            display: flex;
+            width: 100%;
             background-color: #333;
             border-radius: 50%;
             color: #ffb266;
@@ -228,13 +228,13 @@
             border: 0;
             outline: none;
             cursor: pointer;
-            margin: 4rem;
+            margin: 45%;
         }
 
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
-
+        
         .divdugme {
             width: 300px;
             display: flex;
@@ -246,13 +246,13 @@
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             margin-right: 0;
         }
-
-
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
 
         .text {
             display: grid;
@@ -261,7 +261,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: auto;
             width: 85%;
-            margin-top: 5rem;
+            margin-top: 3.5rem;
         }
 
         .product {
@@ -275,8 +275,9 @@
             border-radius: 0.5em;
             margin-left: 0;
         }
-
+        
         .dugizlaz {
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             float: right;
             border: none;
             border-radius: 50%;
@@ -287,22 +288,22 @@
             font-weight: bold;
             cursor: pointer;
         }
-
+        
         .product:hover .dugizlaz {
             background: black;
         }
-
+        
         .product img {
             width: 50%;
             height: 35%;
             border-radius: 20%;
             margin-top: 0.8rem;
         }
-
+        
         .product:hover img {
             transform: scale(1.1);
         }
-
+        
         .imecenakat {
             float: right;
             margin-left: 3%;
@@ -310,24 +311,31 @@
             height: 35%;
             margin-top: 0.5rem;
         }
-
-
-
+        
+        
         .product h3 {
             padding: .5rem 0;
-            font-size: 1.2rem;
-            color: #333;
+            font-size: 1.3rem;
+            color: black;
         }
 
         .price {
             font-size: 1rem;
             color: #333;
+            font-weight: bolder;
+            margin-bottom: 1rem;
         }
-
-        .cat {
-            padding: .5rem 0;
+        
+        .cat{
+            padding: 0.5rem 0;
+            color: #ffb266;
+            font-weight: bold;
+            font-style: italic;
         }
-
+        
+        
+        
+        
         .disc {
             display: flex;
             margin-top: 0.5rem;
@@ -341,22 +349,15 @@
             color: #333;
             border-radius: 1rem;
             font-weight: bold;
+            box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
         }
-
+        
         .desc {
             padding: .5rem 0;
             margin-top: 0.5rem;
-            height: 33%;
+            height= 33%;
             font-size: 0.9rem;
         }
-
-
-
-
-
-
-
-
 
         .popuptext:hover {
             transform: scale(1.05);
@@ -373,7 +374,6 @@
         .fajl:hover {
             transform: scale(1.05);
         }
-
         ul {
             list-style: none;
         }
@@ -382,12 +382,16 @@
             text-decoration: none;
         }
 
+
+
+
+
+
+
+
         .container {
-            max-width: 100%;
-            margin-right: 4%;
-            margin-left: 8%;
+            margin-left: 10%;
             background-color: #333;
-            min-height: 8vh;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -418,7 +422,7 @@
         }
 
         .header .logo a {
-            font-size: 40px;
+            font-size: 30px;
             color: #ffb266;
             text-transform: capitalize;
         }
@@ -430,8 +434,8 @@
 
         .header .nav ul li a {
             display: block;
-            font-size: 30px;
-            line-height: 2;
+            font-size: 20px;
+            line-height: 1;
             text-transform: capitalize;
             color: #ebebeb;
             padding: 10px 0;
@@ -532,51 +536,6 @@
             }
         }
     </style>
-    <link href="../../slike/hurryup_logo2.ico" rel="icon">
-    <script src="artikli.js"></script>
-    <script>
-        function setCookie() {
-            let date = new Date();
-            let brojac = 1;
-            date.setTime(date.getTime() + (60 * 60 * 1000));
-            let expires = "expires=" + date.toUTCString();
-            let cname = "brojac";
-            document.cookie = cname + "=" + brojac + ";" + expires;
-        }
-
-        function getCookie() {
-            let cname = "brojac";
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) === 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        let session = getCookie();
-
-        if (session === "") {
-            let pin = prompt("Unesite pin:");
-            if (pin === "") {
-                alert("Neispravan unos! Pokusajte ponovo!");
-                location.reload();
-            } else if (pin === null) {
-                location.href = "https://hurryup.rs/dashboard"
-            } else if (pin.length !== 4) {
-                alert("Pin mora biti cetvorocifren");
-                location.reload();
-            } else {
-                setCookie();
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -697,7 +656,7 @@
             }
         }
     </script>
-    <script async>
+    <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
@@ -714,34 +673,98 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<div class=product name="+ime+">";
-                    html += "<button class=dugizlaz  name=" + ime + " onClick =" + onClickDugmeZaBrisanje(this.ime) + "><ion-icon class=izlaz name=close-outline></ion-icon></button><br><br>"
-                    html += "<img src=" + slika + " name="+ime+">";
-                    html += "<div class=imecenakat name="+ime+">"
-                    html += "<h3 name="+ime+">" + ime + "</h3>" ;
-                    html += "<div class=price name="+ime+">" + cena + "</div>";
-                    html += "<p class=cat name="+ime+">" + kategorija + "</p>";
+                    html += "<div class=product>";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)></ion-icon><br><br>"
+                    html += "<img src=" + slika + ">";
+                    html += "<div class=imecenakat>"
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<div class=price>" + cena + "</div>";
+                    html += "<p class=cat>" + kategorija + "</p>";
                     html += "</div>"
-                    html += "<div class=disc name="+ime+">" + popust + "</div>";
-                    html += "<p class=desc name="+ime+">" + opis + "</p>";
+                    html += "<div class=disc>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>";
                 }
-                document.getElementsById("data").innerHTML += html;
+                document.getElementById("data").innerHTML += html;
             }
         };
     </script>
 
     <script>
-        function onClickDugmeZaBrisanje(ime) {
-            // let dugme = document.getElementById(dugme_id);
-            // let elementos = dugme.closest(h1); // zavisi od imena artikla, dal je h1, h2...
-            kveri = document.getElementsByName(ime);
-            kveri.foreach(element =>{
-                element.parentNode.removeChild(element);a
-            })
+        function onClickDugmeZaBrisanje(element) {
+            let isExecuted = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
+            console.log(isExecuted); // OK = true, Cancel = false
+            if (isExecuted == true) {
+                //cookie
+
+                function setCookie() {
+                    let date = new Date();
+                    let ime = element.slika;
+                    date.setTime(date.getTime() + (5 * 1000));
+                    let expires = "expires=" + date.toUTCString();
+                    let cname = "ime";
+                    document.cookie = cname + "=" + ime + ";" + expires;
+                }
+                //cookie
+                function getCookie() {
+                    let cname = "ime";
+                    let name = cname + "=";
+                    let ca = document.cookie.split(';');
+                    for (let i = 0; i < ca.length; i++) {
+                        let c = ca[i];
+                        while (c.charAt(0) === ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) === 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
+                setCookie();
+                let elementos = element.closest('.product');
+                elementos.remove();
+                console.log("kliknuto dugme");
+                
+                <?php
+                $ime=$_COOKIE['ime'];
+                //za brisanje slike iz file system
+                $file_pointer = $ime;
+
+                if (!unlink($file_pointer)) {
+                    echo ("$file_pointer has not been deleted - error");
+                } else {
+                    echo ("$file_pointer has been deleted");
+                }
+                /*
+                //brisanje iz baze
+                $servername = "localhost";
+                $username   = "hurryupr_milos";
+                $password   = "miloskralj";
+                $dbname     = "hurryupr_database1";
+                // Create connection  
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection  
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                $sql = "DELETE FROM artikli WHERE ime=$ime"; //kako sad ja da dobijem bas artikl koji se brise 
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                $conn->close();*/
+                ?>
+
+            }
         }
     </script>
+    <script>
 
+    </script>
 </body>
 
 
@@ -884,7 +907,7 @@ if (isset($_POST['dugmeZaBrisanje'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "DELETE FROM artikli WHERE /*hmmmmm zajebano u picku materinu"; //kako sad ja da dobijem bas artikl koji se brise 
+    $sql = "DELETE FROM artikli WHERE hmmmmm zajebano u picku materinu"; //kako sad ja da dobijem bas artikl koji se brise 
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
