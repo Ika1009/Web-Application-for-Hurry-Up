@@ -209,7 +209,7 @@
             margin-left: auto;
             padding: 15px;
             height: 50px;
-            width: 400px;
+            width: 30%;
             border-radius: 15px;
             border-color: #ffb266;
             background-color: #333;
@@ -219,8 +219,8 @@
         }
 
         .dugmeZaDodavanje {
-            width: 100px;
-            height: 100px;
+            display: flex;
+            width: 100%;
             background-color: #333;
             border-radius: 50%;
             color: #ffb266;
@@ -228,13 +228,13 @@
             border: 0;
             outline: none;
             cursor: pointer;
-            margin: 4rem;
+            margin: 45%;
         }
 
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
-
+        
         .divdugme {
             width: 300px;
             display: flex;
@@ -246,13 +246,13 @@
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             margin-right: 0;
         }
-
-
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
 
         .text {
             display: grid;
@@ -261,7 +261,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: auto;
             width: 85%;
-            margin-top: 5rem;
+            margin-top: 3.5rem;
         }
 
         .product {
@@ -275,8 +275,9 @@
             border-radius: 0.5em;
             margin-left: 0;
         }
-
+        
         .dugizlaz {
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             float: right;
             border: none;
             border-radius: 50%;
@@ -287,22 +288,22 @@
             font-weight: bold;
             cursor: pointer;
         }
-
+        
         .product:hover .dugizlaz {
             background: black;
         }
-
+        
         .product img {
             width: 50%;
             height: 35%;
             border-radius: 20%;
             margin-top: 0.8rem;
         }
-
+        
         .product:hover img {
             transform: scale(1.1);
         }
-
+        
         .imecenakat {
             float: right;
             margin-left: 3%;
@@ -310,24 +311,31 @@
             height: 35%;
             margin-top: 0.5rem;
         }
-
-
-
+        
+        
         .product h3 {
             padding: .5rem 0;
-            font-size: 1.2rem;
-            color: #333;
+            font-size: 1.3rem;
+            color: black;
         }
 
         .price {
             font-size: 1rem;
             color: #333;
+            font-weight: bolder;
+            margin-bottom: 1rem;
         }
-
-        .cat {
-            padding: .5rem 0;
+        
+        .cat{
+            padding: 0.5rem 0;
+            color: #ffb266;
+            font-weight: bold;
+            font-style: italic;
         }
-
+        
+        
+        
+        
         .disc {
             display: flex;
             margin-top: 0.5rem;
@@ -341,22 +349,15 @@
             color: #333;
             border-radius: 1rem;
             font-weight: bold;
+            box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
         }
-
+        
         .desc {
             padding: .5rem 0;
             margin-top: 0.5rem;
             height: 33%;
             font-size: 0.9rem;
         }
-
-
-
-
-
-
-
-
 
         .popuptext:hover {
             transform: scale(1.05);
@@ -373,7 +374,6 @@
         .fajl:hover {
             transform: scale(1.05);
         }
-
         ul {
             list-style: none;
         }
@@ -382,12 +382,16 @@
             text-decoration: none;
         }
 
+
+
+
+
+
+
+
         .container {
-            max-width: 100%;
-            margin-right: 4%;
-            margin-left: 8%;
+            margin-left: 10%;
             background-color: #333;
-            min-height: 8vh;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -418,7 +422,7 @@
         }
 
         .header .logo a {
-            font-size: 40px;
+            font-size: 30px;
             color: #ffb266;
             text-transform: capitalize;
         }
@@ -430,8 +434,8 @@
 
         .header .nav ul li a {
             display: block;
-            font-size: 30px;
-            line-height: 2;
+            font-size: 20px;
+            line-height: 1;
             text-transform: capitalize;
             color: #ebebeb;
             padding: 10px 0;
@@ -533,7 +537,8 @@
         }
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
-    <script>
+
+    <script> // za cetvorocifreni PIN
         function setCookie() {
             let date = new Date();
             let brojac = 1;
@@ -576,6 +581,7 @@
             }
         }
     </script>
+
 </head>
 
 <body>
@@ -771,11 +777,13 @@
                 //za brisanje slike iz file system
                 /*$file_pointer = $ime;
                 echo $file_pointer;
+=======
                 if (!unlink($file_pointer)) {
                     echo ("$file_pointer has not been deleted - error");
                 } else {
                     echo ("$file_pointer has been deleted");
                 }*/
+
                 /*
                 //brisanje iz baze
                 $servername = "localhost";
@@ -931,3 +939,4 @@ if (isset($_POST['submit'])) {
 
     }
 }
+
