@@ -1,12 +1,8 @@
 <?php
 
-$image_successfuly_deleted = false;
-$row_successfully_deleted = false;
-            $ime = $_GET['ime'];
             //za brisanje slike iz file system
-            $file_pointer = $_GET['slika'];
-
-            if (unlink($file_pointer)) $image_successfuly_deleted = true;
+            $mask = 'artikliSlike/'.$_GET['id'].'.*';
+            array_map('unlink', glob($mask));
 
             //brisanje iz baze
             $servername = "localhost";
@@ -20,7 +16,7 @@ $row_successfully_deleted = false;
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "DELETE FROM artikli WHERE ime='$ime'"; //kako sad ja da dobijem bas artikl koji se brise 
+            $sql = "DELETE FROM artikli WHERE id = ".$_GET['id']; //kako sad ja da dobijem bas artikl koji se brise 
 
             if ($conn->query($sql) === TRUE) {
                 $row_successfully_deleted = true;
@@ -29,6 +25,6 @@ $row_successfully_deleted = false;
             }
             $conn->close();
 
-            if($image_successfuly_deleted && $row_successfully_deleted) echo "deleted";
+            if($row_successfully_deleted) echo "deleted";
 
             ?>
