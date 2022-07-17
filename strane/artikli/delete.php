@@ -16,7 +16,7 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "DELETE FROM artikli WHERE id = ".$_GET['id']; //kako sad ja da dobijem bas artikl koji se brise 
+            $sql = "DELETE FROM artikli WHERE id = ".$_GET['id']; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
 
             if ($conn->query($sql) === TRUE) {
                 $row_successfully_deleted = true;

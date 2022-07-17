@@ -383,10 +383,13 @@ if (isset($_POST['submit'])) {
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        if($_GET['id'] && strlen($_GET['id']) > 0){
-            //$sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
+
+        $bruhID = $_GET['id'].'.*';
+
+        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi 
+            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = ".$_GET['id'];
         }
-        else {
+        else { 
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
         }
         
