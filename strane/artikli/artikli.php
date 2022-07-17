@@ -234,7 +234,7 @@
         .dugmeZaDodavanje:hover {
             background-color: black;
         }
-        
+
         .divdugme {
             width: 300px;
             display: flex;
@@ -246,13 +246,13 @@
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             margin-right: 0;
         }
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 
         .text {
             display: grid;
@@ -275,7 +275,7 @@
             border-radius: 0.5em;
             margin-left: 0;
         }
-        
+
         .dugizlaz {
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             float: right;
@@ -288,22 +288,22 @@
             font-weight: bold;
             cursor: pointer;
         }
-        
+
         .product:hover .dugizlaz {
             background: black;
         }
-        
+
         .product img {
             width: 50%;
             height: 35%;
             border-radius: 20%;
             margin-top: 0.8rem;
         }
-        
+
         .product:hover img {
             transform: scale(1.1);
         }
-        
+
         .imecenakat {
             float: right;
             margin-left: 3%;
@@ -311,8 +311,8 @@
             height: 35%;
             margin-top: 0.5rem;
         }
-        
-        
+
+
         .product h3 {
             padding: .5rem 0;
             font-size: 1.3rem;
@@ -325,17 +325,17 @@
             font-weight: bolder;
             margin-bottom: 1rem;
         }
-        
-        .cat{
+
+        .cat {
             padding: 0.5rem 0;
             color: #ffb266;
             font-weight: bold;
             font-style: italic;
         }
-        
-        
-        
-        
+
+
+
+
         .disc {
             display: flex;
             margin-top: 0.5rem;
@@ -351,7 +351,7 @@
             font-weight: bold;
             box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
         }
-        
+
         .desc {
             padding: .5rem 0;
             margin-top: 0.5rem;
@@ -374,6 +374,7 @@
         .fajl:hover {
             transform: scale(1.05);
         }
+
         ul {
             list-style: none;
         }
@@ -538,7 +539,8 @@
     </style>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
 
-    <script> // za cetvorocifreni PIN
+    <script>
+        // za cetvorocifreni PIN
         function setCookie(staJeUKeks) {
             let date = new Date();
             let brojac = staJeUKeks;
@@ -740,52 +742,36 @@
         function onClickDugmeZaBrisanje(element) {
             let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
             console.log(nastavitiProvera); // OK = true, Cancel = false
-            if (nastavitiProvera == true) {
-                
-                //cookie
-                setCookie(neZnamSta);
-                let elementos = element.closest('.product');
-                elementos.remove();
-                console.log("kliknuto dugme");
-
-                <?php
-                
-                //$ime = $_COOKIE['ime'];
-                //za brisanje slike iz file system
-                /*$file_pointer = $ime;
-                echo $file_pointer;
-=======
-                if (!unlink($file_pointer)) {
-                    echo ("$file_pointer has not been deleted - error");
-                } else {
-                    echo ("$file_pointer has been deleted");
-                }*/
-
-                /*
-                //brisanje iz baze
-                $servername = "localhost";
-                $username   = "hurryupr_milos";
-                $password   = "miloskralj";
-                $dbname     = "hurryupr_database1";
-                // Create connection  
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection  
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                $sql = "DELETE FROM artikli WHERE ime=$ime"; //kako sad ja da dobijem bas artikl koji se brise 
-
-                if ($conn->query($sql) === TRUE) {
-                    echo "Record deleted successfully";
-                } else {
-                    echo "Error deleting record: " . $conn->error;
-                }
-                $conn->close();
-                */
-                ?>
-
+            if (nastavitiProvera == false) {
+                return;
             }
+
+
+
+            //cookie
+            let elementos = element.closest('.product');
+            let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
+            
+            let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
+
+            let ajax = new XMLHttpRequest();
+        ajax.open("GET", "delete.php?ime="+ime+"&slika="+slika, true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = this.responseText;
+                if (data == "deleted"){
+                    elementos.remove();
+                }
+            }
+        };
+
+            //setCookie(elementos.textContent);
+            //console.log(elementos.textContent);
+            
+            console.log("kliknuto dugme");
+
+            
         }
     </script>
 </body>
@@ -916,4 +902,3 @@ if (isset($_POST['submit'])) {
 
     }
 }
-
