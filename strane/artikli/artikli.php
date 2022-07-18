@@ -271,7 +271,7 @@
             text-align: center;
             max-height: 400px;
             width: 300px;
-            background: #ebebeb;
+            background: #ffb266;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
             border-radius: 0.5em;
@@ -282,12 +282,13 @@
         .divdugizlaz {
             position: relative;
             width: 100%;
-            height: 200px;
+            height: 230px;
         } 
-        .dugizlaz {
+        
+        .dugedit {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 8%;
+            left: 80%;
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             border: none;
@@ -297,7 +298,21 @@
             padding: 6px 8px;
             font-size: 17px;
             cursor: pointer;
-            margin-left: 0.3rem;
+        }
+        
+        .dugizlaz {
+            position: absolute;
+            top: 8%;
+            left: 92%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            border: none;
+            border-radius: 50%;
+            color: #ffb266;
+            background: #333;
+            padding: 6px 8px;
+            font-size: 17px;
+            cursor: pointer;
         }
 
         .product:hover .dugizlaz {
@@ -617,7 +632,7 @@
                     <ul>
                         <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
                         <li><a class="active" href="artikli.html">Artikli</a></li>
-                        <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                        <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -637,7 +652,7 @@
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form class="forma" id="artikalPopup"name="form1" action="" method="post" enctype="multipart/form-data">
+            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
                     <input class="file" id="file" type="file" name="file">
                     <label for="file" class="upload-label">
@@ -759,16 +774,24 @@
                     html += "<div class=divdugizlaz>";
                     html += "<img src=artikliSlike/" + id + "." + slika + ">";
                     html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
                     html += "</div>";
                     html += "<div class=imecenakat>"
-                    html += "<div class=disc>" + popust + "</div>";
+                     if(popust != '/')
+                    {
+                        html += "<div class=disc>" + popust + "%</div>";
+                    }
+                    else
+                    {
+                        html += "<div class=disc>" + popust + "%</div>";
+
+                    }
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
                     if(popust != '/')
                     {
                         html += "<div class=divcena>"
-                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                        html += "<div class=price>" + cena*(100-parseInt(popust))/100 + " RSD</div>";
                         html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
                         html += "</div>"
                     }
