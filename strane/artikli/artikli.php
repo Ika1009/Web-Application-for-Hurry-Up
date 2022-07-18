@@ -337,13 +337,28 @@
             font-weight: bold;
             font-style: italic;
         }
-
+        
+        .divcena {
+            text-align: center;
+            align-content: center;
+            display: flex;
+            margin-top: 0.3rem;
+            margin-bottom: 1rem;
+        }
+        
 
         .price {
-            margin-top: 0.3rem;
             font-size: 1.5rem;
             color: #333;
-            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+
+        .priceprecrtano {
+            font-size: 1.1rem;
+            color: #6d6d6d;
+            margin-left: 0.2rem;
+            text-decoration: line-through;
         }
 
 
@@ -742,7 +757,17 @@
                     html += "<div class=disc>" + popust + "</div>";
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
-                    html += "<div class=price>" + cena + "</div>";
+                    if(popust != '/')
+                    {
+                        html += "<div class=divcena>"
+                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                        html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
+                        html += "</div>"
+                    }
+                    else {
+                        html += "<div class=price>" + cena + "RSD</div>";
+                    }
+                    html 
                     html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
                     html += "</div>";
@@ -838,7 +863,7 @@ if (isset($_POST['submit'])) {
     $target_file = $target_dir . basename($slikaIme);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+    /*
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
@@ -887,7 +912,7 @@ if (isset($_POST['submit'])) {
 <?php
         // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
-    }
+    }*/
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
     ?>
@@ -913,7 +938,7 @@ if (isset($_POST['submit'])) {
 
         $bruhID = $_GET['id'].'.*';
 
-        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi 
+        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi
             $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = ".$_GET['id'];
         }
         else { 
