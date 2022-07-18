@@ -625,14 +625,10 @@
                         <button class="choose-file">Izaberi Fajl</button>
                     </label>
                 </div>
-                <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required
-                    placeholder="Id Artikla" />
-                <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required
-                    placeholder="Ime Artikla" />
-                <input class="popuptext artikl_input_cena" id="cena" type="text" name="cena" required
-                    placeholder="Cena" />
-                <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required
-                    placeholder="Popust" />
+                <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
+                <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
+                <input class="popuptext artikl_input_cena" id="cena" type="text" name="cena" required placeholder="Cena" />
+                <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju
                     </option>
@@ -651,10 +647,8 @@
                         <option value="nesto">Dodajte ne znam</option>
                     </optgroup>
                 </select>
-                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis"
-                    placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submit" id="popupDugme" value="add"
-                    onclick="ZatvoriPopUp()">Dodaj</button>
+                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
+                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
             </form>
         </div>
     </div>
@@ -720,7 +714,7 @@
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
-        ajax.onreadystatechange = function () {
+        ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let data = JSON.parse(this.responseText);
                 console.log(data);
@@ -742,9 +736,8 @@
                     html += "<div class=disc>" + popust + "</div>";
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
-                    if(cena != '/')
-                    {
-                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                    if (cena != '/') {
+                        html += "<div class=price>" + (cena.slice(0, -3) * (100 - parseInt(popust.slice(0, -1)))) / 100 + " RSD</div>";
                     }
                     html += "<div class=price>" + cena + "</div>"; // precrtaj
                     html += "<p class=desc>" + opis + "</p>";
@@ -775,7 +768,7 @@
             let ajax = new XMLHttpRequest();
             ajax.open("GET", "delete.php?id=" + id, true);
             ajax.send();
-            ajax.onreadystatechange = function () {
+            ajax.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     let data = this.responseText;
                     if (data == "deleted") {
@@ -850,10 +843,10 @@ if (isset($_POST['submit'])) {
         $uploadOk = 1;
     } else {
 ?>
-<script type="text/javascript">
-    alert("Fajl nije slika!");
-</script>
-<?php
+        <script type="text/javascript">
+            alert("Fajl nije slika!");
+        </script>
+    <?php
         // echo "Fajl nije slika!";
         $uploadOk = 0;
     }
@@ -861,10 +854,10 @@ if (isset($_POST['submit'])) {
     // Check if file already exists
     if (file_exists($target_file)) {
     ?>
-<script type="text/javascript">
-    alert("Fajl već postoji!");
-</script>
-<?php
+        <script type="text/javascript">
+            alert("Fajl već postoji!");
+        </script>
+    <?php
         // echo "Fajl vec postoji.";
         $uploadOk = 0;
     }
@@ -872,10 +865,10 @@ if (isset($_POST['submit'])) {
     // Check file size
     if ($slikaVelicina > 5000000) { // 5MB
     ?>
-<script type="text/javascript">
-    alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
-</script>
-<?php
+        <script type="text/javascript">
+            alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
+        </script>
+    <?php
         // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
         $uploadOk = 0;
     }
@@ -885,24 +878,24 @@ if (isset($_POST['submit'])) {
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     ) {
     ?>
-<script type="text/javascript">
-    alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
-</script>
-<?php
+        <script type="text/javascript">
+            alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
+        </script>
+    <?php
         // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
     ?>
-<script type="text/javascript">
-    alert("Došlo je do greške, fajl nije otpremljen.");
-</script>
-<?php
+        <script type="text/javascript">
+            alert("Došlo je do greške, fajl nije otpremljen.");
+        </script>
+        <?php
         // echo "Doslo je do greske, fajl nije otpremljen.";
         // if everything is ok, try to upload file
     } else {
-        
+
 
         $servername = "localhost";
         $username   = "hurryupr_milos";
@@ -915,46 +908,45 @@ if (isset($_POST['submit'])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $bruhID = $_GET['id'].'.*';
+        $bruhID = $_GET['id'] . '.*';
 
-        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi 
-            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = ".$_GET['id'];
-        }
-        else { 
+        if ($_GET['id'] && strlen($_GET['id']) > 0) { // proverava dal updajtuje ili pravi novi 
+            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = " . $_GET['id'];
+        } else {
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
         }
-        
+
         if ($conn->query($sql) === FALSE) {
             echo "Greska: " . $sql . "<br>" . $conn->error;
         }
-        
-        if($_GET['id'] && strlen($_GET['id']) > 0 && $slikaVelicina != 0){
-            $mask = 'artikliSlike/'.$_GET['id'].'.*';
+
+        if ($_GET['id'] && strlen($_GET['id']) > 0 && $slikaVelicina != 0) {
+            $mask = 'artikliSlike/' . $_GET['id'] . '.*';
             array_map('unlink', glob($mask));
         }
-        
+
         if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
-            ?>
-<script type="text/javascript">
-    alert("Fajl je uspešno otpremljen!");
-</script>
-<?php
-                // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-            } else {
-            ?>
-<script type="text/javascript">
-    alert("Došlo je do greške, fajl nije otpremljen.");
-</script>
-<?php
-                // echo "Doslo je do greske, fajl nije otpremljen.";
-            }
-            $conn->close();
-            $path = realpath($slikaIme); // uzima path do slike
-            echo $path; // nadams se da radi
         ?>
-<script type="text/javascript">
+            <script type="text/javascript">
+                alert("Fajl je uspešno otpremljen!");
+            </script>
+        <?php
+            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+        } else {
+        ?>
+            <script type="text/javascript">
+                alert("Došlo je do greške, fajl nije otpremljen.");
+            </script>
+        <?php
+            // echo "Doslo je do greske, fajl nije otpremljen.";
+        }
+        $conn->close();
+        $path = realpath($slikaIme); // uzima path do slike
+        echo $path; // nadams se da radi
+        ?>
+        <script type="text/javascript">
             //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
-</script>
+        </script>
 <?php
 
     }
