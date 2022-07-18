@@ -230,7 +230,7 @@
             border: 0;
             outline: none;
             cursor: pointer;
-            margin: 45%;
+            margin: 50%;
         }
 
         .dugmeZaDodavanje:hover {
@@ -269,27 +269,35 @@
         .product {
             justify-content: center;
             text-align: center;
-            max-height: 100%;
+            max-height: 400px;
             width: 300px;
-            padding: 8px 20px 5px;
             background: #ebebeb;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
             border-radius: 0.5em;
             margin-left: 0rem;
-            height: 375px;
+            height:400px;
         }
 
+        .divdugizlaz {
+            position: relative;
+            width: 100%;
+            height: 200px;
+        } 
         .dugizlaz {
-            float: right;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
             border: none;
             border-radius: 50%;
             color: #ffb266;
             background: #333;
             padding: 6px 8px;
-            font-size: 20px;
+            font-size: 17px;
             cursor: pointer;
-            margin-right: 0.5rem;
+            margin-left: 0.3rem;
         }
 
         .product:hover .dugizlaz {
@@ -297,17 +305,17 @@
         }
 
         .product img {
-            width: 80%;
-            height: 40%;
-            border-radius: 25px;
-            padding: 1rem;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
         }
 
         .product:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .imecenakat {
+            padding: 8px;
             text-align: left;
         }
 
@@ -337,13 +345,26 @@
             font-weight: bold;
             font-style: italic;
         }
-
+        
+        .divcena {
+            text-align: center;
+            align-content: center;
+            display: flex;
+        }
+        
 
         .price {
-            margin-top: 0.3rem;
             font-size: 1.5rem;
             color: #333;
-            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+
+        .priceprecrtano {
+            font-size: 1.1rem;
+            color: #6d6d6d;
+            margin-left: 0.2rem;
+            text-decoration: line-through;
         }
 
 
@@ -596,7 +617,7 @@
                     <ul>
                         <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
                         <li><a class="active" href="artikli.html">Artikli</a></li>
-                        <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+                        <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -625,10 +646,14 @@
                         <button class="choose-file">Izaberi Fajl</button>
                     </label>
                 </div>
-                <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
-                <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                <input class="popuptext artikl_input_cena" id="cena" type="text" name="cena" required placeholder="Cena" />
-                <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required placeholder="Popust" />
+                <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required
+                    placeholder="Id Artikla" />
+                <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required
+                    placeholder="Ime Artikla" />
+                <input class="popuptext artikl_input_cena" id="cena" type="text" name="cena" required
+                    placeholder="Cena" />
+                <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required
+                    placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju
                     </option>
@@ -647,8 +672,10 @@
                         <option value="nesto">Dodajte ne znam</option>
                     </optgroup>
                 </select>
-                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="ZatvoriPopUp()">Dodaj</button>
+                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis"
+                    placeholder="Opis"></textarea>
+                <button class="submit" type="submit" name="submit" id="popupDugme" value="add"
+                    onclick="ZatvoriPopUp()">Dodaj</button>
             </form>
         </div>
     </div>
@@ -714,7 +741,7 @@
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "data.php", true);
         ajax.send();
-        ajax.onreadystatechange = function() {
+        ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let data = JSON.parse(this.responseText);
                 console.log(data);
@@ -728,18 +755,27 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<div class=product>";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>"
-                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>"
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                    html += "<div class=divdugizlaz>";
                     html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                    html += "</div>";
                     html += "<div class=imecenakat>"
                     html += "<div class=disc>" + popust + "</div>";
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
-                    if (cena != '/') {
-                        html += "<div class=price>" + (cena.slice(0, -3) * (100 - parseInt(popust.slice(0, -1)))) / 100 + " RSD</div>";
+                    if(popust != '/')
+                    {
+                        html += "<div class=divcena>"
+                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                        html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
+                        html += "</div>"
                     }
-                    html += "<div class=price>" + cena + "</div>"; // precrtaj
+                    else {
+                        html += "<div class=price>" + cena + "RSD</div>";
+                    }
+                    html 
                     html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
                     html += "</div>";
@@ -768,7 +804,7 @@
             let ajax = new XMLHttpRequest();
             ajax.open("GET", "delete.php?id=" + id, true);
             ajax.send();
-            ajax.onreadystatechange = function() {
+            ajax.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     let data = this.responseText;
                     if (data == "deleted") {
@@ -835,7 +871,7 @@ if (isset($_POST['submit'])) {
     $target_file = $target_dir . basename($slikaIme);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+    /*
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
@@ -843,10 +879,10 @@ if (isset($_POST['submit'])) {
         $uploadOk = 1;
     } else {
 ?>
-        <script type="text/javascript">
-            alert("Fajl nije slika!");
-        </script>
-    <?php
+<script type="text/javascript">
+    alert("Fajl nije slika!");
+</script>
+<?php
         // echo "Fajl nije slika!";
         $uploadOk = 0;
     }
@@ -854,10 +890,10 @@ if (isset($_POST['submit'])) {
     // Check if file already exists
     if (file_exists($target_file)) {
     ?>
-        <script type="text/javascript">
-            alert("Fajl već postoji!");
-        </script>
-    <?php
+<script type="text/javascript">
+    alert("Fajl već postoji!");
+</script>
+<?php
         // echo "Fajl vec postoji.";
         $uploadOk = 0;
     }
@@ -865,10 +901,10 @@ if (isset($_POST['submit'])) {
     // Check file size
     if ($slikaVelicina > 5000000) { // 5MB
     ?>
-        <script type="text/javascript">
-            alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
-        </script>
-    <?php
+<script type="text/javascript">
+    alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
+</script>
+<?php
         // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
         $uploadOk = 0;
     }
@@ -878,24 +914,24 @@ if (isset($_POST['submit'])) {
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     ) {
     ?>
-        <script type="text/javascript">
-            alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
-        </script>
-    <?php
+<script type="text/javascript">
+    alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
+</script>
+<?php
         // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
-    }
+    }*/
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
     ?>
-        <script type="text/javascript">
-            alert("Došlo je do greške, fajl nije otpremljen.");
-        </script>
-        <?php
+<script type="text/javascript">
+    alert("Došlo je do greške, fajl nije otpremljen.");
+</script>
+<?php
         // echo "Doslo je do greske, fajl nije otpremljen.";
         // if everything is ok, try to upload file
     } else {
-
+        
 
         $servername = "localhost";
         $username   = "hurryupr_milos";
@@ -908,45 +944,46 @@ if (isset($_POST['submit'])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $bruhID = $_GET['id'] . '.*';
+        $bruhID = $_GET['id'].'.*';
 
-        if ($_GET['id'] && strlen($_GET['id']) > 0) { // proverava dal updajtuje ili pravi novi 
-            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = " . $_GET['id'];
-        } else {
+        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi
+            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = ".$_GET['id'];
+        }
+        else { 
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
         }
-
+        
         if ($conn->query($sql) === FALSE) {
             echo "Greska: " . $sql . "<br>" . $conn->error;
         }
-
-        if ($_GET['id'] && strlen($_GET['id']) > 0 && $slikaVelicina != 0) {
-            $mask = 'artikliSlike/' . $_GET['id'] . '.*';
+        
+        if($_GET['id'] && strlen($_GET['id']) > 0 && $slikaVelicina != 0){
+            $mask = 'artikliSlike/'.$_GET['id'].'.*';
             array_map('unlink', glob($mask));
         }
-
+        
         if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
+            ?>
+<script type="text/javascript">
+    alert("Fajl je uspešno otpremljen!");
+</script>
+<?php
+                // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+            } else {
+            ?>
+<script type="text/javascript">
+    alert("Došlo je do greške, fajl nije otpremljen.");
+</script>
+<?php
+                // echo "Doslo je do greske, fajl nije otpremljen.";
+            }
+            $conn->close();
+            $path = realpath($slikaIme); // uzima path do slike
+            echo $path; // nadams se da radi
         ?>
-            <script type="text/javascript">
-                alert("Fajl je uspešno otpremljen!");
-            </script>
-        <?php
-            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-        } else {
-        ?>
-            <script type="text/javascript">
-                alert("Došlo je do greške, fajl nije otpremljen.");
-            </script>
-        <?php
-            // echo "Doslo je do greske, fajl nije otpremljen.";
-        }
-        $conn->close();
-        $path = realpath($slikaIme); // uzima path do slike
-        echo $path; // nadams se da radi
-        ?>
-        <script type="text/javascript">
+<script type="text/javascript">
             //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
-        </script>
+</script>
 <?php
 
     }

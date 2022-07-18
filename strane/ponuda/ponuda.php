@@ -16,7 +16,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
         nav {
             display: flex;
             justify-content: space-around;
@@ -199,6 +198,34 @@
             width: 45%;
         }
         
+        .dugmeZaDodavanje {
+            display: flex;
+            width: 100%;
+            background-color: #333;
+            border-radius: 50%;
+            color: #ffb266;
+            font-size: 100px;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            margin: 45%;
+        }
+
+        .dugmeZaDodavanje:hover {
+            background-color: black;
+        }
+
+        .divdugme {
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            border: solid #ffb266;
+            background: #ebebeb;
+            border-radius: 0.5em;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            margin-right: 0;
+        }
         .price {
             width: 15%;
             border-bottom: 1px solid lightgrey;
@@ -253,6 +280,144 @@
         .basketTotal {
             width: 10%;
         }
+        .text {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(7rem, 14rem));
+            gap: 6rem;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+            width: 85%;
+            margin-top: 3.5rem;
+        }
+
+        .product {
+            justify-content: center;
+            text-align: center;
+            max-height: 100%;
+            width: 300px;
+            padding: 8px 20px 5px;
+            background: #ebebeb;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            outline: .2rem solid #ffb266;
+            border-radius: 0.5em;
+            margin-left: 0rem;
+            height: 375px;
+        }
+
+        .dugizlaz {
+            float: right;
+            border: none;
+            border-radius: 50%;
+            color: #ffb266;
+            background: #333;
+            padding: 6px 8px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .product:hover .dugizlaz {
+            background: black;
+        }
+
+        .product img {
+            width: 80%;
+            height: 40%;
+            border-radius: 25px;
+            padding: 1rem;
+        }
+
+        .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .imecenakat {
+            text-align: left;
+        }
+
+
+        .disc {
+            margin-top: 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+            background: #ffb266;
+            width: 15%;
+            color: #333;
+            border-radius: 0.6rem;
+            font-weight: bold;
+            box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
+            margin-bottom: 0.2rem;
+        }
+
+        .product h3 {
+            font-size: 1.5rem;
+            color: black;
+        }
+
+
+        .cat {
+            color: #ffb266;
+            font-size: 0.8rem;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+
+        .price {
+            margin-top: 0.3rem;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+
+        .desc {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .popuptext:hover {
+            transform: scale(1.05);
+        }
+
+        .opis:hover {
+            transform: scale(1.05);
+        }
+
+        .kategorija:hover {
+            transform: scale(1.05);
+        }
+
+        .fajl:hover {
+            transform: scale(1.05);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        .container {
+            margin-right: 8%;
+            margin-left: 10%;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -275,7 +440,8 @@
     <form>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
     </form>
-    <div id="data">
+    <div class="text" id="data">
+        
     </div>
     <script>
         // dupli kod zato sto cpanel smara
@@ -296,11 +462,11 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<div class=product>";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>"
-                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>"
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-                    html += "<img src=artikliSlike/" + id + "." + slika + ">";
-                    html += "<div class=imecenakat>"
+                    html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
+                    html += "<div class=imecenakat>";
                     html += "<div class=disc>" + popust + "</div>";
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
@@ -309,13 +475,22 @@
                     }
                     html += "<div class=price>" + cena + "</div>"; // precrtaj
                     html += "<p class=desc>" + opis + "</p>";
-                    html += "</div>"
+                    html += "<button>Dodaj Artikal</button>";
                     html += "</div>";
+                    html += "</div>";
+
                 }
                 document.getElementById("data").innerHTML += html;
             }
         };
     </script>
+    <script>
+        function dodajArtikal()
+        {
+
+        }
+    </script>
+
     <script>
     const search = () => {
         const searchbox = document.getElementById("search-item").value.toUpperCase();
