@@ -742,7 +742,11 @@
                     html += "<div class=disc>" + popust + "</div>";
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
-                    html += "<div class=price>" + cena + "</div>";
+                    if(cena != '/')
+                    {
+                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                    }
+                    html += "<div class=price>" + cena + "</div>"; // precrtaj
                     html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
                     html += "</div>";
