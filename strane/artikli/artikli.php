@@ -637,7 +637,7 @@
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
+            <form class="forma" id="artikalPopup"name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
                     <input class="file" id="file" type="file" name="file">
                     <label for="file" class="upload-label">
