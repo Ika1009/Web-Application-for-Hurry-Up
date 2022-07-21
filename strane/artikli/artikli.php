@@ -670,8 +670,8 @@
                 </div>
                 <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
                 <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                <input class="popuptext artikl_input_cena" id="cena" type="number" name="cena" required placeholder="Cena" />
-                <input class="popuptext artikl_input_popust" id="popust" type="number" name="popust" required placeholder="Popust" />
+                <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena" />
+                <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                     <option value="burger">Burgeri</option>
@@ -691,85 +691,7 @@
             </form>
         </div>
     </div>
-    <script>
-        /*
-        function proveriSve()
-        {
-         const ime = document.querySelector('#ime');
-        const cena = document.querySelector('#cena');
-        const popust = document.querySelector('#popust');
 
-        const form = document.querySelector('#artikalPopup');
-
-
-        const proveriIme = () => {
-
-            let valid = false;
-
-            const min = 3,
-                max = 25;
-
-            const username = ime.value.trim();
-
-            if (!isBetween(username.length, min, max)) {
-                showError("Ime mora biti izmedju "+min+" i "+max+" karaktera.")
-            } else {
-                //showSuccess(ime);
-                valid = true;
-            }
-            return valid;
-        };
-
-        const proveriCenu = () => {
-            let valid = false;
-
-             if (!cena.imaSamoBrojke()) {
-                showError('Cena sme sadrzati samo brojke!');
-            } else {
-                //showSuccess(cenaEl);
-                valid = true;
-            }
-
-            return valid;
-        };
-
-        const proveriPopust = () => {
-            let valid = false;
-            const popust = popust.value.trim();
-
-            if (!popust.imaSamoBrojke()) {
-                showError('Popust sme sadrzati samo brojke!');
-            } else {
-                //showSuccess(cenaEl);
-                valid = true;
-            }
-
-            return valid;
-        };
-
-        String.prototype.imaSamoBrojke = function(){return /^\d+$/.test(this);}
-        
-        const isBetween = (length, min, max) => length < min || length > max ? false : true;
-        
-        const showError = (stringara) => {
-            alert(stringara);
-        };
-        // prevent the form from submitting
-        // e.preventDefault();
-
-        // validate fields
-        let imeValidno = proveriIme(),
-            cenaValidna = proveriCenu(),
-            popustValidan = proveriPopust();
-
-        let isFormValid = imeValidno && cenaValidna && popustValidan;
-
-        // submit to the server if the form is valid
-        if (isFormValid) {
-            ZatvoriPopUp();
-        }
-    }*/
-    </script>
     <script>
         function remove() {
             var x = document.getElementById("kategorija");
@@ -945,8 +867,8 @@
 
             document.querySelectorAll(".artikl_input_id")[0].value = id;
             document.querySelectorAll(".artikl_input_ime")[0].value = ime;
-            document.querySelectorAll(".artikl_input_cena")[0].value = cena;
-            document.querySelectorAll(".artikl_input_popust")[0].value = popust;
+            document.querySelectorAll(".artikl_input_cena")[0].value = parseInt(cena);
+            document.querySelectorAll(".artikl_input_popust")[0].value = parseInt(popust);
             document.querySelectorAll(".artikl_input_opis")[0].value = opis;
             //document.querySelectorAll(".artikl_input_kategorija")[0].value = kategorija;
 
@@ -1052,39 +974,53 @@ if (isset($_POST['submit'])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $bruhID = $_GET['id'] . '.*';
+        if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje ili pravi novi
+            // UPDATE `artikli` SET `ime`="Coca Cola",`cena`="108",`opis`="U limenci",`popust`="10",`kategorija`="burger" WHERE `id`= 102
+            if($slikaVelicina != 0){ 
+                $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
+            }
+            else{
+                $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
+            }
+            
+            if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0 && $slikaVelicina != 0) {
+                $mask = 'artikliSlike/' . $_REQUEST['id'] . '.*';
+                array_map('unlink', glob($mask));
+            }
 
-        if ($_GET['id'] && strlen($_GET['id']) > 0) { // proverava dal updajtuje ili pravi novi
-            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = " . $_GET['id'];
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $_REQUEST['id'] . "." . $slikaEkstenzija)) {
+                ?>
+                    <script type="text/javascript">
+                        alert("Fajl je uspešno otpremljen!");
+                    </script>
+                <?php
+                    // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+                } 
         } else {
 
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
+        
+            if ($conn->query($sql) === FALSE) {
+                echo "Greska: " . $sql . "<br>" . $conn->error;
+            }
+
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
+                ?>
+                    <script type="text/javascript">
+                        alert("Fajl je uspešno otpremljen!");
+                    </script>
+                <?php
+                    // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+                } else {
+                ?>
+                    <script type="text/javascript">
+                        alert("Došlo je do greške, fajl nije otpremljen.");
+                    </script>
+                <?php
+                    // echo "Doslo je do greske, fajl nije otpremljen.";
+                }
         }
 
-        if ($conn->query($sql) === FALSE) {
-            echo "Greska: " . $sql . "<br>" . $conn->error;
-        }
-
-        if ($_GET['id'] && strlen($_GET['id']) > 0 && $slikaVelicina != 0) {
-            $mask = 'artikliSlike/' . $_GET['id'] . '.*';
-            array_map('unlink', glob($mask));
-        }
-
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
-        ?>
-            <script type="text/javascript">
-                alert("Fajl je uspešno otpremljen!");
-            </script>
-        <?php
-            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-        } else {
-        ?>
-            <script type="text/javascript">
-                alert("Došlo je do greške, fajl nije otpremljen.");
-            </script>
-        <?php
-            // echo "Doslo je do greske, fajl nije otpremljen.";
-        }
         $conn->close();
         //$path = realpath($slikaIme); // uzima path do slike
         //echo $path; // nadams se da radi
