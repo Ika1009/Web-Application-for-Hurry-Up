@@ -901,7 +901,7 @@ if (isset($_POST['submit'])) {
     $target_file = $target_dir . basename($slikaIme);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    /*
+
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if ($check !== false) {
@@ -950,7 +950,7 @@ if (isset($_POST['submit'])) {
     <?php
         // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
         $uploadOk = 0;
-    }*/
+    }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
 ?>
