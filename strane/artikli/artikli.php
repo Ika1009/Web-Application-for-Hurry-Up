@@ -39,7 +39,7 @@
         }
 
         .fajl {
-            margin-top: 0.6em;
+            margin-top: 2rem;
             float: left;
             position: relative;
             width: 45%;
@@ -82,7 +82,7 @@
             font-weight: bold;
             font-size: 1em;
         }
-
+        
         .choose-file {
             margin: 30px auto;
             width: 100px;
@@ -94,6 +94,10 @@
             font-weight: bold;
             pointer-events: none;
         }
+        
+        
+        
+        
 
         .popuptext {
             float: right;
@@ -119,7 +123,7 @@
             height: 150px;
             font-size: 1.4em;
             padding: 1.2em 1.7em 1.2em 1.7em;
-            margin-top: 2em;
+            margin-top: 1em;
             border-radius: 20px;
             border: none;
             background: #ebebeb;
@@ -159,6 +163,7 @@
             padding: 0;
             color: #6d6d6d;
         }
+
 
         .optgroup {
             color: #333;
@@ -230,7 +235,7 @@
             border: 0;
             outline: none;
             cursor: pointer;
-            margin: 45%;
+            margin: 50%;
         }
 
         .dugmeZaDodavanje:hover {
@@ -269,27 +274,50 @@
         .product {
             justify-content: center;
             text-align: center;
-            max-height: 100%;
+            max-height: 400px;
             width: 300px;
-            padding: 8px 20px 5px;
-            background: #ebebeb;
+            background: #ffb266;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
             border-radius: 0.5em;
             margin-left: 0rem;
-            height: 375px;
+            height:400px;
         }
 
-        .dugizlaz {
-            float: right;
+        .divdugizlaz {
+            position: relative;
+            width: 100%;
+            height: 230px;
+        } 
+        
+        .dugedit {
+            position: absolute;
+            top: 8%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
             border: none;
             border-radius: 50%;
             color: #ffb266;
             background: #333;
             padding: 6px 8px;
-            font-size: 20px;
+            font-size: 17px;
             cursor: pointer;
-            margin-right: 0.5rem;
+        }
+        
+        .dugizlaz {
+            position: absolute;
+            top: 8%;
+            left: 92%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            border: none;
+            border-radius: 50%;
+            color: #ffb266;
+            background: #333;
+            padding: 6px 8px;
+            font-size: 17px;
+            cursor: pointer;
         }
 
         .product:hover .dugizlaz {
@@ -297,17 +325,17 @@
         }
 
         .product img {
-            width: 80%;
-            height: 40%;
-            border-radius: 25px;
-            padding: 1rem;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
         }
 
         .product:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .imecenakat {
+            padding: 8px;
             text-align: left;
         }
 
@@ -319,6 +347,7 @@
             background: #ffb266;
             width: 15%;
             color: #333;
+            border: .1rem solid #333;
             border-radius: 0.6rem;
             font-weight: bold;
             box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
@@ -332,7 +361,7 @@
 
 
         .cat {
-            color: #ffb266;
+            color: #ebebeb;
             font-size: 0.8rem;
             font-weight: bold;
             font-style: italic;
@@ -342,8 +371,6 @@
             text-align: center;
             align-content: center;
             display: flex;
-            margin-top: 0.3rem;
-            margin-bottom: 1rem;
         }
         
 
@@ -609,9 +636,9 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-                        <li><a class="active" href="artikli.html">Artikli</a></li>
-                        <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+                        <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                        <li><a class="active" href="artikli.php">Artikli</a></li>
+                        <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -633,8 +660,11 @@
         <div id="signup-form">
             <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
-                    <input class="file" id="file" type="file" name="file">
+                    <input class="file" id="file" type="file" name="file" multiple>
                     <label for="file" class="upload-label">
+                        <div class="image">
+                            <img src="" alt="">
+                        </div>
                         <ion-icon name="cloud-upload"></ion-icon>
                         <p class="drag_text"> Prevuci da otpremis fajl</p>
                         <button class="choose-file">Izaberi Fajl</button>
@@ -649,23 +679,19 @@
                 <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required
                     placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
-                    <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju
-                    </option>
-                    <optgroup label="Hrana">
+                    <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                         <option value="burger">Burgeri</option>
                         <option value="pica">Pice</option>
                         <option value="pasta">Paste</option>
                         <option value="gotova_jela">Gotova jela</option>
-                    </optgroup>
-                    <optgroup label="Piće">
                         <option value="sok">Sokovi</option>
                         <option value="tople_kafe">Tople kafe</option>
                         <option value="hladne_kafe">Hladne kafe</option>
-                    </optgroup>
-                    <optgroup label="Ostalo">
                         <option value="nesto">Dodajte ne znam</option>
-                    </optgroup>
-                </select>
+                </select><br>
+                <input id=add-box>
+                <input type="button" value="dodaj" id="dodajopciju" onclick="add()">
+                <input type="button" value="remove" id="rmv" onclick="remove()">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis"
                     placeholder="Opis"></textarea>
                 <button class="submit" type="submit" name="submit" id="popupDugme" value="add"
@@ -673,6 +699,21 @@
             </form>
         </div>
     </div>
+
+<script>
+function remove() {
+  var x = document.getElementById("kategorija");
+  x.remove(x.selectedIndex);
+}
+
+function add() {
+  var txt = document.getElementById("add-box");
+  var x = document.getElementById("kategorija");
+  var option = document.createElement("option");
+  option.text = txt.value;
+  x.add(option);
+}
+</script>
     <script>
         const search = () => {
             const searchbox = document.getElementById("search-item").value.toUpperCase();
@@ -749,18 +790,28 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<div class=product>";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>"
-                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>"
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                    html += "<div class=divdugizlaz>";
                     html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                    html += "</div>";
                     html += "<div class=imecenakat>"
-                    html += "<div class=disc>" + popust + "</div>";
+                     if(popust != '/')
+                    {
+                        html += "<div class=disc>" + popust + "%</div>";
+                    }
+                    else
+                    {
+                        html += "<div class=disc>" + popust + "%</div>";
+
+                    }
                     html += "<h3>" + ime + "</h3>";
                     html += "<p class=cat>" + kategorija + "</p>";
                     if(popust != '/')
                     {
                         html += "<div class=divcena>"
-                        html += "<div class=price>" + (cena.slice(0,-3)*(100-parseInt(popust.slice(0, -1))))/100 +  " RSD</div>";
+                        html += "<div class=price>" + cena*(100-parseInt(popust))/100 + " RSD</div>";
                         html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
                         html += "</div>"
                     }
