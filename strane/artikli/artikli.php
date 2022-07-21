@@ -82,7 +82,7 @@
             font-weight: bold;
             font-size: 1em;
         }
-        
+
         .choose-file {
             margin: 30px auto;
             width: 100px;
@@ -94,10 +94,10 @@
             font-weight: bold;
             pointer-events: none;
         }
-        
-        
-        
-        
+
+
+
+
 
         .popuptext {
             float: right;
@@ -288,7 +288,7 @@
             position: relative;
             width: 100%;
             height: 230px;
-        } 
+        }
 
         .dugedit {
             position: absolute;
@@ -304,6 +304,7 @@
             font-size: 17px;
             cursor: pointer;
         }
+
         .dugizlaz {
             position: absolute;
             top: 8%;
@@ -669,44 +670,121 @@
                 </div>
                 <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
                 <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                <input class="popuptext artikl_input_cena" id="cena" type="text" name="cena" required placeholder="Cena" />
-                <input class="popuptext artikl_input_popust" id="popust" type="text" name="popust" required placeholder="Popust" />
+                <input class="popuptext artikl_input_cena" id="cena" type="number" name="cena" required placeholder="Cena" />
+                <input class="popuptext artikl_input_popust" id="popust" type="number" name="popust" required placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
-                        <option value="burger">Burgeri</option>
-                        <option value="pica">Pice</option>
-                        <option value="pasta">Paste</option>
-                        <option value="gotova_jela">Gotova jela</option>
-                        <option value="sok">Sokovi</option>
-                        <option value="tople_kafe">Tople kafe</option>
-                        <option value="hladne_kafe">Hladne kafe</option>
-                        <option value="nesto">Dodajte ne znam</option>
+                    <option value="burger">Burgeri</option>
+                    <option value="pica">Pice</option>
+                    <option value="pasta">Paste</option>
+                    <option value="gotova_jela">Gotova jela</option>
+                    <option value="sok">Sokovi</option>
+                    <option value="tople_kafe">Tople kafe</option>
+                    <option value="hladne_kafe">Hladne kafe</option>
+                    <option value="nesto">Dodajte ne znam</option>
                 </select><br>
                 <input id=add-box>
                 <input type="button" value="dodaj" id="dodajopciju" onclick="add()">
                 <input type="button" value="remove" id="rmv" onclick="remove()">
-                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis"
-                    placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submit" id="popupDugme" value="add"
-                    onclick="ZatvoriPopUp()">Dodaj</button>
+                <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
+                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
             </form>
         </div>
     </div>
+    <script>
+        /*
+        function proveriSve()
+        {
+         const ime = document.querySelector('#ime');
+        const cena = document.querySelector('#cena');
+        const popust = document.querySelector('#popust');
 
-<script>
-function remove() {
-  var x = document.getElementById("kategorija");
-  x.remove(x.selectedIndex);
-}
+        const form = document.querySelector('#artikalPopup');
 
-function add() {
-  var txt = document.getElementById("add-box");
-  var x = document.getElementById("kategorija");
-  var option = document.createElement("option");
-  option.text = txt.value;
-  x.add(option);
-}
-</script>
+
+        const proveriIme = () => {
+
+            let valid = false;
+
+            const min = 3,
+                max = 25;
+
+            const username = ime.value.trim();
+
+            if (!isBetween(username.length, min, max)) {
+                showError("Ime mora biti izmedju "+min+" i "+max+" karaktera.")
+            } else {
+                //showSuccess(ime);
+                valid = true;
+            }
+            return valid;
+        };
+
+        const proveriCenu = () => {
+            let valid = false;
+
+             if (!cena.imaSamoBrojke()) {
+                showError('Cena sme sadrzati samo brojke!');
+            } else {
+                //showSuccess(cenaEl);
+                valid = true;
+            }
+
+            return valid;
+        };
+
+        const proveriPopust = () => {
+            let valid = false;
+            const popust = popust.value.trim();
+
+            if (!popust.imaSamoBrojke()) {
+                showError('Popust sme sadrzati samo brojke!');
+            } else {
+                //showSuccess(cenaEl);
+                valid = true;
+            }
+
+            return valid;
+        };
+
+        String.prototype.imaSamoBrojke = function(){return /^\d+$/.test(this);}
+        
+        const isBetween = (length, min, max) => length < min || length > max ? false : true;
+        
+        const showError = (stringara) => {
+            alert(stringara);
+        };
+        // prevent the form from submitting
+        // e.preventDefault();
+
+        // validate fields
+        let imeValidno = proveriIme(),
+            cenaValidna = proveriCenu(),
+            popustValidan = proveriPopust();
+
+        let isFormValid = imeValidno && cenaValidna && popustValidan;
+
+        // submit to the server if the form is valid
+        if (isFormValid) {
+            ZatvoriPopUp();
+        }
+    }*/
+    </script>
+    <script>
+        function remove() {
+            var x = document.getElementById("kategorija");
+            x.remove(x.selectedIndex);
+        }
+
+        function add() {
+            var txt = document.getElementById("add-box");
+            var x = document.getElementById("kategorija");
+            var option = document.createElement("option");
+            option.text = txt.value;
+            x.add(option);
+        }
+        
+    </script>
     <script>
         const search = () => {
             const searchbox = document.getElementById("search-item").value.toUpperCase();
@@ -953,7 +1031,7 @@ if (isset($_POST['submit'])) {
     }*/
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-    ?>
+?>
         <script type="text/javascript">
             alert("Došlo je do greške, fajl nije otpremljen.");
         </script>
@@ -976,10 +1054,9 @@ if (isset($_POST['submit'])) {
 
         $bruhID = $_GET['id'] . '.*';
 
-        if($_GET['id'] && strlen($_GET['id']) > 0){ // proverava dal updajtuje ili pravi novi
-            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = ".$_GET['id'];
-        }
-        else { 
+        if ($_GET['id'] && strlen($_GET['id']) > 0) { // proverava dal updajtuje ili pravi novi
+            $sql = "UPDATE 'artikli' SET ime='$ime', cena='$cena', opis='$opis' popust='$popust', kategorija='$kategorija', slika='$bruhID' WHERE id = " . $_GET['id'];
+        } else {
 
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
         }
@@ -1009,8 +1086,8 @@ if (isset($_POST['submit'])) {
             // echo "Doslo je do greske, fajl nije otpremljen.";
         }
         $conn->close();
-        $path = realpath($slikaIme); // uzima path do slike
-        echo $path; // nadams se da radi
+        //$path = realpath($slikaIme); // uzima path do slike
+        //echo $path; // nadams se da radi
         ?>
         <script type="text/javascript">
             //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
