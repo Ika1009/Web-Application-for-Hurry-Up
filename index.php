@@ -11,8 +11,8 @@
 <body>
     <div class="form-modal">
         <div class="form-toggle">
-            <button id="login-toggle" onclick="toggleSingup()">Prijavi se</button>
-            <button id="signup-toggle" onclick="toggleLogin()">Registruj se</button>
+            <button id="login-toggle" onclick="toggleLogin()">Prijavi se</button>
+            <button id="signup-toggle" onclick="toggleSignup()">Registruj se</button>
         </div>
         <div id="login-form">
             <form>
