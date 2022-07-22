@@ -97,6 +97,11 @@ ul {
     color: #333;
 }
 
+#signup-toggle {
+    background: #333;
+    color: #ffb266;
+}
+
 .form-modal form {
     position: relative;
     width: 90%;
