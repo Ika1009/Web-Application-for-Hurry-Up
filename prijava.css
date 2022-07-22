@@ -9,10 +9,6 @@ body {
     background: #fff;
 }
 
-.g-recaptcha {
-    margin-left: 50px;
-}
-
 .form-modal {
     position: relative;
     width: 450px;
@@ -27,15 +23,21 @@ body {
     box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1)
 }
 
+    .form-modal form i {
+        margin-top: 1.44em;
+        left: 90%;
+        cursor: pointer;
+    }
+
     .form-modal button {
         cursor: pointer;
         position: relative;
         font-size: 1em;
         z-index: 2;
         outline: none;
-        background: #333;
+        background: #f9f9f9;
         transition: 0.2s;
-        color: #ffb257;
+        color: #333;
     }
 
     .form-modal .btn {
@@ -52,7 +54,7 @@ body {
 
     .form-modal .login, .form-modal .signup {
         background: #333;
-        color: #ffb257;
+        color: #ffb266;
     }
 
         .form-modal .login:hover, .form-modal .signup:hover {
@@ -87,8 +89,8 @@ body {
         }
 
 #login-toggle {
-    background: #f9f9f9;
-    color: #333;
+    background: #333;
+    color: #ffb266;
 }
 
 .form-modal form {
