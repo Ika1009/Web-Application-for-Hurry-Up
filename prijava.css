@@ -9,6 +9,10 @@ body {
     background: #fff;
 }
 
+ul {
+    display: block; list-style-type: disc; margin-top: 0em; margin-bottom: 0em; margin-left: 0; margin-right: 0; padding-left: 40px; color: red;
+}
+
 .form-modal {
     position: relative;
     width: 450px;
@@ -89,8 +93,8 @@ body {
         }
 
 #login-toggle {
-    background: #333;
-    color: #ffb266;
+    background: #f9f9f9;
+    color: #333;
 }
 
 .form-modal form {
