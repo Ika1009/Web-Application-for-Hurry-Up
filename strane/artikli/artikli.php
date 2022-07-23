@@ -577,7 +577,7 @@
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script>
         // za cetvorocifreni PIN
-        function setCookie(staJeUKeks) {
+        /*function setCookie(staJeUKeks) {
             let date = new Date();
             let brojac = staJeUKeks;
             date.setTime(date.getTime() + (60 * 60 * 1000));
@@ -610,14 +610,14 @@
                 alert("Neispravan unos! Pokusajte ponovo!");
                 location.reload();
             } else if (pin === null) {
-                location.href = "https://hurryup.rs/dashboard"
+                location.href =  "http://localhost:8080/hurryUpWebApp/index.html" // "https://hurryup.rs/dashboard"
             } else if (pin.length !== 4) {
                 alert("Pin mora biti cetvorocifren");
                 location.reload();
             } else {
                 setCookie(1);
             }
-        }
+        }*/
     </script>
 
 </head>
@@ -674,14 +674,6 @@
                 <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
-                    <option value="burger">Burgeri</option>
-                    <option value="pica">Pice</option>
-                    <option value="pasta">Paste</option>
-                    <option value="gotova_jela">Gotova jela</option>
-                    <option value="sok">Sokovi</option>
-                    <option value="tople_kafe">Tople kafe</option>
-                    <option value="hladne_kafe">Hladne kafe</option>
-                    <option value="nesto">Dodajte ne znam</option>
                 </select><br>
                 <input id=add-box>
                 <input type="button" value="dodaj" id="dodajopciju" onclick="add()">
@@ -695,7 +687,17 @@
     <script>
         function remove() {
             var x = document.getElementById("kategorija");
-            x.remove(x.selectedIndex);
+            let ajax = new XMLHttpRequest();
+            ajax.open("GET", "deleteKategorija.php?id=" + x.selectedIndex, true);
+            ajax.send();
+            ajax.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let data = this.responseText;
+                    if (data == "deleted") {
+                        x.remove(x.selectedIndex);
+                    }
+                }
+            };
         }
 
         function add() {
@@ -878,6 +880,25 @@
             console.log("kliknuto dugme");
         }
     </script>
+    <script>
+        let elementos = document.getElementById("kategorija")
+        let ajax1 = new XMLHttpRequest();
+        ajax1.open("GET", "kategorijeDobivanje.php", true);
+        ajax1.send();
+        ajax1.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(this.responseText);
+                console.log(data);
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    let kategorija = data[i].ime_kategorije;
+                    var option = document.createElement("option");
+                    option.text = kategorija;
+                    elementos.add(option);
+                }
+            }
+        };
+    </script>
 </body>
 
 
@@ -962,11 +983,10 @@ if (isset($_POST['submit'])) {
         // if everything is ok, try to upload file
     } else {
 
-
-        $servername = "localhost";
-        $username   = "hurryupr_milos";
-        $password   = "miloskralj";
-        $dbname     = "hurryupr_database1";
+        $servername = "localhost";  
+        $username   = "root";  
+        $password   = "";  
+        $dbname     = "hurryupr_database1"; 
         // Create connection  
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection  

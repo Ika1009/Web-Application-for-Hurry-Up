@@ -498,8 +498,8 @@
 if (isset($_POST['submit'])) {
     extract($_POST);
     $servername = "localhost";  
-    $username   = "hurryupr_milos";  
-    $password   = "miloskralj";  
+    $username   = "root";  
+    $password   = "";  
     $dbname     = "hurryupr_database1"; 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

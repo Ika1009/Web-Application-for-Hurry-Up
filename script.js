@@ -55,7 +55,7 @@ const forma = document.querySelector("form");
 forma.addEventListener('submit', function (e) {
     e.preventDefault();
 });
-    
+/* 
 function setCookie() {
     let date = new Date();
     let vreme = date.toLocaleString();
@@ -85,7 +85,7 @@ let session = getCookie();
 
 if (session !== "") {
     window.location = "http://www.hurryup.rs/dashboard";
-}
+}*/
 
 let unosi = document.querySelectorAll('input');
     

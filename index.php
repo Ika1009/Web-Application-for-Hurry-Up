@@ -34,7 +34,7 @@
                 <div><input id="lozinka" type="password" name="lozinka" required placeholder="Lozinka" /></div>
                 <i style="position: absolute; left: 90%; top: 63.3%; transform: translateX(-10%) translateY(-50%);" class="bi bi-eye-slash" id="togglepassword"></i>
                 <div><input id="pin" type="password" name="pin" required placeholder="Pin" /></div>
-                <button type="submit" name="register" value="add" onclick="setCookie()" class="btn signup">Kreiraj nalog</button>
+                <button type="submit" name="register" value="add" onclick="//setCookie()" class="btn signup">Kreiraj nalog</button>
                 <p>Registrovanjem na sajt se slažete sa našim <a target="_blank" href="uslovi_koriscenja.html">uslovima korišćenja</a>.</p>
                 <hr />
             </form>
