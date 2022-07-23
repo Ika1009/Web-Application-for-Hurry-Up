@@ -21,7 +21,7 @@
         <ul class="linkovi">
             <li><a class="aktivan" href="narudzbine.html">Narudzbine</a></li>
             <li><a href="../artikli/artikli.php">Artikli</a></li>
-            <li><a href="../ponuda/ponuda.html">Ponuda</a></li>
+            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
         </ul>
     </nav>
     <div class="text">

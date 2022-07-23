@@ -11,35 +11,10 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Artikli</title>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
-    <link rel="stylesheet" href="artikli.php">
+    <link rel="stylesheet" href="artikli.css">
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script>
         // za cetvorocifreni PIN
-        /*function setCookie(staJeUKeks) {
-            let date = new Date();
-            let brojac = staJeUKeks;
-            date.setTime(date.getTime() + (60 * 60 * 1000));
-            let expires = "expires=" + date.toUTCString();
-            let cname = "brojac";
-            document.cookie = cname + "=" + brojac + ";" + expires;
-        }
-
-        function getCookie(imeVarijable) {
-            let cname = imeVarijable;
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) === 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
         let session = getCookie("brojac");
 
         if (session === "") {
@@ -48,14 +23,14 @@
                 alert("Neispravan unos! Pokusajte ponovo!");
                 location.reload();
             } else if (pin === null) {
-                location.href =  "http://localhost:8080/hurryUpWebApp/index.html" // "https://hurryup.rs/dashboard"
+                location.href = "http://localhost:8080/hurryUpWebApp/index.html" // "https://hurryup.rs/dashboard"
             } else if (pin.length !== 4) {
                 alert("Pin mora biti cetvorocifren");
                 location.reload();
             } else {
                 setCookie(1);
             }
-        }*/
+        }
     </script>
 
 </head>
@@ -94,7 +69,7 @@
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
+            <form class="forma" name="form1" action="dodavanjeArtiklaDB" method="post" enctype="multipart/form-data">
                 <div class="fajl">
                     <input class="file" id="file" type="file" name="file" multiple>
                     <label for="file" class="upload-label">
@@ -113,8 +88,8 @@
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                 </select><br>
-                <input id=add-box>
-                <input type="button" value="dodaj" id="dodajopciju" onclick="add()">
+                <input id=add-box name="dodavanjeBox">
+                <input type="button" value="dodaj" id="dodajopciju" name="dodajKategoriju" onclick="add()">
                 <input type="button" value="remove" id="rmv" onclick="remove()">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                 <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
@@ -122,222 +97,9 @@
         </div>
     </div>
 
-    <script>
-        function remove() {
-            var x = document.getElementById("kategorija");
-            let ajax = new XMLHttpRequest();
-            ajax.open("GET", "deleteKategorija.php?id=" + x.selectedIndex, true);
-            ajax.send();
-            ajax.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let data = this.responseText;
-                    if (data == "deleted") {
-                        x.remove(x.selectedIndex);
-                    }
-                }
-            };
-        }
-
-        function add() {
-            var txt = document.getElementById("add-box");
-            var x = document.getElementById("kategorija");
-            var option = document.createElement("option");
-            option.text = txt.value;
-            x.add(option);
-        }
-    </script>
-    <script>
-        const search = () => {
-            const searchbox = document.getElementById("search-item").value.toUpperCase();
-            const storeitems = document.getElementById("data");
-            const product = document.querySelectorAll(".product");
-            const productname = storeitems.getElementsByTagName("h3");
-
-            for (let i = 0; i < productname.length; i++) {
-                let match = product[i].getElementsByTagName("h3")[0];
-
-                if (match) {
-                    let textvalue = match.textContent || match.innerHTML
-
-                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
-                        product[i].style.display = "";
-                    } else {
-                        product[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-
-
-
-        let popup = document.getElementById("popup");
-
-        function otvoriPopup(novi_kreiram) {
-            if (novi_kreiram) {
-                document.querySelectorAll(".artikl_input_id")[0].value = '';
-                document.querySelectorAll(".artikl_input_ime")[0].value = '';
-                document.querySelectorAll(".artikl_input_cena")[0].value = '';
-                document.querySelectorAll(".artikl_input_popust")[0].value = '';
-                document.querySelectorAll(".artikl_input_opis")[0].value = '';
-                document.querySelectorAll(".artikl_input_kategorija")[0].value = '';
-            }
-            popup.classList.add("otvori-Popup");
-        }
-
-        function ZatvoriPopUp() {
-            popup.classList.remove("otvori-Popup");
-        }
-
-        const navToggler = document.querySelector(".nav-toggler");
-        navToggler.addEventListener("click", navToggle);
-
-        function navToggle() {
-            navToggler.classList.toggle("active");
-            const nav = document.querySelector(".nav");
-            nav.classList.toggle("open");
-            if (nav.classList.contains("open")) {
-                nav.style.maxHeight = nav.scrollHeight + "px";
-            } else {
-                nav.removeAttribute("style");
-            }
-        }
-    </script>
-    <script>
-        // dupli kod zato sto cpanel smara
-        let ajax = new XMLHttpRequest();
-        ajax.open("GET", "data.php", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let data = JSON.parse(this.responseText);
-                console.log(data);
-                let html = "";
-                for (let i = 0; i < data.length; i++) {
-                    let id = data[i].id;
-                    let ime = data[i].ime;
-                    let cena = data[i].cena;
-                    let slika = data[i].slika;
-                    let opis = data[i].opis;
-                    let popust = data[i].popust;
-                    let kategorija = data[i].kategorija;
-                    html += "<div class=product>";
-                    html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-                    html += "<div class=divdugizlaz>";
-                    html += "<img src=artikliSlike/" + id + "." + slika + ">";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
-                    html += "</div>";
-                    html += "<div class=imecenakat>"
-                    if (popust != '/') {
-                        html += "<div class=disc>" + popust + "%</div>";
-                    } else {
-                        html += "<div class=disc>" + popust + "%</div>";
-
-                    }
-                    html += "<h3>" + ime + "</h3>";
-                    html += "<p class=cat>" + kategorija + "</p>";
-                    if (popust != '/') {
-                        html += "<div class=divcena>"
-                        html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                        html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
-                        html += "</div>"
-                    } else {
-                        html += "<div class=price>" + cena + "RSD</div>";
-                    }
-                    html += "<p class=desc>" + opis + "</p>";
-                    html += "</div>"
-                    html += "</div>";
-                }
-                document.getElementById("data").innerHTML += html;
-            }
-        };
-    </script>
-
-    <script>
-        // za brisanje
-        function onClickDugmeZaBrisanje(element) {
-            let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
-            console.log(nastavitiProvera); // OK = true, Cancel = false
-            if (nastavitiProvera == false) {
-                return;
-            }
-
-            //cookie
-            let elementos = element.closest('.product');
-            let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
-            let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
-
-            let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
-            //let popUpDugme = document.getElementById();
-            let ajax = new XMLHttpRequest();
-            ajax.open("GET", "delete.php?id=" + id, true);
-            ajax.send();
-            ajax.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let data = this.responseText;
-                    if (data == "deleted") {
-                        elementos.remove();
-                    }
-                }
-            };
-
-            //setCookie(elementos.textContent);
-            //console.log(elementos.textContent);
-
-            console.log("kliknuto dugme");
-
-
-        }
-    </script>
-
-    <script>
-        // za menjanje
-        function dugmeZaMenjanje(element) {
-
-            let elementos = element.closest('.product');
-
-            let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
-            let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
-            let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
-            let cena = elementos.getElementsByClassName('price')[0].innerHTML;
-            let popust = elementos.getElementsByClassName('disc')[0].innerHTML;
-            let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
-
-            document.querySelectorAll(".artikl_input_id")[0].value = id;
-            document.querySelectorAll(".artikl_input_ime")[0].value = ime;
-            document.querySelectorAll(".artikl_input_cena")[0].value = parseInt(cena);
-            document.querySelectorAll(".artikl_input_popust")[0].value = parseInt(popust);
-            document.querySelectorAll(".artikl_input_opis")[0].value = opis;
-            //document.querySelectorAll(".artikl_input_kategorija")[0].value = kategorija;
-
-            otvoriPopup();
-
-
-            console.log("kliknuto dugme");
-        }
-    </script>
-    <script>
-        let elementos = document.getElementById("kategorija")
-        let ajax1 = new XMLHttpRequest();
-        ajax1.open("GET", "kategorijeDobivanje.php", true);
-        ajax1.send();
-        ajax1.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let data = JSON.parse(this.responseText);
-                console.log(data);
-                let html = "";
-                for (let i = 0; i < data.length; i++) {
-                    let kategorija = data[i].ime_kategorije;
-                    var option = document.createElement("option");
-                    option.text = kategorija;
-                    elementos.add(option);
-                }
-            }
-        };
-    </script>
+    <script src="artikliJS.js"></script>
+    <script src="artikliFunctionsJS.js"></script>
 </body>
-
 
 </html>
 
@@ -472,23 +234,16 @@ if (isset($_POST['submit'])) {
                 <script type="text/javascript">
                     alert("Došlo je do greške, fajl nije otpremljen.");
                 </script>
-        <?php
+<?php
                 // echo "Doslo je do greske, fajl nije otpremljen.";
             }
         }
-
         $conn->close();
-        //$path = realpath($slikaIme); // uzima path do slike
-        //echo $path; // nadams se da radi
-        ?>
-        <script type="text/javascript">
-            //location.reload(); // ide u loop (mozda problem zato sto dugme ostane upaljeno ? )
-        </script>
-<?php
     }
 }
-if (isset($_POST['submit'])) {
-    extract($_POST);
+/* ne radi jos
+if (isset($_POST['dodajKategoriju'])) {
+
 
     $servername = "localhost";
     $username   = "root";
@@ -501,11 +256,13 @@ if (isset($_POST['submit'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
+    $sql = "INSERT INTO `kategorije` (ime) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
 
     if ($conn->query($sql) === FALSE) {
         echo "Greska: " . $sql . "<br>" . $conn->error;
     }
-}
 
-$conn->close();
+
+    $conn->close();
+}
+*/
