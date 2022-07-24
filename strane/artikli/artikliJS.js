@@ -36,7 +36,7 @@ ajax.onreadystatechange = function () {
                 html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
                 html += "</div>"
             } else {
-                html += "<div class=price>" + cena + "RSD</div>";
+                html += "<div class=price>" + cena + " RSD</div>";
             }
             html += "<p class=desc>" + opis + "</p>";
             html += "</div>"

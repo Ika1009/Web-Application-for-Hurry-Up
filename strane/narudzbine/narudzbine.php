@@ -33,8 +33,9 @@
                   </style>
                 <th>Id     </th>
                 <th>Ime proizvoda    </th>
-                <th>Broj Stola  </th>
-                <th> Vreme Narucivanja   </th>
+                <th>Vreme Narucivanja   </th>
+                <th> Broj Stola  </th>
+                <th> Status </th>
                 </tr>
                 <tbody id="data" >
                     <style type="text/css">
@@ -61,41 +62,14 @@
                     let proizvod = data[i].proizvod;
                     let vreme_narucivanja = data[i].vreme_narucivanja;
                     let broj_stola = data[i].broj_stola;
+                    let status = data[i].status;
                     html += "<tr>";
                     html += "<td>" + id + "</td>";
                     html += "<td>" + proizvod + "</td>";
                     html += "<td>" + vreme_narucivanja + "</td>";
                     html += "<td>" + broj_stola + "</td>";
+                    html += "<td>" + status + "</td>";
                     html += "</tr>";
-/*
-                    html += "<div class=product>";
-                    html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-                    html += "<div class=divdugizlaz>";
-                    html += "<img src=artikliSlike/" + id + "." + slika + ">";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
-                    html += "</div>";
-                    html += "<div class=imecenakat>"
-                    if (popust != '/') {
-                        html += "<div class=disc>" + popust + "%</div>";
-                    } else {
-                        html += "<div class=disc>" + popust + "%</div>";
-
-                    }
-                    html += "<h3>" + ime + "</h3>";
-                    html += "<p class=cat>" + kategorija + "</p>";
-                    if (popust != '/') {
-                        html += "<div class=divcena>"
-                        html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                        html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
-                        html += "</div>"
-                    } else {
-                        html += "<div class=price>" + cena + "RSD</div>";
-                    }
-                    html
-                    html += "<p class=desc>" + opis + "</p>";
-                    html += "</div>"
-                    html += "</div>";*/
                 }
                 document.getElementById("data").innerHTML += html;
             }
