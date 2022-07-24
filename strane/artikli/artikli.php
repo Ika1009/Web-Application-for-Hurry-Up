@@ -115,7 +115,7 @@
                 <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju" onclick="add()">
                 <input type="button" value="remove" id="rmv" onclick="remove()">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submitA" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
+                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
             </form>
         </div>
     </div>
