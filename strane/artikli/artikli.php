@@ -106,8 +106,8 @@
                 </div>
                 <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
                 <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
-                <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena" />
-                <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust" />
+                <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena  (RSD)" />
+                <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust  (%)" />
                 <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                 </select><br>
