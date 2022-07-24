@@ -1,22 +1,4 @@
-function toggleSignup() {
-    document.getElementById("login-toggle").style.backgroundColor = "#333";
-    document.getElementById("login-toggle").style.color = "#ffb266";
-    document.getElementById("signup-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("signup-toggle").style.color = "#333";
-    document.getElementById("login-form").style.display = "none";
-    document.getElementById("signup-form").style.display = "block";
-}
-
-function toggleLogin() {
-    document.getElementById("login-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("login-toggle").style.color = "#333";
-    document.getElementById("signup-toggle").style.backgroundColor = "#333";
-    document.getElementById("signup-toggle").style.color = "#ffb266";
-    document.getElementById("signup-form").style.display = "none";
-    document.getElementById("login-form").style.display = "block";
-}
-
-const togglePassword = document.querySelector("#togglePassword");
+/*const togglePassword = document.querySelector("#togglePassword");
 const password = document.querySelector("#password");
 
 togglePassword.addEventListener("click", function () {
@@ -54,8 +36,8 @@ const forma = document.querySelector("form");
     
 forma.addEventListener('submit', function (e) {
     e.preventDefault();
-});
-/* 
+});*/
+    
 function setCookie() {
     let date = new Date();
     let vreme = date.toLocaleString();
@@ -65,32 +47,9 @@ function setCookie() {
     document.cookie = cname + "=" + vreme + ";" + expires;
 }
 
-function getCookie() {
-    let cname = "createdAt";
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-let session = getCookie();
-
-if (session !== "") {
-    window.location = "http://www.hurryup.rs/dashboard";
-}*/
-
 let unosi = document.querySelectorAll('input');
     
 let greske = {
-    "password": [],
     "email": [],
     "lozinka": [],
     "pin": []
@@ -116,19 +75,13 @@ unosi.forEach(element => {
                     greske[imeUnosa].push('Lozinka mora biti duža od 8 karaktera');
                 }
                 break;
-                    
-            case 'password':
-                if (vrednostUnosa.length < 8) {
-                    greske[imeUnosa].push('Lozinka mora biti duža od 8 karaktera');
-                }
-                break;
-                
+
             case 'pin': 
                 if (vrednostUnosa.length !== 4) {
                     greske[imeUnosa].push('Pin mora biti četvorocifren');
                 }
                 break;
-        }
+            }
             
         ceste_greske();
     });
@@ -160,3 +113,25 @@ const proveraEmail = email => {
     
     return false;
 }
+
+/*function getCookie() {
+    let cname = "createdAt";
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+let session = getCookie();
+
+if (session !== "") {
+    window.location = "http://www.hurryup.rs/dashboard";
+}*/
