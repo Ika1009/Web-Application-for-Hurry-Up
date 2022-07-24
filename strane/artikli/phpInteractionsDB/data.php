@@ -3,7 +3,7 @@
 $servername = "localhost";  
 $username   = "root";  
 $password   = "";  
-$dbname     = "milos";  
+$dbname     = "hurryupr_database1";  
 // Create connection  
 $conn = new mysqli($servername, $username, $password, $dbname);  
 // Check connection  
