@@ -427,9 +427,9 @@
             <h4 class="pocetna">HurryUp</h4>
         </div>
         <ul class="linkovi">
-            <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
             <li><a href="../artikli/artikli.php">Artikli</a></li>
-            <li><a class="aktivan" href="../ponuda/ponuda.html">Ponuda</a></li>
+            <li><a class="aktivan" href="../ponuda/ponuda.php">Ponuda</a></li>
             <li class="cart">
                 <a href="korpa.php">
                     <ion-icon name="basket"></ion-icon>Korpa <span>0</span>
@@ -497,6 +497,7 @@
             } else {
                 konacna_cena = cena * (100 - popust) / 100;
             }
+            localStorage.setItem("ime", ime);
             console.log(ime);
             console.log(konacna_cena);
         }
