@@ -466,12 +466,6 @@
         };
     </script>
     <script>
-        function dodajArtikal() {
-
-        }
-    </script>
-
-    <script>
         const search = () => {
             const searchbox = document.getElementById("search-item").value.toUpperCase();
             const storeitems = document.getElementById("data");
