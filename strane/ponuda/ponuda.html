@@ -446,7 +446,7 @@
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "../artikli/data.php", true);
+        ajax.open("GET", "../artikli/phpInteractionsDB/data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -475,7 +475,7 @@
                     }
                     html += "<div class=price>" + cena + "</div>"; // precrtaj
                     html += "<p class=desc>" + opis + "</p>";
-                    html += "<button>Dodaj Artikal</button>";
+                    html += "<button onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -485,9 +485,20 @@
         };
     </script>
     <script>
-        function dodajArtikal()
+        function dodaj_u_korpu(element)
         {
-
+            let elementos = element.closest('.product');
+            let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
+            let cena = parseInt(elementos.getElementsByClassName('price')[0].innerHTML);
+            let popust = parseInt(elementos.getElementsByClassName('disc')[0].innerHTML);
+            let konacna_cena;
+            if (popust === 0) {
+                konacna_cena = cena;
+            } else {
+                konacna_cena = cena * (100 - popust) / 100;
+            }
+            console.log(ime);
+            console.log(konacna_cena);
         }
     </script>
 
