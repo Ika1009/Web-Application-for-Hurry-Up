@@ -69,7 +69,7 @@
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form class="forma" name="form1" action="dodavanjeArtiklaDB" method="post" enctype="multipart/form-data">
+            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
                     <input class="file" id="file" type="file" name="file" multiple>
                     <label for="file" class="upload-label">
@@ -254,12 +254,12 @@ if (isset($_POST['dodajKategoriju'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO `kategorije` (ime) VALUES '$ime'";
+    $imeKategorije = $_POST['dodavanjeBox'];
+
+    $sql = "INSERT INTO `kategorije` (ime) VALUES '$imeKategorije'";
 
     if ($conn->query($sql) === FALSE) {
         echo "Greska: " . $sql . "<br>" . $conn->error;
     }
-
-
     $conn->close();
 }
