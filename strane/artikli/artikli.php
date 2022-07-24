@@ -241,9 +241,7 @@ if (isset($_POST['submit'])) {
         $conn->close();
     }
 }
-/* ne radi jos
 if (isset($_POST['dodajKategoriju'])) {
-
 
     $servername = "localhost";
     $username   = "root";
@@ -256,7 +254,7 @@ if (isset($_POST['dodajKategoriju'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO `kategorije` (ime) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
+    $sql = "INSERT INTO `kategorije` (ime) VALUES '$ime'";
 
     if ($conn->query($sql) === FALSE) {
         echo "Greska: " . $sql . "<br>" . $conn->error;
@@ -265,4 +263,3 @@ if (isset($_POST['dodajKategoriju'])) {
 
     $conn->close();
 }
-*/
