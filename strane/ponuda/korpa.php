@@ -509,7 +509,7 @@ if (isset($_POST['submit'])) {
     }
     $cena = $_COOKIE['total'];
     $proizvod = $_COOKIE['createdAt'];
-    $sql = "INSERT INTO `narudzbine` (proizvod, ukupno) VALUES ('$proizvod', '$cena')";
+    $sql = "INSERT INTO `narudzbine` (proizvod, ukupno) VALUES ('$proizvod', '$cena')"; // nisu dobre kolone za narudzbine
     if ($conn->query($sql) === TRUE) {
         ?>
         <script type="text/javascript"> window.location = "https://www.facebook.com"; </script> <?php
