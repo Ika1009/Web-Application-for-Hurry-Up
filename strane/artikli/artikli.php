@@ -14,6 +14,29 @@
     <link rel="stylesheet" href="artikli.css">
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <script>
+        function getCookie(imeVarijable) {
+        let cname = imeVarijable;
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+        function setCookie(staJeUKeks) {
+            let date = new Date();
+            let brojac = staJeUKeks;
+            date.setTime(date.getTime() + (60 * 60 * 1000));
+            let expires = "expires=" + date.toUTCString();
+            let cname = "brojac";
+            document.cookie = cname + "=" + brojac + ";" + expires;
+        }
         // za cetvorocifreni PIN
         let session = getCookie("brojac");
 
@@ -89,10 +112,10 @@
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                 </select><br>
                 <input id=add-box name="dodavanjeBox">
-                <input type="button" value="dodaj" id="dodajopciju" name="dodajKategoriju" onclick="add()">
+                <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju" onclick="add()">
                 <input type="button" value="remove" id="rmv" onclick="remove()">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
+                <button class="submit" type="submit" name="submitA" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
             </form>
         </div>
     </div>
@@ -104,6 +127,7 @@
 </html>
 
 <?php
+
 //dodavanje u bazu 
 if (isset($_POST['submit'])) {
     extract($_POST);
@@ -127,7 +151,8 @@ if (isset($_POST['submit'])) {
     if ($check !== false) {
         // echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
-    } else {
+    }
+    else {
 ?>
         <script type="text/javascript">
             alert("Fajl nije slika!");
@@ -139,7 +164,7 @@ if (isset($_POST['submit'])) {
 
     // Check if file already exists
     if (file_exists($target_file)) {
-    ?>
+?>
         <script type="text/javascript">
             alert("Fajl već postoji!");
         </script>
@@ -150,7 +175,7 @@ if (isset($_POST['submit'])) {
 
     // Check file size
     if ($slikaVelicina > 5000000) { // 5MB
-    ?>
+?>
         <script type="text/javascript">
             alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
         </script>
@@ -161,9 +186,9 @@ if (isset($_POST['submit'])) {
 
     // Allow certain file formats
     if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     ) {
-    ?>
+?>
         <script type="text/javascript">
             alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
         </script>
@@ -173,19 +198,20 @@ if (isset($_POST['submit'])) {
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-    ?>
+?>
         <script type="text/javascript">
             alert("Došlo je do greške, fajl nije otpremljen.");
         </script>
         <?php
-        // echo "Doslo je do greske, fajl nije otpremljen.";
-        // if everything is ok, try to upload file
-    } else {
+    // echo "Doslo je do greske, fajl nije otpremljen.";
+    // if everything is ok, try to upload file
+    }
+    else {
 
         $servername = "localhost";
-        $username   = "root";
-        $password   = "";
-        $dbname     = "hurryupr_database1";
+        $username = "root";
+        $password = "";
+        $dbname = "hurryupr_database1";
         // Create connection  
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection  
@@ -197,7 +223,8 @@ if (isset($_POST['submit'])) {
             // UPDATE `artikli` SET `ime`="Coca Cola",`cena`="108",`opis`="U limenci",`popust`="10",`kategorija`="burger" WHERE `id`= 102
             if ($slikaVelicina != 0) {
                 $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
-            } else {
+            }
+            else {
                 $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
             }
 
@@ -207,14 +234,15 @@ if (isset($_POST['submit'])) {
             }
 
             if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $_REQUEST['id'] . "." . $slikaEkstenzija)) {
-        ?>
+?>
                 <script type="text/javascript">
                     alert("Fajl je uspešno otpremljen!");
                 </script>
             <?php
-                // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
             }
-        } else {
+        }
+        else {
 
             $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
 
@@ -223,30 +251,36 @@ if (isset($_POST['submit'])) {
             }
 
             if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
-            ?>
+?>
                 <script type="text/javascript">
                     alert("Fajl je uspešno otpremljen!");
                 </script>
             <?php
-                // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-            } else {
-            ?>
+            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
+            }
+            else {
+?>
                 <script type="text/javascript">
                     alert("Došlo je do greške, fajl nije otpremljen.");
                 </script>
 <?php
-                // echo "Doslo je do greske, fajl nije otpremljen.";
+            // echo "Doslo je do greske, fajl nije otpremljen.";
             }
         }
         $conn->close();
     }
 }
+
+// dodavanjae Kategorija 
+/*
 if (isset($_POST['dodajKategoriju'])) {
 
+    echo "boba";
+
     $servername = "localhost";
-    $username   = "root";
-    $password   = "";
-    $dbname     = "hurryupr_database1";
+    $username = "root";
+    $password = "";
+    $dbname = "hurryupr_database1";
     // Create connection  
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection  
@@ -256,6 +290,8 @@ if (isset($_POST['dodajKategoriju'])) {
 
     $imeKategorije = $_POST['dodavanjeBox'];
 
+    echo $imeKategorije;
+
     $sql = "INSERT INTO `kategorije` (ime) VALUES '$imeKategorije'";
 
     if ($conn->query($sql) === FALSE) {
@@ -263,3 +299,4 @@ if (isset($_POST['dodajKategoriju'])) {
     }
     $conn->close();
 }
+*/
