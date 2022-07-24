@@ -37,7 +37,7 @@ function onClickDugmeZaBrisanje(element) {
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
     //let popUpDugme = document.getElementById();
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "delete.php?id=" + id, true);
+    ajax.open("GET", "./phpInteractionsDB/delete.php?id=" + id, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -113,7 +113,7 @@ function navToggle() {
 function remove() {
     var x = document.getElementById("kategorija");
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "deleteKategorija.php?id=" + x.selectedIndex, true);
+    ajax.open("GET", "./phpInteractionsDB/deleteKategorija.php?id=" + x.selectedIndex, true);
     ajax.send();
     ajax.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

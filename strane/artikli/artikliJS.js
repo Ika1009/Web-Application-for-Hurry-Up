@@ -1,5 +1,5 @@
 let ajax = new XMLHttpRequest();
-ajax.open("GET", "data.php", true);
+ajax.open("GET", "./phpInteractionsDB/data.php", true);
 ajax.send();
 ajax.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -22,7 +22,7 @@ ajax.onreadystatechange = function () {
             html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
             html += "</div>";
             html += "<div class=imecenakat>"
-            if (popust != '/') {
+            if (popust != '0') {
                 html += "<div class=disc>" + popust + "%</div>";
             } else {
                 html += "<div class=disc>" + popust + "%</div>";
@@ -30,10 +30,10 @@ ajax.onreadystatechange = function () {
             }
             html += "<h3>" + ime + "</h3>";
             html += "<p class=cat>" + kategorija + "</p>";
-            if (popust != '/') {
+            if (popust != '0') {
                 html += "<div class=divcena>"
                 html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
+                html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
                 html += "</div>"
             } else {
                 html += "<div class=price>" + cena + "RSD</div>";
@@ -47,7 +47,7 @@ ajax.onreadystatechange = function () {
 };
 let elementos = document.getElementById("kategorija")
 let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "kategorijeDobivanje.php", true);
+ajax1.open("GET", "./phpInteractionsDB/kategorijeDobivanje.php", true);
 ajax1.send();
 ajax1.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
