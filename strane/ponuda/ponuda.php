@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,274 +13,81 @@
     <title>Ponuda</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
+            margin: 0px;
+            padding: 0px;
             box-sizing: border-box;
         }
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 8vh;
-            background-color: #333;
-            font-family: Arial, Helvetica, sans-serif;
+
+
+        .divdugmenaruci {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translate(-50%, -50%);
+            margin: 0 auto;
         }
-        
-        .linkovi {
-            display: flex;
-            justify-content: space-around;
-            width: 30%;
-        }
-            .linkovi a {
-                color:#ffb266;
-                text-decoration: none;
-                letter-spacing: 3px;
-                font-weight: bold;
-                font-size: 14px;
-                padding: 14px 16px;
-            }
-            
-            .linkovi li {
-                list-style: none;
-            }
-            
-                .linkovi li a.hover:not(.aktivan) {
-                    background-color: #ffb266;
-                }
-            
-                .linkovi li a.aktivan {
-                    background-color: #f9f9f9;
-                    color: #333;
-                    font-weight: bolder;
-                }
-        
-        .header {
-            color: #ffb266;
-            letter-spacing: 5px;
+
+        .button-52 {
+            z-index: 5;
             font-size: 20px;
-        }
-        
-        
-        img {
-            height: 70px;
-        }
-        
-        .pocetna {
-            float: right;
-            padding-top: 30px;
-        }
-        
-        .overlay {
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            height: 100%;
-            right: 0;
-            bottom: 0;
-            padding: 0 !important;
-            margin: 0 !important;
-            background-color: rgba(10, 10, 10, 0.3);
-        }
-        
-        
-        .cart ion-icon {
-            vertical-align: bottom;
-            font-size: 20px;
-            padding-right: 3.42px;
-        }
-        
-        .cart a {
-            color: #fff;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 1px;
+            padding: 13px 20px 13px;
+            border-radius: 10px;
+            outline: 0;
+            border: 1px solid black;
             cursor: pointer;
-            text-decoration: none;
-        }
-        
-        .container,
-        .products-container {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            padding-bottom: 100px;
-        }
-        
-        .image {
-            height: 200px;
-            margin-right: 20px;
-            margin-left: 20px;
             position: relative;
-            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
-        
+
+        .button-52:after {
+            border-radius: 10px;
+            content: "";
+            background-color: #ffe54c;
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            height: 100%;
+            top: 7px;
+            left: 7px;
+            transition: 0.2s;
+        }
+
+        .button-52:hover:after {
+            top: 0px;
+            left: 0px;
+        }
+
+        @media (min-width: 768px) {
+            .button-52 {
+                padding: 13px 50px 13px;
+            }
+        }
+
         .search {
-            display: block;
-            margin-top: 10px;
+            display: flex;
+            margin-top: 1rem;
             margin-right: auto;
             margin-left: auto;
             padding: 15px;
             height: 50px;
-            width: 300px;
-            border-color: black;
-        }
-        
-        .add-cart {
-            position: absolute;
-            width: 100%;
-            color: white;
-            background-color: darkblue;
-            transition: all 0.3s ease-in-out;
-            opacity: 0;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .image:hover .cart {
-            bottom: 50px;
-            opacity: 1;
-            padding: 10px;
-            text-decoration: none;
-        }
-        
-        /*----------------Cart page*------------------*/
-        
-        .order {
-            background: #5E5DF0;
-            border-radius: 999px;
-            box-shadow: #5E5DF0 0 10px 20px -10px;
-            box-sizing: border-box;
-            color: #FFFFFF;
-            cursor: pointer;
-            font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 24px;
-            opacity: 1;
-            outline: 0 solid transparent;
-            padding: 8px 18px;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            width: fit-content;
-            word-break: break-word;
-            border: 0;
-        }
-        
-        .images {
-            height: 150px;
-        }
-        
-        .products-container {
-            max-width: 650px;
-            justify-content: space-around;
-            margin: 0 auto;
-            margin-top: 50px;
-        }
-        
-        .products-container ion-icon {
-            font-size: 25px;
-            color: darkblue;
-            margin-left: 10px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        
-        .product-header {
-            width: 100%;
-            max-width: 650px;
-            display: flex;
-            justify-content: flex-start;
-            border-bottom: 4px solid lightgrey;
-            margin: 0 auto;
-        }
-        
-        .product-title {
-            width: 45%;
-        }
-        
-        .dugmeZaDodavanje {
-            display: flex;
-            width: 100%;
+            width: 30%;
+            border-radius: 15px;
+            border-color: #ffb266;
             background-color: #333;
-            border-radius: 50%;
-            color: #ffb266;
-            font-size: 100px;
-            border: 0;
-            outline: none;
-            cursor: pointer;
-            margin: 45%;
+            font-size: 22px;
+            font-style: italic;
+            color: #FFB266;
         }
 
-        .dugmeZaDodavanje:hover {
-            background-color: black;
-        }
 
-        .divdugme {
-            width: 300px;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            border: solid #ffb266;
-            background: #ebebeb;
-            border-radius: 0.5em;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-            margin-right: 0;
-        }
-        .price {
-            width: 15%;
-            border-bottom: 1px solid lightgrey;
-            display: flex;
-            align-items: center;
-        }
-        
-        .quantity {
-            width: 30%;
-            border-bottom: 1px solid lightgrey;
-            display: flex;
-            align-items: center;
-        }
-        
-        .total {
-            width: 10%;
-            border-bottom: 1px solid lightgrey;
-            display: flex;
-            align-items: center;
-        }
-        
-        .product {
-            width: 45%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid lightgrey;
-        }
-        
-        .product ion-icon {
-            cursor: pointer;
-        }
-        
-        .products {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .basketTotalContainer {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-            padding: 10px 0;
-        }
-        
-        .basketTotalTitle {
-            width: 30%;
-        }
-        
-        .basketTotal {
-            width: 10%;
-        }
+
+
         .text {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(7rem, 14rem));
@@ -291,47 +99,35 @@
         }
 
         .product {
+            position: relative;
             justify-content: center;
             text-align: center;
-            max-height: 100%;
+            max-height: 400px;
             width: 300px;
-            padding: 8px 20px 5px;
-            background: #ebebeb;
+            background: #ffb266;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
             border-radius: 0.5em;
             margin-left: 0rem;
-            height: 375px;
-        }
-
-        .dugizlaz {
-            float: right;
-            border: none;
-            border-radius: 50%;
-            color: #ffb266;
-            background: #333;
-            padding: 6px 8px;
-            font-size: 20px;
-            cursor: pointer;
-            margin-right: 0.5rem;
-        }
-
-        .product:hover .dugizlaz {
-            background: black;
+            height: 400px;
         }
 
         .product img {
-            width: 80%;
-            height: 40%;
-            border-radius: 25px;
-            padding: 1rem;
+            width: 100%;
+            height: 230px;
+            border-radius: 0.5rem;
         }
 
         .product:hover img {
-            transform: scale(1.1);
+            transform: scale(1.03);
+        }
+
+        .product:hover .dodajukolica {
+            opacity: 1;
         }
 
         .imecenakat {
+            padding: 8px;
             text-align: left;
         }
 
@@ -343,6 +139,7 @@
             background: #ffb266;
             width: 15%;
             color: #333;
+            border: .1rem solid #333;
             border-radius: 0.6rem;
             font-weight: bold;
             box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
@@ -354,27 +151,55 @@
             color: black;
         }
 
-
-        .cat {
-            color: #ffb266;
-            font-size: 0.8rem;
-            font-weight: bold;
-            font-style: italic;
+        .divcena {
+            text-align: center;
+            align-content: center;
+            display: flex;
         }
-
 
         .price {
-            margin-top: 0.3rem;
             font-size: 1.5rem;
             color: #333;
-            margin-bottom: 1rem;
+            font-weight: bold;
         }
 
+        .priceprecrtano {
+            font-size: 1.1rem;
+            color: #6d6d6d;
+            margin-left: 0.2rem;
+            text-decoration: line-through;
+        }
 
         .desc {
             margin-top: 0.5rem;
             font-size: 0.9rem;
         }
+
+        .divdodajukolica {
+            width: 300px;
+            bottom: 0;
+
+            position: absolute;
+        }
+
+        .dodajukolica {
+            cursor: pointer;
+            width: 100%;
+            border-radius: 0.5rem;
+            text-align: center;
+            background: #333;
+            color: #f9f9f9;
+            height: 30px;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+
+
+
 
         .popuptext:hover {
             transform: scale(1.05);
@@ -399,6 +224,14 @@
         a {
             text-decoration: none;
         }
+
+
+
+
+
+
+
+
         .container {
             margin-right: 8%;
             margin-left: 10%;
@@ -418,35 +251,175 @@
         .justify-content-between {
             justify-content: space-between;
         }
+
+        /*header*/
+        .header {
+            padding: 12px 0;
+            line-height: normal;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header .logo,
+        .header .nav {
+            padding: 0 15px;
+        }
+
+        .header .logo a {
+            font-size: 30px;
+            color: #ffb266;
+            text-transform: capitalize;
+        }
+
+        .header .nav ul li {
+            display: inline-block;
+            margin-left: 100px;
+        }
+
+        .header .nav ul li a {
+            display: block;
+            font-size: 20px;
+            line-height: 1;
+            text-transform: capitalize;
+            color: #ebebeb;
+            padding: 10px 0;
+            transition: all 0.5s ease;
+        }
+
+        .header .nav ul li a.active,
+        .header .nav ul li a:hover {
+            color: #ffb266;
+        }
+
+        .nav-toggler {
+            height: 34px;
+            width: 44px;
+            color: #ffb266;
+            background-color: #ffb266;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            display: none;
+            margin-right: 15px;
+        }
+
+        .nav-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 15px black;
+        }
+
+        .nav-toggler span {
+            height: 2px;
+            width: 20px;
+            background-color: #333;
+            display: block;
+            margin: auto;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggler.active span {
+            background-color: transparent;
+        }
+
+        .nav-toggler span::before,
+        .nav-toggler span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggler span::before {
+            transform: translateY(-6px);
+        }
+
+        .nav-toggler.active span::before {
+            transform: rotate(45deg);
+        }
+
+        .nav-toggler span::after {
+            transform: translateY(6px);
+        }
+
+        .nav-toggler.active span::after {
+            transform: rotate(135deg);
+        }
+
+        @media(max-width:991px) {
+            .nav-toggler {
+                display: block;
+            }
+
+            .header .nav {
+                width: 100%;
+                padding: 0;
+                max-height: 0px;
+                overflow: hidden;
+                visibility: hidden;
+                transition: all 0.5s ease;
+            }
+
+            .header .nav.open {
+                visibility: visible;
+            }
+
+            .header .nav ul {
+                padding: 12px 15px 0;
+                margin-top: 12px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .header .nav ul li {
+                display: block;
+                margin: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <nav>
-        <div class="header">
-            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-            <h4 class="pocetna">HurryUp</h4>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="logo">
+                    <a href="#">Hurry Up</a>
+                </div>
+                <button type="button" class="nav-toggler">
+                    <span></span>
+                </button>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                        <li><a href="../artikli/artikli.php">Artikli</a></li>
+                        <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <ul class="linkovi">
-            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
-            <li><a href="../artikli/artikli.php">Artikli</a></li>
-            <li><a class="aktivan" href="../ponuda/ponuda.php">Ponuda</a></li>
-            <li class="cart">
-                <a href="korpa.php">
-                    <ion-icon name="basket"></ion-icon>Korpa <span>0</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    </header>
     <form>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
     </form>
+
+    <div class="kategorije">
+        <!-- ovde treba kod da sa ubace sve kategorije -->
+    </div>
+
     <div class="text" id="data">
-        
+
+    </div>
+    <div class="divdugmenaruci">
+        <button class="button-52" role="button">Naruči</button>
     </div>
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "../artikli/phpInteractionsDB/data.php", true);
+        ajax.open("GET", "../artikli/data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -462,20 +435,28 @@
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
                     html += "<div class=product>";
-                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                    html += "<ion-icon class=dugizlaz name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
                     html += "<div class=imecenakat>";
-                    html += "<div class=disc>" + popust + "</div>";
-                    html += "<h3>" + ime + "</h3>";
-                    html += "<p class=cat>" + kategorija + "</p>";
-                    if (cena != '/') {
-                        html += "<div class=price>" + (cena.slice(0, -3) * (100 - parseInt(popust.slice(0, -1)))) / 100 + " RSD</div>";
+                    if (popust != '/') {
+                        html += "<div class=disc>" + popust + "%</div>";
+                    } else {
+                        html += "<div class=disc>" + popust + "%</div>";
+
                     }
-                    html += "<div class=price>" + cena + "</div>"; // precrtaj
+                    html += "<h3>" + ime + "</h3>";
+                    if (popust != '0') {
+                        html += "<div class=divcena>"
+                        html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                        html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
+                        html += "</div>"
+                    } else {
+                        html += "<div class=price>" + cena + "RSD</div>";
+                    }
                     html += "<p class=desc>" + opis + "</p>";
-                    html += "<button onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
+                    html += "</div>";
+                    html += "<div class=divdodajukolica>";
+                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -485,8 +466,49 @@
         };
     </script>
     <script>
-        function dodaj_u_korpu(element)
-        {
+        function dodajArtikal() {
+
+        }
+    </script>
+
+    <script>
+        const search = () => {
+            const searchbox = document.getElementById("search-item").value.toUpperCase();
+            const storeitems = document.getElementById("data");
+            const product = document.querySelectorAll(".product");
+            const productname = storeitems.getElementsByTagName("h3");
+
+            for (let i = 0; i < productname.length; i++) {
+                let match = product[i].getElementsByTagName("h3")[0];
+
+                if (match) {
+                    let textvalue = match.textContent || match.innerHTML
+
+                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+                        product[i].style.display = "";
+                    } else {
+                        product[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        const navToggler = document.querySelector(".nav-toggler");
+        navToggler.addEventListener("click", navToggle);
+
+        function navToggle() {
+            navToggler.classList.toggle("active");
+            const nav = document.querySelector(".nav");
+            nav.classList.toggle("open");
+            if (nav.classList.contains("open")) {
+                nav.style.maxHeight = nav.scrollHeight + "px";
+            } else {
+                nav.removeAttribute("style");
+            }
+        }
+    </script>
+    <script>
+        function dodaj_u_korpu(element) {
             let elementos = element.closest('.product');
             let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
             let cena = parseInt(elementos.getElementsByClassName('price')[0].innerHTML);
@@ -504,191 +526,190 @@
     </script>
 
     <script>
-    const search = () => {
-        const searchbox = document.getElementById("search-item").value.toUpperCase();
-        const storeitems = document.getElementById("product-list");
-        const product = document.querySelectorAll(".image");
-        const productname = storeitems.getElementsByTagName("h3");
-    
-        for (let i = 0; i < productname.length; i++) {
-            let match = product[i].getElementsByTagName("h3")[0];
-    
-            if (match) {
-                let textvalue = match.textContent || match.innerHTML
-    
-                if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
-                    product[i].style.display = "";
-                } else {
-                    product[i].style.display = "none";
+        const search = () => {
+            const searchbox = document.getElementById("search-item").value.toUpperCase();
+            const storeitems = document.getElementById("product-list");
+            const product = document.querySelectorAll(".image");
+            const productname = storeitems.getElementsByTagName("h3");
+
+            for (let i = 0; i < productname.length; i++) {
+                let match = product[i].getElementsByTagName("h3")[0];
+
+                if (match) {
+                    let textvalue = match.textContent || match.innerHTML
+
+                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+                        product[i].style.display = "";
+                    } else {
+                        product[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
 
-    let carts = document.querySelectorAll('.add-cart');
+        let carts = document.querySelectorAll('.add-cart');
 
-    let products = [
-        {
-            name: 'Iced Coffee',
-            tag: 'iced_coffee',
-            price: 340,
-            inCart: 0
-        },
-        {
-            name: 'Iced Mocha',
-            tag: 'iced_mocha',
-            price: 350,
-            inCart: 0
-        },
-        {
-            name: 'Frape Coffee',
-            tag: 'frape_coffee',
-            price: 360,
-            inCart: 0
-        },
-        {
-            name: 'Frape Mocha',
-            tag: 'frape_mocha',
-            price: 360,
-            inCart: 0
-        },
-        {
-            name: 'Flat white',
-            tag: 'flat_white',
-            price: 250,
-            inCart: 0
-        },
-        {
-            name: 'Crna kafa',
-            tag: 'crna_kafa',
-            price: 220,
-            inCart: 0
-        },
-        {
-            name: 'Coca Cola',
-            tag: 'coca-cola',
-            price: 230,
-            inCart: 0
-        },
-        {
-            name: 'Coca Cola Zero',
-            tag: 'coca-cola-zero',
-            price: 230,
-            inCart: 0
-        },
-        {
-            name: 'Fanta',
-            tag: 'fanta',
-            price: 230,
-            inCart: 0
-        },
-        {
-            name: 'Rauch crveno voće',
-            tag: 'rauch_crveno_voce',
-            price: 200,
-            inCart: 0
-        },
-        {
-            name: 'Rauch multivitamin',
-            tag: 'rauch_multivitamin',
-            price: 200,
-            inCart: 0
-        },
-        {
-            name: 'Rosa flašica',
-            tag: 'rosa',
-            price: 150,
-            inCart: 0
-        },
-        {
-            name: 'Muffin čoko',
-            tag: 'muffin_coko',
-            price: 270,
-            inCart: 0
-        },
-        {
-            name: 'Caesar salata',
-            tag: 'caesar_salata',
-            price: 610,
-            inCart: 0
-        },
-        {
-            name: 'Grilled Chicken salata',
-            tag: 'grilled_chicken_salad',
-            price: 610,
-            inCart: 0
+        let products = [{
+                name: 'Iced Coffee',
+                tag: 'iced_coffee',
+                price: 340,
+                inCart: 0
+            },
+            {
+                name: 'Iced Mocha',
+                tag: 'iced_mocha',
+                price: 350,
+                inCart: 0
+            },
+            {
+                name: 'Frape Coffee',
+                tag: 'frape_coffee',
+                price: 360,
+                inCart: 0
+            },
+            {
+                name: 'Frape Mocha',
+                tag: 'frape_mocha',
+                price: 360,
+                inCart: 0
+            },
+            {
+                name: 'Flat white',
+                tag: 'flat_white',
+                price: 250,
+                inCart: 0
+            },
+            {
+                name: 'Crna kafa',
+                tag: 'crna_kafa',
+                price: 220,
+                inCart: 0
+            },
+            {
+                name: 'Coca Cola',
+                tag: 'coca-cola',
+                price: 230,
+                inCart: 0
+            },
+            {
+                name: 'Coca Cola Zero',
+                tag: 'coca-cola-zero',
+                price: 230,
+                inCart: 0
+            },
+            {
+                name: 'Fanta',
+                tag: 'fanta',
+                price: 230,
+                inCart: 0
+            },
+            {
+                name: 'Rauch crveno voće',
+                tag: 'rauch_crveno_voce',
+                price: 200,
+                inCart: 0
+            },
+            {
+                name: 'Rauch multivitamin',
+                tag: 'rauch_multivitamin',
+                price: 200,
+                inCart: 0
+            },
+            {
+                name: 'Rosa flašica',
+                tag: 'rosa',
+                price: 150,
+                inCart: 0
+            },
+            {
+                name: 'Muffin čoko',
+                tag: 'muffin_coko',
+                price: 270,
+                inCart: 0
+            },
+            {
+                name: 'Caesar salata',
+                tag: 'caesar_salata',
+                price: 610,
+                inCart: 0
+            },
+            {
+                name: 'Grilled Chicken salata',
+                tag: 'grilled_chicken_salad',
+                price: 610,
+                inCart: 0
+            }
+        ]
+
+        for (let i = 0; i < carts.length; i++) {
+            carts[i].addEventListener('click', () => {
+                cartNumbers(products[i]);
+                totalCost(products[i]);
+            })
         }
-    ]
-    
-    for (let i = 0; i < carts.length; i++) {
-        carts[i].addEventListener('click', () => {
-            cartNumbers(products[i]);
-            totalCost(products[i]);
-        })
-    }
-    
-    function onLoadCartNumbers() {
-        let productNumbers = localStorage.getItem('cartNumbers');
-    
-        if (productNumbers) {
-            document.querySelector('.cart span').textContent = productNumbers;
+
+        function onLoadCartNumbers() {
+            let productNumbers = localStorage.getItem('cartNumbers');
+
+            if (productNumbers) {
+                document.querySelector('.cart span').textContent = productNumbers;
+            }
         }
-    }
-    
-    function cartNumbers(product) {
-        let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
-    
-        if (productNumbers) {
-            localStorage.setItem('cartNumbers', productNumbers + 1);
-            document.querySelector('.cart span').textContent = productNumbers + 1;
-        } else {
-            localStorage.setItem('cartNumbers', 1);
-            document.querySelector('.cart span').textContent = 1;
-        } 
-    
-        setItems(product);
-        setCookieCart(product);
-    }
-    
-    function setItems(product) {
-        let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
-        
-        if (cartItems !== null) {
-            if (cartItems[product.tag] === undefined) {
+
+        function cartNumbers(product) {
+            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
+
+            if (productNumbers) {
+                localStorage.setItem('cartNumbers', productNumbers + 1);
+                document.querySelector('.cart span').textContent = productNumbers + 1;
+            } else {
+                localStorage.setItem('cartNumbers', 1);
+                document.querySelector('.cart span').textContent = 1;
+            }
+
+            setItems(product);
+            setCookieCart(product);
+        }
+
+        function setItems(product) {
+            let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+
+            if (cartItems !== null) {
+                if (cartItems[product.tag] === undefined) {
+                    cartItems = {
+                        ...cartItems,
+                        [product.tag]: product
+                    }
+                }
+                cartItems[product.tag].inCart += 1;
+            } else {
+                product.inCart = 1;
                 cartItems = {
-                    ...cartItems,
                     [product.tag]: product
                 }
             }
-            cartItems[product.tag].inCart += 1;
-        } else {
-            product.inCart = 1;
-            cartItems = {
-                [product.tag]: product
+
+            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+        }
+
+        function totalCost(product) {
+            let cartCost = localStorage.getItem('totalCost');
+
+            if (cartCost !== null) {
+                cartCost = parseInt(cartCost);
+                localStorage.setItem("totalCost", cartCost + product.price);
+            } else {
+                localStorage.setItem("totalCost", product.price);
             }
         }
-    
-        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-    }
-    
-    function totalCost(product) {
-        let cartCost = localStorage.getItem('totalCost');
-    
-        if (cartCost !== null) {
-            cartCost = parseInt(cartCost);
-            localStorage.setItem("totalCost", cartCost + product.price);
-        } else {
-            localStorage.setItem("totalCost", product.price);
-        }   
-    }
-    
-    function displayCart() {
-        let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-        let cartCost = localStorage.getItem('totalCost');
-        let productContainer = document.querySelector(".products");
-        if (cartItems && productContainer) {
-            Object.values(cartItems).map(item => {
-                productContainer.innerHTML += `
+
+        function displayCart() {
+            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+            let cartCost = localStorage.getItem('totalCost');
+            let productContainer = document.querySelector(".products");
+            if (cartItems && productContainer) {
+                Object.values(cartItems).map(item => {
+                    productContainer.innerHTML += `
                 <div class="product">
                     <ion-icon name="close-circle" onclick="removeItems()"></ion-icon>   
                     <img class="images" src="./img/${item.tag}.jpg" alt="${item.tag}">
@@ -704,9 +725,9 @@
                     ${item.inCart * item.price} RSD
                 </div>
                 `;
-            });
-    
-            productContainer.innerHTML += `
+                });
+
+                productContainer.innerHTML += `
                 <div class="basketTotalContainer">
                     <h4 class="basketTotalTitle">
                         Korpa ukupno
@@ -716,45 +737,46 @@
                     </h4>
                 </div>
             `;
+            }
         }
-    }
-    
-    function setCookieTotal() {
-        let total = localStorage.getItem("totalCost");
-        let d = new Date();
-        d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = 'total' + "=" + total + ";" + expires + ";path=/";
-    }
-    
-    let ime = [];
-    let brojac = 0;
-    
-    function setCookieCart(product) {
-        let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-    
-        ime[brojac] = cartItems[product.tag].name;
-        brojac++;
-        ime[brojac] = cartItems[product.tag].price;
-        brojac++;
-        ime[brojac] = cartItems[product.tag].inCart;
-        brojac++;
-        console.log(ime);
-        let d = new Date();
-        d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = product + "=" + ime + ";" + expires + ";path=/";
-    }
-    
-    function order() {
-        alert("Vasa narudzbina je primljena!");
-        localStorage.clear();
-        window.location = "index.html";
-    }
-    
-    onLoadCartNumbers();
-    displayCart();
-    setCookieTotal();
+
+        function setCookieTotal() {
+            let total = localStorage.getItem("totalCost");
+            let d = new Date();
+            d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = 'total' + "=" + total + ";" + expires + ";path=/";
+        }
+
+        let ime = [];
+        let brojac = 0;
+
+        function setCookieCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+
+            ime[brojac] = cartItems[product.tag].name;
+            brojac++;
+            ime[brojac] = cartItems[product.tag].price;
+            brojac++;
+            ime[brojac] = cartItems[product.tag].inCart;
+            brojac++;
+            console.log(ime);
+            let d = new Date();
+            d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = product + "=" + ime + ";" + expires + ";path=/";
+        }
+
+        function order() {
+            alert("Vasa narudzbina je primljena!");
+            localStorage.clear();
+            window.location = "index.html";
+        }
+
+        onLoadCartNumbers();
+        displayCart();
+        setCookieTotal();
     </script>
 </body>
+
 </html>
