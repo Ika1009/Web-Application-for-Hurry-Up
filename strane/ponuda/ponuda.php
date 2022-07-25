@@ -445,11 +445,8 @@
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
                     html += "<div class=imecenakat>";
-                    if (popust != '/') {
+                    if (popust != '0') {
                         html += "<div class=disc>" + popust + "%</div>";
-                    } else {
-                        html += "<div class=disc>" + popust + "%</div>";
-
                     }
                     html += "<h3>" + ime + "</h3>";
                     if (popust != '0') {

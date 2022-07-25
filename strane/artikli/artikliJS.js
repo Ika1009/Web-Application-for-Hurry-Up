@@ -24,9 +24,6 @@ ajax.onreadystatechange = function () {
             html += "<div class=imecenakat>"
             if (popust != '0') {
                 html += "<div class=disc>" + popust + "%</div>";
-            } else {
-                html += "<div class=disc>" + popust + "%</div>";
-
             }
             html += "<h3>" + ime + "</h3>";
             html += "<p class=cat>" + kategorija + "</p>";
