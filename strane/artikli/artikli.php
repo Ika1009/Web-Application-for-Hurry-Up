@@ -92,9 +92,9 @@
         <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
         <h3 class="naslov">Dodaj novi artikal:</h3>
         <div id="signup-form">
-            <form class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
+            <form id="artikl_form" class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
-                    <input class="file" id="file" type="file" name="file" multiple>
+                    <input class="file" id="file" type="file" name="file">
                     <label for="file" class="upload-label">
                         <div class="image">
                             <img src="" alt="">
@@ -108,14 +108,14 @@
                 <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                 <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena  (RSD)" />
                 <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust  (%)" />
-                <select class="kategorija artikl_input_kategorija" name="kategorije" id="kategorije" required>
-                    <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
+                <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorije" required>
+                    <option class="kategorija-naslov" value="" selected disabled hidden>Izaberi kategoriju</option>
                 </select><br>
                 <input id=add-box name="dodavanjeBox">
                 <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
                 <input type="button" value="remove" id="rmv">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
-                <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
+                <button class="submit" type="submit" name="article_add" id="popupDugme" value="add">Dodaj</button>
             </form>
         </div>
     </div>
@@ -126,149 +126,3 @@
 
 </html>
 
-<?php
-
-//dodavanje u bazu 
-if (isset($_POST['submit'])) {
-    extract($_POST);
-
-    // daje podatke slike
-    $slika = $_FILES['file'];
-    $slikaIme = $_FILES['file']['name'];
-    $slikaVelicina = $_FILES['file']['size'];
-    $slikaError = $_FILES['file']['error'];
-    $slikaTip = $_FILES['file']['type'];
-    $slikaEkstenzija = substr($slikaIme, strrpos($slikaIme, '.') + 1);
-    // $dozvoljeni = array('jpg', 'jpeg', 'png'); // dozvoljeni tipovi slike
-
-    $target_dir = "";
-    $target_file = $target_dir . basename($slikaIme);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["file"]["tmp_name"]);
-    if ($check !== false) {
-        // echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    }
-    else {
-?>
-        <script type="text/javascript">
-            alert("Fajl nije slika!");
-        </script>
-    <?php
-        // echo "Fajl nije slika!";
-        $uploadOk = 0;
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-?>
-        <script type="text/javascript">
-            alert("Fajl već postoji!");
-        </script>
-    <?php
-        // echo "Fajl vec postoji.";
-        $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($slikaVelicina > 5000000) { // 5MB
-?>
-        <script type="text/javascript">
-            alert("Fajl je prevelik. Ne sme biti veci od 5 MB.");
-        </script>
-    <?php
-        // echo "Fajl je prevelik. Ne sme biti veci od 500 KB.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if (
-    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    ) {
-?>
-        <script type="text/javascript">
-            alert("Dozvoljeni formati su samo PNG, JPG i JPEG");
-        </script>
-    <?php
-        // echo "Dozvoljeni formati su samo PNG, JPG i JPEG";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-?>
-        <script type="text/javascript">
-            alert("Došlo je do greške, fajl nije otpremljen.");
-        </script>
-        <?php
-    // echo "Doslo je do greske, fajl nije otpremljen.";
-    // if everything is ok, try to upload file
-    }
-    else {
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "hurryupr_database1";
-        // Create connection  
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection  
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje ili pravi novi
-            // UPDATE `artikli` SET `ime`="Coca Cola",`cena`="108",`opis`="U limenci",`popust`="10",`kategorija`="burger" WHERE `id`= 102
-            if ($slikaVelicina != 0) {
-                $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
-            }
-            else {
-                $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
-            }
-
-            if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0 && $slikaVelicina != 0) {
-                $mask = 'artikliSlike/' . $_REQUEST['id'] . '.*';
-                array_map('unlink', glob($mask));
-            }
-
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $_REQUEST['id'] . "." . $slikaEkstenzija)) {
-?>
-                <script type="text/javascript">
-                    alert("Fajl je uspešno otpremljen!");
-                </script>
-            <?php
-            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-            }
-        }
-        else {
-
-            $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
-
-            if ($conn->query($sql) === FALSE) {
-                echo "Greska: " . $sql . "<br>" . $conn->error;
-            }
-
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], "artikliSlike/" . $conn->insert_id . "." . $slikaEkstenzija)) {
-?>
-                <script type="text/javascript">
-                    alert("Fajl je uspešno otpremljen!");
-                </script>
-            <?php
-            // echo "Fajl " . htmlspecialchars(basename($_FILES["file"]["name"])) . " je otpremljen.";
-            }
-            else {
-?>
-                <script type="text/javascript">
-                    alert("Došlo je do greške, fajl nije otpremljen.");
-                </script>
-<?php
-            // echo "Doslo je do greske, fajl nije otpremljen.";
-            }
-        }
-        $conn->close();
-    }
-}
-
-// dodavanjae Kategorija 
