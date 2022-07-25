@@ -118,7 +118,7 @@
 
         .product img {
             width: 100%;
-            height: 115px;
+            height: 120px;
             border-radius: 0.25rem;
         }
 
@@ -138,9 +138,9 @@
 
         .disc {
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             background: #ffb266;
-            width: 15%;
+            width: 20%;
             color: #333;
             border: .1rem solid #333;
             border-radius: 0.6rem;
@@ -149,7 +149,8 @@
         }
 
         .product h3 {
-            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            font-size: 1.1rem;
             color: black;
         }
 
@@ -161,13 +162,13 @@
         }
 
         .price {
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             color: #333;
             font-weight: bold;
         }
 
         .priceprecrtano {
-            font-size: 0.6rem;
+            font-size: 0.95rem;
             color: #6d6d6d;
             margin-left: 0.1rem;
             text-decoration: line-through;
@@ -193,6 +194,7 @@
             color: #f9f9f9;
             height: 30px;
             font-size: 13px;
+            font-weight: bold;
             border: none;
             outline: none;
             transition: all 0.3s ease-in-out;
@@ -435,7 +437,7 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<div class=product>";
+                    html += '<div title="' + opis +'" class=product>';
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
                     html += "<div class=imecenakat>";
@@ -454,7 +456,6 @@
                     } else {
                         html += "<div class=price>" + cena + "RSD</div>";
                     }
-                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
                     html += "<button class=dodajukolica>Dodaj Artikal</button>";
