@@ -111,13 +111,12 @@ function navToggle() {
     }
 }
 
-document.querySelector("#rmv").addEventListener("click", function(event)
-{
+document.querySelector("#rmv").addEventListener("click", function (event) {
     var kategorije = document.getElementById("kategorije")
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./phpInteractionsDB/deleteKategorija.php?obrisiKategoriju=" + kategorije.getElementsByTagName("option")[kategorije.selectedIndex].innerHTML, true);
     ajax.send();
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
             if (data == "deleted") {
@@ -127,8 +126,7 @@ document.querySelector("#rmv").addEventListener("click", function(event)
     };
 });
 
-document.querySelector("#dodajopciju").addEventListener("click", function(event)
-{
+document.querySelector("#dodajopciju").addEventListener("click", function (event) {
     event.preventDefault();
     console.log("alo");
     var txt = document.getElementById("add-box");
@@ -139,12 +137,86 @@ document.querySelector("#dodajopciju").addEventListener("click", function(event)
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./phpInteractionsDB/dodajKategoriju.php?addNewCategory=" + txt.value, true);
     ajax.send();
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
             if (data == "success") {
-                
+
             }
+        }
+    };
+});
+var add_artikl_pom = 0;
+
+document.querySelector("#artikl_form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("alo");
+
+    var artikl_form = document.getElementById("artikl_form");
+
+    var form_for_sending = new FormData(artikl_form);
+
+    let ajax = new XMLHttpRequest();
+    ajax.open("POST", "./phpInteractionsDB/article_add.php", true);
+    ajax.send(form_for_sending);
+    ajax.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = new Object();
+            for (const key of form_for_sending.keys()) {
+                data[key] = form_for_sending.get(key);
+            }
+            console.log(data);
+
+            
+            let html = "";
+            let id = data.id;
+            let ime = data.ime;
+            let cena = data.cena;
+            let slika = data.slika;
+            let opis = data.opis;
+            let popust = data.popust;
+            let kategorija = data.kategorija;
+            var blob = new Blob();
+            html += "<div class=product>";
+            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+            html += "<div class=divdugizlaz>";
+            html += "<img id=\"artikl_slika_"+ ++add_artikl_pom +"\" src=" + data.file + ">";
+            html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+            html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+            html += "</div>";
+            html += "<div class=imecenakat>"
+            if (popust != '0') {
+                html += "<div class=disc>" + popust + "%</div>";
+            } else {
+                html += "<div class=disc>" + popust + "%</div>";
+
+            }
+            html += "<h3>" + ime + "</h3>";
+            html += "<p class=cat>" + kategorija + "</p>";
+            if (popust != '0') {
+                html += "<div class=divcena>"
+                html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                html += "</div>"
+            } else {
+                html += "<div class=price>" + cena + " RSD</div>";
+            }
+            html += "<p class=desc>" + opis + "</p>";
+            html += "</div>"
+            html += "</div>";
+            document.getElementById("data").innerHTML += html;
+
+
+            var prikaz = form_for_sending.get("file");
+            var fr = new FileReader();
+            fr.onload = imageHandler;
+            fr.readAsDataURL(prikaz);
+            //if (data == "success") {
+            function imageHandler(e2) {
+                var store = document.getElementById('artikl_slika_'+add_artikl_pom);
+                store.src = e2.target.result;
+            }
+            //}
         }
     };
 });

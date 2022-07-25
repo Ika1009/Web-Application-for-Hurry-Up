@@ -1,7 +1,7 @@
 <?php
 
 //za brisanje slike iz file system
-$mask = 'artikliSlike/' . $_GET['id'] . '.*';
+$mask = '../artikliSlike/' . $_GET['id'] . '.*';
 array_map('unlink', glob($mask));
 
 //brisanje iz baze
