@@ -91,15 +91,13 @@
         }
 
 
-
-
         .text {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(9rem, 8.5rem));
+            grid-template-columns: repeat(auto-fit, minmax(9.3rem, 8.5rem));
             gap: 1rem;
             font-family: Arial, Helvetica, sans-serif;
-            margin: auto;
-            width: 85%;
+            margin: 0 auto;
+            width: 90%;
             margin-top: 2rem;
         }
 
@@ -459,7 +457,7 @@
                     }
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
-                    html += "<button class=dodajukolica onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
+                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -543,7 +541,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>
