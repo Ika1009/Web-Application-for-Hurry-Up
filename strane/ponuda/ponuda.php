@@ -419,7 +419,7 @@
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "../artikli/data.php", true);
+        ajax.open("GET", "../artikli/phpInteractionsDB/data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
