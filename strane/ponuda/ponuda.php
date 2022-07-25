@@ -351,7 +351,12 @@
             transform: rotate(135deg);
         }
 
-        @media(max-width:991px) {
+        @media(max-width:850px) {
+            .text {
+                justify-content: center;
+                align-content: center;
+            }
+
             .nav-toggler {
                 display: block;
             }
@@ -412,7 +417,7 @@
     </div>
 
     <div class="text" id="data">
-        
+
     </div>
     <p id="ispis"></p>
     <div class="divdugmenaruci">
@@ -436,7 +441,7 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += '<div title="' + opis +'" class=product>';
+                    html += '<div title="' + opis + '" class=product>';
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
                     html += "<div class=imecenakat>";
@@ -457,7 +462,7 @@
                     }
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
-                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
+                    html += "<button class=dodajukolica onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -508,7 +513,7 @@
             let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
             let cena = parseFloat(elementos.getElementsByClassName('price')[0].innerHTML);
             localStorage.setItem(ime, ime);
-            
+
             let kolicina = localStorage.getItem('kolicina ' + ime);
 
             if (kolicina !== null) {
@@ -535,8 +540,8 @@
             } else {
                 localStorage.setItem("ukupno", cena);
             }
-            
-            for (let i = 0; i < localStorage.length; i++)   {
+
+            for (let i = 0; i < localStorage.length; i++) {
                 document.getElementById("ispis").innerHTML += localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]";
             }
         }
