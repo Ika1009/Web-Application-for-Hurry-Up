@@ -497,16 +497,8 @@
 <?php
 if (isset($_POST['submit'])) {
     extract($_POST);
-    $servername = "localhost";  
-    $username   = "root";  
-    $password   = "";  
-    $dbname     = "hurryupr_database1"; 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include_once("../../../db.php");
+    
     $cena = $_COOKIE['total'];
     $proizvod = $_COOKIE['createdAt'];
     $sql = "INSERT INTO `narudzbine` (proizvod, ukupno) VALUES ('$proizvod', '$cena')"; // nisu dobre kolone za narudzbine
