@@ -21,46 +21,50 @@
 
         .divdugmenaruci {
             position: fixed;
-            left: 50%;
+            right: 1rem;
             bottom: 20px;
-            transform: translate(-50%, -50%);
-            margin: 0 auto;
         }
 
-        .button-52 {
-            z-index: 5;
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            letter-spacing: 1px;
-            padding: 13px 20px 13px;
-            border-radius: 10px;
-            outline: 0;
-            border: 1px solid black;
+        .button-27 {
+            appearance: none;
+            background-color: #333;
+            border: none;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: #FFFFFF;
             cursor: pointer;
-            position: relative;
-            background-color: rgba(0, 0, 0, 0);
+            display: inline-block;
+            font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 20px;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            height: 50px;
+            min-width: 0;
+            outline: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-        }
-
-        .button-52:after {
-            border-radius: 10px;
-            content: "";
-            background-color: #ffe54c;
             width: 100%;
-            z-index: -1;
-            position: absolute;
-            height: 100%;
-            top: 7px;
-            left: 7px;
-            transition: 0.2s;
+            will-change: transform;
         }
 
-        .button-52:hover:after {
-            top: 0px;
-            left: 0px;
+        .button-27:disabled {
+            pointer-events: none;
+        }
+
+        .button-27:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .button-27:active {
+            box-shadow: none;
+            transform: translateY(0);
         }
 
         @media (min-width: 768px) {
@@ -75,7 +79,8 @@
             margin-right: auto;
             margin-left: auto;
             padding: 15px;
-            height: 50px;
+            height: 45px;
+            min-width: 250px;
             width: 30%;
             border-radius: 15px;
             border-color: #ffb266;
@@ -90,32 +95,31 @@
 
         .text {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(7rem, 14rem));
-            gap: 6rem;
+            grid-template-columns: repeat(auto-fit, minmax(9rem, 8.5rem));
+            gap: 1rem;
             font-family: Arial, Helvetica, sans-serif;
             margin: auto;
             width: 85%;
-            margin-top: 3.5rem;
+            margin-top: 2rem;
         }
 
         .product {
             position: relative;
             justify-content: center;
             text-align: center;
-            max-height: 400px;
-            width: 300px;
+            max-height: 220px;
+            width: 150px;
             background: #ffb266;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
-            border-radius: 0.5em;
-            margin-left: 0rem;
-            height: 400px;
+            border-radius: 0.25em;
+            height: 220px;
         }
 
         .product img {
             width: 100%;
-            height: 230px;
-            border-radius: 0.5rem;
+            height: 115px;
+            border-radius: 0.25rem;
         }
 
         .product:hover img {
@@ -127,15 +131,14 @@
         }
 
         .imecenakat {
-            padding: 8px;
+            padding: 2px;
             text-align: left;
         }
 
 
         .disc {
-            margin-top: 0.5rem;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.7rem;
             background: #ffb266;
             width: 15%;
             color: #333;
@@ -143,58 +146,56 @@
             border-radius: 0.6rem;
             font-weight: bold;
             box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
-            margin-bottom: 0.2rem;
         }
 
         .product h3 {
-            font-size: 1.5rem;
+            font-size: 0.8rem;
             color: black;
         }
 
         .divcena {
+            margin-top: 0.1rem;
             text-align: center;
             align-content: center;
             display: flex;
         }
 
         .price {
-            font-size: 1.5rem;
+            font-size: 0.8rem;
             color: #333;
             font-weight: bold;
         }
 
         .priceprecrtano {
-            font-size: 1.1rem;
+            font-size: 0.6rem;
             color: #6d6d6d;
-            margin-left: 0.2rem;
+            margin-left: 0.1rem;
             text-decoration: line-through;
         }
 
         .desc {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+            margin-top: 0.1rem;
+            font-size: 0.54rem;
         }
 
         .divdodajukolica {
-            width: 300px;
+            width: 150px;
             bottom: 0;
-
             position: absolute;
         }
 
         .dodajukolica {
             cursor: pointer;
             width: 100%;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
             text-align: center;
             background: #333;
             color: #f9f9f9;
             height: 30px;
-            font-size: 15px;
+            font-size: 13px;
             border: none;
             outline: none;
             transition: all 0.3s ease-in-out;
-            opacity: 0;
         }
 
 
@@ -414,7 +415,7 @@
 
     </div>
     <div class="divdugmenaruci">
-        <button class="button-52" role="button">Naruči</button>
+        <button class="button-27" role="button">Naruči</button>
     </div>
     <script>
         // dupli kod zato sto cpanel smara
