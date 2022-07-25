@@ -108,12 +108,12 @@
                 <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                 <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena  (RSD)" />
                 <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" name="popust" required placeholder="Popust  (%)" />
-                <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorija" required>
+                <select class="kategorija artikl_input_kategorija" name="kategorije" id="kategorije" required>
                     <option class="kategorija-naslov" value="none" selected disabled hidden>Izaberi kategoriju</option>
                 </select><br>
                 <input id=add-box name="dodavanjeBox">
-                <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju" onclick="add()">
-                <input type="button" value="remove" id="rmv" onclick="remove()">
+                <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
+                <input type="button" value="remove" id="rmv">
                 <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                 <button class="submit" type="submit" name="submit" id="popupDugme" value="add" onclick="proveriSve()">Dodaj</button>
             </form>
@@ -272,31 +272,3 @@ if (isset($_POST['submit'])) {
 }
 
 // dodavanjae Kategorija 
-/*
-if (isset($_POST['dodajKategoriju'])) {
-
-    echo "boba";
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "hurryupr_database1";
-    // Create connection  
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection  
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $imeKategorije = $_POST['dodavanjeBox'];
-
-    echo $imeKategorije;
-
-    $sql = "INSERT INTO `kategorije` (ime) VALUES '$imeKategorije'";
-
-    if ($conn->query($sql) === FALSE) {
-        echo "Greska: " . $sql . "<br>" . $conn->error;
-    }
-    $conn->close();
-}
-*/

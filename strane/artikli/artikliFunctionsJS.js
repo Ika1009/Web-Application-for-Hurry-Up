@@ -110,28 +110,45 @@ function navToggle() {
         nav.removeAttribute("style");
     }
 }
-function remove() {
-    var x = document.getElementById("kategorija");
+
+document.querySelector("#rmv").addEventListener("click", function(event)
+{
+    var kategorije = document.getElementById("kategorije")
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./phpInteractionsDB/deleteKategorija.php?id=" + x.selectedIndex, true);
+    ajax.open("GET", "./phpInteractionsDB/deleteKategorija.php?obrisiKategoriju=" + kategorije.getElementsByTagName("option")[kategorije.selectedIndex].innerHTML, true);
     ajax.send();
     ajax.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
             if (data == "deleted") {
-                x.remove(x.selectedIndex);
+                kategorije.remove(kategorije.selectedIndex);
             }
         }
     };
-}
+});
 
-function add() {
+document.querySelector("#dodajopciju").addEventListener("click", function(event)
+{
+    event.preventDefault();
+    console.log("alo");
     var txt = document.getElementById("add-box");
-    var x = document.getElementById("kategorija");
+    var kategorije = document.getElementById("kategorije");
     var option = document.createElement("option");
     option.text = txt.value;
-    x.add(option);
-}
+    kategorije.add(option);
+    let ajax = new XMLHttpRequest();
+    ajax.open("GET", "./phpInteractionsDB/dodajKategoriju.php?addNewCategory=" + txt.value, true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = this.responseText;
+            if (data == "success") {
+                
+            }
+        }
+    };
+});
+
 
 function setCookie(staJeUKeks) {
     let date = new Date();
