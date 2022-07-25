@@ -12,3 +12,5 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 
 if ($row_successfully_deleted) echo "deleted";
+
+
