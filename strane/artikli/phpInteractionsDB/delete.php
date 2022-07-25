@@ -4,17 +4,7 @@
 $mask = '../artikliSlike/' . $_GET['id'] . '.*';
 array_map('unlink', glob($mask));
 
-//brisanje iz baze
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hurryupr_database1";
-// Create connection  
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection  
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include_once("../../../db.php");
 
 $sql = "DELETE FROM artikli WHERE id = " . $_GET['id']; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
 
