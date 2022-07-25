@@ -21,46 +21,50 @@
 
         .divdugmenaruci {
             position: fixed;
-            left: 50%;
+            right: 1rem;
             bottom: 20px;
-            transform: translate(-50%, -50%);
-            margin: 0 auto;
         }
 
-        .button-52 {
-            z-index: 5;
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            letter-spacing: 1px;
-            padding: 13px 20px 13px;
-            border-radius: 10px;
-            outline: 0;
-            border: 1px solid black;
+        .button-27 {
+            appearance: none;
+            background-color: #333;
+            border: none;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: #FFFFFF;
             cursor: pointer;
-            position: relative;
-            background-color: rgba(0, 0, 0, 0);
+            display: inline-block;
+            font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 20px;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            height: 50px;
+            min-width: 0;
+            outline: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-        }
-
-        .button-52:after {
-            border-radius: 10px;
-            content: "";
-            background-color: #ffe54c;
             width: 100%;
-            z-index: -1;
-            position: absolute;
-            height: 100%;
-            top: 7px;
-            left: 7px;
-            transition: 0.2s;
+            will-change: transform;
         }
 
-        .button-52:hover:after {
-            top: 0px;
-            left: 0px;
+        .button-27:disabled {
+            pointer-events: none;
+        }
+
+        .button-27:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .button-27:active {
+            box-shadow: none;
+            transform: translateY(0);
         }
 
         @media (min-width: 768px) {
@@ -75,7 +79,8 @@
             margin-right: auto;
             margin-left: auto;
             padding: 15px;
-            height: 50px;
+            height: 45px;
+            min-width: 250px;
             width: 30%;
             border-radius: 15px;
             border-color: #ffb266;
@@ -86,36 +91,33 @@
         }
 
 
-
-
         .text {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(7rem, 14rem));
-            gap: 6rem;
+            grid-template-columns: repeat(auto-fit, minmax(9.3rem, 8.5rem));
+            gap: 1rem;
             font-family: Arial, Helvetica, sans-serif;
-            margin: auto;
-            width: 85%;
-            margin-top: 3.5rem;
+            margin: 0 auto;
+            width: 90%;
+            margin-top: 2rem;
         }
 
         .product {
             position: relative;
             justify-content: center;
             text-align: center;
-            max-height: 400px;
-            width: 300px;
+            max-height: 220px;
+            width: 150px;
             background: #ffb266;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
             outline: .2rem solid #ffb266;
-            border-radius: 0.5em;
-            margin-left: 0rem;
-            height: 400px;
+            border-radius: 0.25em;
+            height: 220px;
         }
 
         .product img {
             width: 100%;
-            height: 230px;
-            border-radius: 0.5rem;
+            height: 120px;
+            border-radius: 0.25rem;
         }
 
         .product:hover img {
@@ -127,74 +129,73 @@
         }
 
         .imecenakat {
-            padding: 8px;
+            padding: 2px;
             text-align: left;
         }
 
 
         .disc {
-            margin-top: 0.5rem;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             background: #ffb266;
-            width: 15%;
+            width: 20%;
             color: #333;
             border: .1rem solid #333;
             border-radius: 0.6rem;
             font-weight: bold;
             box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
-            margin-bottom: 0.2rem;
         }
 
         .product h3 {
-            font-size: 1.5rem;
+            margin-top: 0.2rem;
+            font-size: 1.1rem;
             color: black;
         }
 
         .divcena {
+            margin-top: 0.1rem;
             text-align: center;
             align-content: center;
             display: flex;
         }
 
         .price {
-            font-size: 1.5rem;
+            font-size: 0.95rem;
             color: #333;
             font-weight: bold;
         }
 
         .priceprecrtano {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #6d6d6d;
-            margin-left: 0.2rem;
+            margin-left: 0.1rem;
             text-decoration: line-through;
         }
 
         .desc {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+            margin-top: 0.1rem;
+            font-size: 0.54rem;
         }
 
         .divdodajukolica {
-            width: 300px;
+            width: 150px;
             bottom: 0;
-
             position: absolute;
         }
 
         .dodajukolica {
             cursor: pointer;
             width: 100%;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
             text-align: center;
             background: #333;
             color: #f9f9f9;
             height: 30px;
-            font-size: 15px;
+            font-size: 13px;
+            font-weight: bold;
             border: none;
             outline: none;
             transition: all 0.3s ease-in-out;
-            opacity: 0;
         }
 
 
@@ -350,7 +351,12 @@
             transform: rotate(135deg);
         }
 
-        @media(max-width:991px) {
+        @media(max-width:850px) {
+            .text {
+                justify-content: center;
+                align-content: center;
+            }
+
             .nav-toggler {
                 display: block;
             }
@@ -413,8 +419,9 @@
     <div class="text" id="data">
 
     </div>
+    <p id="ispis"></p>
     <div class="divdugmenaruci">
-        <button class="button-52" role="button">Naruči</button>
+        <button class="button-27" role="button">Naruči</button>
     </div>
     <script>
         // dupli kod zato sto cpanel smara
@@ -434,7 +441,7 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
-                    html += "<div class=product>";
+                    html += '<div title="' + opis + '" class=product>';
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
                     html += "<div class=imecenakat>";
@@ -453,10 +460,9 @@
                     } else {
                         html += "<div class=price>" + cena + "RSD</div>";
                     }
-                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
-                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
+                    html += "<button class=dodajukolica onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -505,271 +511,40 @@
         function dodaj_u_korpu(element) {
             let elementos = element.closest('.product');
             let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
-            let cena = parseInt(elementos.getElementsByClassName('price')[0].innerHTML);
-            let popust = parseInt(elementos.getElementsByClassName('disc')[0].innerHTML);
-            let konacna_cena;
-            if (popust === 0) {
-                konacna_cena = cena;
+            let cena = parseFloat(elementos.getElementsByClassName('price')[0].innerHTML);
+            localStorage.setItem(ime, ime);
+
+            let kolicina = localStorage.getItem('kolicina ' + ime);
+
+            if (kolicina !== null) {
+                kolicina = parseInt(kolicina);
+                localStorage.setItem('kolicina ' + ime, kolicina + 1);
             } else {
-                konacna_cena = cena * (100 - popust) / 100;
+                localStorage.setItem('kolicina ' + ime, 1);
             }
-            localStorage.setItem("ime", ime);
-            console.log(ime);
-            console.log(konacna_cena);
-        }
-    </script>
 
-    <script>
-        const search = () => {
-            const searchbox = document.getElementById("search-item").value.toUpperCase();
-            const storeitems = document.getElementById("product-list");
-            const product = document.querySelectorAll(".image");
-            const productname = storeitems.getElementsByTagName("h3");
+            let price = localStorage.getItem('cena ' + ime);
 
-            for (let i = 0; i < productname.length; i++) {
-                let match = product[i].getElementsByTagName("h3")[0];
-
-                if (match) {
-                    let textvalue = match.textContent || match.innerHTML
-
-                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
-                        product[i].style.display = "";
-                    } else {
-                        product[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        let carts = document.querySelectorAll('.add-cart');
-
-        let products = [{
-                name: 'Iced Coffee',
-                tag: 'iced_coffee',
-                price: 340,
-                inCart: 0
-            },
-            {
-                name: 'Iced Mocha',
-                tag: 'iced_mocha',
-                price: 350,
-                inCart: 0
-            },
-            {
-                name: 'Frape Coffee',
-                tag: 'frape_coffee',
-                price: 360,
-                inCart: 0
-            },
-            {
-                name: 'Frape Mocha',
-                tag: 'frape_mocha',
-                price: 360,
-                inCart: 0
-            },
-            {
-                name: 'Flat white',
-                tag: 'flat_white',
-                price: 250,
-                inCart: 0
-            },
-            {
-                name: 'Crna kafa',
-                tag: 'crna_kafa',
-                price: 220,
-                inCart: 0
-            },
-            {
-                name: 'Coca Cola',
-                tag: 'coca-cola',
-                price: 230,
-                inCart: 0
-            },
-            {
-                name: 'Coca Cola Zero',
-                tag: 'coca-cola-zero',
-                price: 230,
-                inCart: 0
-            },
-            {
-                name: 'Fanta',
-                tag: 'fanta',
-                price: 230,
-                inCart: 0
-            },
-            {
-                name: 'Rauch crveno voće',
-                tag: 'rauch_crveno_voce',
-                price: 200,
-                inCart: 0
-            },
-            {
-                name: 'Rauch multivitamin',
-                tag: 'rauch_multivitamin',
-                price: 200,
-                inCart: 0
-            },
-            {
-                name: 'Rosa flašica',
-                tag: 'rosa',
-                price: 150,
-                inCart: 0
-            },
-            {
-                name: 'Muffin čoko',
-                tag: 'muffin_coko',
-                price: 270,
-                inCart: 0
-            },
-            {
-                name: 'Caesar salata',
-                tag: 'caesar_salata',
-                price: 610,
-                inCart: 0
-            },
-            {
-                name: 'Grilled Chicken salata',
-                tag: 'grilled_chicken_salad',
-                price: 610,
-                inCart: 0
-            }
-        ]
-
-        for (let i = 0; i < carts.length; i++) {
-            carts[i].addEventListener('click', () => {
-                cartNumbers(products[i]);
-                totalCost(products[i]);
-            })
-        }
-
-        function onLoadCartNumbers() {
-            let productNumbers = localStorage.getItem('cartNumbers');
-
-            if (productNumbers) {
-                document.querySelector('.cart span').textContent = productNumbers;
-            }
-        }
-
-        function cartNumbers(product) {
-            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
-
-            if (productNumbers) {
-                localStorage.setItem('cartNumbers', productNumbers + 1);
-                document.querySelector('.cart span').textContent = productNumbers + 1;
+            if (price !== null) {
+                price = parseInt(price);
+                localStorage.setItem('cena ' + ime, cena + price);
             } else {
-                localStorage.setItem('cartNumbers', 1);
-                document.querySelector('.cart span').textContent = 1;
+                localStorage.setItem('cena ' + ime, cena);
             }
 
-            setItems(product);
-            setCookieCart(product);
-        }
+            let ukupno = localStorage.getItem('ukupno');
 
-        function setItems(product) {
-            let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
-
-            if (cartItems !== null) {
-                if (cartItems[product.tag] === undefined) {
-                    cartItems = {
-                        ...cartItems,
-                        [product.tag]: product
-                    }
-                }
-                cartItems[product.tag].inCart += 1;
+            if (ukupno !== null) {
+                ukupno = parseInt(ukupno);
+                localStorage.setItem("ukupno", ukupno + cena);
             } else {
-                product.inCart = 1;
-                cartItems = {
-                    [product.tag]: product
-                }
+                localStorage.setItem("ukupno", cena);
             }
 
-            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-        }
-
-        function totalCost(product) {
-            let cartCost = localStorage.getItem('totalCost');
-
-            if (cartCost !== null) {
-                cartCost = parseInt(cartCost);
-                localStorage.setItem("totalCost", cartCost + product.price);
-            } else {
-                localStorage.setItem("totalCost", product.price);
+            for (let i = 0; i < localStorage.length; i++) {
+                document.getElementById("ispis").innerHTML += localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]";
             }
         }
-
-        function displayCart() {
-            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-            let cartCost = localStorage.getItem('totalCost');
-            let productContainer = document.querySelector(".products");
-            if (cartItems && productContainer) {
-                Object.values(cartItems).map(item => {
-                    productContainer.innerHTML += `
-                <div class="product">
-                    <ion-icon name="close-circle" onclick="removeItems()"></ion-icon>   
-                    <img class="images" src="./img/${item.tag}.jpg" alt="${item.tag}">
-                    <span>${item.name}</span>
-                </div>
-                <div class="price">${item.price} RSD</div>
-                <div class="quantity">
-                    <ion-icon name="caret-back-circle-outline"></ion-icon>
-                    <span>${item.inCart}</span>
-                    <ion-icon name="caret-forward-circle-outline"></ion-icon>
-                </div>
-                <div class="total">
-                    ${item.inCart * item.price} RSD
-                </div>
-                `;
-                });
-
-                productContainer.innerHTML += `
-                <div class="basketTotalContainer">
-                    <h4 class="basketTotalTitle">
-                        Korpa ukupno
-                    </h4>
-                    <h4 class="basketTotal">
-                        ${cartCost} RSD
-                    </h4>
-                </div>
-            `;
-            }
-        }
-
-        function setCookieTotal() {
-            let total = localStorage.getItem("totalCost");
-            let d = new Date();
-            d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = 'total' + "=" + total + ";" + expires + ";path=/";
-        }
-
-        let ime = [];
-        let brojac = 0;
-
-        function setCookieCart(product) {
-            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-
-            ime[brojac] = cartItems[product.tag].name;
-            brojac++;
-            ime[brojac] = cartItems[product.tag].price;
-            brojac++;
-            ime[brojac] = cartItems[product.tag].inCart;
-            brojac++;
-            console.log(ime);
-            let d = new Date();
-            d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = product + "=" + ime + ";" + expires + ";path=/";
-        }
-
-        function order() {
-            alert("Vasa narudzbina je primljena!");
-            localStorage.clear();
-            window.location = "index.html";
-        }
-
-        onLoadCartNumbers();
-        displayCart();
-        setCookieTotal();
     </script>
 </body>
 
