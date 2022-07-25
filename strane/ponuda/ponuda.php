@@ -91,15 +91,13 @@
         }
 
 
-
-
         .text {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(9rem, 8.5rem));
+            grid-template-columns: repeat(auto-fit, minmax(9.3rem, 8.5rem));
             gap: 1rem;
             font-family: Arial, Helvetica, sans-serif;
-            margin: auto;
-            width: 85%;
+            margin: 0 auto;
+            width: 90%;
             margin-top: 2rem;
         }
 
@@ -458,7 +456,7 @@
                     }
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
-                    html += "<button class=dodajukolica onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
+                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
@@ -508,40 +506,41 @@
             let elementos = element.closest('.product');
             let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
             let cena = parseInt(elementos.getElementsByClassName('price')[0].innerHTML);
-            localStorage.setItem(ime, ime);
+            let popust = parseInt(elementos.getElementsByClassName('disc')[0].innerHTML);
+            let konacna_cena;
+            if (popust === 0) {
+                konacna_cena = cena;
+            } else {
+                konacna_cena = cena * (100 - popust) / 100;
+            }
+            localStorage.setItem("ime", ime);
             console.log(ime);
-            console.log(cena);
-            
-            let kolicina = localStorage.getItem('kolicina ' + ime);
-
-            if (kolicina !== null) {
-                kolicina = parseInt(kolicina);
-                localStorage.setItem('kolicina ' + ime, kolicina + 1);
-            } else {
-                localStorage.setItem('kolicina ' + ime, 1);
-            }
-
-            let price = localStorage.getItem('cena ' + ime);
-
-            if (price !== null) {
-                price = parseInt(price);
-                localStorage.setItem('cena ' + ime, cena + price);
-            } else {
-                localStorage.setItem('cena ' + ime, cena);
-            }
-
-            let ukupno = localStorage.getItem('ukupno');
-
-            if (ukupno !== null) {
-                ukupno = parseInt(ukupno);
-                localStorage.setItem("ukupno", ukupno + cena);
-            } else {
-                localStorage.setItem("ukupno", cena);
-            }  
+            console.log(konacna_cena);
         }
     </script>
 
     <script>
+        const search = () => {
+            const searchbox = document.getElementById("search-item").value.toUpperCase();
+            const storeitems = document.getElementById("product-list");
+            const product = document.querySelectorAll(".image");
+            const productname = storeitems.getElementsByTagName("h3");
+
+            for (let i = 0; i < productname.length; i++) {
+                let match = product[i].getElementsByTagName("h3")[0];
+
+                if (match) {
+                    let textvalue = match.textContent || match.innerHTML
+
+                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+                        product[i].style.display = "";
+                    } else {
+                        product[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
         let carts = document.querySelectorAll('.add-cart');
 
         let products = [{
