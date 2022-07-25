@@ -45,7 +45,7 @@ ajax.onreadystatechange = function () {
         document.getElementById("data").innerHTML += html;
     }
 };
-let elementos = document.getElementById("kategorija")
+let elementos = document.getElementById("kategorije")
 let ajax1 = new XMLHttpRequest();
 ajax1.open("GET", "./phpInteractionsDB/kategorijeDobivanje.php", true);
 ajax1.send();

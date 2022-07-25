@@ -11,8 +11,8 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $id = $_GET['id'];
-    $sql = "DELETE FROM kategorije WHERE id = '$id'"; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
+    $obrisiKategoriju = $_REQUEST['obrisiKategoriju'];
+    $sql = "DELETE FROM kategorije WHERE ime_kategorije = '$obrisiKategoriju'"; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
 
     if ($conn->query($sql) === TRUE) {
         $row_successfully_deleted = true;
