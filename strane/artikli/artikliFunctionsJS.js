@@ -45,6 +45,7 @@ function onClickDugmeZaBrisanje(element) {
             if (data == "deleted") {
                 elementos.remove();
             }
+            else {  }
         }
     };
 
