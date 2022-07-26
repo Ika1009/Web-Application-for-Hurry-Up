@@ -198,41 +198,73 @@
             transition: all 0.3s ease-in-out;
         }
 
-
-
-
-
-        .popuptext:hover {
-            transform: scale(1.05);
+        .popup-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: rgba(0, 0, 0, 0.25);
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+            z-index: -3;
+            width: 100vw;
+            height: 100vh;
+            user-select: none;
+            opacity: 0;
         }
 
-        .opis:hover {
-            transform: scale(1.05);
+        .popup-box-container {
+            background-color: #f9f9f9;
+            width: 400px;
+            height: 70vh;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%);
+            -webkit-transform: translate(-50%);
+            -moz-transform: translate(-50%);
+            -ms-transform: translate(-50%);
+            -o-transform: translate(-50%);
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
         }
 
-        .kategorija:hover {
-            transform: scale(1.05);
+        .aktivanpopup {
+            opacity: 1;
+            z-index: 3;
         }
 
-        .fajl:hover {
-            transform: scale(1.05);
+        .ok-btn {
+            background-color: #FFB266;
+            border: transparent;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            padding: 15px;
+            color: #333;
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            width: 95%;
+            font-size: 90%;
+            cursor: pointer;
         }
 
-        ul {
-            list-style: none;
+        @media only screen and (max-width:400px) {
+            .popup-box-container{
+                width: 300px;
+            }
         }
-
-        a {
-            text-decoration: none;
-        }
-
-
-
-
-
-
-
-
         .container {
             margin-right: 8%;
             margin-left: 10%;
@@ -417,12 +449,26 @@
     </div>
 
     <div class="text" id="data">
-
+        <!-- nalaze se ovde produkti -->
     </div>
+
     <p id="ispis"></p>
     <div class="divdugmenaruci">
         <button class="button-27" role="button">Naruči</button>
     </div>
+    <div class="popup-overlay">
+        <div class="popup-box-container">
+            <button class="ok-btn">
+                <span>Potrvdi narudzbinu</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
@@ -503,6 +549,22 @@
                 nav.removeAttribute("style");
             }
         }
+
+        const naruci = document.querySelector('.button-27');
+        const okbtn = document.querySelector('.ok-btn');
+        const popupbox = document.querySelector('.popup-overlay');
+
+        naruci.addEventListener ('click',() => {
+            popupbox.classList.add('aktivanpopup')
+        })
+
+        okbtn.addEventListener ('click',() => {
+            popupbox.classList.remove('aktivanpopup')
+        })
+
+
+
+
     </script>
     <script>
         function dodaj_u_korpu(element) {

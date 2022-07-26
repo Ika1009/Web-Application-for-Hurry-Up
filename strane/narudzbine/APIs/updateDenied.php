@@ -2,7 +2,8 @@
 
 include_once("../../../db.php");
 
-$sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
+$status = "odbijena";
+$sql = "UPDATE `artikli` SET `status`=\"$status\" WHERE `id`= " . $_REQUEST['id'];
 
 if ($conn->query($sql) === TRUE) {
     $row_successfully_updated = true;
@@ -13,4 +14,4 @@ else {
 $conn->close();
 
 if ($row_successfully_updated)
-    echo "deleted";
+    echo "updated";
