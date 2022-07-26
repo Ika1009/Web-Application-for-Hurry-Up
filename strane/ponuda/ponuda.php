@@ -459,12 +459,12 @@
         <!-- nalaze se ovde produkti -->
     </div>
 
-    <p id="ispis"></p>
     <div class="divdugmenaruci">
         <button class="button-27" role="button">Naruči</button>
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
+            <p id="ispis"></p>
             <button class="ok-btn">
                 <span>Potrvdi narudzbinu</span>
             </button>
