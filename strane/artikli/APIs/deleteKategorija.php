@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once("../../../db.php");
 $obrisiKategoriju = $_REQUEST['obrisiKategoriju'];
 $ime_firme = $_SESSION['ime_firme'];

@@ -3,7 +3,7 @@
 if (isset($_REQUEST['addNewCategory'])) {
 
     include_once("../../../db.php");
-
+    session_start();
     $imeKategorije = $_REQUEST['addNewCategory'];
 
     $ime_firme = $_SESSION['ime_firme'];
