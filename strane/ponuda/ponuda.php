@@ -265,6 +265,13 @@
                 width: 300px;
             }
         }
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
         .container {
             margin-right: 8%;
             margin-left: 10%;
