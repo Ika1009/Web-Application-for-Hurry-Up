@@ -37,7 +37,51 @@
                 <th> Broj Stola  </th>
                 <th> Status </th>
                 </tr>
-                <tbody id="data" >
+                <tbody id="aktivne" >
+                    <style type="text/css">
+                        td {
+                          padding: 0 25px;
+                        }
+                      </style>
+                </tbody>
+            </table>
+        </div>
+        <div class="text">
+            <table class="tabelaArtikli">
+                <style type="text/css">
+                    td {
+                      padding: 0 15px;
+                    }
+                  </style>
+                <th>Id     </th>
+                <th>Ime proizvoda    </th>
+                <th>Vreme Narucivanja   </th>
+                <th> Broj Stola  </th>
+                <th> Status </th>
+                </tr>
+                <tbody id="odbijene" >
+                    <style type="text/css">
+                        td {
+                          padding: 0 25px;
+                        }
+                      </style>
+                </tbody>
+            </table>
+        </div>
+        <div class="text">
+            <table class="tabelaArtikli">
+                <style type="text/css">
+                    td {
+                      padding: 0 15px;
+                    }
+                  </style>
+                <th>Id     </th>
+                <th>Ime proizvoda    </th>
+                <th>Vreme Narucivanja   </th>
+                <th> Broj Stola  </th>
+                <th> Status </th>
+                </tr>
+                <tbody id="izvrsene" >
                     <style type="text/css">
                         td {
                           padding: 0 25px;
@@ -50,14 +94,14 @@
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "data.php", true);
+        ajax.open("GET", "./APIs/data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let data = JSON.parse(this.responseText);
                 console.log(data);
-                let html = "";
                 for (let i = 0; i < data.length; i++) {
+                    let html = "";
                     let id = data[i].id;
                     let proizvod = data[i].proizvod;
                     let vreme_narucivanja = data[i].vreme_narucivanja;
@@ -70,8 +114,14 @@
                     html += "<td>" + broj_stola + "</td>";
                     html += "<td>" + status + "</td>";
                     html += "</tr>";
+                    if(status == "aktivna")
+                       document.getElementById("aktivne").innerHTML += html;
+                    else if(status == "odbijena")
+                        document.getElementById("odbijene").innerHTML += html;
+                    else
+                        document.getElementById("izvrsene").innerHTML += html;
                 }
-                document.getElementById("data").innerHTML += html;
+
             }
         };
         </script>
