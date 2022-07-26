@@ -6,8 +6,8 @@ if (isset($_REQUEST['addNewCategory'])) {
 
     $imeKategorije = $_REQUEST['addNewCategory'];
 
-
-    $sql = "INSERT INTO `kategorije` (ime_kategorije) VALUES ('$imeKategorije')";
+    $ime_firme = $_SESSION['ime_firme'];
+    $sql = "INSERT INTO `kategorije` (ime_kategorije, ime_firme) VALUES ('$imeKategorije', '$ime_firme')";
     echo "success";
 
     if ($conn->query($sql) === FALSE) {
