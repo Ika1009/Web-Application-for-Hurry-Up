@@ -45,7 +45,7 @@ function onClickDugmeZaBrisanje(element) {
             if (data == "deleted") {
                 elementos.remove();
             }
-            else { alert("Došlo je do greške! Molim Vas pokušajte ponovo.")č }
+            else { alert("Došlo je do greške! Molim Vas pokušajte ponovo."); }
         }
     };
 
