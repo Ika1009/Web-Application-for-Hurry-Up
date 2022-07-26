@@ -1,8 +1,7 @@
 <?php
     session_start();
     
-    if (isset($_SESSION['email'])) {
-        if (isset($_SESSION['user_pin'])) {
+    if (isset($_SESSION['user_pin'])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,6 +91,4 @@
 <?php
     } else {
         header('Location: login.php');
-    } } else {
-        header('Location: ../../login.php');
-    }
+    } 
