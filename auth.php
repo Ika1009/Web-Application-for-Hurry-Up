@@ -1,10 +1,11 @@
 <?php
 session_start();
 include 'db.php';
+echo "alo";
 if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
     $ime_firme = $_POST['ime_firme'];
     $lozinka = $_POST['lozinka'];
-
+    echo "alo";
     if (empty($ime_firme)) {
         header('Location: login.php?error=Ime firme je obavezno');
     } else if (empty($lozinka)) {
