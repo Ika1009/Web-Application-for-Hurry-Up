@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_conn.php';
+include '../../db_conn.php';
 if (isset($_POST['pin'])) {
     $pin = $_POST['pin'];
     $ime_firme = $_SESSION['user_ime_firme'];
