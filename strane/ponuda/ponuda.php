@@ -401,7 +401,7 @@
                 <nav class="nav">
                     <ul>
                         <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-                        <li><a href="../artikli/artikli.html">Artikli</a></li>
+                        <li><a href="../artikli/login.php">Artikli</a></li>
                         <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
                     </ul>
                 </nav>

@@ -22,7 +22,7 @@
                     </div>
                 <?php } ?>
                 <i class="bi bi-person-fill" style="font-size: 10rem"></i><br><br>
-                <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['user_ime_firme']?></h1> 
+                <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['ime_firme']?></h1> 
                 <input type="password" name="pin" class="form-control" placeholder="Pin"></br>      
                 <button type="submit" class="btn" style="background-color: #333; color: #ffb266;">OK</button>
             </form>
@@ -31,5 +31,5 @@
 </html>
 <?php
     } else {
-        header('Location: artikli.php');
+        header('Location: artikli.html');
     }

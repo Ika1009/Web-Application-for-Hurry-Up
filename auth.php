@@ -20,7 +20,7 @@ if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
             if ($row['ime_firme'] === $ime_firme && password_verify($lozinka, $user_password)) {
                 $_SESSION['ime_firme'] = $row['ime_firme'];
             	$_SESSION['email'] = $row['email'];
-                header("Location: index.php");
+                header("Location: index.html");
             } else {
                 header("Location: login.php?error=Pogresno ime firme ili lozinka&ime_firme=$ime_firme");
             }

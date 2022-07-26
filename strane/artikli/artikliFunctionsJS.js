@@ -220,29 +220,3 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
         }
     };
 });
-
-
-function setCookie(staJeUKeks) {
-    let date = new Date();
-    let brojac = staJeUKeks;
-    date.setTime(date.getTime() + (60 * 60 * 1000));
-    let expires = "expires=" + date.toUTCString();
-    let cname = "brojac";
-    document.cookie = cname + "=" + brojac + ";" + expires;
-}
-
-function getCookie(imeVarijable) {
-    let cname = imeVarijable;
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}

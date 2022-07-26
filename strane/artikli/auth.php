@@ -1,25 +1,24 @@
 <?php
 session_start();
-include '../../db_conn.php';
+include '../../db.php';
 if (isset($_POST['pin'])) {
     $pin = $_POST['pin'];
-    $ime_firme = $_SESSION['user_ime_firme'];
+    $ime_firme = $_SESSION['ime_firme'];
     
     if (empty($pin)) {
         header('Location: login.php?error=Pin je obavezan');
     } else {
-        $stmt = $conn->prepare("SELECT * FROM registracija WHERE ime_firme=?");
-        $stmt->execute([$ime_firme]);
+        $stmt = "SELECT * FROM registracija WHERE ime_firme='$ime_firme'";
+        $result = mysqli_query($conn, $stmt);
         
-        if ($stmt->rowCount() === 1) {
-            $user = $stmt->fetch();
-            $user_pin = $user['pin'];
+        if (mysqli_num_rows($result) === 1) {
+            $row = mysqli_fetch_assoc($result);
 
-            if ($pin === $user_pin) {
-                $_SESSION['user_pin'] = $user_pin;
+            if ($pin === $row['pin']) {
+                $_SESSION['user_pin'] = $row['pin'];
                 $_SESSION['start'] = time();
                 $_SESSION['expire'] = $_SESSION['start'] + (0.1 * 60);
-                header('Location: artikli.php');
+                header('Location: artikli.html');
             } else {
                 header("Location: login.php?error=Pogresan pin&ime_firme=$ime_firme");
             }
