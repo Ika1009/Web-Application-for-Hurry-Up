@@ -13,6 +13,49 @@
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
     <link rel="stylesheet" href="artikli.css">
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
+    <script>
+        function getCookie(imeVarijable) {
+        let cname = imeVarijable;
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+        function setCookie(staJeUKeks) {
+            let date = new Date();
+            let brojac = staJeUKeks;
+            date.setTime(date.getTime() + (60 * 60 * 1000));
+            let expires = "expires=" + date.toUTCString();
+            let cname = "brojac";
+            document.cookie = cname + "=" + brojac + ";" + expires;
+        }
+        // za cetvorocifreni PIN
+        let session = getCookie("brojac");
+
+        if (session === "") {
+            let pin = prompt("Unesite pin:");
+            if (pin === "") {
+                alert("Neispravan unos! Pokusajte ponovo!");
+                location.reload();
+            } else if (pin === null) {
+                location.href = "http://localhost:8080/hurryUpWebApp/index.html" // "https://hurryup.rs/dashboard"
+            } else if (pin.length !== 4) {
+                alert("Pin mora biti cetvorocifren");
+                location.reload();
+            } else {
+                setCookie(1);
+            }
+        }
+    </script>
+
 </head>
 
 <body>

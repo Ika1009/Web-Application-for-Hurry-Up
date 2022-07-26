@@ -1,5 +1,5 @@
 let ajax = new XMLHttpRequest();
-ajax.open("GET", "./phpInteractionsDB/data.php", true);
+ajax.open("GET", "./APIs/data.php", true);
 ajax.send();
 ajax.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -44,7 +44,7 @@ ajax.onreadystatechange = function () {
 };
 let elementos = document.getElementById("kategorije")
 let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "./phpInteractionsDB/kategorijeDobivanje.php", true);
+ajax1.open("GET", "./APIs/kategorijeDobivanje.php", true);
 ajax1.send();
 ajax1.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
