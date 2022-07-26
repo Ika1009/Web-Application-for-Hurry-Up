@@ -42,10 +42,10 @@ function onClickDugmeZaBrisanje(element) {
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
-            if (data == "deleted") {
+            /*if (data.contains("deleted")) {
                 elementos.remove();
-            }
-            else { alert("Došlo je do greške! Molim Vas pokušajte ponovo."); }
+            } else { alert("Došlo je do greške! Molim Vas pokušajte ponovo."); }*/
+            elementos.remove();
         }
     };
 
@@ -162,6 +162,7 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     ajax.send(form_for_sending);
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            let response = this.responseText;
             let data = new Object();
             for (const key of form_for_sending.keys()) {
                 data[key] = form_for_sending.get(key);

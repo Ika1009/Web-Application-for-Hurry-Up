@@ -57,7 +57,7 @@
         <div id="signup-form">
             <form id="artikl_form" class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                 <div class="fajl">
-                    <input class="file" id="file" type="file" name="file">
+                    <input class="file" id="file" type="file" name="file" accept=".png, .jpg, .jpeg" required>
                     <label for="file" class="upload-label">
                         <div class="image">
                             <img src="" alt="">
