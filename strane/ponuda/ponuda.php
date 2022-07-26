@@ -400,8 +400,8 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
-                        <li><a href="../artikli/artikli.php">Artikli</a></li>
+                        <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+                        <li><a href="../artikli/artikli.html">Artikli</a></li>
                         <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
                     </ul>
                 </nav>
@@ -426,7 +426,7 @@
     <script>
         // dupli kod zato sto cpanel smara
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "../artikli/phpInteractionsDB/data.php", true);
+        ajax.open("GET", "../artikli/APIs/data.php", true);
         ajax.send();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
