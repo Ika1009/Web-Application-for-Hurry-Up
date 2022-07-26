@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['user_email'])) {
+    if (isset($_SESSION['email'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <body>
         <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;"> 
             <i class="bi bi-person-fill" style="font-size: 14rem"></i>
-            <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['user_ime_firme']?></h1>
+            <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['ime_firme']?></h1>
             <a href="logout.php" class="btn btn-warning">Odjava</a>
         </div>
     </body>
