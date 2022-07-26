@@ -464,7 +464,9 @@
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
-            <p id="ispis"></p>
+            <div class="text" id="ispis">
+                <!-- nalaze se ispisuju narudzbine -->
+            </div>
             <button class="ok-btn">
                 <span>Potrvdi narudzbinu</span>
             </button>
@@ -574,9 +576,17 @@
 
     </script>
     <script>
+        let imena = [];
+
         function dodaj_u_korpu(element) {
             let elementos = element.closest('.product');
             let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
+            
+            if (!imena.includes(ime)) 
+            {
+                imena.push(ime);
+            }
+            
             let cena = parseFloat(elementos.getElementsByClassName('price')[0].innerHTML);
             localStorage.setItem(ime, ime);
 
@@ -606,10 +616,21 @@
             } else {
                 localStorage.setItem("ukupno", cena);
             }
-
+            
+            let html = "";
+        
             for (let i = 0; i < localStorage.length; i++) {
-                document.getElementById("ispis").innerHTML += localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]";
+                let opis1 = localStorage.key(i);
+                let opis2 = localStorage.getItem(localStorage.key(i));
+                html += "<div class=text id=imena>"
+                html += opis1 + "<br>";
+                html += "</div>";
+                html += "<div class=text id=opisi>"
+                html += opis2 + "<br>";
+                html += "</div>";
             }
+
+            document.getElementById("ispis").innerHTML = html;
         }
     </script>
 </body>
