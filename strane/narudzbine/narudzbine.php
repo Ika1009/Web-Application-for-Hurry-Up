@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    if (isset($_SESSION['email'])) {
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,17 +17,25 @@
 </head>
 
 <body>
-    <nav>
-        <div class="header">
-            <a href="../../index.html"><img src="../../slike/hurryup_logo2.jpg" alt="Logo firme"></a>
-            <h4 class="pocetna">HurryUp</h4>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="logo">
+                    <a href="#">Hurry Up</a>
+                </div>
+                <button type="button" class="nav-toggler">
+                    <span></span>
+                </button>
+                <nav class="nav">
+                    <ul>
+                        <li><a class="active" href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+                        <li><a href="../artikli/login.php">Artikli</a></li>
+                        <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <ul class="linkovi">
-            <li><a class="aktivan" href="narudzbine.html">Narudzbine</a></li>
-            <li><a href="../artikli/artikli.html">Artikli</a></li>
-            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
-        </ul>
-    </nav>
+    </header>
     <div class="text">
         <table class="tabelaArtikli">
             <style type="text/css">
@@ -92,3 +105,7 @@
 
 
 </html>
+<?php
+    } else {
+        header('Location: ../../login.php');
+    }

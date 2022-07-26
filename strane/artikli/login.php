@@ -1,7 +1,8 @@
 <?php
     session_start();
-    
-    if (!isset($_SESSION['user_pin'])) {
+
+    if (isset($_SESSION['email'])) {
+        if (!isset($_SESSION['user_pin'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,5 +32,7 @@
 </html>
 <?php
     } else {
-        header('Location: artikli.html');
+        header('Location: artikli.php');
+    } } else {
+        header('Location: ../../login.php');
     }

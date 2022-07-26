@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    
+    if (isset($_SESSION['user_pin'])) {
+?>
 <!DOCTYPE html>
 <html>
 
@@ -28,8 +33,8 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><a href="../narudzbine/narudzbine.html">Narudzbine</a></li>
-                        <li><a class="active" href="artikli.html">Artikli</a></li>
+                        <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                        <li><a class="active" href="artikli.php">Artikli</a></li>
                         <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                     </ul>
                 </nav>
@@ -83,4 +88,7 @@
 </body>
 
 </html>
-
+<?php
+    } else {
+        header('Location: login.php');
+    } 
