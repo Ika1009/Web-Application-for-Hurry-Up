@@ -54,9 +54,9 @@ function izvrsiNarudzbinu(element) {
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
-            if (data == "deleted") {
-                elementos.remove();
-            }
+            if (data == "updated") {
+                
+            } else { alert("Doslo je do greske!");}
         }
     };
 
@@ -80,9 +80,9 @@ function izvrsiNarudzbinu(element) {
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
-            if (data == "deleted") {
-                elementos.remove();
-            }
+            if (data == "updated") {
+                
+            } else { alert("Doslo je do greske!");}
         }
     };
 
