@@ -37,7 +37,7 @@ function onClickDugmeZaBrisanje(element) {
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
     //let popUpDugme = document.getElementById();
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./phpInteractionsDB/delete.php?id=" + id, true);
+    ajax.open("GET", "./APIs/delete.php?id=" + id, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -114,7 +114,7 @@ function navToggle() {
 document.querySelector("#rmv").addEventListener("click", function (event) {
     var kategorije = document.getElementById("kategorije")
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./phpInteractionsDB/deleteKategorija.php?obrisiKategoriju=" + kategorije.getElementsByTagName("option")[kategorije.selectedIndex].innerHTML, true);
+    ajax.open("GET", "./APIs/deleteKategorija.php?obrisiKategoriju=" + kategorije.getElementsByTagName("option")[kategorije.selectedIndex].innerHTML, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -135,7 +135,7 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
     option.text = txt.value;
     kategorije.add(option);
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./phpInteractionsDB/dodajKategoriju.php?addNewCategory=" + txt.value, true);
+    ajax.open("GET", "./APIs/dodajKategoriju.php?addNewCategory=" + txt.value, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -157,7 +157,7 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     var form_for_sending = new FormData(artikl_form);
 
     let ajax = new XMLHttpRequest();
-    ajax.open("POST", "./phpInteractionsDB/article_add.php", true);
+    ajax.open("POST", "./APIs/article_add.php", true);
     ajax.send(form_for_sending);
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
