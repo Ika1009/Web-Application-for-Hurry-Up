@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_conn.php';
+include 'db.php';
 if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
     $ime_firme = $_POST['ime_firme'];
     $lozinka = $_POST['lozinka'];
