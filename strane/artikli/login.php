@@ -31,5 +31,5 @@
 </html>
 <?php
     } else {
-        header('Location: artikli.html');
+        header('Location: artikli.php');
     }
