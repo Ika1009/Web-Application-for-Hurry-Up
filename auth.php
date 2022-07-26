@@ -10,11 +10,11 @@ if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
     } else if (empty($lozinka)) {
         header("Location: login.php?error=Lozinka je obavezna&ime_firme=$ime_firme");
     } else {
-        $stmt = $conn->prepare("SELECT * FROM registracija WHERE ime_firme=?");
-        $stmt->execute([$ime_firme]);
-        
-        if ($stmt->rowCount() === 1) {
-            $user = $stmt->fetch();
+        $stmt = $conn->query("SELECT * FROM registracija");
+        $rowCount = $stmt->num_rows;
+        echo $rowCount;
+        if ($rowCount >= 1) {
+            $user = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
             $user_email = $user['email'];
             $user_password = $user['lozinka'];
             $user_ime_firme = $user['ime_firme'];

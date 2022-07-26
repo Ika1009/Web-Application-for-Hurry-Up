@@ -1,14 +1,20 @@
-<?php 
+<?php
 
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$db_name = "milos";
-
-try {
-    $conn = new PDO("mysql:host=$sName;dbname=$db_name", 
-                    $uName, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch(PDOException $e){
-  echo "Connection failed : ". $e->getMessage();
+$servername = "87.250.63.45";
+$username = "root";
+$password = "gtrdsnetrt";
+$dbname = "hurryupr_database1";
+$charset = 'utf8mb4';
+$port = 11883;
+// Create connection  
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn->set_charset($charset);
+$conn->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, 1);
+// Check connection  
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+unset($servername, $dbname, $username, $password, $charset, $port); // we don't need them anymore
+
+?>
