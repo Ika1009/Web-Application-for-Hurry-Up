@@ -25,6 +25,13 @@
             bottom: 20px;
         }
 
+        .wrapper {
+            height: 360px;
+            width: 100%;
+            overflow-y: scroll;
+            margin: 25px 0;
+        }
+
         .button-27 {
             appearance: none;
             background-color: #333;
@@ -464,7 +471,7 @@
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
-            <div class="text" id="ispis">
+            <div class="wrapper" id="ispis">
                 <!-- nalaze se ispisuju narudzbine -->
             </div>
             <button class="ok-btn">

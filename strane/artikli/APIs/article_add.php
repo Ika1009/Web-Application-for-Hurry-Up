@@ -1,4 +1,5 @@
 <?php
+session_start();
 extract($_REQUEST);
 // daje podatke slike
 $slika = $_FILES['file'];
@@ -28,14 +29,16 @@ if($slikaVelicina == 0) {
 }
 
 include_once "../../../db.php";
-
+$ime_firme = $_SESSION['ime_firme'];
 if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje ili pravi novi
     // UPDATE `artikli` SET `ime`="Coca Cola",`cena`="108",`opis`="U limenci",`popust`="10",`kategorija`="burger" WHERE `id`= 102
     if ($slikaVelicina != 0) {
         $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
+        echo "updatedWithImage";
     }
     else {
         $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
+        echo "updated!image";
     }
 
     if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0 && $slikaVelicina != 0) {
@@ -46,8 +49,8 @@ if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje
 }
 else {
 
-    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija')";
-
+    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija, ime_firme) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija', '$ime')";
+    echo "inserted";
     if ($conn->query($sql) === FALSE) {
         echo "Greska: " . $sql . "<br>" . $conn->error;
     }

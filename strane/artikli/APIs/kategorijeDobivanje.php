@@ -1,8 +1,9 @@
 <?php
 
 include_once("../../../db.php");
-
-$result = mysqli_query($conn, "SELECT * FROM `kategorije`");
+session_start();
+$ime_firme = $_SESSION['ime_firme'];
+$result = mysqli_query($conn, "SELECT * FROM `kategorije` WHERE ime_firme='$ime_firme'");
 $data = array();
 while ($row = mysqli_fetch_object($result))
 {

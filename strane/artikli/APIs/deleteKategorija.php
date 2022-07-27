@@ -1,8 +1,9 @@
 <?php
-
+session_start();
 include_once("../../../db.php");
 $obrisiKategoriju = $_REQUEST['obrisiKategoriju'];
-$sql = "DELETE FROM kategorije WHERE ime_kategorije = '$obrisiKategoriju'"; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
+$ime_firme = $_SESSION['ime_firme'];
+$sql = "DELETE FROM kategorije WHERE ime_kategorije = '$obrisiKategoriju' AND ime_firme='$ime_firme'"; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
 
 if ($conn->query($sql) === TRUE) {
     $row_successfully_deleted = true;
