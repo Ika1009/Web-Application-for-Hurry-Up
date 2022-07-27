@@ -36,6 +36,21 @@
             </div>
         </div>
     </header>
+
+    <div class="text">
+        <div class="aktivne">
+            aktivne
+        </div>
+        <div class="prihvacene">
+            prihvacene
+        </div>
+        <div class="odbijene">
+            odbijene
+        </div>
+    </div>
+
+
+
     <div class="text">
         <table class="tabelaArtikli">
             <style type="text/css">
