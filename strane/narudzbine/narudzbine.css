@@ -4,32 +4,39 @@
     box-sizing: border-box;
 }
 
+
 .text {
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
     width: 90%;
-    height: 60%;
-    margin-top: 10%;
+    height: 50rem;
+    margin: auto;
 }
 
-.aktivne {
+.divaktivne {
+    background-color: aqua;
     justify-content: center;
     align-content: center;
+    text-align: center;
     width: 33.33%;
     float: left;
     height: 100%;
 }
-.prihvacene {
+.divizvrsene {
+    background-color: red;
     justify-content: center;
     align-content: center;
+    text-align: center;
     width: 33.33%;
     height: 100%;
     margin: 0 auto;
 }
-.odbijene {
+.divodbijene {
+    background-color: teal;
     justify-content: center;
     align-content: center;
+    text-align: center;
     width: 33.33%;
     height: 100%;
     float: right;
@@ -64,6 +71,7 @@ a {
     line-height: normal;
     background-color: #333;
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 2rem;
 }
 
 .header .logo,

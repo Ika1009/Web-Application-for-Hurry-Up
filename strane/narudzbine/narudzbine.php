@@ -38,82 +38,29 @@
     </header>
 
     <div class="text">
-        <div class="aktivne">
-            aktivne
+       
+        <div class="divaktivne">
+            <h3>aktivne</h3>
+            <div id="aktivne" class="aktivne">
+
+            </div>
         </div>
-        <div class="prihvacene">
-            prihvacene
+        
+        <div class="divizvrsene" id="izvrsene">
+            <h3>izvrsene</h3>
+            <div id="izvrsene" class="izvrsene">
+
+            </div>
         </div>
-        <div class="odbijene">
-            odbijene
+        
+        <div class="divodbijene" id="odbijene">
+            <h3>odbijene</h3>
+            <div id="odbijene" class="odbijene">
+
+            </div>
         </div>
     </div>
 
-
-
-    <div class="text">
-        <table class="tabelaArtikli">
-            <style type="text/css">
-                td {
-                    padding: 0 15px;
-                }
-            </style>
-            <th>Ime proizvoda </th>
-            <th>Vreme Narucivanja </th>
-            <th> Broj Stola </th>
-            <th> Status </th>
-            </tr>
-            <tbody id="aktivne">
-                <style type="text/css">
-                    td {
-                        padding: 0 25px;
-                    }
-                </style>
-            </tbody>
-        </table>
-    </div>
-    <div class="text">
-        <table class="tabelaArtikli">
-            <style type="text/css">
-                td {
-                    padding: 0 15px;
-                }
-            </style>
-            <th>Ime proizvoda </th>
-            <th>Vreme Narucivanja </th>
-            <th> Broj Stola </th>
-            <th> Status </th>
-            </tr>
-            <tbody id="odbijene">
-                <style type="text/css">
-                    td {
-                        padding: 0 25px;
-                    }
-                </style>
-            </tbody>
-        </table>
-    </div>
-    <div class="text">
-        <table class="tabelaArtikli">
-            <style type="text/css">
-                td {
-                    padding: 0 15px;
-                }
-            </style>
-            <th>Ime proizvoda </th>
-            <th>Vreme Narucivanja </th>
-            <th> Broj Stola </th>
-            <th> Status </th>
-            </tr>
-            <tbody id="izvrsene">
-                <style type="text/css">
-                    td {
-                        padding: 0 25px;
-                    }
-                </style>
-            </tbody>
-        </table>
-    </div>
 
     <script src="narudzbine.js"> </script>
 </body>
