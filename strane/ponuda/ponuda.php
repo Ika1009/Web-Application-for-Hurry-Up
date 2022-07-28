@@ -494,6 +494,30 @@
             if (this.readyState == 4 && this.status == 200) {
                 let data = JSON.parse(this.responseText);
                 console.log(data);
+
+                /*function displayItems() {
+                    const prikaz = data.filter(item=> item.ime_firme=='Gazde');
+                    console.log(prikaz);
+                    prikaz.map(item=> {
+                        document.getElementById('ispis').innerHTML += item.ime;
+                        document.getElementById('ispis').innerHTML += item.cena + "<br>";
+                    })
+                }
+
+                displayItems();
+                
+                document.querySelectorAll(".dodajukolica").forEach(item => {
+                    item.addEventListener('click', addToCart);
+                })
+                
+                function addToCart() {
+                    let elementos = this.closest('.product');
+                    let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
+                    console.log(ime);
+                    let x = data.find(element=>element.ime==ime);
+                    console.log(x);
+                }*/
+                
                 let html = "";
                 for (let i = 0; i < data.length; i++) {
                     let id = data[i].id;
@@ -503,6 +527,7 @@
                     let opis = data[i].opis;
                     let popust = data[i].popust;
                     let kategorija = data[i].kategorija;
+                    let kolicina = data[i].kolicina;
                     html += '<div title="' + opis + '" class=product>';
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
                     html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
@@ -521,14 +546,103 @@
                     }
                     html += "</div>";
                     html += "<div class=divdodajukolica>";
-                    html += "<button class=dodajukolica onclick=dodaj_u_korpu(this)>Dodaj Artikal</button>";
+                    html += "<button class=dodajukolica>Dodaj Artikal</button>";
                     html += "</div>";
                     html += "</div>";
 
                 }
                 document.getElementById("data").innerHTML += html;
+
+                let carts = document.querySelectorAll('.dodajukolica');
+
+                for (let i = 0; i < carts.length; i++) {
+                    carts[i].addEventListener('click', () => {
+                        cartNumbers(data[i]);
+                        totalCost(data[i]);
+                    })
+                }
+
+                function cartNumbers(product) {
+                    let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
+
+                    if (productNumbers) {
+                        localStorage.setItem('cartNumbers', productNumbers + 1);
+                    } else {
+                        localStorage.setItem('cartNumbers', 1);
+                    } 
+
+                    setItems(product);
+                }
+
+                function setItems(product) {
+                    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+                    if (cartItems !== null) {
+                        if (cartItems[product.ime] === undefined) {
+                            cartItems = {
+                                ...cartItems,
+                                [product.ime]: product
+                            }
+                        }
+                        cartItems[product.ime].kolicina += 1;
+                    } else {
+                        product.kolicina = 1;
+                        cartItems = {
+                            [product.ime]: product
+                        }
+                    }
+
+                    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                }
+
+                function totalCost(product) {
+                    let cartCost = localStorage.getItem('totalCost');
+
+                    if (cartCost !== null) {
+                        cartCost = parseInt(cartCost);
+                        localStorage.setItem("totalCost", cartCost + product.cena * (100 - parseInt(product.popust)) / 100);
+                    } else {
+                        localStorage.setItem("totalCost", product.cena * (100 - parseInt(product.popust)) / 100);
+                    }   
+                }
+
+                function displayItems() {
+                    let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+                    let cartCost = localStorage.getItem('totalCost');
+                    let productContainer = document.querySelector(".wrapper");
+
+                    if (cartItems && productContainer) {
+                        Object.values(cartItems).map(item => {
+                            productContainer.innerHTML += `
+                            <div class="proizvodi">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                    <span id="proizvod">${item.ime}</span>
+                                    ${item.cena * (100 - parseInt(item.popust)) / 100} RSD
+                                    <ion-icon name="caret-back-circle-outline"></ion-icon>
+                                    <span>${item.kolicina}</span>
+                                    <ion-icon name="caret-forward-circle-outline"></ion-icon>
+                                    ${item.kolicina * item.cena * (100 - parseInt(item.popust)) / 100} RSD
+                            </div>
+                            `;
+                        });
+
+                        productContainer.innerHTML += `
+                            <div class="basketTotalContainer">
+                                <h4 class="basketTotalTitle">
+                                    Korpa ukupno
+                                </h4>
+                                <h4 class="basketTotal">
+                                    ${cartCost} RSD
+                                </h4>
+                            <div>
+                        `;
+                    }
+                }
+
+                displayItems();
             }
         };
+
+        
     </script>
     <script>
         const search = () => {
@@ -583,7 +697,7 @@
 
     </script>
     <script>
-        let imena = [];
+        /*let imena = [];
 
         function dodaj_u_korpu(element) {
             let elementos = element.closest('.product');
@@ -638,7 +752,7 @@
             }
 
             document.getElementById("ispis").innerHTML = html;
-        }
+        }*/
     </script>
 </body>
 
