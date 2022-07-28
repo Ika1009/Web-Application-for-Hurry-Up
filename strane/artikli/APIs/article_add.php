@@ -49,7 +49,7 @@ if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje
 }
 else {
 
-    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija, ime_firme) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija', '$ime')";
+    $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija, ime_firme) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija', '$ime_firme')";
     echo "inserted";
     if ($conn->query($sql) === FALSE) {
         echo "Greska: " . $sql . "<br>" . $conn->error;
