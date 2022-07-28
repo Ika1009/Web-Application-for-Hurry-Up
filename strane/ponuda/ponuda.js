@@ -100,12 +100,11 @@ ajax.onreadystatechange = function() {
                 Object.values(cartItems).map(item => {
                     productContainer.innerHTML += `
                     <div class="proizvodi">
-                            <ion-icon name="close-circle"></ion-icon>
                             <span id="proizvod">${item.ime}</span>
                             ${item.cena * (100 - parseInt(item.popust)) / 100} RSD
-                            <ion-icon name="caret-back-circle-outline"></ion-icon>
+                            <ion-icon name="caret-back-circle-outline" class="smanji"></ion-icon>
                             <span>${item.kolicina}</span>
-                            <ion-icon name="caret-forward-circle-outline"></ion-icon>
+                            <ion-icon name="caret-forward-circle-outline" class="povecaj"></ion-icon>
                             ${item.kolicina * item.cena * (100 - parseInt(item.popust)) / 100} RSD
                     </div>
                     `;
@@ -125,6 +124,66 @@ ajax.onreadystatechange = function() {
         }
 
         displayItems();
+
+        document.querySelectorAll(".smanji").forEach(item => {
+            item.addEventListener("click", smanji);
+        })
+
+        document.querySelectorAll(".povecaj").forEach(item => {
+            item.addEventListener("click", povecaj);
+        })
+
+        function pronadji_u_mapi(element, ime) {
+            if (element.ime === ime) {
+                return element;
+            }
+        }
+
+        function smanji() { 
+            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+            let elementos = this.closest('.proizvodi');
+            let ime = elementos.getElementsByTagName('span')[0].innerHTML;
+            let brojac;
+
+            Object.values(cartItems).map(item => {
+                let x = pronadji_u_mapi(item, ime);
+                if (x !== undefined) {
+                    x.kolicina--;
+                    brojac = x.kolicina;
+                    let cartCost = localStorage.getItem('totalCost');
+                    localStorage.setItem("totalCost", cartCost - x.cena * (100 - parseInt(x.popust)) / 100);
+                }
+            });
+
+            if (brojac === 0) {
+                console.log("kada je ovde onda treba da se obrise proizvod");
+            } else {
+                let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
+                localStorage.setItem("cartNumbers", productNumbers - 1);
+                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+            }
+        }
+
+        function povecaj() {
+            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+            let elementos = this.closest('.proizvodi');
+            let ime = elementos.getElementsByTagName('span')[0].innerHTML;
+            let brojac;
+            
+            Object.values(cartItems).map(item => {
+                let x = pronadji_u_mapi(item, ime);
+                if (x !== undefined) {
+                    x.kolicina++;
+                    brojac = x.kolicina;
+                    let cartCost = parseInt(localStorage.getItem('totalCost'));
+                    localStorage.setItem("totalCost", cartCost + x.cena * (100 - parseInt(x.popust)) / 100);
+                }
+            });
+
+            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
+            localStorage.setItem("cartNumbers", productNumbers + 1);
+            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+        }
     }
 };
 
@@ -168,9 +227,9 @@ const okbtn = document.querySelector('.ok-btn');
 const popupbox = document.querySelector('.popup-overlay');
 
 naruci.addEventListener ('click',() => {
-    popupbox.classList.add('aktivanpopup')
+    popupbox.classList.add('aktivanpopup');
 })
 
 okbtn.addEventListener ('click',() => {
-    popupbox.classList.remove('aktivanpopup')
+    popupbox.classList.remove('aktivanpopup');
 })
