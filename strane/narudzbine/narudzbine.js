@@ -12,23 +12,23 @@ ajax.onreadystatechange = function () {
             let vreme_narucivanja = data[i].vreme_narucivanja;
             let broj_stola = data[i].broj_stola;
             let status = data[i].status;
-            html += "<tr>";
+            html += "<div>";
             html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-            html += "<td>" + proizvod + "</td>";
-            html += "<td>" + vreme_narucivanja + "</td>";
-            html += "<td>" + broj_stola + "</td>";
-            html += "<td>" + status + "</td>";
+            html += "<h3>" + broj_stola + "</h3>";
+            html += "<h3>" + proizvod + "</h3>";
+            html += "<h3>" + vreme_narucivanja + "</h3>";
+            html += "<h3>" + status + "</h3>";
 
             if (status == "aktivna") {
                 html += "<button onclick=izvrsiNarudzbinu(this)>STIK</button>";
                 html += "<button>X</button>";
-                html += "</tr>";
+                html += "</div>"
                 document.getElementById("aktivne").innerHTML += html;
             } else if (status == "odbijena") {
-                html += "</tr>";
+                html += "</div>"
                 document.getElementById("odbijene").innerHTML += html;
             } else {
-                html += "</tr>";
+                html += "</div>"
                 document.getElementById("izvrsene").innerHTML += html;
             }
 
