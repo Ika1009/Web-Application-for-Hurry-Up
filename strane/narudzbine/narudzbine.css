@@ -32,13 +32,13 @@
     width: 33.33%;
     height: 100%;
     float: left;
-    padding: 1.5em;
     border: none;
     transition: 0.2s;
     font-size: 1.1em;
     font-weight: bold;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    text-align: center;
 }
 
 
