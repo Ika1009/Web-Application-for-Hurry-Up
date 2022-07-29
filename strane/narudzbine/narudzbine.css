@@ -17,9 +17,9 @@
     box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1)
 }
 
-
-
 .form-toggle {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     position: relative;
     width: 100%;
     height: 5rem;
@@ -77,6 +77,131 @@
     height: 100%;
     display: none;
 }
+
+
+p {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+
+
+
+a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+a,
+a:hover {
+    text-decoration: none !important;
+}
+
+.content {
+    padding: 1rem;
+    background-color: #3c373e;
+    height: 45rem;
+    width: 100%;
+    border-bottom-left-radius:  20px;
+    border-bottom-right-radius: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #fff;
+}
+
+.table {
+    margin-top: 3rem; 
+    min-width: 90%;
+}
+
+.table thead tr,
+.table thead th {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    border-top: none;
+    border-bottom: none !important;
+    color: #fff;
+    font-size: 13.5px;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+}
+
+.table tbody th,
+.table tbody td {
+    color: #777;
+    font-weight: 400;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-weight: 300;
+    border: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+.table tbody th small,
+.table tbody td small {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 300;
+}
+
+.table tbody th a,
+.table tbody td a {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.table tbody th .more,
+.table tbody td .more {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+}
+
+.table tbody tr {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+.table tbody tr:hover td,
+.table tbody tr:focus td {
+    color: #fff;
+}
+
+.table tbody tr:hover td a,
+.table tbody tr:focus td a {
+    color: #ffb266;
+}
+
+.table tbody tr:hover td .more,
+.table tbody tr:focus td .more {
+    color: #ffb266;
+}
+
+.table .td-box-wrap {
+    padding: 0;
+}
+
+.table .box {
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.table .box td,
+.table .box th {
+    border: none !important;
+}
+
+
+
+
+
 
 a {
     text-decoration: none;

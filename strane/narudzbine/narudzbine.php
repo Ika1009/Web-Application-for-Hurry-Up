@@ -38,6 +38,9 @@ if (isset($_SESSION['email'])) {
         </header>
 
 
+
+
+
         <div class="form-modal">
 
             <div class="form-toggle">
@@ -46,65 +49,130 @@ if (isset($_SESSION['email'])) {
                 <button id="odbijene-toggle" onclick="toggleOdbijene()"> Odbijene</button>
             </div>
                 <div id="divaktivne" class="divaktivne">
-                    <div id="aktivne">
+                    <div class="content">
 
+                        <div class="container">
+
+
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Broj Stola</th>
+                                            <th scope="col">Ukupna Cena</th>
+                                            <th scope="col">Vreme narudzbine</th>
+                                            <th scope="col">Napomena</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="aktivne">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="divizvrsene" class="divizvrsene">
-                    <div id="izvrsene">
+                    <div class="content">
 
+                        <div class="container">
+
+
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Broj Stola</th>
+                                            <th scope="col">Ukupna Cena</th>
+                                            <th scope="col">Vreme narudzbine</th>
+                                            <th scope="col">Napomena</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="izvrsene">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="divodbijene" class="divodbijene">
-                    <div id="odbijene">
 
+                    <div class="content">
+
+                        <div class="container">
+
+
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Broj Stola</th>
+                                            <th scope="col">Ukupna Cena</th>
+                                            <th scope="col">Vreme narudzbine</th>
+                                            <th scope="col">Napomena</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="odbijene">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        </div>
 
-        <script src="narudzbine.js"> </script>
-
+            <script src="narudzbine.js"> </script>
 
 
 
 
-        <script>
-            function toggleIzvrsene() {
-                document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("aktivne-toggle").style.color = "#333";
-                document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
-                document.getElementById("izvrsene-toggle").style.color = "#ffb266";
-                document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("odbijene-toggle").style.color = "#333";
-                document.getElementById("divaktivne").style.display = "none";
-                document.getElementById("divizvrsene").style.display = "block";
-                document.getElementById("divodbijene").style.display = "none";
-            }
 
-            function toggleAktivne() {
-                document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
-                document.getElementById("aktivne-toggle").style.color = "#ffb266";
-                document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("izvrsene-toggle").style.color = "#333";
-                document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("odbijene-toggle").style.color = "#333";
-                document.getElementById("divaktivne").style.display = "block";
-                document.getElementById("divizvrsene").style.display = "none";
-                document.getElementById("divodbijene").style.display = "none";
-            }
+            <script>
+                function toggleIzvrsene() {
+                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("aktivne-toggle").style.color = "#333";
+                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
+                    document.getElementById("izvrsene-toggle").style.color = "#ffb266";
+                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("odbijene-toggle").style.color = "#333";
+                    document.getElementById("divaktivne").style.display = "none";
+                    document.getElementById("divizvrsene").style.display = "block";
+                    document.getElementById("divodbijene").style.display = "none";
+                }
 
-            function toggleOdbijene() {
-                document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("aktivne-toggle").style.color = "#333";
-                document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                document.getElementById("izvrsene-toggle").style.color = "#333";
-                document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
-                document.getElementById("odbijene-toggle").style.color = "#ffb266";
-                document.getElementById("divaktivne").style.display = "none";
-                document.getElementById("divizvrsene").style.display = "none";
-                document.getElementById("divodbijene").style.display = "block";
-            }
-        </script>
+                function toggleAktivne() {
+                    document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
+                    document.getElementById("aktivne-toggle").style.color = "#ffb266";
+                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("izvrsene-toggle").style.color = "#333";
+                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("odbijene-toggle").style.color = "#333";
+                    document.getElementById("divaktivne").style.display = "block";
+                    document.getElementById("divizvrsene").style.display = "none";
+                    document.getElementById("divodbijene").style.display = "none";
+                }
+
+                function toggleOdbijene() {
+                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("aktivne-toggle").style.color = "#333";
+                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+                    document.getElementById("izvrsene-toggle").style.color = "#333";
+                    document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
+                    document.getElementById("odbijene-toggle").style.color = "#ffb266";
+                    document.getElementById("divaktivne").style.display = "none";
+                    document.getElementById("divizvrsene").style.display = "none";
+                    document.getElementById("divodbijene").style.display = "block";
+                }
+            </script>
     </body>
 
 

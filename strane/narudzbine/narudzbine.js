@@ -12,23 +12,25 @@ ajax.onreadystatechange = function () {
             let vreme_narucivanja = data[i].vreme_narucivanja;
             let broj_stola = data[i].broj_stola;
             let status = data[i].status;
-            html += "<div>";
+            html += "<tr scope=row>";
             html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-            html += "<h3>" + broj_stola + "</h3>";
-            html += "<h3>" + proizvod + "</h3>";
-            html += "<h3>" + vreme_narucivanja + "</h3>";
-            html += "<h3>" + status + "</h3>";
-
+            html += "<td>" + broj_stola + "</td>";
+            html += "<td>" + proizvod + "</td> <!--ukupna cena-->";
+            html += "<td>" + vreme_narucivanja + "</td>";
+            html += "<td><small class=d-block>Far far away, behind the word mountains</small></td>>"
+            html += "<td><a href=# class=more>Detalji</a></td>"
             if (status == "aktivna") {
+                html += "<td>"
                 html += "<button onclick=izvrsiNarudzbinu(this)>STIK</button>";
                 html += "<button>X</button>";
-                html += "</div>"
+                html += "</td>"
+                html += "</tr>"
                 document.getElementById("aktivne").innerHTML += html;
             } else if (status == "odbijena") {
-                html += "</div>"
+                html += "</tr>"
                 document.getElementById("odbijene").innerHTML += html;
             } else {
-                html += "</div>"
+                html += "</tr>"
                 document.getElementById("izvrsene").innerHTML += html;
             }
 
@@ -36,6 +38,8 @@ ajax.onreadystatechange = function () {
 
     }
 };
+
+
 function izvrsiNarudzbinu(element) {
     /*let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
     console.log(nastavitiProvera); // OK = true, Cancel = false
@@ -55,8 +59,8 @@ function izvrsiNarudzbinu(element) {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
             if (data == "updated") {
-                
-            } else { alert("Doslo je do greske!");}
+
+            } else { alert("Doslo je do greske!"); }
         }
     };
 
@@ -81,8 +85,8 @@ function izvrsiNarudzbinu(element) {
         if (this.readyState == 4 && this.status == 200) {
             let data = this.responseText;
             if (data == "updated") {
-                
-            } else { alert("Doslo je do greske!");}
+
+            } else { alert("Doslo je do greske!"); }
         }
     };
 
@@ -90,19 +94,19 @@ function izvrsiNarudzbinu(element) {
 
 
 const navToggler = document.querySelector(".nav-toggler");
-        navToggler.addEventListener("click", navToggle);
+navToggler.addEventListener("click", navToggle);
 
-        function navToggle() {
-            navToggler.classList.toggle("active");
-            const nav = document.querySelector(".nav");
-            nav.classList.toggle("open");
-            if (nav.classList.contains("open")) {
-                nav.style.maxHeight = nav.scrollHeight + "px";
-            } else {
-                nav.removeAttribute("style");
-            }
-        }
+function navToggle() {
+    navToggler.classList.toggle("active");
+    const nav = document.querySelector(".nav");
+    nav.classList.toggle("open");
+    if (nav.classList.contains("open")) {
+        nav.style.maxHeight = nav.scrollHeight + "px";
+    } else {
+        nav.removeAttribute("style");
+    }
+}
 
-        const naruci = document.querySelector('.button-27');
-        const okbtn = document.querySelector('.ok-btn');
-        const popupbox = document.querySelector('.popup-overlay');
+const naruci = document.querySelector('.button-27');
+const okbtn = document.querySelector('.ok-btn');
+const popupbox = document.querySelector('.popup-overlay');
