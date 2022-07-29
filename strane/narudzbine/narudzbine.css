@@ -27,12 +27,13 @@
 }
 
 .form-toggle button {
-    background: white;
+    cursor: pointer;
+    background: #f9f9f9;
     width: 33.33%;
     height: 100%;
     float: left;
     padding: 1.5em;
-    border: solid #333;
+    border: none;
     transition: 0.2s;
     font-size: 1.1em;
     font-weight: bold;
