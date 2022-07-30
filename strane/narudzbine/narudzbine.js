@@ -107,6 +107,3 @@ function navToggle() {
     }
 }
 
-const naruci = document.querySelector('.button-27');
-const okbtn = document.querySelector('.ok-btn');
-const popupbox = document.querySelector('.popup-overlay');
