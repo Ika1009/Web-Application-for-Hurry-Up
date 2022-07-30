@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('db.php');
+    include('../../db.php');
 
     if (isset($_SESSION['email'])) {
 ?>
@@ -10,9 +10,30 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="profile.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
+        <header class="header">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="logo">
+                        <a href="#">Hurry Up</a>
+                    </div>
+                    <button type="button" class="nav-toggler">
+                        <span></span>
+                    </button>
+                    <nav class="nav">
+                        <ul>
+                            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                            <li><a href="artikli.php">Artikli</a></li>
+                            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                            <li><a class="active" href="../nalog/profile.php">Moj nalog</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
         <div align="center">
         <hr>
             <h3>Update User Information</h3>
@@ -72,5 +93,5 @@
 </html>
 <?php
     } else {
-        header('Location: login.php');
+        header('Location: ../../login.php');
     }
