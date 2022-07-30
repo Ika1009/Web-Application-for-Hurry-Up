@@ -1,27 +1,56 @@
-.header {
+ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .container {
+    margin-right: 8%;
+    margin-left: 10%;
+    background-color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  
+  /*header*/
+  .header {
     padding: 12px 0;
     line-height: normal;
     background-color: #333;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.header .logo,
-.header .nav {
+  }
+  
+  .header .logo,
+  .header .nav {
     padding: 0 15px;
-}
-
-.header .logo a {
+  }
+  
+  .header .logo a {
     font-size: 30px;
     color: #ffb266;
     text-transform: capitalize;
-}
-
-.header .nav ul li {
+  }
+  
+  .header .nav ul li {
     display: inline-block;
     margin-left: 100px;
-}
-
-.header .nav ul li a {
+  }
+  
+  .header .nav ul li a {
     display: block;
     font-size: 20px;
     line-height: 1;
@@ -29,14 +58,14 @@
     color: #ebebeb;
     padding: 10px 0;
     transition: all 0.5s ease;
-}
-
-.header .nav ul li a.active,
-.header .nav ul li a:hover {
+  }
+  
+  .header .nav ul li a.active,
+  .header .nav ul li a:hover {
     color: #ffb266;
-}
-
-.nav-toggler {
+  }
+  
+  .nav-toggler {
     height: 34px;
     width: 44px;
     color: #ffb266;
@@ -46,14 +75,14 @@
     border: none;
     display: none;
     margin-right: 15px;
-}
-
-.nav-toggler:focus {
+  }
+  
+  .nav-toggler:focus {
     outline: none;
     box-shadow: 0 0 15px black;
-}
-
-.nav-toggler span {
+  }
+  
+  .nav-toggler span {
     height: 2px;
     width: 20px;
     background-color: #333;
@@ -61,15 +90,15 @@
     margin: auto;
     position: relative;
     transition: all 0.3s ease;
-}
-
-.nav-toggler.active span {
+  }
+  
+  .nav-toggler.active span {
     background-color: transparent;
-}
-
-.nav-toggler span::before,
-.nav-toggler span::after {
-    content: '';
+  }
+  
+  .nav-toggler span::before,
+  .nav-toggler span::after {
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -77,80 +106,55 @@
     height: 100%;
     background-color: #333;
     transition: all 0.3s ease;
-}
-
-.nav-toggler span::before {
+  }
+  
+  .nav-toggler span::before {
     transform: translateY(-6px);
-}
-
-.nav-toggler.active span::before {
+  }
+  
+  .nav-toggler.active span::before {
     transform: rotate(45deg);
-}
-
-.nav-toggler span::after {
+  }
+  
+  .nav-toggler span::after {
     transform: translateY(6px);
-}
-
-.nav-toggler.active span::after {
+  }
+  
+  .nav-toggler.active span::after {
     transform: rotate(135deg);
-}
+  }
+  
+  @media (max-width: 850px) {
 
-@media(max-width:991px) {
+  
     .nav-toggler {
-        display: block;
+      display: block;
     }
-
+  
     .header .nav {
-        width: 100%;
-        padding: 0;
-        max-height: 0px;
-        overflow: hidden;
-        visibility: hidden;
-        transition: all 0.5s ease;
+      width: 100%;
+      padding: 0;
+      max-height: 0px;
+      overflow: hidden;
+      visibility: hidden;
+      transition: all 0.5s ease;
     }
-
+  
     .header .nav.open {
-        visibility: visible;
+      visibility: visible;
     }
-
+  
     .header .nav ul {
-        padding: 12px 15px 0;
-        margin-top: 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 15px 0;
+      margin-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
-
+  
     .header .nav ul li {
-        display: block;
-        margin: 0;
+      display: block;
+      margin: 0;
     }
-}
-
-.container {
-    margin-left: 10%;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.align-items-center {
-    align-items: center;
-}
-
-.justify-content-between {
-    justify-content: space-between;
-}
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
+  }
 
 .btn btn-info {
     background-color: #333;
