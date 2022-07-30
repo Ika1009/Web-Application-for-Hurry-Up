@@ -26,7 +26,7 @@
                     <nav class="nav">
                         <ul>
                             <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
-                            <li><a href="artikli.php">Artikli</a></li>
+                            <li><a href="../artikli/artikli.php">Artikli</a></li>
                             <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                             <li><a class="active" href="../nalog/profile.php">Moj nalog</a></li>
                         </ul>
@@ -34,9 +34,9 @@
                 </div>
             </div>
         </header>
-        <div align="center">
+        <div style="align-items: center;">
         <hr>
-            <h3>Update User Information</h3>
+            <h3 style="text-align: center;">Izmenite profil</h3>
         <hr>
             <div class="row">
                 <div class="col-md-6 offset-3">
@@ -72,13 +72,31 @@
                                     while($row = mysqli_fetch_array($gotResuslts)){
                                         ?>
                                             <div class="form-group">
+                                                <label for="userIme">Ime</label>
+                                                <input type="text" name="userIme" class="form-control" value="<?php echo $row['ime']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userPrezime">Prezime</label>
+                                                <input type="text" name="userPrezime" class="form-control" value="<?php echo $row['prezime']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="updateUserName">Ime firme</label>
                                                 <input type="text" name="updateUserName" class="form-control" value="<?php echo $row['ime_firme']; ?>">
                                             </div>
                                             <div class="form-group">
+                                                <label for="userEmail">Email</label>
                                                 <input type="email" name="userEmail" class="form-control" value="<?php echo $row['email']; ?>">
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" name="update"  class="btn btn-info" value="Update">
+                                                <label for="userBrojtelefona">Broj telefona</label>
+                                                <input type="text" name="userBrojtelefona" class="form-control" value="<?php echo $row['broj_telefona']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userPin">Pin</label>
+                                                <input type="text" name="userPin" class="form-control" value="<?php echo $row['pin']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="update" class="btn btn-info" value="Update">
                                             </div>
                                         <?php
                                     }

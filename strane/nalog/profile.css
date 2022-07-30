@@ -151,3 +151,8 @@ ul {
 a {
     text-decoration: none;
 }
+
+.btn btn-info {
+    background-color: #333;
+    color: #ffb266;
+}
