@@ -17,7 +17,6 @@ if (isset($_SESSION['user_pin'])) {
         <title>Artikli</title>
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="artikli.css">
-        <link href="../../slike/hurryup_logo2.ico" rel="icon">
 
     </head>
 
