@@ -28,7 +28,7 @@ if (isset($_SESSION['email'])) {
                     </button>
                     <nav class="nav">
                         <ul>
-                            <li><a class="active" href="../narudzbine/narudzbine.html">Narudzbine</a></li>
+                            <li><a class="active" href="../narudzbine/narudzbine.php">Narudzbine</a></li>
                             <li><a href="../artikli/login.php">Artikli</a></li>
                             <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                         </ul>
