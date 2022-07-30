@@ -98,6 +98,7 @@
                                             <div class="form-group">
                                                 <input type="submit" name="update" class="btn btn-info" value="Update">
                                             </div>
+                                            <a href="../../logout.php" class="btn btn-warning">Odjava</a>
                                         <?php
                                     }
                                 }

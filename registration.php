@@ -45,5 +45,5 @@
     } else {
         header('Location: admin.php');
     }} else {
-        header('Location: index.php');
+        header('Location: index.html');
     }
