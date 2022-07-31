@@ -1,3 +1,5 @@
+
+
 function dugmeZaMenjanje(element) {
 
     let elementos = element.closest('.product');
@@ -80,23 +82,6 @@ const search = () => {
 
 
 
-let popup = document.getElementById("popup");
-
-function otvoriPopup(novi_kreiram) {
-    if (novi_kreiram) {
-        document.querySelectorAll(".artikl_input_id")[0].value = '';
-        document.querySelectorAll(".artikl_input_ime")[0].value = '';
-        document.querySelectorAll(".artikl_input_cena")[0].value = '';
-        document.querySelectorAll(".artikl_input_popust")[0].value = '';
-        document.querySelectorAll(".artikl_input_opis")[0].value = '';
-        document.querySelectorAll(".artikl_input_kategorija")[0].value = '';
-    }
-    popup.classList.add("otvori-Popup");
-}
-
-function ZatvoriPopUp() {
-    popup.classList.remove("otvori-Popup");
-}
 
 const navToggler = document.querySelector(".nav-toggler");
 navToggler.addEventListener("click", navToggle);

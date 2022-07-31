@@ -50,7 +50,7 @@ if (isset($_SESSION['user_pin'])) {
             </div>
 
         </div>
-
+        <div class="popup-overlay1" id="popup-overlay1">
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
                 <h3 class="naslov">Dodaj novi artikal:</h3>
@@ -74,16 +74,69 @@ if (isset($_SESSION['user_pin'])) {
                         <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorije" required>
                             <option class="kategorija-naslov" value="" selected disabled hidden>Izaberi kategoriju</option>
                         </select><br>
-                        <input id=add-box name="dodavanjeBox">
-                        <input type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
-                        <input type="button" value="remove" id="rmv">
+                        <button class="dugdodajkategoriju">dodaj kategoriju</button>
+                        <div class="popup-box-container">
+                            <div class="products-container">
+                                <button class="btn1"><i class="fa fa-close"></i></button>
+                                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="ime kategorije">
+                                <div class="divokbtn">
+                                    <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
+                                    <input class="ok-btn1" type="button" value="remove" id="rmv">
+                                </div>
+                            </div>
+                        </div>
                         <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                         <button class="submit" type="submit" name="article_add" id="popupDugme" value="add">Dodaj</button>
                     </form>
                 </div>
             </div>
+        </div>
         <script src="artikliJS.js"></script>
         <script src="artikliFunctionsJS.js"></script>
+        <script>
+            let popup = document.getElementById("popup-overlay1");
+            let poputp = document.getElementById("popup")
+
+            function otvoriPopup(novi_kreiram) {
+                if (novi_kreiram) {
+                    document.querySelectorAll(".artikl_input_id")[0].value = '';
+                    document.querySelectorAll(".artikl_input_ime")[0].value = '';
+                    document.querySelectorAll(".artikl_input_cena")[0].value = '';
+                    document.querySelectorAll(".artikl_input_popust")[0].value = '';
+                    document.querySelectorAll(".artikl_input_opis")[0].value = '';
+                    document.querySelectorAll(".artikl_input_kategorija")[0].value = '';
+                }
+                popup.classList.add("aktivanpopup");
+                poputp.classList.add("otvori-Popup");
+            }
+
+            function ZatvoriPopUp() {
+                popup.classList.remove("aktivanpopup");
+                poputp.classList.add("otvori-Popup");
+            }
+
+
+            const naruci = document.querySelector('.dugdodajkategoriju');
+            const okbtn = document.querySelector('.ok-btn');
+            const okbtn1 = document.querySelector('.ok-btn1');
+            const btn1 = document.querySelector('.btn1');
+            const popupbox = document.querySelector('.popup-box-container');
+
+            naruci.addEventListener('click', () => {
+                popupbox.classList.add('aktivanpopup');
+            })
+
+            okbtn.addEventListener('click', () => {
+                popupbox.classList.remove('aktivanpopup');
+            })
+
+            okbtn1.addEventListener('click', () => {
+                popupbox.classList.remove('aktivanpopup');
+            })
+            btn1.addEventListener('click', () => {
+                popupbox.classList.remove('aktivanpopup');
+            })
+        </script>
     </body>
 
     </html>
