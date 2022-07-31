@@ -3,7 +3,7 @@
 include_once("../../../db.php");
 
 $status = "odbijena";
-$sql = "UPDATE `artikli` SET `status`=\"$status\" WHERE `id`= " . $_REQUEST['id'];
+$sql = "UPDATE `narudzbine` SET `status`=\"$status\" WHERE `id`= " . $_REQUEST['id'];
 
 if ($conn->query($sql) === TRUE) {
     $row_successfully_updated = true;
