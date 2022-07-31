@@ -54,7 +54,7 @@ if (isset($_SESSION['email'])) {
                         <div class="container">
 
 
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="tabela-aktivne">
 
                                 <table class="table">
                                     <thead>
@@ -121,7 +121,6 @@ if (isset($_SESSION['email'])) {
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
-
                                     <tbody id="odbijene">
                                     </tbody>
                                 </table>
@@ -131,51 +130,7 @@ if (isset($_SESSION['email'])) {
                 </div>
 
             <script src="narudzbine.js"> </script>
-
-
-
-
-
-            <script>
-                function toggleIzvrsene() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("aktivne-toggle").style.color = "#333";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
-                    document.getElementById("izvrsene-toggle").style.color = "#ffb266";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("odbijene-toggle").style.color = "#333";
-                    document.getElementById("divaktivne").style.display = "none";
-                    document.getElementById("divizvrsene").style.display = "block";
-                    document.getElementById("divodbijene").style.display = "none";
-                }
-
-                function toggleAktivne() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
-                    document.getElementById("aktivne-toggle").style.color = "#ffb266";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("izvrsene-toggle").style.color = "#333";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("odbijene-toggle").style.color = "#333";
-                    document.getElementById("divaktivne").style.display = "block";
-                    document.getElementById("divizvrsene").style.display = "none";
-                    document.getElementById("divodbijene").style.display = "none";
-                }
-
-                function toggleOdbijene() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("aktivne-toggle").style.color = "#333";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("izvrsene-toggle").style.color = "#333";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
-                    document.getElementById("odbijene-toggle").style.color = "#ffb266";
-                    document.getElementById("divaktivne").style.display = "none";
-                    document.getElementById("divizvrsene").style.display = "none";
-                    document.getElementById("divodbijene").style.display = "block";
-                }
-            </script>
     </body>
-
-
     </html>
 <?php
 } else {

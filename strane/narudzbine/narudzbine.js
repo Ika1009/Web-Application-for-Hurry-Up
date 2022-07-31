@@ -13,7 +13,7 @@ ajax.onreadystatechange = function () {
             let broj_stola = data[i].broj_stola;
             let status = data[i].status;
             html += "<tr scope=row>";
-            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+            html += "<input class=\"id_reda\" data-id=\"" + id + "\" type=\"hidden\">";
             html += "<td>" + broj_stola + "</td>";
             html += "<td>" + proizvod + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
@@ -22,7 +22,7 @@ ajax.onreadystatechange = function () {
             if (status == "aktivna") {
                 html += "<td>"
                 html += "<button onclick=izvrsiNarudzbinu(this)>STIK</button>";
-                html += "<button>X</button>";
+                html += "<button onclick=odbijNarudzbinu(this)>X</button>";
                 html += "</td>"
                 html += "</tr>"
                 document.getElementById("aktivne").innerHTML += html;
@@ -39,58 +39,60 @@ ajax.onreadystatechange = function () {
     }
 };
 
+function addToTable() {
+    output.innerHTML += "<tr>" + "<td>" + title.value + "</td>" +
+      "<td>" + author.value + "</td>" +
+      "<td>" + "<input type='button' onclick='post(this);' id='post' value ='Post'>" +
+      "<input type='button' onclick='remove(this);' id='remove'value ='Remove'>" + "</td>" + "</tr>"
+  }
+
+function removeRow(dugme){
+
+    row = dugme.parentNode.parentNode
+    document.getElementById("aktivne").removeChild(row)
+}
 
 function izvrsiNarudzbinu(element) {
-    /*let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
+    /*let nastavitiProvera = confirm("Jel ste sigurni da želite da pošaljete ovu narudžbinu u izvršene?");
     console.log(nastavitiProvera); // OK = true, Cancel = false
     if (nastavitiProvera == false) {
         return;
     }*/
-
-    let elementos = element.closest('#aktivne');
-    let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
-    let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
-
-    let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
+    
+    let row_id = element.parentNode.parentNode.getElementsByTagName("input")[0].getAttribute("data-id");
+    // console.log(row_id)
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./APIs/delete.php?id=" + id, true);
+    ajax.open("GET", "./APIs/updateFinished.php?id=" + row_id, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            let data = this.responseText;
-            if (data == "updated") {
-
-            } else { alert("Doslo je do greske!"); }
+            removeRow(element)
         }
     };
 
 }
 
-function izvrsiNarudzbinu(element) {
-    /*let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
+function odbijNarudzbinu(element) {
+    /*let nastavitiProvera = confirm("Da li ste sigurni da želite da pošaljete ovu narudžbinu u odbijene");
     console.log(nastavitiProvera); // OK = true, Cancel = false
     if (nastavitiProvera == false) {
         return;
     }*/
-
-    let elementos = element.closest('#aktivne');
-    let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
-    let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
-
-    let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
+    
+    let row_id = element.parentNode.parentNode.getElementsByTagName("input")[0].getAttribute("data-id");
+    // console.log(row_id);
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./APIs/delete.php?id=" + id, true);
+    ajax.open("GET", "./APIs/updateDenied?id=" + row_id, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            let data = this.responseText;
-            if (data == "updated") {
-
-            } else { alert("Doslo je do greske!"); }
+            removeRow(element)
         }
     };
 
 }
+
+
 
 
 const navToggler = document.querySelector(".nav-toggler");
@@ -110,3 +112,39 @@ function navToggle() {
 const naruci = document.querySelector('.button-27');
 const okbtn = document.querySelector('.ok-btn');
 const popupbox = document.querySelector('.popup-overlay');
+
+function toggleIzvrsene() {
+    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("aktivne-toggle").style.color = "#333";
+    document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
+    document.getElementById("izvrsene-toggle").style.color = "#ffb266";
+    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("odbijene-toggle").style.color = "#333";
+    document.getElementById("divaktivne").style.display = "none";
+    document.getElementById("divizvrsene").style.display = "block";
+    document.getElementById("divodbijene").style.display = "none";
+}
+
+function toggleAktivne() {
+    document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
+    document.getElementById("aktivne-toggle").style.color = "#ffb266";
+    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("izvrsene-toggle").style.color = "#333";
+    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("odbijene-toggle").style.color = "#333";
+    document.getElementById("divaktivne").style.display = "block";
+    document.getElementById("divizvrsene").style.display = "none";
+    document.getElementById("divodbijene").style.display = "none";
+}
+
+function toggleOdbijene() {
+    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("aktivne-toggle").style.color = "#333";
+    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+    document.getElementById("izvrsene-toggle").style.color = "#333";
+    document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
+    document.getElementById("odbijene-toggle").style.color = "#ffb266";
+    document.getElementById("divaktivne").style.display = "none";
+    document.getElementById("divizvrsene").style.display = "none";
+    document.getElementById("divodbijene").style.display = "block";
+}
