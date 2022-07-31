@@ -11,12 +11,17 @@ if (isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/a572b64406.js" crossorigin="anonymous"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <title>Narudzbine</title>
         <link rel="stylesheet" href="narudzbine.css">
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
     </head>
 
     <body>
+        
+        </script>
         <header class="header">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
@@ -38,9 +43,16 @@ if (isset($_SESSION['email'])) {
             </div>
         </header>
 
+        <div class="popup-overlay" id="popup-overlay">
+            <div class="popup-box-container">
+                <div class="products-container">
 
-
-
+                    <button class="ok-btn" id="ok-btn">
+                        <span>Potrvdi narudzbinu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div class="form-modal">
 
@@ -49,134 +61,130 @@ if (isset($_SESSION['email'])) {
                 <button id="izvrsene-toggle" onclick="toggleIzvrsene()">Izvrsene</button>
                 <button id="odbijene-toggle" onclick="toggleOdbijene()"> Odbijene</button>
             </div>
-                <div id="divaktivne" class="divaktivne">
-                    <div class="content">
+            <div id="divaktivne" class="divaktivne">
+                <div class="content">
 
-                        <div class="container">
+                    <div class="container">
 
 
-                            <div class="table-responsive">
+                        <div class="table-responsive">
 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Broj Stola</th>
-                                            <th scope="col">Ukupna Cena</th>
-                                            <th scope="col">Vreme narudzbine</th>
-                                            <th scope="col">Napomena</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Broj Stola</th>
+                                        <th scope="col">Ukupna Cena</th>
+                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Napomena</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
 
-                                    <tbody id="aktivne">
+                                <tbody id="aktivne">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div id="divizvrsene" class="divizvrsene">
-                    <div class="content">
+            </div>
+            <div id="divizvrsene" class="divizvrsene">
+                <div class="content">
 
-                        <div class="container">
+                    <div class="container">
 
 
-                            <div class="table-responsive">
+                        <div class="table-responsive">
 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Broj Stola</th>
-                                            <th scope="col">Ukupna Cena</th>
-                                            <th scope="col">Vreme narudzbine</th>
-                                            <th scope="col">Napomena</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Broj Stola</th>
+                                        <th scope="col">Ukupna Cena</th>
+                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Napomena</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
 
-                                    <tbody id="izvrsene">
+                                <tbody id="izvrsene">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div id="divodbijene" class="divodbijene">
+            </div>
+            <div id="divodbijene" class="divodbijene">
 
-                    <div class="content">
+                <div class="content">
 
-                        <div class="container">
+                    <div class="container">
 
 
-                            <div class="table-responsive">
+                        <div class="table-responsive">
 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Broj Stola</th>
-                                            <th scope="col">Ukupna Cena</th>
-                                            <th scope="col">Vreme narudzbine</th>
-                                            <th scope="col">Napomena</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Broj Stola</th>
+                                        <th scope="col">Ukupna Cena</th>
+                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Napomena</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
 
-                                    <tbody id="odbijene">
-                                    </tbody>
-                                </table>
-                            </div>
+                                <tbody id="odbijene">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
+            </div>
             <script src="narudzbine.js"> </script>
 
 
-
-
-
-            <script>
-                function toggleIzvrsene() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("aktivne-toggle").style.color = "#333";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
-                    document.getElementById("izvrsene-toggle").style.color = "#ffb266";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("odbijene-toggle").style.color = "#333";
-                    document.getElementById("divaktivne").style.display = "none";
-                    document.getElementById("divizvrsene").style.display = "block";
-                    document.getElementById("divodbijene").style.display = "none";
-                }
-
-                function toggleAktivne() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
-                    document.getElementById("aktivne-toggle").style.color = "#ffb266";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("izvrsene-toggle").style.color = "#333";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("odbijene-toggle").style.color = "#333";
-                    document.getElementById("divaktivne").style.display = "block";
-                    document.getElementById("divizvrsene").style.display = "none";
-                    document.getElementById("divodbijene").style.display = "none";
-                }
-
-                function toggleOdbijene() {
-                    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("aktivne-toggle").style.color = "#333";
-                    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-                    document.getElementById("izvrsene-toggle").style.color = "#333";
-                    document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
-                    document.getElementById("odbijene-toggle").style.color = "#ffb266";
-                    document.getElementById("divaktivne").style.display = "none";
-                    document.getElementById("divizvrsene").style.display = "none";
-                    document.getElementById("divodbijene").style.display = "block";
-                }
-            </script>
     </body>
+    <script>
 
 
+            function toggleIzvrsene() {
+                document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("aktivne-toggle").style.color = "#333";
+                document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
+                document.getElementById("izvrsene-toggle").style.color = "#ffb266";
+                document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("odbijene-toggle").style.color = "#333";
+                document.getElementById("divaktivne").style.display = "none";
+                document.getElementById("divizvrsene").style.display = "block";
+                document.getElementById("divodbijene").style.display = "none";
+            }
+
+            function toggleAktivne() {
+                document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
+                document.getElementById("aktivne-toggle").style.color = "#ffb266";
+                document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("izvrsene-toggle").style.color = "#333";
+                document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("odbijene-toggle").style.color = "#333";
+                document.getElementById("divaktivne").style.display = "block";
+                document.getElementById("divizvrsene").style.display = "none";
+                document.getElementById("divodbijene").style.display = "none";
+            }
+
+            function toggleOdbijene() {
+                document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("aktivne-toggle").style.color = "#333";
+                document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
+                document.getElementById("izvrsene-toggle").style.color = "#333";
+                document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
+                document.getElementById("odbijene-toggle").style.color = "#ffb266";
+                document.getElementById("divaktivne").style.display = "none";
+                document.getElementById("divizvrsene").style.display = "none";
+                document.getElementById("divodbijene").style.display = "block";
+            }
+        </script>
     </html>
 <?php
 } else {
