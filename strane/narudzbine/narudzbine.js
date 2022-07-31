@@ -18,11 +18,11 @@ ajax.onreadystatechange = function () {
             html += "<td>" + proizvod + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
             html += "<td><small class=d-block>Far far away, behind the word mountains</small></td>>"
-            html += "<td><a href=# class=more>Detalji</a></td>"
+            html += "<td><button id=a class=more onclick=otvoriPopup()>detalji</button></td>"
             if (status == "aktivna") {
                 html += "<td>"
-                html += "<button onclick=izvrsiNarudzbinu(this)>STIK</button>";
-                html += "<button>X</button>";
+                html += "<ion-icon class=stik name=checkmark-outline onclick=izvrsiNarudzbinu(this)></ion-icon>";
+                html += "<ion-icon class=x name=remove-circle-outline></ion-icon>";
                 html += "</td>"
                 html += "</tr>"
                 document.getElementById("aktivne").innerHTML += html;
@@ -38,6 +38,19 @@ ajax.onreadystatechange = function () {
 
     }
 };
+okbtn = document.getElementById("ok-btn");
+popupbox = document.getElementById("popup-overlay");
+
+function otvoriPopup(){
+    popupbox.classList.add('aktivanpopup');
+}
+
+
+
+okbtn.addEventListener('click', () => {
+    popupbox.classList.remove('aktivanpopup');
+})
+
 
 
 function izvrsiNarudzbinu(element) {
