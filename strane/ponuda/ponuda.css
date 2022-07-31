@@ -81,7 +81,7 @@
 }
 
 .wrapper {
-    height: 360px;
+    height: 300px;
     width: 100%;
     overflow-y: scroll;
     margin: 25px 0;
@@ -489,7 +489,7 @@ a {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
-    margin-top: 2rem;
+    margin-top: 1.4rem;
 }
 
 .cart-box {
@@ -547,4 +547,10 @@ a {
 
 .total-price {
     margin-left: 0.5rem;
+}
+
+.exit {
+    cursor: pointer;
+    font-size: 40px;
+    float: right;
 }

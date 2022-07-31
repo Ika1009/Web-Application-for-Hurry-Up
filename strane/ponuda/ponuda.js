@@ -4,7 +4,6 @@ ajax.send();
 ajax.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         let data = JSON.parse(this.responseText);
-        console.log(data);
         let html = "";
         for (let i = 0; i < data.length; i++) {
             let id = data[i].id;
@@ -87,34 +86,52 @@ ajax.onreadystatechange = function() {
             updateTotal();
         }
 
+        let niz = [];
+
+        function hasDuplicates(array) {
+            return (new Set(array)).size !== array.length;
+        }
+
         function addProductToCart(title, price, productImg) {
             let cartShopBox = document.createElement('div');
             cartShopBox.classList.add('cart-box');
             let cartItems = document.getElementsByClassName('cart-content')[0];
+            niz.push(title);
+            if (hasDuplicates(niz)) {
+                alert("Proizvod je vec dodat!");
+                let index = niz.indexOf(title);
+                if (index > -1) {
+                    niz.splice(index, 1);
+                }
+            } else {
+                let cartBoxContent = `
+                                        <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
-            let cartBoxContent = `
-                                <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
+                                        <div class="detail-box">
+                                            <div class="cart-product-title">${title}</div>
+                                            <div class="cart-price">${price}</div>
+                                            <input type="number" value="1" class="cart-quantity">
+                                        </div>
 
-                                <div class="detail-box">
-                                    <div class="cart-product-title">${title}</div>
-                                    <div class="cart-price">${price}</div>
-                                    <input type="number" value="1" class="cart-quantity">
-                                </div>
+                                        <ion-icon name="trash-outline" class="cart-remove"></ion-icon>`;
 
-                                <ion-icon name="trash-outline" class="cart-remove"></ion-icon>`;
-
-            cartShopBox.innerHTML = cartBoxContent;
-            cartItems.append(cartShopBox);
-            cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem);
-            cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
+                cartShopBox.innerHTML = cartBoxContent;
+                cartItems.append(cartShopBox);
+                cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem);
+                cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
+            }
         }
-
-        
 
         function removeCartItem(element) {
             let buttonClicked = element.target;
+            let shopProduct = buttonClicked.parentElement.children[1];  
+            let title = shopProduct.getElementsByClassName('cart-product-title')[0].innerHTML;
             buttonClicked.parentElement.remove();
             updateTotal();
+            let index = niz.indexOf(title);
+            if (index > -1) {
+                niz.splice(index, 1);
+            }
         }
 
         function quantityChanged(element) {
@@ -185,11 +202,18 @@ function navToggle() {
 const naruci = document.querySelector('.button-27');
 const okbtn = document.querySelector('.ok-btn');
 const popupbox = document.querySelector('.popup-overlay');
+const exit = document.querySelector('.exit');
 
 naruci.addEventListener ('click',() => {
     popupbox.classList.add('aktivanpopup');
 })
 
-okbtn.addEventListener ('click',() => {
+okbtn.addEventListener('click', zavrseno);
+
+function zavrseno(element) {
+    window.location.href = "../../login.php"; 
+}
+
+exit.addEventListener('click',() => {
     popupbox.classList.remove('aktivanpopup');
 })

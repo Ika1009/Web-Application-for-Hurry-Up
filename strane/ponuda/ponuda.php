@@ -52,12 +52,18 @@
     <div class="popup-overlay">
         <div class="popup-box-container">
             <div class="cart">
+                <ion-icon name="close-outline" class="exit"></ion-icon><br>
                 <h2 class="cart-title">Rezime narudžbine</h2>
                 
-                <div class="cart-content">
-                    <div class="cart-box">
-                        <div class="detail-box">
-
+                <div class="wrapper">
+                    <div class="cart-content">
+                        <div class="cart-box">
+                            <img hidden class="cart-img">
+                            <div class="detail-box">
+                                <div hidden class="cart-product-title"></div>
+                                <div hidden class="cart-price">0</div>
+                                <input hidden type="number" min="0" value="1" class="cart-quantity">
+                            </div>
                         </div>
                     </div>
                 </div>
