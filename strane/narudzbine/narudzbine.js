@@ -59,9 +59,8 @@ function addToTable() {
       "<input type='button' onclick='remove(this);' id='remove'value ='Remove'>" + "</td>" + "</tr>"
   }
 
-function removeRow(dugme){
+function removeRow(row){
 
-    row = dugme.parentNode.parentNode
     document.getElementById("aktivne").removeChild(row)
 }
 
@@ -71,7 +70,8 @@ function izvrsiNarudzbinu(element) {
     if (nastavitiProvera == false) {
         return;
     }*/
-    
+
+    row = element.parentNode.parentNode
     let row_id = element.parentNode.parentNode.getElementsByTagName("input")[0].getAttribute("data-id");
     // console.log(row_id)
     let ajax = new XMLHttpRequest();
@@ -83,6 +83,10 @@ function izvrsiNarudzbinu(element) {
         }
     };
 
+    let tabelaUbaci = document.getElementById("izvrsene")
+    row.removeChild(row.children[6])
+    tabelaUbaci.appendChild(row)
+
 }
 
 function odbijNarudzbinu(element) {
@@ -91,17 +95,21 @@ function odbijNarudzbinu(element) {
     if (nastavitiProvera == false) {
         return;
     }*/
-    
+    row = element.parentNode.parentNode
     let row_id = element.parentNode.parentNode.getElementsByTagName("input")[0].getAttribute("data-id");
     // console.log(row_id);
     let ajax = new XMLHttpRequest();
-    ajax.open("GET", "./APIs/updateDenied?id=" + row_id, true);
+    ajax.open("GET", "./APIs/updateDenied.php?id=" + row_id, true);
     ajax.send();
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            removeRow(element)
+            removeRow(row)
         }
     };
+
+    let tabelaUbaci = document.getElementById("odbijene")
+    row.removeChild(row.children[6])
+    tabelaUbaci.appendChild(row)
 
 }
 
