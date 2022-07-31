@@ -138,20 +138,6 @@ if (isset($_SESSION['email'])) {
                                     </tbody>
                                 </table>
                             </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Broj Stola</th>
-                                        <th scope="col">Ukupna Cena</th>
-                                        <th scope="col">Vreme narudzbine</th>
-                                        <th scope="col">Napomena</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="odbijene">
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
