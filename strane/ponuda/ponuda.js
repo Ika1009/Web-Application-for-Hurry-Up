@@ -91,13 +91,9 @@ ajax.onreadystatechange = function() {
             let cartShopBox = document.createElement('div');
             cartShopBox.classList.add('cart-box');
             let cartItems = document.getElementsByClassName('cart-content')[0];
-            let cartItemsNames = cartItems.getElementsByClassName('cart-product-title')[0];
-            for (let i = 0; i < cartItemsNames.length; i++) {
-                alert('You have already added this item to the cart');
-            }
 
             let cartBoxContent = `
-                                <img src="../artikli/artikliSlike/82.jpg" alt="Naravno da nije povezano" class="cart-img">
+                                <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
                                 <div class="detail-box">
                                     <div class="cart-product-title">${title}</div>

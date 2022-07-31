@@ -56,15 +56,9 @@
                 
                 <div class="cart-content">
                     <div class="cart-box">
-                        <img src="../artikli/artikliSlike/82.jpg" alt="Naravno da nije povezano" class="cart-img">
-
                         <div class="detail-box">
-                            <div class="cart-product-title">Nesto</div>
-                            <div class="cart-price">210</div>
-                            <input type="number" value="1" class="cart-quantity">
-                        </div>
 
-                        <ion-icon name="trash-outline" class="cart-remove"></ion-icon>
+                        </div>
                     </div>
                 </div>
 
