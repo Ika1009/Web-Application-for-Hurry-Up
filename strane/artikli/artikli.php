@@ -53,7 +53,7 @@ if (isset($_SESSION['user_pin'])) {
         <div class="popup-overlay1" id="popup-overlay1">
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
-                <h3 class="naslov">Dodaj novi artikal:</h3>
+                <h3 class="naslov"></h3>
                 <div id="signup-form">
                     <form id="artikl_form" class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                         <div class="fajl">

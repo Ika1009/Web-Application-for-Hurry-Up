@@ -3,6 +3,29 @@
   padding: 0px;
   box-sizing: border-box;
 }
+.naslov {
+  margin-left: 3.5rem;
+  margin-top: 0.5rem;
+}
+
+.popup-overlay1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  z-index: -3;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+  opacity: 0;
+}
 
 .dugdodajkategoriju {
   margin-right: 2rem;
@@ -57,24 +80,6 @@
   cursor: pointer;
 }
 
-.popup-overlay1 {
-  position: fixed;
-  left: 0;
-  top: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background-color: rgba(0, 0, 0, 0.25);
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
-  z-index: -3;
-  width: 100vw;
-  height: 100vh;
-  user-select: none;
-  opacity: 0;
-}
 
 .popuptext1 {
   text-align: center;
@@ -156,7 +161,7 @@
 }
 
 .fajl {
-  margin-top: 2rem;
+  margin-top: 3rem;
   float: left;
   position: relative;
   width: 45%;
@@ -312,7 +317,7 @@
 
 .submit {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 2rem;
   padding: 10px 0;
   background-color: #333;
   color: #ffb266;
