@@ -2,6 +2,7 @@
     session_start();
 
     if (!isset($_SESSION['email'])) {
+        if (!isset($_SESSION['admin'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,5 +31,7 @@
 </html>
 <?php
     } else {
-        header('Location: index.php');
+        header('Location: admin.php');
+    }} else {
+        header('Location: index.html');
     }

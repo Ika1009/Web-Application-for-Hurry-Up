@@ -39,150 +39,110 @@ ajax.onreadystatechange = function() {
 
         document.getElementById("data").innerHTML += html;
 
-        let carts = document.querySelectorAll('.dodajukolica');
+        ready();
 
-        for (let i = 0; i < carts.length; i++) {
-            carts[i].addEventListener('click', () => {
-                cartNumbers(data[i]);
-                totalCost(data[i]);
-            })
-        }
-
-        function cartNumbers(product) {
-            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
-
-            if (productNumbers) {
-                localStorage.setItem('cartNumbers', productNumbers + 1);
-            } else {
-                localStorage.setItem('cartNumbers', 1);
-            } 
-
-            setItems(product);
-        }
-
-        function setItems(product) {
-            let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
-            if (cartItems !== null) {
-                if (cartItems[product.ime] === undefined) {
-                    cartItems = {
-                        ...cartItems,
-                        [product.ime]: product
-                    }
-                }
-                cartItems[product.ime].kolicina += 1;
-            } else {
-                product.kolicina = 1;
-                cartItems = {
-                    [product.ime]: product
-                }
+        function ready() {
+            let removeCartButtons = document.getElementsByClassName('cart-remove');
+    
+            for (let i = 0; i < removeCartButtons.length; i++) {
+                let button = removeCartButtons[i];
+                button.addEventListener('click', removeCartItem);
             }
 
-            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-        }
+            let quantityInputs = document.getElementsByClassName('cart-quantity');
 
-        function totalCost(product) {
-            let cartCost = localStorage.getItem('totalCost');
-
-            if (cartCost !== null) {
-                cartCost = parseInt(cartCost);
-                localStorage.setItem("totalCost", cartCost + product.cena * (100 - parseInt(product.popust)) / 100);
-            } else {
-                localStorage.setItem("totalCost", product.cena * (100 - parseInt(product.popust)) / 100);
-            }   
-        }
-
-        function displayItems() {
-            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-            let cartCost = localStorage.getItem('totalCost');
-            let productContainer = document.querySelector(".wrapper");
-
-            if (cartItems && productContainer) {
-                Object.values(cartItems).map(item => {
-                    productContainer.innerHTML += `
-                    <div class="proizvodi">
-                            <span id="proizvod">${item.ime}</span>
-                            ${item.cena * (100 - parseInt(item.popust)) / 100} RSD
-                            <ion-icon name="caret-back-circle-outline" class="smanji"></ion-icon>
-                            <span>${item.kolicina}</span>
-                            <ion-icon name="caret-forward-circle-outline" class="povecaj"></ion-icon>
-                            ${item.kolicina * item.cena * (100 - parseInt(item.popust)) / 100} RSD
-                    </div>
-                    `;
-                });
-
-                productContainer.innerHTML += `
-                    <div class="basketTotalContainer">
-                        <h4 class="basketTotalTitle">
-                            Korpa ukupno
-                        </h4>
-                        <h4 class="basketTotal">
-                            ${cartCost} RSD
-                        </h4>
-                    <div>
-                `;
+            for (let i = 0; i < quantityInputs.length; i++) {
+                let input = quantityInputs[i];
+                input.addEventListener('change', quantityChanged);
             }
-        }
 
-        displayItems();
+            let addCart = document.getElementsByClassName('dodajukolica');
 
-        document.querySelectorAll(".smanji").forEach(item => {
-            item.addEventListener("click", smanji);
-        })
-
-        document.querySelectorAll(".povecaj").forEach(item => {
-            item.addEventListener("click", povecaj);
-        })
-
-        function pronadji_u_mapi(element, ime) {
-            if (element.ime === ime) {
-                return element;
+            for (let i = 0; i < addCart.length; i++) {
+                let button = addCart[i];
+                button.addEventListener('click', addCartClicked);
             }
+
+            document.getElementsByClassName('ok-btn')[0].addEventListener('click', buyButtonClicked);
         }
 
-        function smanji() { 
-            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-            let elementos = this.closest('.proizvodi');
-            let ime = elementos.getElementsByTagName('span')[0].innerHTML;
-            let brojac;
+        function buyButtonClicked() {
+            alert('Vasa narudžbina je primljena');
+            let cartContent = document.getElementsByClassName("cart-content")[0];
 
-            Object.values(cartItems).map(item => {
-                let x = pronadji_u_mapi(item, ime);
-                if (x !== undefined) {
-                    x.kolicina--;
-                    brojac = x.kolicina;
-                    let cartCost = localStorage.getItem('totalCost');
-                    localStorage.setItem("totalCost", cartCost - x.cena * (100 - parseInt(x.popust)) / 100);
-                }
-            });
-
-            if (brojac === 0) {
-                console.log("kada je ovde onda treba da se obrise proizvod");
-            } else {
-                let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
-                localStorage.setItem("cartNumbers", productNumbers - 1);
-                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+            while (cartContent.hasChildNodes()) {
+                cartContent.removeChild(cartContent.firstChild);
             }
+
+            updateTotal();
         }
 
-        function povecaj() {
-            let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-            let elementos = this.closest('.proizvodi');
-            let ime = elementos.getElementsByTagName('span')[0].innerHTML;
-            let brojac;
-            
-            Object.values(cartItems).map(item => {
-                let x = pronadji_u_mapi(item, ime);
-                if (x !== undefined) {
-                    x.kolicina++;
-                    brojac = x.kolicina;
-                    let cartCost = parseInt(localStorage.getItem('totalCost'));
-                    localStorage.setItem("totalCost", cartCost + x.cena * (100 - parseInt(x.popust)) / 100);
-                }
-            });
+        function addCartClicked(element) {
+            let button = element.target;
+            let shopProduct = button.parentElement.parentElement;
+            let title = shopProduct.getElementsByTagName('h3')[0].innerHTML;
+            let price = shopProduct.getElementsByClassName('price')[0].innerHTML;
+            let productImg = shopProduct.getElementsByTagName('img')[0].getAttribute("src");
+            addProductToCart(title, price, productImg);
+            updateTotal();
+        }
 
-            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
-            localStorage.setItem("cartNumbers", productNumbers + 1);
-            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+        function addProductToCart(title, price, productImg) {
+            let cartShopBox = document.createElement('div');
+            cartShopBox.classList.add('cart-box');
+            let cartItems = document.getElementsByClassName('cart-content')[0];
+
+            let cartBoxContent = `
+                                <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
+
+                                <div class="detail-box">
+                                    <div class="cart-product-title">${title}</div>
+                                    <div class="cart-price">${price}</div>
+                                    <input type="number" value="1" class="cart-quantity">
+                                </div>
+
+                                <ion-icon name="trash-outline" class="cart-remove"></ion-icon>`;
+
+            cartShopBox.innerHTML = cartBoxContent;
+            cartItems.append(cartShopBox);
+            cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem);
+            cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
+        }
+
+        
+
+        function removeCartItem(element) {
+            let buttonClicked = element.target;
+            buttonClicked.parentElement.remove();
+            updateTotal();
+        }
+
+        function quantityChanged(element) {
+            let input = element.target;
+
+            if (isNaN(input.value) || input.value <= 0) {
+                input.value = 1;
+            }
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let cartContent = document.getElementsByClassName('cart-content')[0];
+            let cartBoxes = cartContent.getElementsByClassName('cart-box');
+            let total = 0;
+
+            for (let i = 0; i < cartBoxes.length; i++) {
+                let cartBox = cartBoxes[i];
+                let priceElement = cartBox.getElementsByClassName('cart-price')[0].innerHTML;
+                let quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
+                let price = parseFloat(priceElement);
+                let quantity = quantityElement.value;
+                total = total + (price * quantity);
+            }
+
+            total = Math.round(total * 100) / 100;
+            document.getElementsByClassName('total-price')[0].innerText = total + "RSD";
         }
     }
 };

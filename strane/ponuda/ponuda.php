@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="ponuda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -28,6 +29,7 @@
                         <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
                         <li><a href="../artikli/login.php">Artikli</a></li>
                         <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
+                        <li><a href="../nalog/profile.php">Moj nalog</a></li>
                     </ul>
                 </nav>
             </div>
@@ -49,19 +51,25 @@
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
-            <div class="products-container">
-                <div class="product-header">
-                    <h5 class="product-title">Proizvod</h5>
-                    <h5 class="price2">Cena</h5>
-                    <h5 class="quantity">Kolicina</h5>
-                    <h5 class="total">Ukupno</h5>
+            <div class="cart">
+                <h2 class="cart-title">Rezime narudžbine</h2>
+                
+                <div class="cart-content">
+                    <div class="cart-box">
+                        <div class="detail-box">
+
+                        </div>
+                    </div>
                 </div>
-                <div class="wrapper" id="ispis">
-                    <!-- ovde se ispisuju narudzbine -->
+
+                <div class="total">
+                    <div class="total-title">Ukupno</div>
+                    <div class="total-price">0 RSD</div>
                 </div>
-                <button class="ok-btn">
-                    <span>Potrvdi narudzbinu</span>
-                </button>
+            </div>
+            <button class="ok-btn">
+                <span>Potrvdi narudzbinu</span>
+            </button>
             </div>
         </div>
     </div>

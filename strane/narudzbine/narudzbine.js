@@ -18,11 +18,11 @@ ajax.onreadystatechange = function () {
             html += "<td>" + proizvod + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
             html += "<td><small class=d-block>Far far away, behind the word mountains</small></td>>"
-            html += "<td><a href=# class=more>Detalji</a></td>"
+            html += "<td><button id=a class=more onclick=otvoriPopup()>detalji</button></td>"
             if (status == "aktivna") {
                 html += "<td>"
-                html += "<button onclick=izvrsiNarudzbinu(this)>STIK</button>";
-                html += "<button onclick=odbijNarudzbinu(this)>X</button>";
+                html += "<ion-icon class=stik name=checkmark-outline onclick=izvrsiNarudzbinu(this)></ion-icon>";
+                html += "<ion-icon class=x name=remove-circle-outline onclick=odbijNarudzbinu(this)></ion-icon>";
                 html += "</td>"
                 html += "</tr>"
                 document.getElementById("aktivne").innerHTML += html;
@@ -38,6 +38,19 @@ ajax.onreadystatechange = function () {
 
     }
 };
+okbtn = document.getElementById("ok-btn");
+popupbox = document.getElementById("popup-overlay");
+
+function otvoriPopup(){
+    popupbox.classList.add('aktivanpopup');
+}
+
+
+
+okbtn.addEventListener('click', () => {
+    popupbox.classList.remove('aktivanpopup');
+})
+
 
 function addToTable() {
     output.innerHTML += "<tr>" + "<td>" + title.value + "</td>" +
@@ -109,42 +122,3 @@ function navToggle() {
     }
 }
 
-const naruci = document.querySelector('.button-27');
-const okbtn = document.querySelector('.ok-btn');
-const popupbox = document.querySelector('.popup-overlay');
-
-function toggleIzvrsene() {
-    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("aktivne-toggle").style.color = "#333";
-    document.getElementById("izvrsene-toggle").style.backgroundColor = "#333";
-    document.getElementById("izvrsene-toggle").style.color = "#ffb266";
-    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("odbijene-toggle").style.color = "#333";
-    document.getElementById("divaktivne").style.display = "none";
-    document.getElementById("divizvrsene").style.display = "block";
-    document.getElementById("divodbijene").style.display = "none";
-}
-
-function toggleAktivne() {
-    document.getElementById("aktivne-toggle").style.backgroundColor = "#333";
-    document.getElementById("aktivne-toggle").style.color = "#ffb266";
-    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("izvrsene-toggle").style.color = "#333";
-    document.getElementById("odbijene-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("odbijene-toggle").style.color = "#333";
-    document.getElementById("divaktivne").style.display = "block";
-    document.getElementById("divizvrsene").style.display = "none";
-    document.getElementById("divodbijene").style.display = "none";
-}
-
-function toggleOdbijene() {
-    document.getElementById("aktivne-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("aktivne-toggle").style.color = "#333";
-    document.getElementById("izvrsene-toggle").style.backgroundColor = "#f9f9f9";
-    document.getElementById("izvrsene-toggle").style.color = "#333";
-    document.getElementById("odbijene-toggle").style.backgroundColor = "#333";
-    document.getElementById("odbijene-toggle").style.color = "#ffb266";
-    document.getElementById("divaktivne").style.display = "none";
-    document.getElementById("divizvrsene").style.display = "none";
-    document.getElementById("divodbijene").style.display = "block";
-}

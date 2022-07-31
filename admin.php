@@ -10,11 +10,175 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="admin.css">
+        <script src="admin.js" defer></script>
     </head>
     <body>
-        <p>Pusi ga nikolo</p>
+        <div class="container">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon"></span>
+                            <span class="title"><h2>Hurry Up</h2></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                            <span class="title">Firme</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                            <span class="title">Podešavanja</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                            <span class="title">Lozinka</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php">
+                            <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                            <span class="title">Odjavi me</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="topbar">
+                    <div class="toggle" onclick="toggleMenu()"></div>
+                    <div class="search">
+                        <label>
+                            <input type="text" placeholder="Pretraži">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">1,042</div>
+                            <div class="cardName">Dnevni pregledi</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">80</div>
+                            <div class="cardName">Prodaje</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">208</div>
+                            <div class="cardName">Komentari</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">12500 RSD</div>
+                            <div class="cardName">Zarada</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="recentOrders">
+                        <div class="cardHeader">
+                            <h2>Nove narudžbine</h2>
+                            <a href="#" class="btn">Sve narudžbine</a>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Ime</td>
+                                    <td>Cena</td>
+                                    <td>Plaćanje</td>
+                                    <td>Status</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Narudžbina 1</td>
+                                    <td>1400 RSD</td>
+                                    <td>Plaćeno</td>
+                                    <td><span class = "status delivered">Isporučeno</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Narudžbina 2</td>
+                                    <td>800 RSD</td>
+                                    <td>Plaćeno</td>
+                                    <td><span class = "status pending">U procesu</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Narudžbina 3</td>
+                                    <td>2600 RSD</td>
+                                    <td>Nije plaćeno</td>
+                                    <td><span class = "status return">Nije isporučeno</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Narudžbina 4</td>
+                                    <td>15000 RSD</td>
+                                    <td>Plaćeno</td>
+                                    <td><span class = "status delivered">Isporučeno</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="recentCustomers">
+                        <div class="cardHeader">
+                            <h2>Nove firme</h2>
+                        </div>
+                        <table>
+                            <tbody>
+                               <tr>
+                                <td><h4>Pleasure<br><span>Čair</span></h4></td>
+                               </tr>
+                               <tr>
+                                <td><h4>Pleasure<br><span>Kazandžijsko</span></h4></td>
+                               </tr>
+                               <tr>
+                                <td><h4>Siesta<br><span>Bulevar</span></h4></td>
+                               </tr>
+                               <tr>
+                                <td><h4>Pasta bar 2x2<br><span>Trg</span></h4></td>
+                               </tr>
+                               <tr>
+                                <td><h4>Dušanov konak<br><span>Trošarina</span></h4></td>
+                               </tr>
+                               <tr>
+                                <td><h4>Majakovski<br><span>Duvanište</span></h4></td>
+                               </tr>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 <?php
