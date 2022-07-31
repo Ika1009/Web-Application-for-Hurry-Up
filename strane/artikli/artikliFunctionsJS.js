@@ -78,11 +78,6 @@ const search = () => {
         }
     }
 }
-
-
-
-
-
 const navToggler = document.querySelector(".nav-toggler");
 navToggler.addEventListener("click", navToggle);
 
