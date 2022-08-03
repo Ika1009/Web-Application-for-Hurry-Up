@@ -12,7 +12,7 @@ if (isset($_SESSION['email'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="profile.css">
-        <link rel="stylesheet" href="mudamoja.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,7 +90,7 @@ if (isset($_SESSION['email'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="updateUserName">Ime firme</label>
-                                        <input type="text" name="updateUserName" class="form-control" value="<?php echo $row['ime_firme']; ?>">
+                                        <input type="text" disabled name="updateUserName" class="form-control" value="<?php echo $row['ime_firme']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="userEmail">Email</label>
