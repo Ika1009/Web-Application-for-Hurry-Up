@@ -55,7 +55,7 @@ function onClickDugmeZaBrisanje(element) {
     //console.log(elementos.textContent);
 
     console.log("kliknuto dugme");
-
+    elementos.remove()
 
 }
 const search = () => {
