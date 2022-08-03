@@ -535,8 +535,6 @@ a {
 }
 
 .container {
-  margin-right: 8%;
-  margin-left: 10%;
   background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -564,13 +562,7 @@ a {
 
 .header .logo,
 .header .nav {
-  padding: 0 15px;
-}
-
-.header .logo a {
-  font-size: 30px;
-  color: #ffb266;
-  text-transform: capitalize;
+  padding: 0 8%;
 }
 
 .header .nav ul li {
@@ -580,7 +572,7 @@ a {
 
 .header .nav ul li a {
   display: block;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
   text-transform: capitalize;
   color: #ebebeb;
