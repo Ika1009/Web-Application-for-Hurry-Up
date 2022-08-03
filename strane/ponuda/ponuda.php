@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,12 +15,13 @@
     <script src="ponuda.js" defer></script>
     <title>Ponuda</title>
 </head>
+
 <body>
     <header class="header">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="logo">
-                    <a href="#">Hurry Up</a>
+                    <img src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
                 </div>
                 <button type="button" class="nav-toggler">
                     <span></span>
@@ -54,7 +56,7 @@
             <div class="cart">
                 <ion-icon name="close-outline" class="exit"></ion-icon><br>
                 <h2 class="cart-title">Rezime narudžbine</h2>
-                
+
                 <div class="wrapper">
                     <div class="cart-content">
                         <div class="cart-box">
@@ -76,8 +78,9 @@
             <button class="ok-btn">
                 <span>Potrvdi narudzbinu</span>
             </button>
-            </div>
         </div>
     </div>
+    </div>
 </body>
+
 </html>

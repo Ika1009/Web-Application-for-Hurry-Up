@@ -25,7 +25,7 @@ if (isset($_SESSION['user_pin'])) {
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="logo">
-                        <a href="#">Hurry Up</a>
+                        <img  src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
                     </div>
                     <button type="button" class="nav-toggler">
                         <span></span>
