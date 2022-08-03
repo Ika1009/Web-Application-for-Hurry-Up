@@ -34,7 +34,15 @@ if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje
     // UPDATE `artikli` SET `ime`="Coca Cola",`cena`="108",`opis`="U limenci",`popust`="10",`kategorija`="burger" WHERE `id`= 102
     if ($slikaVelicina != 0) {
         $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\", `slika`=\"$slikaEkstenzija\" WHERE `id`= " . $_REQUEST['id'];
+        // $slikaID = $conn->insert_id;
+        // $sql = "DELETE FROM artikli WHERE id = " . $_REQUEST['id']; //kako sad ja da dobijem bas artikl koji se brise - evo kako ilija smrdljo
+        // $sql = "INSERT INTO `artikli` (ime, cena, slika, opis, popust, kategorija, ime_firme) VALUES ('$ime','$cena', '$slikaEkstenzija', '$opis', '$popust', '$kategorija', '$ime_firme')";
         echo "updatedWithImage";
+                
+        if ($conn->query($sql) === FALSE) {
+            echo "Greska: " . $sql . "<br>" . $conn->error;
+        }
+
     }
     else {
         $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
