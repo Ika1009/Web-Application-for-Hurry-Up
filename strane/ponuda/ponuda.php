@@ -38,7 +38,7 @@
     <form>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
     </form>
-    <div class="kategorije">
+    <div class="kategorije" id="category">
         <!-- ovde treba kod da sa ubace sve kategorije -->
     </div>
 
