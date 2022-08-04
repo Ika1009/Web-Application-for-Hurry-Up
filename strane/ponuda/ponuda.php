@@ -14,6 +14,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="ponuda.js" defer></script>
     <title>Ponuda</title>
+    <link href="../../slike/hurryup_logo2.ico" rel="icon">
 </head>
 
 <body>

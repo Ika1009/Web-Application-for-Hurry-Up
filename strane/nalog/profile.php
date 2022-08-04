@@ -12,12 +12,12 @@ if (isset($_SESSION['userpin'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="profile.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <title>Moj nalog</title>
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
     </head>
 
@@ -42,7 +42,7 @@ if (isset($_SESSION['userpin'])) {
                 </div>
             </div>
         </header>
-        <div>
+        <div style="align-items: center;">
             <h2 style="text-align: center;">Izmenite profil</h2>
             <div class="row2">
                 <div class="col-md-6 offset-3">
@@ -59,8 +59,7 @@ if (isset($_SESSION['userpin'])) {
 
                         if ($_GET['error'] == 'emptyNameAndEmail') {
                         ?>
-                            <small class="alert alert-danger"> Name and email is required</small>
-                            <hr>
+                            <small class="alert alert-danger"> Name and email is required</small><br><br><br>
                     <?php
                         }
                     }

@@ -17,8 +17,8 @@ if(isset($_POST['update'])){
         //$_SESSION['ime_firme'] = $userNewName;
         header('Location:profile.php?success=userUpdated');
         exit;
-    }} else if (empty($userNewEmail) || empty($userNewName)) {
+    } else if (empty($userNewEmail) || empty($userNewName)) {
         header('Location:profile.php?error=emptyNameAndEmail');
         exit; 
-    }
+    }}
 ?>

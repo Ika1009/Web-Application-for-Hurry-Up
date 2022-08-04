@@ -9,7 +9,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin</title>
+        <title>Dashboard</title>
+        <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="admin.css">
         <script src="admin.js" defer></script>
@@ -43,15 +44,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="password.php">
                             <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                            <span class="title">Lozinka</span>
+                            <span class="title">Promeni lozinku</span>
                         </a>
                     </li>
                     <li>
                         <a href="logout.php">
                             <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                            <span class="title">Odjavi me</span>
+                            <span class="title">Odjavi se</span>
                         </a>
                     </li>
                 </ul>
