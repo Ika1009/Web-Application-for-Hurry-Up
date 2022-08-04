@@ -29,6 +29,6 @@ if(isset($_POST['update'])){
     } else if ($nova_lozinka !== $potvrdi_novu_lozinku) {
         header('Location:password.php?error=Lozinke se ne poklapaju');
     } else {
-        header('Location:password.php?error=Stara lozinka je pogresna');
+        header('Location:password.php?error=Stara lozinka je pogrešna');
     }}
 ?>

@@ -50,7 +50,7 @@ if (isset($_SESSION['userpin'])) {
                     if (isset($_GET['success'])) {
                         if ($_GET['success'] == 'userUpdated') {
                     ?>
-                            <small style="align-items: center;" class="alert alert-success"> User updated successfully</small><br><br><br>
+                            <small style="align-items: center;" class="alert alert-success"> Profil je uspešno ažuriran</small><br><br><br>
                         <?php
                         }
                     }
@@ -59,7 +59,7 @@ if (isset($_SESSION['userpin'])) {
 
                         if ($_GET['error'] == 'emptyNameAndEmail') {
                         ?>
-                            <small class="alert alert-danger"> Name and email is required</small><br><br><br>
+                            <small class="alert alert-danger"> Ime i email su obavezni</small><br><br><br>
                     <?php
                         }
                     }

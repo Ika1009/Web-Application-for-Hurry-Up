@@ -28,8 +28,8 @@
                 <ion-icon name="arrow-back-outline" style="float: left; font-size: 22px; cursor: pointer" class="exit"></ion-icon><br>
                 <i class="bi bi-person-fill" style="font-size: 10rem"></i><br><br>
                 <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['ime_firme']?></h1> 
-                <input type="password" name="pin" class="form-control" placeholder="Pin"></br>      
-                <button type="submit" class="btn" style="background-color: #333; color: #ffb266;">OK</button>
+                <input type="password" name="pin" id="pin" class="form-control" placeholder="Pin"></br>      
+                <button type="submit" class="btn" id="submit-btn" style="background-color: #333; color: #ffb266;">OK</button>
             </form>
         </div>
     </body>
@@ -39,6 +39,27 @@
         function exit() {
             history.back();
         }
+        const pin = document.getElementById("pin");
+        const btn = document.getElementById("submit-btn");
+        deactivate()
+
+        function activate() {
+            btn.disabled = false;
+        }
+
+        function deactivate() {
+            btn.disabled = true;
+        }
+
+        function check() {
+            if (pin.value != '' && pin.value.length === 4) {
+                activate()
+            } else {
+                deactivate()
+            }
+        }
+
+        pin.addEventListener('input', check);
     </script>
 </html>
 <?php

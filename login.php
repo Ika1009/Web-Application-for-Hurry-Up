@@ -22,10 +22,11 @@
                         <?=htmlspecialchars($_GET['error'])?>
                     </div>
                 <?php } ?>
-                <input type="text" name="ime_firme" value="<?php if (isset($_GET['ime_firme']))echo(htmlspecialchars($_GET['ime_firme'])) ?>" class="form-control" aria-describedby="emailHelp" placeholder="Ime firme"><br>  
-                <input type="password" name="lozinka" class="form-control" placeholder="Lozinka"></br>      
+                <input type="text" name="ime_firme" autocomplete="off" value="<?php if (isset($_GET['ime_firme']))echo(htmlspecialchars($_GET['ime_firme'])) ?>" class="form-control" aria-describedby="emailHelp" placeholder="Ime firme"><br>  
+                <input type="password" name="lozinka" class="form-control" autocomplete="off" placeholder="Lozinka"></br>      
                 <button type="submit" class="btn" style="background-color: #333; color: #ffb266;">Prijavi se</button><br><br>
                 <p>Nemate nalog? <a style="text-decoration: none; color: #ffb266;" href="registration.php">Registrujte se</a></p>
+                <hr />
             </form>
         </div>
     </body>
@@ -34,5 +35,5 @@
     } else {
         header('Location: admin.php');
     }} else {
-        header('Location: index.html');
+        header('Location: strane/ponuda/ponuda.php');
     }

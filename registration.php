@@ -28,23 +28,56 @@
                             <?=htmlspecialchars($_GET['error'])?>
                         </div>
                 <?php } ?>
-                <div><input id="ime" type="text" name="ime" class="form-control" required placeholder="Ime" /></div><br>
-                <div><input id="prezime" type="text" name="prezime" class="form-control" required placeholder="Prezime" /></div><br>
-                <div><input id="ime_firme" type="text" name="ime_firme" class="form-control" required placeholder="Ime firme" /></div><br>
-                <div><input id="email" type="email" name="email" class="form-control" required placeholder="Email" /></div><br>
-                <div><input id="broj_telefona" type="text" name="broj_telefona" class="form-control" placeholder="Broj telefona" /></div><br>
-                <div><input id="lozinka" type="password" name="lozinka" class="form-control" required placeholder="Lozinka" /></div><br>
-                <div><input id="pin" type="password" name="pin" class="form-control" required placeholder="Pin" /></div><br>
-                <button type="submit" name="register" onclick="setCookie()" class="btn" style="background-color: #333; color: #ffb266;">Registruj se</button><br><br>
+                <div><input id="ime" type="text" name="ime" class="form-control" autocomplete="off" required placeholder="Ime" /></div><br>
+                <div><input id="prezime" type="text" name="prezime" class="form-control" autocomplete="off" required placeholder="Prezime" /></div><br>
+                <div><input id="ime_firme" type="text" name="ime_firme" class="form-control" autocomplete="off" required placeholder="Ime firme" /></div><br>
+                <div><input id="email" type="email" name="email" class="form-control" autocomplete="off" required placeholder="Email" /></div><br>
+                <div><input id="broj_telefona" type="text" name="broj_telefona" class="form-control" autocomplete="off" placeholder="Broj telefona" /></div><br>
+                <div><input id="lozinka" type="password" name="lozinka" class="form-control" autocomplete="off" required placeholder="Lozinka" /></div><br>
+                <div><input id="pin" type="password" name="pin" class="form-control" autocomplete="off" required placeholder="Pin" /></div><br>
+                <button type="submit" name="register" onclick="setCookie()" id="submit-btn" class="btn" style="background-color: #333; color: #ffb266;">Registruj se</button><br><br>
                 <p>Već imate nalog? <a style="text-decoration: none; color: #ffb266;" href="login.php">Prijavite se</a></p>
                 <hr />
             </form>
         </div>
+        <script>
+            const btn = document.getElementById("submit-btn");
+            const ime = document.getElementById("ime");
+            const prezime = document.getElementById("prezime");
+            const ime_firme = document.getElementById("ime_firme");
+            const email = document.getElementById("email");
+            const lozinka = document.getElementById("lozinka");
+            const pin = document.getElementById("pin");
+            deactivate()
+
+            function activate() {
+                btn.disabled = false;
+            }
+
+            function deactivate() {
+                btn.disabled = true;
+            }
+
+            function check() {
+                if (ime.value != '' && email.value != '' && prezime.value != '' && ime_firme.value != '' && lozinka.value != '' && pin.value != '' && pin.value.length === 4 && lozinka.value.length >= 8) {
+                    activate()
+                } else {
+                    deactivate()
+                }
+            }
+
+            ime.addEventListener('input', check)
+            email.addEventListener('input', check)
+            prezime.addEventListener('input', check)
+            ime_firme.addEventListener('input', check)
+            lozinka.addEventListener('input', check)
+            pin.addEventListener('input', check)
+        </script>
     </body>
 </html>
 <?php
     } else {
         header('Location: admin.php');
     }} else {
-        header('Location: index.html');
+        header('Location: ponuda.php');
     }

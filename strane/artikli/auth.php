@@ -20,10 +20,10 @@ if (isset($_POST['pin'])) {
                 $_SESSION['expire'] = $_SESSION['start'] + (0.1 * 60);
                 header('Location: artikli.php');
             } else {
-                header("Location: login.php?error=Pogresan pin&ime_firme=$ime_firme");
+                header("Location: login.php?error=Pogrešan pin&ime_firme=$ime_firme");
             }
         } else {
-            header("Location: login.php?error=Pogresan pin&ime_firme=$ime_firme");
+            header("Location: login.php?error=Pogrešan pin&ime_firme=$ime_firme");
         }
     }
 }
