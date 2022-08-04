@@ -14,6 +14,8 @@
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </head>
     <body>
         <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; text-align:center;"> 
@@ -23,6 +25,7 @@
                         <?=htmlspecialchars($_GET['error'])?>
                     </div>
                 <?php } ?>
+                <ion-icon name="arrow-back-outline" style="float: left; font-size: 22px; cursor: pointer" class="exit"></ion-icon><br>
                 <i class="bi bi-person-fill" style="font-size: 10rem"></i><br><br>
                 <h1 class="text-center display-4" style="margin-top: -50px; font-size: 2rem;"><?=$_SESSION['ime_firme']?></h1> 
                 <input type="password" name="pin" class="form-control" placeholder="Pin"></br>      
@@ -30,6 +33,13 @@
             </form>
         </div>
     </body>
+    <script>
+        const izlaz = document.querySelector('.exit');
+        izlaz.addEventListener('click', exit);
+        function exit() {
+            history.back();
+        }
+    </script>
 </html>
 <?php
     } else {
