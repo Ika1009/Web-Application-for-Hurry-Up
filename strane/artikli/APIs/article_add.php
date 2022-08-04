@@ -47,6 +47,10 @@ if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje
     else {
         $sql = "UPDATE `artikli` SET `ime`=\"$ime\", `cena`=\"$cena\", `opis`=\"$opis\", `popust`=\"$popust\", `kategorija`=\"$kategorija\" WHERE `id`= " . $_REQUEST['id'];
         echo "updated!image";
+        
+        if ($conn->query($sql) === FALSE) {
+            echo "Greska: " . $sql . "<br>" . $conn->error;
+        }
     }
 
     if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0 && $slikaVelicina != 0) {
@@ -54,6 +58,8 @@ if ($_REQUEST['id'] && strlen($_REQUEST['id']) > 0) { // proverava dal updajtuje
         array_map('unlink', glob($mask));
     }
     $slikaID = $_REQUEST['id'];
+
+    
 }
 else {
 

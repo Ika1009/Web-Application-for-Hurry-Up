@@ -30,8 +30,6 @@ function onClickDugmeZaBrisanje(element) {
     if (nastavitiProvera == false) {
         return;
     }
-
-    //cookie
     let elementos = element.closest('.product');
     let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
     let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
