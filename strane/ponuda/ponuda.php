@@ -76,9 +76,9 @@
                     <div class="total-price" id="ukupno">0 RSD</div>
                 </div>
             </div>
-            <button class="ok-btn">
-                <span>Potrvdi narudzbinu</span>
-            </button>
+            <form action="narudzbina.php" method="post">
+                <button type="submit" name="order" onclick="setCookie()" class="ok-btn">Potrvdi narudzbinu</button>
+            </form>
         </div>
     </div>
     </div>

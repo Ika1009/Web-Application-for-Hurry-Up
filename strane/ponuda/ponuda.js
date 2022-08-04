@@ -73,7 +73,7 @@ ajax.onreadystatechange = function() {
         }
 
         function buyButtonClicked() {
-            alert('Vasa narudžbina je primljena');
+            alert('Vaša narudžbina je primljena!');
             let cartContent = document.getElementsByClassName("cart-content")[0];
 
             while (cartContent.hasChildNodes()) {
@@ -233,11 +233,7 @@ naruci.addEventListener ('click',() => {
     popupbox.classList.add('aktivanpopup');
 })
 
-okbtn.addEventListener('click', zavrseno);
-
-function zavrseno(element) {
-    window.location.href = "../../login.php"; 
-}
+okbtn.addEventListener('click', setCookie2);
 
 exit.addEventListener('click',() => {
     popupbox.classList.remove('aktivanpopup');
@@ -273,4 +269,22 @@ let toggle = () => {
     } else {
        element.setAttribute("hidden", "hidden");
     }
-  }
+}
+
+function setCookie() {
+    let date = new Date();
+    let vreme = date.toLocaleString();
+    date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toUTCString();
+    let cname = "vreme_narucivanja";
+    document.cookie = cname + "=" + vreme + ";" + expires;
+}
+
+function setCookie2() {
+    let date = new Date();
+    date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toUTCString();
+    let konacna_cena = document.getElementById("ukupno").innerHTML;
+    let cname = "narudzbina";
+    document.cookie = cname + "=" + konacna_cena + ";" + expires;
+}
