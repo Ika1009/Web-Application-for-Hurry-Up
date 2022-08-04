@@ -74,27 +74,13 @@ if (isset($_SESSION['admin'])) {
                     </div>
                 </div>
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 85vh;">
-                    <?php
-                    if (isset($_GET['success'])) {
-                        if ($_GET['success'] == 'userUpdated') {
-                    ?>
-                            <small style="align-items: center;" class="alert alert-success"> User updated successfully</small><br><br><br>
-                        <?php
-                        }
-                    }
-
-                    if (isset($_GET['error'])) {
-
-                        if ($_GET['error'] == 'emptyNameAndEmail') {
-                        ?>
-                            <small class="alert alert-danger"> Name and email is required</small>
-                            <hr>
-                    <?php
-                        }
-                    }
-                    ?>
                     <form class="p-5 rounded shadow" action="password_db.php" method="POST" enctype="multipart/form-data" style="width: 30rem; background-color: #fff;">
-                        <label for="userPin">Stara lozinka</label><br><br>
+                        <?php if (isset($_GET['error'])) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= htmlspecialchars($_GET['error']) ?>
+                            </div>
+                        <?php } ?>
+                        <br><label for="userPin">Stara lozinka</label><br><br>
                         <input type="password" name="userPassword" id="fname" class="form-control"><br>
                         <label for="userPin">Nova lozinka</label><br><br>
                         <input type="password" name="userPasswordNew" id="email" class="form-control"><br>
@@ -106,33 +92,31 @@ if (isset($_SESSION['admin'])) {
             </div>
         </div>
         <script>
-            {
-                const btn = document.getElementById("submit-btn");
-                const fname = document.getElementById("fname");
-                const email = document.getElementById("email");
-                const confirm = document.getElementById("confirm");
-                deactivate()
+            const btn = document.getElementById("submit-btn");
+            const fname = document.getElementById("fname");
+            const email = document.getElementById("email");
+            const confirm = document.getElementById("confirm");
+            deactivate()
 
-                function activate() {
-                    btn.disabled = false;
-                }
-
-                function deactivate() {
-                    btn.disabled = true;
-                }
-
-                function check() {
-                    if (fname.value != '' && email.value != '' && confirm.value != '') {
-                        activate()
-                    } else {
-                        deactivate()
-                    }
-                }
-
-                fname.addEventListener('input', check)
-                email.addEventListener('input', check)
-                confirm.addEventListener('input', check)
+            function activate() {
+                btn.disabled = false;
             }
+
+            function deactivate() {
+                btn.disabled = true;
+            }
+
+            function check() {
+                if (fname.value != '' && email.value != '' && confirm.value != '') {
+                    activate()
+                } else {
+                    deactivate()
+                }
+            }
+
+            fname.addEventListener('input', check)
+            email.addEventListener('input', check)
+            confirm.addEventListener('input', check)
         </script>
     </body>
 
