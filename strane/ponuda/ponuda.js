@@ -167,6 +167,8 @@ ajax.onreadystatechange = function() {
 
             total = Math.round(total * 100) / 100;
             document.getElementsByClassName('total-price')[0].innerText = total + "RSD";
+            let ukupno = document.getElementById('ukupno').innerHTML;
+            document.querySelector('.divdugmenaruci span').textContent = ukupno; 
         }
     }
 };
@@ -179,7 +181,6 @@ ajax1.onreadystatechange = function () {
         let data = JSON.parse(this.responseText);
         console.log(data);
         let html = "";
-        html += "<li onclick=sve()>" + "Svi" + "</li>";
         for (let i = 0; i < data.length; i++) {
             let kategorija = data[i].ime_kategorije;
             html += "<li onclick=kategorije(this)>" + kategorija + "</li>";
@@ -263,51 +264,13 @@ const kategorije = (element) => {
     }
 }
 
-function sve() {
-    let ajax = new XMLHttpRequest();
-    ajax.open("GET", "../artikli/APIs/data.php", true);
-    ajax.send();
-    ajax.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        let html = "";
-        let cat = "";
-        for (let i = 0; i < data.length; i++) {
-            let id = data[i].id;
-            let ime = data[i].ime;
-            let cena = data[i].cena;
-            let slika = data[i].slika;
-            let opis = data[i].opis;
-            let popust = data[i].popust;
-            let kategorija = data[i].kategorija;
-            cat += "<ul id=kategorijeIspis>"
-            cat += "</ul>"
-            html += '<div title="' + opis + '" class=product>';
-            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-            html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
-            html += "<div class=imecenakat>";
-            html += "<strong hidden>" + kategorija + "</strong>";
-            if (popust != '0') {
-                html += "<div class=disc>" + popust + "%</div>";
-            }
-            html += "<h3>" + ime + "</h3>";
-            if (popust != '0') {
-                html += "<div class=divcena>"
-                html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
-                html += "</div>"
-            } else {
-                html += "<div class=price>" + cena + "RSD</div>";
-            }
-            html += "</div>";
-            html += "<div class=divdodajukolica>";
-            html += "<button class=dodajukolica>Dodaj Artikal</button>";
-            html += "</div>";
-            html += "</div>";
+let toggle = () => {
+    let element = document.getElementById("button");
+    let hidden = element.getAttribute("hidden");
 
-        }
-
-        document.getElementById("data").innerHTML += html;
+    if (hidden) {
+       element.removeAttribute("hidden");
+    } else {
+       element.setAttribute("hidden", "hidden");
     }
-}
-}
+  }

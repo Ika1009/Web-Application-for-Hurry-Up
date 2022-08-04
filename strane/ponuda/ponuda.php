@@ -50,7 +50,7 @@
     </div>
 
     <div class="divdugmenaruci">
-        <button class="button-27" role="button">Naruči</button>
+        <button class="button-27" role="button" hidden>Naruči za <span>0</span></button>
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
@@ -73,7 +73,7 @@
 
                 <div class="total">
                     <div class="total-title">Ukupno</div>
-                    <div class="total-price">0 RSD</div>
+                    <div class="total-price" id="ukupno">0 RSD</div>
                 </div>
             </div>
             <button class="ok-btn">
