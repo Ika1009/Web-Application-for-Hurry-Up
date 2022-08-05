@@ -169,6 +169,7 @@ ajax.onreadystatechange = function() {
             document.getElementsByClassName('total-price')[0].innerText = total + "RSD";
             let ukupno = document.getElementById('ukupno').innerHTML;
             document.querySelector('.divdugmenaruci span').textContent = ukupno; 
+            toggle();
         }
     }
 };
@@ -261,14 +262,16 @@ const kategorije = (element) => {
     }
 }
 
-let toggle = () => {
-    let element = document.getElementById("button");
-    let hidden = element.getAttribute("hidden");
-
-    if (hidden) {
-       element.removeAttribute("hidden");
+function toggle() {
+    let element = document.getElementById("sakrij");
+    let konacna_cena = document.getElementById("ukupno").innerHTML;
+    let cena = konacna_cena.slice(0, -3);
+    cena = parseInt(cena);
+    if (cena === 0) {
+        element.setAttribute("hidden", "hidden");
+        popupbox.classList.remove('aktivanpopup');
     } else {
-       element.setAttribute("hidden", "hidden");
+        element.removeAttribute("hidden");
     }
 }
 

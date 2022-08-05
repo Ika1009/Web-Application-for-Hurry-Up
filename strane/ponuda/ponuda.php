@@ -49,8 +49,8 @@
         <!-- nalaze se ovde produkti -->
     </div>
 
-    <div class="divdugmenaruci">
-        <button class="button-27" role="button" hidden>Naruči za <span>0</span></button>
+    <div class="divdugmenaruci" id="sakrij" hidden>
+        <button class="button-27" role="button">Naruči za <span>0</span></button>
     </div>
     <div class="popup-overlay">
         <div class="popup-box-container">
