@@ -21,26 +21,26 @@ if (isset($_SESSION['user_pin'])) {
     </head>
 
     <body>
-        <header class="header">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="logo">
-                        <img  src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
-                    </div>
-                    <button type="button" class="nav-toggler">
-                        <span></span>
-                    </button>
-                    <nav class="nav">
-                        <ul>
-                            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
-                            <li><a class="active" href="artikli.php">Artikli</a></li>
-                            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
-                            <li><a href="../nalog/profile.php">Moj nalog</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+        <header>
+            <a class="logo" href="/"><img src="../../slike/hurryup_logo2.jpg" alt="logo" width="auto" height="57px"></a>
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                    <li><a class="active" href="artikli.php">Artikli</a></li>
+                    <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href="../../login.php">Prijavi se</a>
+            <p class="menu cta">Menu</p>
         </header>
+        <div class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="../narudzbine/narudzbine.php">Narudzbine</a>
+                <a class="active" href="artikli.php">Artikli</a>
+                <a href="../ponuda/ponuda.php">Ponuda</a>
+            </div>
+        </div>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
         <div class="text" id="data">
             <div class="divdugme">
