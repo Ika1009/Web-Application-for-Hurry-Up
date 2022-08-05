@@ -45,12 +45,12 @@ if (isset($_SESSION['email'])) {
 
         <div class="popup-overlay" id="popup-overlay">
             <div class="popup-box-container">
-                <div class="products-container">
+                <div class="products-container" id="ispis">
 
-                    <button class="ok-btn" id="ok-btn">
-                        <span>Potrvdi narudzbinu</span>
-                    </button>
                 </div>
+                <button class="ok-btn" id="ok-btn">
+                    <span>Potrvdi narudzbinu</span>
+                </button>
             </div>
         </div>
 

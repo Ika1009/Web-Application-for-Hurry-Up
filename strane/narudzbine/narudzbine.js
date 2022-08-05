@@ -8,17 +8,20 @@ ajax.onreadystatechange = function () {
         for (let i = 0; i < data.length; i++) {
             let html = "";
             let id = data[i].id;
-            let proizvod = data[i].proizvod;
+            let ukupna_cena = data[i].ukupna_cena;
             let vreme_narucivanja = data[i].vreme_narucivanja;
             let broj_stola = data[i].broj_stola;
             let status = data[i].status;
+            let detalji = data[i].detalji;
+            let napomena = data[i].napomena;
             html += "<tr scope=row>";
             html += "<input class=\"id_reda\" data-id=\"" + id + "\" type=\"hidden\">";
             html += "<td>" + broj_stola + "</td>";
-            html += "<td>" + proizvod + "</td> <!--ukupna cena-->";
+            html += "<td>" + ukupna_cena + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
-            html += "<td><small class=d-block>Far far away, behind the word mountains</small></td>>"
+            html += "<td><small class=d-block>" + napomena + "</small></td>>"
             html += "<td><button id=a class=more onclick=otvoriPopup()>detalji</button></td>"
+            document.getElementById('ispis').innerHTML = detalji;
             if (status == "aktivna") {
                 html += "<td>"
                 html += "<ion-icon class=stik name=checkmark-outline onclick=izvrsiNarudzbinu(this)></ion-icon>";
@@ -38,19 +41,6 @@ ajax.onreadystatechange = function () {
 
     }
 };
-okbtn = document.getElementById("ok-btn");
-popupbox = document.getElementById("popup-overlay");
-
-function otvoriPopup(){
-    popupbox.classList.add('aktivanpopup');
-}
-
-
-
-okbtn.addEventListener('click', () => {
-    popupbox.classList.remove('aktivanpopup');
-})
-
 
 function addToTable() {
     output.innerHTML += "<tr>" + "<td>" + title.value + "</td>" +
@@ -113,9 +103,6 @@ function odbijNarudzbinu(element) {
 
 }
 
-
-
-
 const navToggler = document.querySelector(".nav-toggler");
 navToggler.addEventListener("click", navToggle);
 
@@ -130,3 +117,13 @@ function navToggle() {
     }
 }
 
+okbtn = document.getElementById("ok-btn");
+popupbox = document.getElementById("popup-overlay");
+
+function otvoriPopup(){
+    popupbox.classList.add('aktivanpopup');
+}
+
+okbtn.addEventListener('click', () => {
+    popupbox.classList.remove('aktivanpopup');
+})
