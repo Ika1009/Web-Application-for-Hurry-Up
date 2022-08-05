@@ -59,9 +59,15 @@ if (isset($_SESSION['userpin'])) {
 
                         if ($_GET['error'] == 'emptyNameAndEmail') {
                         ?>
-                            <small class="alert alert-danger"> Ime i email su obavezni</small><br><br><br>
+                            <small class="alert alert-danger"> Morate popuniti sva polja!</small><br><br><br>
                     <?php
                         }
+
+                        if ($_GET['error'] == 'wrongPin') {
+                            ?>
+                                <small class="alert alert-danger"> Pin mora biti četvorocifren!</small><br><br><br>
+                        <?php
+                            }
                     }
                     ?>
                     <form action="profile_db.php" method="POST" enctype="multipart/form-data">
@@ -77,19 +83,19 @@ if (isset($_SESSION['userpin'])) {
                         ?>
                                     <div class="form-group">
                                         <label for="userIme">Ime</label><br><br>
-                                        <input type="text" name="userIme" class="form-control" value="<?php echo $row['ime']; ?>">
+                                        <input type="text" name="userIme" id="ime" class="form-control" value="<?php echo $row['ime']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="userPrezime">Prezime</label><br><br>
-                                        <input type="text" name="userPrezime" class="form-control" value="<?php echo $row['prezime']; ?>">
+                                        <input type="text" name="userPrezime" id="prezime" class="form-control" value="<?php echo $row['prezime']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="updateUserName">Ime firme</label><br><br>
-                                        <input type="text" disabled name="updateUserName" class="form-control" value="<?php echo $row['ime_firme']; ?>">
+                                        <input type="text" disabled name="updateUserName" id="imr_firme" class="form-control" value="<?php echo $row['ime_firme']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="userEmail">Email</label><br><br>
-                                        <input type="email" name="userEmail" class="form-control" value="<?php echo $row['email']; ?>">
+                                        <input type="email" name="userEmail" class="form-control" id="email" value="<?php echo $row['email']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="userBrojtelefona">Broj telefona</label><br><br>
@@ -97,10 +103,10 @@ if (isset($_SESSION['userpin'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="userPin">Pin</label><br><br>
-                                        <input type="password" name="userPin" class="form-control" value="<?php echo $row['pin']; ?>">
+                                        <input type="password" name="userPin" class="form-control" id="pin" value="<?php echo $row['pin']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" name="update" class="btn btn-info" value="Update">
+                                        <input type="submit" name="update" id="submit-btn" class="btn btn-info" value="Update">
                                         <a href="../../logout.php" class="btn btn-warning">Odjava</a>
                                     </div>
                         <?php
@@ -112,22 +118,22 @@ if (isset($_SESSION['userpin'])) {
                 </div>
             </div>
         </div>
-    </body>
-    <script>
-        const navToggler = document.querySelector(".nav-toggler");
-        navToggler.addEventListener("click", navToggle);
+        <script>
+            const navToggler = document.querySelector(".nav-toggler");
+            navToggler.addEventListener("click", navToggle);
 
-        function navToggle() {
-            navToggler.classList.toggle("active");
-            const nav = document.querySelector(".nav");
-            nav.classList.toggle("open");
-            if (nav.classList.contains("open")) {
-                nav.style.maxHeight = nav.scrollHeight + "px";
-            } else {
-                nav.removeAttribute("style");
+            function navToggle() {
+                navToggler.classList.toggle("active");
+                const nav = document.querySelector(".nav");
+                nav.classList.toggle("open");
+                if (nav.classList.contains("open")) {
+                    nav.style.maxHeight = nav.scrollHeight + "px";
+                } else {
+                    nav.removeAttribute("style");
+                }
             }
-        }
-    </script>
+        </script>
+    </body>
 
     </html>
 <?php
