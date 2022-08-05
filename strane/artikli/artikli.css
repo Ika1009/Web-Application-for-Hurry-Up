@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
 .naslov {
   margin-left: 3.5rem;
   margin-top: 0.5rem;
@@ -33,9 +34,9 @@
   margin-top: 0;
   font-size: 11px;
   font-weight: bold;
-  background: none!important;
+  background: none !important;
   border: none;
-  padding: 0!important;
+  padding: 0 !important;
   color: #333;
   cursor: pointer;
   text-transform: uppercase;
@@ -64,6 +65,7 @@
   z-index: -3;
   opacity: 0;
 }
+
 .btn1 {
   position: absolute;
   top: 13%;
@@ -526,155 +528,123 @@
   transform: scale(1.05);
 }
 
-ul {
-  list-style: none;
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: #fff;
 }
 
-a {
+
+.nav__links a,
+.cta,
+.overlay__content a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
   text-decoration: none;
 }
 
-.container {
-  background-color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.row {
+.nav__links {
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
 }
 
-.align-items-center {
-  align-items: center;
+.nav__links li {
+  padding: 0px 20px;
 }
 
-.justify-content-between {
-  justify-content: space-between;
+.nav__links li a {
+  transition: color 0.3s ease 0s;
 }
 
-/*header*/
-.header {
-  padding: 12px 0;
-  line-height: normal;
-  background-color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.header .logo,
-.header .nav {
-  padding: 0 8%;
-}
-
-.header .nav ul li {
-  display: inline-block;
-  margin-left: 100px;
-}
-
-.header .nav ul li a {
-  display: block;
-  font-size: 22px;
-  line-height: 1;
-  text-transform: capitalize;
-  color: #ebebeb;
-  padding: 10px 0;
-  transition: all 0.5s ease;
-}
-
-.header .nav ul li a.active,
-.header .nav ul li a:hover {
+.nav__links li a:hover {
   color: #ffb266;
 }
 
-.nav-toggler {
-  height: 34px;
-  width: 44px;
-  color: #ffb266;
-  background-color: #ffb266;
-  border-radius: 4px;
-  cursor: pointer;
+.cta {
+  padding: 9px 25px;
+  background-color: #FFB266;
   border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+}
+
+.cta:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+/* Mobile Nav */
+
+.menu {
   display: none;
-  margin-right: 15px;
 }
 
-.nav-toggler:focus {
-  outline: none;
-  box-shadow: 0 0 15px black;
-}
-
-.nav-toggler span {
-  height: 2px;
-  width: 20px;
-  background-color: #333;
-  display: block;
-  margin: auto;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.nav-toggler.active span {
-  background-color: transparent;
-}
-
-.nav-toggler span::before,
-.nav-toggler span::after {
-  content: "";
-  position: absolute;
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
+  background-color: #24252a;
+  overflow-x: hidden;
+  transition: width 0.5s ease 0s;
+}
+
+.overlay--active {
   width: 100%;
+}
+
+.overlay__content {
+  display: flex;
   height: 100%;
-  background-color: #333;
-  transition: all 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-toggler span::before {
-  transform: translateY(-6px);
+.overlay a {
+  padding: 15px;
+  font-size: 36px;
+  display: block;
+  transition: color 0.3s ease 0s;
 }
 
-.nav-toggler.active span::before {
-  transform: rotate(45deg);
+.overlay a:hover,
+.overlay a:focus {
+  color: #0088a9;
+}
+.overlay .close {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  color: #edf0f1;
 }
 
-.nav-toggler span::after {
-  transform: translateY(6px);
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .close {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 }
 
-.nav-toggler.active span::after {
-  transform: rotate(135deg);
-}
-
-@media (max-width: 850px) {
-  .text {
-    justify-content: center;
-    align-content: center;
+@media only screen and (max-width: 800px) {
+  .nav__links,
+  .cta {
+    display: none;
   }
-
-  .nav-toggler {
-    display: block;
-  }
-
-  .header .nav {
-    width: 100%;
-    padding: 0;
-    max-height: 0px;
-    overflow: hidden;
-    visibility: hidden;
-    transition: all 0.5s ease;
-  }
-
-  .header .nav.open {
-    visibility: visible;
-  }
-
-  .header .nav ul {
-    padding: 12px 15px 0;
-    margin-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .header .nav ul li {
-    display: block;
-    margin: 0;
+  .menu {
+    display: initial;
   }
 }
