@@ -31,7 +31,7 @@
   height: 260px;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .4);
+  box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.35);
 }
 .card .card-bg {
   width: 100%;
@@ -47,6 +47,7 @@
 
 .card:hover .card-bg img {
   transform: scale(1.05);
+  box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.8);
 }
 
 .card .card-context {
