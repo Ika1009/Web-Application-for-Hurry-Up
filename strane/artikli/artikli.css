@@ -552,7 +552,7 @@ header {
 .overlay__content a {
   font-family: "Montserrat", sans-serif;
   font-weight: bolder;
-  color: #fff;
+  color: #f9f9f9;
   text-decoration: none;
 }
 .cta {
@@ -593,7 +593,10 @@ header {
 }
 
 .cta:hover {
-  background-color: #4c4c4c;
+  background-color: #f69b41;
+}
+.logo {
+  cursor: default;
 }
 
 /* Mobile Nav */
@@ -609,13 +612,13 @@ header {
   z-index: 1;
   left: 0;
   top: 0;
-  background-color: #24252a;
+  background-color: #4c4c4c;
   overflow-x: hidden;
   transition: width 0.5s ease 0s;
 }
 
 .overlay--active {
-  width: 100%;
+  width: 60%;
 }
 
 .overlay__content {
@@ -635,7 +638,7 @@ header {
 
 .overlay a:hover,
 .overlay a:focus {
-  color: #0088a9;
+  color: #fff;
 }
 .overlay .close {
   position: absolute;
@@ -643,6 +646,7 @@ header {
   right: 45px;
   font-size: 60px;
   color: #edf0f1;
+  cursor: pointer;
 }
 
 @media screen and (max-height: 450px) {
