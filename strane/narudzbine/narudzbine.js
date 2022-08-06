@@ -20,7 +20,7 @@ ajax.onreadystatechange = function () {
             html += "<td>" + ukupna_cena + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
             html += "<td><small class=d-block>" + napomena + "</small></td>>"
-            html += "<td><button id=a class=more onclick=otvoriPopup()>detalji</button></td>"
+            html += "<td><button id=a class=more onclick=otvoriPopup(this)>detalji</button></td>"
             document.getElementById('ispis').innerHTML = detalji;
             if (status == "aktivna") {
                 html += "<td>"
@@ -44,12 +44,12 @@ ajax.onreadystatechange = function () {
 
 function addToTable() {
     output.innerHTML += "<tr>" + "<td>" + title.value + "</td>" +
-      "<td>" + author.value + "</td>" +
-      "<td>" + "<input type='button' onclick='post(this);' id='post' value ='Post'>" +
-      "<input type='button' onclick='remove(this);' id='remove'value ='Remove'>" + "</td>" + "</tr>"
-  }
+        "<td>" + author.value + "</td>" +
+        "<td>" + "<input type='button' onclick='post(this);' id='post' value ='Post'>" +
+        "<input type='button' onclick='remove(this);' id='remove'value ='Remove'>" + "</td>" + "</tr>"
+}
 
-function removeRow(row){
+function removeRow(row) {
 
     document.getElementById("aktivne").removeChild(row)
 }
@@ -120,9 +120,30 @@ function navToggle() {
 okbtn = document.getElementById("ok-btn");
 popupbox = document.getElementById("popup-overlay");
 
-function otvoriPopup(){
+function otvoriPopup(element) {
     popupbox.classList.add('aktivanpopup');
-}
+    let row_id = element.parentNode.parentNode.getElementsByTagName("input")[0].getAttribute("data-id");
+    let ajax = new XMLHttpRequest();
+    ajax.open("GET", "./APIs/dataOneRow.php?id=" + row_id, true);
+    ajax.send();
+    ajax.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+            console.log(data);
+            let html = "";
+            let id = data[0].id;
+            let ukupna_cena = data[0].ukupna_cena;
+            let vreme_narucivanja = data[0].vreme_narucivanja;
+            let broj_stola = data[0].broj_stola;
+            let status = data[0].status;
+            let detalji = data[0].detalji;
+            let napomena = data[0].napomena;
+            html += "Naruceno: " + detalji + "  -  Ukupna Cena: " + ukupna_cena +  "   -  Vreme Narucivanja: " + 
+            vreme_narucivanja + "  -  Status: " + status + "  -  Napomena: " + napomena;
+            document.getElementById("ispis").innerHTML = html;
+            }
+        }
+};
 
 okbtn.addEventListener('click', () => {
     popupbox.classList.remove('aktivanpopup');
