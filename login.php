@@ -22,13 +22,38 @@
                         <?=htmlspecialchars($_GET['error'])?>
                     </div>
                 <?php } ?>
-                <input type="text" name="ime_firme" autocomplete="off" value="<?php if (isset($_GET['ime_firme']))echo(htmlspecialchars($_GET['ime_firme'])) ?>" class="form-control" aria-describedby="emailHelp" placeholder="Ime firme"><br>  
-                <input type="password" name="lozinka" class="form-control" autocomplete="off" placeholder="Lozinka"></br>      
-                <button type="submit" class="btn" style="background-color: #333; color: #ffb266;">Prijavi se</button><br><br>
+                <input type="text" name="ime_firme" id="ime_firme" autocomplete="off" value="<?php if (isset($_GET['ime_firme']))echo(htmlspecialchars($_GET['ime_firme'])) ?>" class="form-control" aria-describedby="emailHelp" placeholder="Ime firme"><br>  
+                <input type="password" name="lozinka" id="lozinka" class="form-control" autocomplete="off" placeholder="Lozinka"></br>      
+                <button type="submit" class="btn" id="submit-btn" style="background-color: #333; color: #ffb266;">Prijavi se</button><br><br>
                 <p>Nemate nalog? <a style="text-decoration: none; color: #ffb266;" href="registration.php">Registrujte se</a></p>
                 <hr />
             </form>
         </div>
+        <script>
+            const btn = document.getElementById("submit-btn");
+            const ime_firme = document.getElementById("ime_firme");
+            const lozinka = document.getElementById("lozinka");
+            deactivate()
+
+            function activate() {
+                btn.disabled = false;
+            }
+
+            function deactivate() {
+                btn.disabled = true;
+            }
+
+            function check() {
+                if (ime_firme.value != '' && lozinka.value != '') {
+                    activate()
+                } else {
+                    deactivate()
+                }
+            }
+            
+            ime_firme.addEventListener('input', check)
+            lozinka.addEventListener('input', check)
+        </script>
     </body>
 </html>
 <?php

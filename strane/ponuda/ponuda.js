@@ -13,6 +13,7 @@ ajax.onreadystatechange = function() {
             let slika = data[i].slika;
             let opis = data[i].opis;
             let popust = data[i].popust;
+            let kolicina = data[i].kolicina;
             let kategorija = data[i].kategorija;
             cat += "<ul id=kategorijeIspis>"
             cat += "</ul>"
@@ -35,10 +36,11 @@ ajax.onreadystatechange = function() {
             }
             html += "</div>";
             html += "<div class=divdodajukolica>";
-            html += "<button class=dodajukolica>Dodaj Artikal</button>";
+            html += "<button class=oduzmiizkolica>-</button>";
+            html += "<button class=kolicinaukolica>" + kolicina + "</button>";
+            html += "<button class=dodajukolica>+</button>";
+            html += "</div>";    
             html += "</div>";
-            html += "</div>";
-
         }
 
         document.getElementById("data").innerHTML += html;
@@ -55,18 +57,25 @@ ajax.onreadystatechange = function() {
                 button.addEventListener('click', removeCartItem);
             }
 
-            let quantityInputs = document.getElementsByClassName('cart-quantity');
+            /*let quantityInputs = document.getElementsByClassName('cart-quantity');
 
             for (let i = 0; i < quantityInputs.length; i++) {
                 let input = quantityInputs[i];
                 input.addEventListener('change', quantityChanged);
-            }
+            }*/
 
             let addCart = document.getElementsByClassName('dodajukolica');
 
             for (let i = 0; i < addCart.length; i++) {
                 let button = addCart[i];
                 button.addEventListener('click', addCartClicked);
+            }
+
+            let removeCart = document.getElementsByClassName('oduzmiizkolica');
+
+            for (let i = 0; i < removeCart.length; i++) {
+                let button = removeCart[i];
+                button.addEventListener('click', removeCartClicked);
             }
 
             document.getElementsByClassName('ok-btn')[0].addEventListener('click', buyButtonClicked);
@@ -89,35 +98,48 @@ ajax.onreadystatechange = function() {
             let title = shopProduct.getElementsByTagName('h3')[0].innerHTML;
             let price = shopProduct.getElementsByClassName('price')[0].innerHTML;
             let productImg = shopProduct.getElementsByTagName('img')[0].getAttribute("src");
-            addProductToCart(title, price, productImg);
+            let kolicina = parseInt(shopProduct.getElementsByClassName('kolicinaukolica')[0].innerHTML);
+            kolicina++;
+            shopProduct.getElementsByClassName('kolicinaukolica')[0].innerHTML = kolicina;
+            addProductToCart(title, price, productImg, kolicina);
             updateTotal();
         }
 
-        let niz = [];
+        function removeCartClicked(element) {
+            let button = element.target;
+            let shopProduct = button.parentElement.parentElement;
+            let kolicina = parseInt(shopProduct.getElementsByClassName('kolicinaukolica')[0].innerHTML);
+            if (kolicina !== 0) {
+                kolicina--;
+            }
+            shopProduct.getElementsByClassName('kolicinaukolica')[0].innerHTML = kolicina;
+        }
+
+        /*let niz = [];
 
         function hasDuplicates(array) {
             return (new Set(array)).size !== array.length;
-        }
+        }*/
 
-        function addProductToCart(title, price, productImg) {
+        function addProductToCart(title, price, productImg, kolicina) {
             let cartShopBox = document.createElement('div');
             cartShopBox.classList.add('cart-box');
             let cartItems = document.getElementsByClassName('cart-content')[0];
-            niz.push(title);
+            /*niz.push(title);
             if (hasDuplicates(niz)) {
                 alert("Proizvod je vec dodat!");
                 let index = niz.indexOf(title);
                 if (index > -1) {
                     niz.splice(index, 1);
                 }
-            } else {
+            } else {*/
                 let cartBoxContent = `
                                         <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
                                         <div class="detail-box">
                                             <div class="cart-product-title">${title}</div>
                                             <div class="cart-price">${price}</div>
-                                            <input type="number" value="1" class="cart-quantity">
+                                            <h3 class="cart-quantity">${kolicina}</h3>
                                         </div>
 
                                         <ion-icon name="trash-outline" class="cart-remove"></ion-icon>`;
@@ -125,23 +147,23 @@ ajax.onreadystatechange = function() {
                 cartShopBox.innerHTML = cartBoxContent;
                 cartItems.append(cartShopBox);
                 cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem);
-                cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
-            }
+                //cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
+            //}
         }
 
         function removeCartItem(element) {
             let buttonClicked = element.target;
-            let shopProduct = buttonClicked.parentElement.children[1];  
-            let title = shopProduct.getElementsByClassName('cart-product-title')[0].innerHTML;
+            //let shopProduct = buttonClicked.parentElement.children[1];  
+            //let title = shopProduct.getElementsByClassName('cart-product-title')[0].innerHTML;
             buttonClicked.parentElement.remove();
             updateTotal();
-            let index = niz.indexOf(title);
+            /*let index = niz.indexOf(title);
             if (index > -1) {
                 niz.splice(index, 1);
-            }
+            }*/
         }
 
-        function quantityChanged(element) {
+        /*function quantityChanged(element) {
             let input = element.target;
 
             if (isNaN(input.value) || input.value <= 0) {
@@ -149,7 +171,7 @@ ajax.onreadystatechange = function() {
             }
 
             updateTotal();
-        }
+        }*/
 
         function updateTotal() {
             let cartContent = document.getElementsByClassName('cart-content')[0];
@@ -161,7 +183,7 @@ ajax.onreadystatechange = function() {
                 let priceElement = cartBox.getElementsByClassName('cart-price')[0].innerHTML;
                 let quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
                 let price = parseFloat(priceElement);
-                let quantity = quantityElement.value;
+                let quantity = quantityElement.innerHTML;
                 total = total + (price * quantity);
             }
 

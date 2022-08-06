@@ -9,6 +9,11 @@ body {
     overflow-x: auto;
 }
 
+img {
+    width: 100px;
+    height: 100%;
+}
+
 .container {
     position: relative;
     width: 100%;

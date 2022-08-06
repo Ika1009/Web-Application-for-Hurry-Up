@@ -22,7 +22,7 @@
                     <li>
                         <a href="#">
                             <span class="icon"></span>
-                            <span class="title"><h2>Hurry Up</h2></span>
+                            <span class="title"><h2><img src="slike/hurryup_logo2-removebg-preview.png" alt="Logo"></h2></span>
                         </a>
                     </li>
                     <li>
@@ -155,25 +155,8 @@
                             <h2>Nove firme</h2>
                         </div>
                         <table>
-                            <tbody>
-                               <tr>
-                                <td><h4>Pleasure<br><span>Čair</span></h4></td>
-                               </tr>
-                               <tr>
-                                <td><h4>Pleasure<br><span>Kazandžijsko</span></h4></td>
-                               </tr>
-                               <tr>
-                                <td><h4>Siesta<br><span>Bulevar</span></h4></td>
-                               </tr>
-                               <tr>
-                                <td><h4>Pasta bar 2x2<br><span>Trg</span></h4></td>
-                               </tr>
-                               <tr>
-                                <td><h4>Dušanov konak<br><span>Trošarina</span></h4></td>
-                               </tr>
-                               <tr>
-                                <td><h4>Majakovski<br><span>Duvanište</span></h4></td>
-                               </tr>  
+                            <tbody id="firme">
+                                
                             </tbody>
                         </table>
                     </div>
