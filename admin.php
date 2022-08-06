@@ -22,7 +22,7 @@
                     <li>
                         <a href="#">
                             <span class="icon"></span>
-                            <span class="title"><h2>Hurry Up</h2></span>
+                            <span class="title"><h2><img src="slike/hurryup_logo2-removebg-preview.png" alt="Logo"></h2></span>
                         </a>
                     </li>
                     <li>
