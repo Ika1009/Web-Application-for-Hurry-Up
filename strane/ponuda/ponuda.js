@@ -29,7 +29,7 @@ ajax.onreadystatechange = function() {
             if (popust != '0') {
                 html += "<div class=divcena>"
                 html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                html += "<div class=priceprecrtano>" + cena + "RSD</div>"; // precrtaj
+                html += "<div class=priceprecrtano>" + cena + "RSD</div>";
                 html += "</div>"
             } else {
                 html += "<div class=price>" + cena + "RSD</div>";
@@ -44,7 +44,6 @@ ajax.onreadystatechange = function() {
         }
 
         document.getElementById("data").innerHTML += html;
-
         document.getElementById("category").innerHTML += cat;
 
         ready();
@@ -56,13 +55,6 @@ ajax.onreadystatechange = function() {
                 let button = removeCartButtons[i];
                 button.addEventListener('click', removeCartItem);
             }
-
-            /*let quantityInputs = document.getElementsByClassName('cart-quantity');
-
-            for (let i = 0; i < quantityInputs.length; i++) {
-                let input = quantityInputs[i];
-                input.addEventListener('change', quantityChanged);
-            }*/
 
             let addCart = document.getElementsByClassName('dodajukolica');
 
@@ -115,24 +107,20 @@ ajax.onreadystatechange = function() {
             shopProduct.getElementsByClassName('kolicinaukolica')[0].innerHTML = kolicina;
         }
 
-        /*let niz = [];
-
-        function hasDuplicates(array) {
-            return (new Set(array)).size !== array.length;
-        }*/
-
         function addProductToCart(title, price, productImg, kolicina) {
             let cartShopBox = document.createElement('div');
             cartShopBox.classList.add('cart-box');
             let cartItems = document.getElementsByClassName('cart-content')[0];
-            /*niz.push(title);
-            if (hasDuplicates(niz)) {
-                alert("Proizvod je vec dodat!");
-                let index = niz.indexOf(title);
-                if (index > -1) {
-                    niz.splice(index, 1);
+            
+            if (kolicina > 1) {
+                let naslovi = document.getElementsByClassName('cart-product-title');
+                let kolicine = document.getElementsByClassName('cart-quantity'); 
+                for (let i = 0; i < naslovi.length; i++) {
+                    if (naslovi[i].innerHTML == title) {
+                        kolicine[i].innerHTML = kolicina;
+                    }
                 }
-            } else {*/
+            } else {
                 let cartBoxContent = `
                                         <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
@@ -146,32 +134,25 @@ ajax.onreadystatechange = function() {
 
                 cartShopBox.innerHTML = cartBoxContent;
                 cartItems.append(cartShopBox);
-                cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem);
-                //cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged);
-            //}
+                cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem); 
+            }
         }
 
         function removeCartItem(element) {
             let buttonClicked = element.target;
-            //let shopProduct = buttonClicked.parentElement.children[1];  
-            //let title = shopProduct.getElementsByClassName('cart-product-title')[0].innerHTML;
+            let shopProduct = buttonClicked.parentElement.children[1];  
+            let title = shopProduct.getElementsByClassName('cart-product-title')[0].innerHTML;
+            console.log(title);
+            let naslovi = document.getElementsByTagName('h3');
+            let kolicine = document.getElementsByClassName('kolicinaukolica');
+            for (let i = 0; i < naslovi.length; i++) {
+                if (naslovi[i].innerHTML == title) {
+                    kolicine[i].innerHTML = 0;
+                }
+            }
             buttonClicked.parentElement.remove();
             updateTotal();
-            /*let index = niz.indexOf(title);
-            if (index > -1) {
-                niz.splice(index, 1);
-            }*/
         }
-
-        /*function quantityChanged(element) {
-            let input = element.target;
-
-            if (isNaN(input.value) || input.value <= 0) {
-                input.value = 1;
-            }
-
-            updateTotal();
-        }*/
 
         function updateTotal() {
             let cartContent = document.getElementsByClassName('cart-content')[0];
@@ -323,7 +304,7 @@ function setCookie3() {
     let narudzbine = document.getElementsByClassName('detail-box');
     for (let i = 1; i < narudzbine.length; i++) {
         let ime = narudzbine[i].getElementsByClassName('cart-product-title')[0].innerHTML;
-        let kolicina = narudzbine[i].getElementsByClassName('cart-quantity')[0].value;
+        let kolicina = narudzbine[i].getElementsByClassName('cart-quantity')[0].innerHTML;
         let cena = narudzbine[i].getElementsByClassName('cart-price')[0].innerHTML;
         narudzbina.push(ime, kolicina, cena);
     }
