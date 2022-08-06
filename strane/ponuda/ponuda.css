@@ -244,8 +244,9 @@
 }
 
 .dodajukolica {
+    float: right;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
     border-radius: 0.25rem;
     text-align: center;
     background: #333;
@@ -256,6 +257,27 @@
     border: none;
     outline: none;
     transition: all 0.3s ease-in-out;
+}
+
+.oduzmiizkolica {
+    float: left;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 0.25rem;
+    text-align: center;
+    background: #333;
+    color: #f9f9f9;
+    height: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.kolicinaukolica {
+    background: #f9f9f9;
+    border: none;
 }
 
 .popup-overlay {
