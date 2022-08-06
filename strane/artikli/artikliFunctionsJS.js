@@ -2,14 +2,14 @@
 
 function dugmeZaMenjanje(element) {
 
-    let elementos = element.closest('.product');
+    let elementos = element.closest('.card');
 
     let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
-    let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
+    let ime = elementos.getElementsByTagName('h2')[0].innerHTML;
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
     let cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
     let popust = elementos.getElementsByClassName('disc')[0].innerHTML;
-    let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
+    let opis = elementos.getElementsByClassName('p')[0].innerHTML;
 
     document.querySelectorAll(".artikl_input_id")[0].value = id;
     document.querySelectorAll(".artikl_input_ime")[0].value = ime;
@@ -59,11 +59,11 @@ function onClickDugmeZaBrisanje(element) {
 const search = () => {
     const searchbox = document.getElementById("search-item").value.toUpperCase();
     const storeitems = document.getElementById("data");
-    const product = document.querySelectorAll(".product");
-    const productname = storeitems.getElementsByTagName("h3");
+    const product = document.querySelectorAll(".card");
+    const productname = storeitems.getElementsByTagName("h2");
 
     for (let i = 0; i < productname.length; i++) {
-        let match = product[i].getElementsByTagName("h3")[0];
+        let match = product[i].getElementsByTagName("h2")[0];
 
         if (match) {
             let textvalue = match.textContent || match.innerHTML

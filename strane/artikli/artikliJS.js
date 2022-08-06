@@ -14,8 +14,8 @@ ajax.onreadystatechange = function () {
             let opis = data[i].opis;
             let popust = data[i].popust;
             let kategorija = data[i].kategorija;
-            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
             html += "<div class=card>";
+            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
             html += "<div class=card-bg>";
             html += "<img src=artikliSlike/" + id + "." + slika + ">";
             html += "</div>";
