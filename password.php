@@ -86,7 +86,7 @@ if (isset($_SESSION['admin'])) {
                         <input type="password" name="userPasswordNew" id="email" class="form-control"><br>
                         <label for="userPin">Potvrdi novu lozinku</label><br><br>
                         <input type="password" name="userPasswordNewConfirm" id="confirm" class="form-control"><br>
-                        <input type="submit" name="update" id="submit-btn" class="btn2" value="Update">
+                        <input type="submit" name="update" id="submit-btn" class="btn2" value="Potvrdi">
                     </form>
                 </div>
             </div>
