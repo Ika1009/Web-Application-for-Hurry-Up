@@ -159,6 +159,7 @@
 }
 
 .card .card-icons li {
+  list-style:none ;
   cursor: pointer;
   color: #333;
   background: #fff;

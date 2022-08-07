@@ -19,7 +19,7 @@ ajax.onreadystatechange = function () {
             html += "<td>" + broj_stola + "</td>";
             html += "<td>" + ukupna_cena + "</td> <!--ukupna cena-->";
             html += "<td>" + vreme_narucivanja + "</td>";
-            html += "<td><small class=d-block>" + napomena + "</small></td>>"
+            html += "<td><small class=d-block>" + napomena + "</small></td>"
             html += "<td><button id=a class=more onclick=otvoriPopup(this)>detalji</button></td>"
             document.getElementById('ispis').innerHTML = detalji;
             if (status == "aktivna") {
