@@ -32,7 +32,7 @@ if (isset($_SESSION['user_pin'])) {
                     <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                 </ul>
             </nav>
-            <a class="cta" href="../../login.php">Prijavi se</a>
+            <a class="cta" href="../../login.php">Moj Nalog</a>
             <p class="menu cta">Menu</p>
         </header>
         <div class="overlay">
