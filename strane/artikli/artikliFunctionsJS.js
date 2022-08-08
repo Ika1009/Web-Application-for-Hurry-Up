@@ -155,8 +155,7 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.responseText;
-            if (response == "updatedWithImage") { // ne ulazi ovde uopste ?
-               
+            if (response == "updatedWithImage" || response == "updated!image") { // ne ulazi ovde uopste ?
                 console.log("updatedWithImage");
                 let ajax = new XMLHttpRequest();
                 ajax.open("GET", "./APIs/data.php", true);
