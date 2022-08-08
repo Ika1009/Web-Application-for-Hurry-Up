@@ -152,7 +152,7 @@ function otvoriPopup(element) {
             }
 
 
-            document.getElementById("ispis").innerHTML += html;
+            document.getElementById("ispis").innerHTML = html;
             }
         }
 };
