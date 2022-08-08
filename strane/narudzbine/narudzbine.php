@@ -48,9 +48,7 @@ if (isset($_SESSION['email'])) {
                 <div class="products-container" id="ispis">
 
                 </div>
-                <button class="ok-btn" id="ok-btn">
-                    <span>Potrvdi narudzbinu</span>
-                </button>
+                <ion-icon name="close-outline" class="ok-btn" id="ok-btn"></ion-icon><br>
             </div>
         </div>
 

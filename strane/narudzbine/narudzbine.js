@@ -132,8 +132,7 @@ function otvoriPopup(element) {
             let html = "";
             let id = data[0].id;
             let detalji = data[0].detalji;
-
-            html += "<div class class=artklimrtvi>";
+            html += "<div class=artklimrtvi>";
             let artikli_posebno = detalji.split("RSD ")
 
             for (i = 0; i < artikli_posebno.length; i++) {
@@ -143,7 +142,7 @@ function otvoriPopup(element) {
             }
             html += "</div>";
 
-            document.getElementById("ispis").innerHTML += html;
+            document.getElementById("ispis").innerHTML = html;
             }
         }
 };
