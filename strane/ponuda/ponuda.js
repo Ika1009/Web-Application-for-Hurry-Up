@@ -349,7 +349,7 @@ function setCookie3() {
     let ime =
       narudzbine[i].getElementsByClassName("cart-product-title")[0].innerHTML;
     let kolicina =
-      narudzbine[i].getElementsByClassName("cart-quantity")[0].innerHTML;
+      narudzbine[i].parentElement.getElementsByClassName("cart-quantity")[0].innerHTML;
     let cena = narudzbine[i].getElementsByClassName("cart-price")[0].innerHTML;
     narudzbina.push(ime, kolicina, cena);
   }
