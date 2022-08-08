@@ -226,7 +226,7 @@ ajax1.onreadystatechange = function () {
     let html = "";
     for (let i = 0; i < data.length; i++) {
       let kategorija = data[i].ime_kategorije;
-      html += "<li onclick=kategorije(this)>" + kategorija + "</li>";
+      html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
     }
     document.getElementById("kategorijeIspis").innerHTML += html;
   }

@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+
+
+
 .products-container {
     max-width: 650px;
     justify-content: space-around;
@@ -138,6 +141,7 @@
 .search {
     display: flex;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-right: auto;
     margin-left: auto;
     padding: 15px;
