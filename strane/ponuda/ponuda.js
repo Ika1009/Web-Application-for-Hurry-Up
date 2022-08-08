@@ -167,7 +167,7 @@ ajax.onreadystatechange = function () {
       } else {
         for (let i = 0; i < imena.length; i++) {
           if (imena[i].innerHTML == title) {
-            imena[i].parentElement.getElementsByClassName(
+            imena[i].parentElement.parentElement.getElementsByClassName(
               "cart-quantity"
             )[0].innerHTML = kolicina;
           }
@@ -177,7 +177,7 @@ ajax.onreadystatechange = function () {
 
     function removeCartItem(element) {
       let buttonClicked = element.target;
-      let shopProduct = buttonClicked.parentElement.children[1];
+      let shopProduct = buttonClicked.parentElement.children[2];
       let title =
         shopProduct.getElementsByClassName("cart-product-title")[0].innerHTML;
       let naslovi = document.getElementsByTagName("h3");
