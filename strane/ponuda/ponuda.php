@@ -15,6 +15,49 @@
     <script src="ponuda.js" defer></script>
     <title>Ponuda</title>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
+    <style>
+        ::-webkit-scrollbar-track {
+            border: 5px solid white;
+            border-color: transparent;
+            background-color: #f9f9f9;
+        }
+
+        ::-webkit-scrollbar {
+            width: 15px;
+            background-color: #f9f9f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #ffb266;
+            border-radius: 10px;
+        }
+
+        .kategorije {
+            padding: 1rem;
+            width: 90%;
+            min-width: 750px;
+            margin-top: 1rem;
+            margin-right: 5%;
+            margin-left: auto;
+            max-height: 75px;
+            overflow-y: scroll;
+            border: none;
+        }
+
+
+        .jednakat {
+            display: flex;
+            float: left;
+            text-align: center;
+            background-color: #333;
+            color: #f9f9f9;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 
 <body>
