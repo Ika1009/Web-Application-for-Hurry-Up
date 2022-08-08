@@ -249,14 +249,22 @@
     width: 30%;
     border-radius: 0.25rem;
     text-align: center;
-    background: #333;
-    color: #f9f9f9;
+    background: #ffb266;
+    color: #48b02c;
     height: 30px;
-    font-size: 13px;
+    font-size: 30px;
     font-weight: bold;
     border: none;
     outline: none;
     transition: all 0.3s ease-in-out;
+}
+
+
+.dodajukolica:hover .dodajukolica {
+    transform: scale(2);
+}
+.oduzmiizkolica:hover .oduzmiizkolica {
+    transform: scale(2);
 }
 
 .oduzmiizkolica {
@@ -265,10 +273,10 @@
     width: 30%;
     border-radius: 0.25rem;
     text-align: center;
-    background: #333;
-    color: #f9f9f9;
+    background: #ffb266;
+    color: #d84438;
     height: 30px;
-    font-size: 13px;
+    font-size: 30px;
     font-weight: bold;
     border: none;
     outline: none;
@@ -276,7 +284,11 @@
 }
 
 .kolicinaukolica {
-    background: #f9f9f9;
+    background: #ffb266;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    line-height: 30px;
     border: none;
 }
 
