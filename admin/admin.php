@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dashboard</title>
-        <link href="../../slike/hurryup_logo2.ico" rel="icon">
+        <link href="../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="admin.css">
         <script src="admin.js" defer></script>
@@ -22,7 +22,7 @@
                     <li>
                         <a href="#">
                             <span class="icon"></span>
-                            <span class="title"><h2><img src="slike/hurryup_logo2-removebg-preview.png" alt="Logo"></h2></span>
+                            <span class="title"><h2><img src="../slike/hurryup_logo2-removebg-preview.png" alt="Logo"></h2></span>
                         </a>
                     </li>
                     <li>
