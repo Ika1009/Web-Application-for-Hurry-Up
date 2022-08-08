@@ -39,9 +39,9 @@ ajax.onreadystatechange = function () {
       }
       html += "</div>";
       html += "<div class=divdodajukolica>";
-      html += "<button class=oduzmiizkolica>-</button>";
+      html += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
       html += "<button class=kolicinaukolica>" + kolicina + "</button>";
-      html += "<button class=dodajukolica>+</button>";
+      html += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
       html += "</div>";
       html += "</div>";
     }
@@ -141,9 +141,9 @@ ajax.onreadystatechange = function () {
                                         <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
                                         <div class="detail-box">
+                                            <h3 class="cart-quantity">${kolicina}</h3>
                                             <div class="cart-product-title">${title}</div>
                                             <div class="cart-price">${price}</div>
-                                            <h3 class="cart-quantity">${kolicina}</h3>
                                         </div>
 
                                         <ion-icon name="trash-outline" class="cart-remove"></ion-icon>`;
