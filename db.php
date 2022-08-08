@@ -15,9 +15,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-unset($servername, $dbname, $username, $password, $charset, $port); // we don't need them anymore*/
-/*
-$servername = "localhost";
+unset($servername, $dbname, $username, $password, $charset, $port); // we don't need them anymore
+
+/*$servername = "localhost";
 $username   = "hurryupr_milos";
 $password   = "miloskralj";
 $dbname     = "hurryupr_database1";
