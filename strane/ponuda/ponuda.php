@@ -35,13 +35,13 @@
         .kategorije {
             padding: 1rem;
             width: 90%;
-            min-width: 750px;
+            min-width: 350px;
             margin-top: 1rem;
             margin-right: 5%;
             margin-left: auto;
-            max-height: 75px;
-            overflow-y: scroll;
+            max-height: 100px;
             border: none;
+            overflow: auto;
         }
 
 
@@ -50,6 +50,18 @@
             float: left;
             text-align: center;
             background-color: #333;
+            color: #f9f9f9;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+        .svi {
+            display: flex;
+            float: left;
+            text-align: center;
+            background-color: #ffb266;
             color: #f9f9f9;
             cursor: pointer;
             padding: 15px 20px;
