@@ -132,15 +132,23 @@ function otvoriPopup(element) {
             console.log(data);
             let html = "";
             let id = data[0].id;
-            let ukupna_cena = data[0].ukupna_cena;
+            /*let ukupna_cena = data[0].ukupna_cena;
             let vreme_narucivanja = data[0].vreme_narucivanja;
             let broj_stola = data[0].broj_stola;
-            let status = data[0].status;
+            let status = data[0].status;*/
             let detalji = data[0].detalji;
-            let napomena = data[0].napomena;
-            html += "Naruceno: " + detalji + "  -  Ukupna Cena: " + ukupna_cena +  "   -  Vreme Narucivanja: " + 
-            vreme_narucivanja + "  -  Status: " + status + "  -  Napomena: " + napomena;
-            document.getElementById("ispis").innerHTML = html;
+            //let napomena = data[0].napomena;
+
+            let artikli_posebno = detalji.split("RSD ")
+
+            for(i=0; i < artikli_posebno.length; i++)
+            {
+                // html += "<p>"+ artikli_posebno[i] +"</p>";
+                console.log(artikli_posebno[i]);
+            }
+
+            
+            document.getElementById("ispis").innerHTML += html;
             }
         }
 };
