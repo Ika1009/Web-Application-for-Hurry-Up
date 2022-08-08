@@ -39,7 +39,7 @@ ajax.onreadystatechange = function () {
       }
       html += "</div>";
       html += "<div class=divdodajukolica>";
-      html += "<ion-icon class=dodajukolica name=checkmark-outline></ion-icon>";
+      html += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
       html += "<button class=kolicinaukolica>" + kolicina + "</button>";
       html += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
       html += "</div>";
