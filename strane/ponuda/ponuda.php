@@ -117,10 +117,10 @@
                     <div class="cart-content">
                         <div class="cart-box">
                             <img hidden class="cart-img">
-                            <div class="detail-box">
+                            <div class="detail-box" >
                                 <div hidden class="cart-product-title"></div>
                                 <div hidden class="cart-price">0</div>
-                                <input hidden type="number" min="0" value="1" class="cart-quantity">
+                                <input hidden type="number" min="0" value="1" class="cart-quantity"     font-family="Roobert, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol">
                             </div>
                         </div>
                     </div>
