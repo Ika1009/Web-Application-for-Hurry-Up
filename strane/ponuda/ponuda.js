@@ -137,11 +137,11 @@ ajax.onreadystatechange = function () {
           }
         }
       } else {
-        let cartBoxContent = `
+        let cartBoxContent = ` 
+                                        <h3 class="cart-quantity">${kolicina}</h3>
                                         <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
 
                                         <div class="detail-box">
-                                            <h3 class="cart-quantity">${kolicina}</h3>
                                             <div class="cart-product-title">${title}</div>
                                             <div class="cart-price">${price}</div>
                                         </div>
