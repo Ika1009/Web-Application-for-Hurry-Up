@@ -21,7 +21,6 @@ ajax.onreadystatechange = function () {
             html += "<td>" + vreme_narucivanja + "</td>";
             html += "<td><small class=d-block>" + napomena + "</small></td>"
             html += "<td><button id=a class=more onclick=otvoriPopup(this)>detalji</button></td>"
-            document.getElementById('ispis').innerHTML = detalji;
             if (status == "aktivna") {
                 html += "<td>"
                 html += "<ion-icon class=stik name=checkmark-outline onclick=izvrsiNarudzbinu(this)></ion-icon>";
@@ -132,29 +131,21 @@ function otvoriPopup(element) {
             console.log(data);
             let html = "";
             let id = data[0].id;
-            /*let ukupna_cena = data[0].ukupna_cena;
-            let vreme_narucivanja = data[0].vreme_narucivanja;
-            let broj_stola = data[0].broj_stola;
-            let status = data[0].status;*/
             let detalji = data[0].detalji;
-            //let napomena = data[0].napomena;
 
+            html += "<div class class=artklimrtvi>";
             let artikli_posebno = detalji.split("RSD ")
 
-            for(i=0; i < artikli_posebno.length; i++)
-            {
-                // html += "<p>"+ artikli_posebno[i] +"</p>";
+            for (i = 0; i < artikli_posebno.length; i++) {
                 console.log(artikli_posebno[i]);
-                // ovo su svaki artikli posebno, ako ti treba svaka varijabla posebno - 
-                // samo uradi ovo artikli_posebno[i].split(" ");
-                // dobijas niz varijabli u for ih stavi
-                // prva je ime, druga broj stola, treca cena.
+                html += "<br><br><div>" + artikli_posebno[i] + "</div><br>";
+                
             }
-
+            html += "</div>";
 
             document.getElementById("ispis").innerHTML += html;
-            }
         }
+    }
 };
 
 okbtn.addEventListener('click', () => {

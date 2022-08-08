@@ -269,7 +269,13 @@ h2 {
 .table .box th {
     border: none !important;
 }
-
+.artiklimrtvi {
+    font-size: 20px;
+    text-transform: capitalize;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
 
 .stik {
     color: #48b02c;
