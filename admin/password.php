@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include('../db.php');
 if (isset($_SESSION['admin'])) {
 ?>
     <!DOCTYPE html>
@@ -11,7 +11,7 @@ if (isset($_SESSION['admin'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Izmeni profil</title>
-        <link href="../../slike/hurryup_logo2.ico" rel="icon">
+        <link href="../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="admin.css">
         <link rel="stylesheet" href="password.css">
@@ -55,7 +55,7 @@ if (isset($_SESSION['admin'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="logout.php">
+                        <a href="../prijava/logout.php">
                             <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                             <span class="title">Odjavi se</span>
                         </a>
