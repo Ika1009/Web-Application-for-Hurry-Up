@@ -224,7 +224,7 @@ ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
-    html += "<li onclick=kategorije(this)>Svi</li>";
+    html += "<span class=svi onclick=kategorije(this)>Svi</span>";
     for (let i = 0; i < data.length; i++) {
       let kategorija = data[i].ime_kategorije;
       html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
