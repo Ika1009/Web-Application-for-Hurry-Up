@@ -14,37 +14,30 @@ ajax.onreadystatechange = function () {
             let opis = data[i].opis;
             let popust = data[i].popust;
             let kategorija = data[i].kategorija;
-            html += "<div class=card>";
+            html += "<div class=product>";
             html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-            html += "<div class=card-bg>";
+            html += "<div class=divdugizlaz>";
             html += "<img src=artikliSlike/" + id + "." + slika + ">";
+            html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+            html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
             html += "</div>";
-            html += "<div class=card-context>";
-            html += "<div class=dark-bg></div>";
-            html += "<div class=ime><h2>" + ime + "</h2></div>";
+            html += "<div class=imecenakat>"
             if (popust != '0') {
                 html += "<div class=disc>" + popust + "%</div>";
             }
-
+            html += "<h3>" + ime + "</h3>";
+            html += "<p class=cat>" + kategorija + "</p>";
             if (popust != '0') {
-                html += "<h3 class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</h3>";
-                html += "<h3 class=priceprecrtano>" + cena + " RSD</h3>"; // precrtaj
+                html += "<div class=divcena>"
+                html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                html += "</div>"
             } else {
-                html += "<h3 class=price>" + cena + " RSD</h3>";
+                html += "<div class=price>" + cena + " RSD</div>";
             }
-            html += "<p>" + opis + "</p>";
+            html += "<p class=desc>" + opis + "</p>";
+            html += "</div>"
             html += "</div>";
-            html += "<div class=card-icons>";
-            html += "<ul><li>"
-            html += "<ion-icon name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-            html += "</li><li>"
-            html += "<ion-icon name=pencil onclick=dugmeZaMenjanje(this)></ion-icon>";
-            html += "</li></ul>";
-            html += "</div>";
-            html += "</div>";
-
-
-
         }
         document.getElementById("data").innerHTML += html;
     }

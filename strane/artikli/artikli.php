@@ -14,8 +14,6 @@ if (isset($_SESSION['user_pin'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <title>Artikli</title>
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="artikli.css">
@@ -23,38 +21,35 @@ if (isset($_SESSION['user_pin'])) {
     </head>
 
     <body>
-        <header>
-            <a class="logo"><img src="../../slike/hurryup_logo2-removebg-preview.png" alt="logo" width="auto" height="77px"></a>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
-                    <li><a class="active" href="artikli.php">Artikli</a></li>
-                    <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
-                </ul>
-            </nav>
-            <a class="cta" href="../../login.php">Moj Nalog</a>
-            <p class="menu cta">Menu</p>
-        </header>
-        <div class="overlay">
-            <a class="close">&times;</a>
-            <div class="overlay__content">
-                <a href="../narudzbine/narudzbine.php">Narudzbine</a>
-                <a class="active" href="artikli.php">Artikli</a>
-                <a href="../ponuda/ponuda.php">Ponuda</a>
-            </div>
-        </div>
-        <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
-        <div class="form-modal">
-            <div class="text" id="data">
-                <div class="divdugme">
-                    <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup('novi_kreiram')">
-                        <ion-icon name="add"></ion-icon></i>
+        <header class="header">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="logo">
+                        <img  src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
+                    </div>
+                    <button type="button" class="nav-toggler">
+                        <span></span>
                     </button>
+                    <nav class="nav">
+                        <ul>
+                            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                            <li><a class="active" href="artikli.php">Artikli</a></li>
+                            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                            <li><a href="../nalog/profile.php">Moj nalog</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
+        </header>
+        <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
+        <div class="text" id="data">
+            <div class="divdugme">
+                <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup('novi_kreiram')">
+                    <ion-icon name="add"></ion-icon></i>
+                </button>
+            </div>
+
         </div>
-
-
         <div class="popup-overlay1" id="popup-overlay1">
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
