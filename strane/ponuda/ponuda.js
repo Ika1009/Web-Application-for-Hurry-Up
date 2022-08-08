@@ -224,6 +224,7 @@ ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
+    html += "<li onclick=kategorije(this)>Svi</li>";
     for (let i = 0; i < data.length; i++) {
       let kategorija = data[i].ime_kategorije;
       html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
@@ -288,14 +289,20 @@ const kategorije = (element) => {
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("strong");
 
-  for (let i = 0; i < productname.length; i++) {
-    let match = product[i].getElementsByTagName("strong")[0];
-    if (match) {
-      let textvalue = match.textContent || match.innerHTML;
-      if (element.innerHTML === textvalue) {
-        product[i].style.display = "";
-      } else {
-        product[i].style.display = "none";
+  if (element.innerHTML === 'Svi') {
+    for (let i = 0; i < product.length; i++) {
+      product[i].style.display = "";
+    }
+  } else {
+    for (let i = 0; i < productname.length; i++) {
+      let match = product[i].getElementsByTagName("strong")[0];
+      if (match) {
+        let textvalue = match.textContent || match.innerHTML;
+        if (element.innerHTML === textvalue) {
+          product[i].style.display = "";
+        } else {
+          product[i].style.display = "none";
+        }
       }
     }
   }

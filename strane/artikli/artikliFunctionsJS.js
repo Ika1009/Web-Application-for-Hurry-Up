@@ -7,16 +7,28 @@ function dugmeZaMenjanje(element) {
     let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
     let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
-    let cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
-    let popust = elementos.getElementsByClassName('disc')[0].innerHTML;
+    let cena;
+    let popust;
+    if(typeof(elementos.getElementsByClassName('priceprecrtano')[0]) == "undefined")
+    {
+        cena = elementos.getElementsByClassName('price')[0].innerHTML;
+        popust = 0;
+    }
+    else
+    {
+        cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
+        popust = elementos.getElementsByClassName('disc')[0].innerHTML;
+    }
     let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
+    let kategorija = elementos.getElementsByClassName('cat')[0].innerHTML;
+
 
     document.querySelectorAll(".artikl_input_id")[0].value = id;
     document.querySelectorAll(".artikl_input_ime")[0].value = ime;
     document.querySelectorAll(".artikl_input_cena")[0].value = parseInt(cena);
     document.querySelectorAll(".artikl_input_popust")[0].value = parseInt(popust);
     document.querySelectorAll(".artikl_input_opis")[0].value = opis;
-    //document.querySelectorAll(".artikl_input_kategorija")[0].value = kategorija;
+    document.querySelectorAll(".artikl_input_kategorija")[0].value = kategorija;
 
     otvoriPopup();
 
@@ -143,8 +155,7 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.responseText;
-            if (response == "updatedWithImage") { // ne ulazi ovde uopste ?
-               
+            if (response == "updatedWithImage" || response == "updated!image") { // ne ulazi ovde uopste ?
                 console.log("updatedWithImage");
                 let ajax = new XMLHttpRequest();
                 ajax.open("GET", "./APIs/data.php", true);
