@@ -144,8 +144,8 @@ function otvoriPopup(element) {
             html += "</div>";
 
             document.getElementById("ispis").innerHTML += html;
+            }
         }
-    }
 };
 
 okbtn.addEventListener('click', () => {

@@ -107,7 +107,7 @@ if (isset($_SESSION['userpin'])) {
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="update" id="submit-btn" class="btn btn-info" value="Update">
-                                        <a href="../../logout.php" class="btn btn-warning">Odjava</a>
+                                        <a href="../../prijava/logout.php" class="btn btn-warning">Odjava</a>
                                     </div>
                         <?php
                                 }

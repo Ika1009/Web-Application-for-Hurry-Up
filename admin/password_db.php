@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include('../db.php');
 
 if(isset($_POST['update'])){
     $mysql = "SELECT * FROM registracija WHERE ime_firme ='Hurry Up'";

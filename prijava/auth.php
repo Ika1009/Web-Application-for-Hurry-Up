@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include '../db.php';
 
 if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
     $ime_firme = $_POST['ime_firme'];
@@ -21,11 +21,11 @@ if (isset($_POST['ime_firme']) && isset($_POST['lozinka'])) {
                 if ($ime_firme == "Hurry Up") {
                     $_SESSION['ime_firme'] = $row['ime_firme'];
                     $_SESSION['admin'] = $row['ime_firme'];
-                    header('Location: admin.php');
+                    header('Location: ../admin/admin.php');
                 } else {
                     $_SESSION['ime_firme'] = $row['ime_firme'];
                     $_SESSION['email'] = $row['email'];
-                    header("Location: strane/ponuda/ponuda.php");
+                    header("Location: ../strane/ponuda/ponuda.php");
                 }
             } else {
                 header("Location: login.php?error=Pogrešno ime firme ili lozinka&ime_firme=$ime_firme");
