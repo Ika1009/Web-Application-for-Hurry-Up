@@ -145,9 +145,13 @@ function otvoriPopup(element) {
             {
                 // html += "<p>"+ artikli_posebno[i] +"</p>";
                 console.log(artikli_posebno[i]);
+                // ovo su svaki artikli posebno, ako ti treba svaka varijabla posebno - 
+                // samo uradi ovo artikli_posebno[i].split(" ");
+                // dobijas niz varijabli u for ih stavi
+                // prva je ime, druga broj stola, treca cena.
             }
 
-            
+
             document.getElementById("ispis").innerHTML += html;
             }
         }
