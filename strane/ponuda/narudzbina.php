@@ -8,7 +8,7 @@ if (isset($_POST['order'])) {
     $ime_firme = $_SESSION['ime_firme'];
     $sql = "INSERT INTO `narudzbine` (ukupna_cena, vreme_narucivanja, broj_stola, ime_firme, detalji, napomena) VALUES ('$konacna_cena', '$vreme_narucivanja', 'qr kod', '$ime_firme', '$detalji', 'nema')";
     if ($conn->query($sql) === TRUE) {
-        header('Location: ponuda.php');  
+        ?> <script>history.back();</script> <?php
     } else {  
         echo "Greska: " . $sql . "<br>" . $conn->error;  
     }
