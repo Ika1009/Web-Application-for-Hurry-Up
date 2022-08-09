@@ -25,9 +25,6 @@ ajax.onreadystatechange = function () {
       html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
       html += "<div class=imecenakat>";
       html += "<strong hidden>" + kategorija + "</strong>";
-      if (popust != "0") {
-        html += "<div class=disc>" + popust + "%</div>";
-      }
       html += "<h3>" + ime + "</h3>";
       if (popust != "0") {
         html += "<div class=divcena>";
