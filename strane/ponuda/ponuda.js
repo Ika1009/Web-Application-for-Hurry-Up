@@ -1,5 +1,8 @@
+const url = new URL(window.location.href);
+let ime_firme = url.searchParams.get("ime_firme");
+
 let ajax = new XMLHttpRequest();
-ajax.open("GET", "../artikli/APIs/data.php", true);
+ajax.open("GET", "./API/data.php?ime_firme=" + ime_firme, true);
 ajax.send();
 ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -365,13 +368,12 @@ function setCookie3() {
   document.cookie = cname + "=" + result + ";" + expires;
 }
 
-const url = new URL(window.location.href);
+
 
 function setCookie4() {
   let date = new Date();
   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
   let expires = "expires=" + date.toUTCString();
-  let ime_firme = url.searchParams.get("ime_firme");
   let cname = "ime_firme";
   document.cookie = cname + "=" + ime_firme + ";" + expires;
 }
