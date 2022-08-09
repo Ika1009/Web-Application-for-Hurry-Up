@@ -279,6 +279,8 @@ naruci.addEventListener("click", () => {
 
 okbtn.addEventListener("click", setCookie2);
 okbtn.addEventListener("click", setCookie3);
+okbtn.addEventListener("click", setCookie4);
+okbtn.addEventListener("click", setCookie5);
 
 exit.addEventListener("click", () => {
   popupbox.classList.remove("aktivanpopup");
@@ -361,4 +363,24 @@ function setCookie3() {
   });
   let cname = "detalji";
   document.cookie = cname + "=" + result + ";" + expires;
+}
+
+const url = new URL(window.location.href);
+
+function setCookie4() {
+  let date = new Date();
+  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+  let expires = "expires=" + date.toUTCString();
+  let ime_firme = url.searchParams.get("ime_firme");
+  let cname = "ime_firme";
+  document.cookie = cname + "=" + ime_firme + ";" + expires;
+}
+
+function setCookie5() {
+  let date = new Date();
+  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+  let expires = "expires=" + date.toUTCString();
+  let broj_stola = url.searchParams.get("broj_stola");
+  let cname = "broj_stola";
+  document.cookie = cname + "=" + broj_stola + ";" + expires;
 }
