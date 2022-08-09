@@ -221,7 +221,7 @@ ajax.onreadystatechange = function () {
 };
 
 let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "../artikli/APIs/kategorijeDobivanje.php", true);
+ajax1.open("GET", "./API/kategorijeDobivanje.php?ime_firme=" + ime_firme, true);
 ajax1.send();
 ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -232,7 +232,7 @@ ajax1.onreadystatechange = function () {
       let kategorija = data[i].ime_kategorije;
       html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
     }
-    document.getElementById("kategorijeIspis").innerHTML += html;
+    document.getElementById("category").innerHTML += html;
   }
 };
 
