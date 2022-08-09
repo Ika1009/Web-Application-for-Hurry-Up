@@ -137,8 +137,15 @@ function otvoriPopup(element) {
 
             for (i = 0; i < artikli_posebno.length; i++) {
                 console.log(artikli_posebno[i]);
-                html += "<br><br><div>" + artikli_posebno[i] + "</div><br>";
+                razdvojene = artikli_posebno[i].split("&");
                 
+                for (j = 3; j < razdvojene.length; j = j + 3) {
+                    let ime = razdvojene[j-2]
+                    let kolicina = razdvojene[j-1]
+                    let cena = razdvojene[j-0]
+                    html += "<br><br><div>" + ime + " - " + kolicina + " - " + cena + "</div><br>";
+                }
+
             }
             html += "</div>";
 

@@ -127,6 +127,7 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
     var option = document.createElement("option");
     option.text = txt.value;
     kategorije.add(option);
+    kategorije.selectedIndex = kategorije.length - 1;
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./APIs/dodajKategoriju.php?addNewCategory=" + txt.value, true);
     ajax.send();
