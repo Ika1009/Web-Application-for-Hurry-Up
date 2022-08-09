@@ -42,6 +42,11 @@ if (isset($_SESSION['user_pin'])) {
             </div>
         </header>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
+        
+        <div class="kategorije" id="category">
+            <!-- ovde treba kod da sa ubace sve kategorije -->
+        </div>
+
         <div class="text" id="data">
             <div class="divdugme">
                 <button type="dodaj" class="dugmeZaDodavanje" onclick="otvoriPopup('novi_kreiram')">
