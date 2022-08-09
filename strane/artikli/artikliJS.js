@@ -60,10 +60,10 @@ ajax1.onreadystatechange = function () {
     }
 };
 
-let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "./API/kategorijeDobivanje.php", true);
-ajax1.send();
-ajax1.onreadystatechange = function () {
+let ajax2 = new XMLHttpRequest();
+ajax2.open("GET", "./APIs/kategorijeDobivanje.php", true);
+ajax2.send();
+ajax2.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
