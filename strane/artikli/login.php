@@ -66,5 +66,5 @@
     } else {
         header('Location: artikli.php');
     } } else {
-        header('Location: ../../login.php');
+        header('Location: ../../prijava/login.php');
     }

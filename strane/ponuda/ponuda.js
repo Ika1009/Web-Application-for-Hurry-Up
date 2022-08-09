@@ -357,7 +357,7 @@ function setCookie3() {
   let string = "";
   let result = "";
   narudzbina.forEach((element) => {
-    result += string.concat(" ", element);
+    result += string.concat("&", element);
   });
   let cname = "detalji";
   document.cookie = cname + "=" + result + ";" + expires;

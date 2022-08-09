@@ -187,5 +187,5 @@ if (isset($_SESSION['email'])) {
     </html>
 <?php
 } else {
-    header('Location: ../../login.php');
+    header('Location: ../../prijava/login.php');
 }
