@@ -87,7 +87,7 @@
                     <ul>
                         <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
                         <li><a href="../artikli/login.php">Artikli</a></li>
-                        <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
+                        <li><a class="active" href="../ponuda/ponuda.php?ime_firme=<?php echo $_SESSION['ime_firme'] ?>">Ponuda</a></li>
                         <li><a href="../nalog/profile.php">Moj nalog</a></li>
                     </ul>
                 </nav>

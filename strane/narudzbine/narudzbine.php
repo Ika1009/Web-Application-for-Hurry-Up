@@ -35,7 +35,7 @@ if (isset($_SESSION['email'])) {
                         <ul>
                             <li><a class="active" href="../narudzbine/narudzbine.php">Narudzbine</a></li>
                             <li><a href="../artikli/login.php">Artikli</a></li>
-                            <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
+                            <li><a href="../ponuda/ponuda.php?ime_firme=<?php echo $_SESSION['ime_firme'] ?>">Ponuda</a></li>
                             <li><a href="../nalog/profile.php">Moj nalog</a></li>
                         </ul>
                     </nav>
