@@ -2,7 +2,7 @@
     session_start();
 
     if (isset($_SESSION['email'])) {
-        if (!isset($_SESSION['userpin'])) {
+        if (!isset($_SESSION['pin'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; text-align:center;"> 
-            <form class="p-5 rounded shadow" action="auth.php" method="post" style="width: 30rem;">
+            <form class="p-5 rounded shadow" action="auth2.php" method="post" style="width: 30rem;">
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-danger" role="alert">
                         <?=htmlspecialchars($_GET['error'])?>
@@ -65,7 +65,7 @@
 </html>
 <?php
     } else {
-        header('Location: password.php');
+        header('Location: info.php');
     } } else {
         header('Location: profile.php');
     }
