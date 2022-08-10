@@ -22,9 +22,6 @@ ajax.onreadystatechange = function () {
             html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
             html += "</div>";
             html += "<div class=imecenakat>"
-            if (popust != '0') {
-                html += "<div class=disc>" + popust + "%</div>";
-            }
             html += "<h3>" + ime + "</h3>";
             html += "<p class=cat>" + kategorija + "</p>";
             if (popust != '0') {
@@ -58,20 +55,4 @@ ajax1.onreadystatechange = function () {
             elementos.add(option);
         }
     }
-};
-
-let ajax2 = new XMLHttpRequest();
-ajax2.open("GET", "./APIs/kategorijeDobivanje.php", true);
-ajax2.send();
-ajax2.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    let data = JSON.parse(this.responseText);
-    let html = "";
-    html += "<span class=svi onclick=kategorije(this)>Svi</span>";
-    for (let i = 0; i < data.length; i++) {
-      let kategorija = data[i].ime_kategorije;
-      html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
-    }
-    document.getElementById("category").innerHTML += html;
-  }
 };
