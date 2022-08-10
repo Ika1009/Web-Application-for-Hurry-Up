@@ -65,7 +65,7 @@
 </html>
 <?php
     } else {
-        header('Location: artikli.php');
+        header('Location: password.php');
     } } else {
-        header('Location: ../../prijava/login.php');
+        header('Location: profile.php');
     }

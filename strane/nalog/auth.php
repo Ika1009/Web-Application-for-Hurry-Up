@@ -18,7 +18,7 @@ if (isset($_POST['pin'])) {
                 $_SESSION['userpin'] = $row['pin'];
                 $_SESSION['start'] = time();
                 $_SESSION['expire'] = $_SESSION['start'] + (0.1 * 60);
-                header('Location: profile.php');
+                header('Location: password.php');
             } else {
                 header("Location: login.php?error=Pogrešan pin&ime_firme=$ime_firme");
             }

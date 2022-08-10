@@ -44,8 +44,8 @@ session_start();
     <div class="p-5 rounded shadow custom-justify-content align-items-center d-flex flex-column" style="width: 60%; margin: auto; padding: 10px;">
         <i class="bi bi-person-fill" style="font-size: 14rem"></i>
         <h1 class="text-center display-4" style="margin-top: -10px; font-size: 2rem;"><?= $_SESSION['ime_firme'] ?></h1>
-        <a href="#" class="btn btn-info">Izmeni informacije</a>
-        <a href="#" class="btn btn-change">Promeni lozinku</a>
+        <a href="info.php" class="btn btn-info">Izmeni informacije</a>
+        <a href="password.php" class="btn btn-change">Promeni lozinku</a>
         <a href="../../prijava/logout.php" class="btn btn-warning">Odjava</a>
     </div>
 
