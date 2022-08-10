@@ -100,10 +100,12 @@
     <div class="kategorije" id="category">
         <!-- ovde treba kod da sa ubace sve kategorije -->
     </div>
-
-    <div class="text" id="data">
-        <!-- nalaze se ovde produkti -->
+    <div class="form-modal">
+        <div class="text" id="data">
+            <!-- nalaze se ovde produkti -->
+        </div>
     </div>
+
 
     <div class="divdugmenaruci" id="sakrij" hidden>
         <button class="button-27" role="button">Naruči za <span>0</span></button>

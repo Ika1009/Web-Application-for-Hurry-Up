@@ -51,10 +51,11 @@
 }
 
 .total {
-    width: 10%;
+    margin-left: 4rem;
+    width: 50%;
     border-bottom: 1px solid lightgrey;
     display: flex;
-    align-items: center;
+    align-items: right;
 }
 
 .products {
@@ -71,12 +72,12 @@
 }
 
 .basketTotalTitle {
-    width: 30%;
+    width: 10%;
     font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .basketTotal {
-    width: 10%;
+    width: 30%;
     font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -89,7 +90,7 @@
 .wrapper {
     font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     height: 50%;
-    max-height: 450px;
+    max-height: 400px;
     width: 100%;
     overflow-y: scroll;
     margin: 25px 0 0 0;
@@ -160,6 +161,18 @@
     font-style: italic;
     color: #FFB266;
 }
+.form-modal {
+    position: relative;
+    width: 100%;
+    height: 40rem;
+    margin-top: 4em;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5rem;
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
 .text {
     display: grid;
@@ -228,20 +241,20 @@
 }
 
 .divcena {
-    margin-top: 0.1rem;
+    margin-top: 0.2rem;
     text-align: center;
     align-content: center;
     display: flex;
 }
 
 .price {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #333;
     font-weight: bold;
 }
 
 .priceprecrtano {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #6d6d6d;
     margin-left: 0.1rem;
     text-decoration: line-through;
@@ -261,13 +274,13 @@
 .dodajukolica {
     float: right;
     cursor: pointer;
-    width: 35%;
+    width: 30%;
     border-radius: 0.25rem;
     text-align: center;
     background: #fff;
     color: #48b02c;
     height: 40px;
-    font-size: 35px;
+    font-size: 33px;
     font-weight: bold;
     border: none;
     outline: none;
@@ -285,13 +298,13 @@
 .oduzmiizkolica {
     float: left;
     cursor: pointer;
-    width: 35%;
+    width: 30%;
     border-radius: 0.25rem;
     text-align: center;
     background: #fff;
     color: #d84438;
     height: 40px;
-    font-size: 35px;
+    font-size: 33px;
     font-weight: bold;
     border: none;
     outline: none;
@@ -300,7 +313,7 @@
 
 .kolicinaukolica {
     background: #fff;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     color: #333;
     line-height: 40px;
@@ -372,8 +385,21 @@
 
 @media only screen and (max-width:400px) {
     .popup-box-container{
-        width: 300px;
+        width: 340px;
    }
+   .cart-img {
+    width: 75px;
+    height: 75px;
+    }
+
+    .detail-box {
+        row-gap: 0.3rem;
+    }
+
+    .cart-product-title {
+        font-size: 1rem;
+    }
+   
 }
 
 ul {
@@ -584,7 +610,7 @@ a {
 .total {
     position: fixed;
     bottom: 75px;
-    right: 125px;
+    right: 30px;
     border-top: 2px solid #333;
 }
 
