@@ -1,9 +1,10 @@
 <?php
 session_start();
-include('../db.php');
+include('../../db.php');
 
 if(isset($_POST['update'])){
-    $mysql = "SELECT * FROM registracija WHERE ime_firme ='Hurry Up'";
+    $ime_firme = $_SESSION['ime_firme'];
+    $mysql = "SELECT * FROM registracija WHERE ime_firme = '$ime_firme'";
     $gotResuslts = mysqli_query($conn, $mysql);
     
     if ($gotResuslts) {
@@ -21,10 +22,10 @@ if(isset($_POST['update'])){
     if($nova_lozinka === $potvrdi_novu_lozinku && password_verify($stara_lozinka, $lozinka)){ 
         $nova_lozinka = password_hash($nova_lozinka, PASSWORD_DEFAULT);
         $potvrdi_novu_lozinku = password_hash($potvrdi_novu_lozinku, PASSWORD_DEFAULT);
-        $sql = "UPDATE registracija SET lozinka = '$nova_lozinka' WHERE ime_firme = 'Hurry Up'";
+        $sql = "UPDATE registracija SET lozinka = '$nova_lozinka' WHERE ime_firme = '$ime_firme'";
         $results = mysqli_query($conn,$sql);
-        include('../prijava/logout.php');
-        header('Location:../prijava/login.php');
+        include('../../prijava/logout.php');
+        header('Location:../../prijava/login.php');
         exit;
     } else if ($nova_lozinka !== $potvrdi_novu_lozinku) {
         header('Location:password.php?error=Lozinke se ne poklapaju');
