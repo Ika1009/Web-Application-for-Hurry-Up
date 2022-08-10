@@ -116,6 +116,8 @@ function navToggle() {
     }
 }
 
+
+
 okbtn = document.getElementById("ok-btn");
 popupbox = document.getElementById("popup-overlay");
 
@@ -132,7 +134,9 @@ function otvoriPopup(element) {
             let html = "";
             let id = data[0].id;
             let detalji = data[0].detalji;
-            html += "<div class=artklimrtvi>";
+            html += "<div class=wrapper>"
+            html += "<div class=cart-content>";
+            html += "<div class=cart-box>";
             let artikli_posebno = detalji.split("RSD ")
 
             for (i = 0; i < artikli_posebno.length; i++) {
@@ -143,12 +147,16 @@ function otvoriPopup(element) {
                     let ime = razdvojene[j-2]
                     let kolicina = razdvojene[j-1]
                     let cena = razdvojene[j-0]
-                    html += "<br><br><div>" + ime + " - " + kolicina + " - " + cena + "</div><br>";
+                    html += "<input hidden type=number min=0 value=1 class=cart-quantity> "+ kolicina +" kom</input>";
+                    html += "<div class=cart-product-title>" + ime +"</div>";
+                    html += "<div class=cart-price>" + cena +"</div>";
                 }
 
             }
             html += "</div>";
-
+            html += "</div>";
+            html += "</div>";
+                
             document.getElementById("ispis").innerHTML = html;
             }
         }
