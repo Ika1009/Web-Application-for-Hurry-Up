@@ -165,3 +165,7 @@ function otvoriPopup(element) {
 okbtn.addEventListener('click', () => {
     popupbox.classList.remove('aktivanpopup');
 })
+
+setTimeout(function() {
+    location.reload();
+  }, 60000);
