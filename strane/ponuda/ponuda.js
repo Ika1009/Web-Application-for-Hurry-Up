@@ -1,8 +1,5 @@
-const url = new URL(window.location.href);
-let ime_firme = url.searchParams.get("ime_firme");
-
 let ajax = new XMLHttpRequest();
-ajax.open("GET", "./API/data.php?ime_firme=" + ime_firme, true);
+ajax.open("GET", "../artikli/APIs/data.php", true);
 ajax.send();
 ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -218,7 +215,7 @@ ajax.onreadystatechange = function () {
 };
 
 let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "./API/kategorijeDobivanje.php?ime_firme=" + ime_firme, true);
+ajax1.open("GET", "../artikli/APIs/kategorijeDobivanje.php", true);
 ajax1.send();
 ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -279,8 +276,6 @@ naruci.addEventListener("click", () => {
 
 okbtn.addEventListener("click", setCookie2);
 okbtn.addEventListener("click", setCookie3);
-okbtn.addEventListener("click", setCookie4);
-okbtn.addEventListener("click", setCookie5);
 
 exit.addEventListener("click", () => {
   popupbox.classList.remove("aktivanpopup");
@@ -363,23 +358,4 @@ function setCookie3() {
   });
   let cname = "detalji";
   document.cookie = cname + "=" + result + ";" + expires;
-}
-
-
-
-function setCookie4() {
-  let date = new Date();
-  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  let cname = "ime_firme";
-  document.cookie = cname + "=" + ime_firme + ";" + expires;
-}
-
-function setCookie5() {
-  let date = new Date();
-  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  let broj_stola = url.searchParams.get("broj_stola");
-  let cname = "broj_stola";
-  document.cookie = cname + "=" + broj_stola + ";" + expires;
 }
