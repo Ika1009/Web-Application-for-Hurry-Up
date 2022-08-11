@@ -311,7 +311,7 @@ function toggle() {
 
 function setCookie() {
   let date = new Date();
-  let vreme = date.toLocaleString();
+  let vreme = date.toUTCString();
   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
   let expires = "expires=" + date.toUTCString();
   let cname = "vreme_narucivanja";
