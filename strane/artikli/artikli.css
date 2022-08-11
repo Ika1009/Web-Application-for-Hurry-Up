@@ -46,7 +46,7 @@
   border: #333 solid 1px;
   background-color: #FFB266;
   width: 51%;
-  height: 13vh;
+  min-height: 13vh;
   text-align: center;
   position: absolute;
   left: 73%;
@@ -500,7 +500,7 @@ box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 
 .product h3 {
   margin-top: 0.2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: black;
 }
 
@@ -533,7 +533,7 @@ box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 
 .desc {
   margin-top: 0.2rem;
-  font-size: 0.75rem;
+  font-size: 0.73rem;
 }
 
 .popuptext:hover {
