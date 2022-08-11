@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+if (isset($_SESSION['email'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +35,7 @@ session_start();
                     <ul>
                         <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
                         <li><a href="../artikli/artikli.php">Artikli</a></li>
-                        <li><a href="../ponuda/ponuda.php?ime_firme=<?php echo $_SESSION['ime_firme'] ?>">Ponuda</a></li>
+                        <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                         <li><a class="active" href="../nalog/profile.php">Moj nalog</a></li>
                     </ul>
                 </nav>
@@ -67,3 +69,7 @@ session_start();
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: ../../prijava/login.php');
+}

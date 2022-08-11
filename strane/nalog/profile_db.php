@@ -15,13 +15,10 @@ if(isset($_POST['update'])){
         $sql = "UPDATE registracija SET ime_firme = '$loggedInUser', email ='$userNewEmail', ime = '$userNewIme', prezime = '$userNewPrezime', broj_telefona = '$userNewBrojTelefona', pin = '$userNewPin' WHERE ime_firme = '$loggedInUser'";
         $results = mysqli_query($conn,$sql);
         //$_SESSION['ime_firme'] = $userNewName;
-        header('Location:profile.php?success=userUpdated');
+        header('Location:info.php?success=userUpdated');
         exit;
-    } else if (strlen($userNewPin) !== 4) {
-        header('Location:profile.php?error=wrongPin');
-        exit; 
     } else {
-        header('Location:profile.php?error=emptyNameAndEmail');
+        header('Location:info.php?error=emptyNameAndEmail');
         exit;
     }}
 ?>
