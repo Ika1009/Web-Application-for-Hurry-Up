@@ -9,15 +9,13 @@ function dugmeZaMenjanje(element) {
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
     let cena;
     let popust;
-    if(typeof(elementos.getElementsByClassName('priceprecrtano')[0]) == "undefined")
-    {
+    if (typeof (elementos.getElementsByClassName('priceprecrtano')[0]) == "undefined") {
         cena = elementos.getElementsByClassName('price')[0].innerHTML;
         popust = 0;
     }
-    else
-    {
+    else {
         cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
-        popust = elementos.getElementsByClassName('disc')[0].innerHTML;
+        popust = elementos.getElementsByClassName('popust')[0].innerHTML;
     }
     let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
     let kategorija = elementos.getElementsByClassName('cat')[0].innerHTML;
@@ -127,7 +125,7 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
     var option = document.createElement("option");
     option.text = txt.value;
     kategorije.add(option);
-    kategorije.selectedIndex = kategorije.length-1;
+    kategorije.selectedIndex = kategorije.length - 1;
     console.log(kategorije.selectedIndex);
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./APIs/dodajKategoriju.php?addNewCategory=" + txt.value, true);
@@ -143,9 +141,10 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
 });
 var add_artikl_pom = 0;
 
+
 document.querySelector("#artikl_form").addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log("alo");
+    // console.log("alo");
 
     var artikl_form = document.getElementById("artikl_form");
 
@@ -157,16 +156,21 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.responseText;
-            if (response == "updatedWithImage" || response == "updated!image") { // ne ulazi ovde uopste ?
-                console.log("updatedWithImage");
+            console.log(response);
+            if (response == "updatedWithImage" || response == "updated!image") { // ako se updajtuje
                 let ajax = new XMLHttpRequest();
                 ajax.open("GET", "./APIs/data.php", true);
                 ajax.send();
                 ajax.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         let data = JSON.parse(this.responseText);
-                        console.log(data);
                         let html = "";
+
+                        for (let i = document.getElementsByClassName("product").length - 1; i >= 0; i--) {
+                            document.getElementById("data").removeChild(document.getElementsByClassName("product")[i]);
+                        }
+
+                        document.getElementsByClassName("card");
                         for (let i = 0; i < data.length; i++) {
                             let id = data[i].id;
                             let ime = data[i].ime;
@@ -175,45 +179,70 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                             let opis = data[i].opis;
                             let popust = data[i].popust;
                             let kategorija = data[i].kategorija;
-                            html += "<div class=product>";
-                            html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-                            html += "<div class=divdugizlaz>";
-                            html += "<img src=artikliSlike/" + id + "." + slika + ">";
-                            html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                            html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
-                            html += "</div>";
-                            html += "<div class=imecenakat>"
-                            if (popust != '0') {
-                                html += "<div class=disc>" + popust + "%</div>";
-                            }
-                            html += "<h3>" + ime + "</h3>";
-                            html += "<p class=cat>" + kategorija + "</p>";
-                            if (popust != '0') {
-                                html += "<div class=divcena>"
-                                html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                                html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                            let na_stanju = data[i].na_stanju;
+                            if (na_stanju) {
+                                html += "<div class=product>";
+                                html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                                html += "<div class=divdugizlaz>";
+                                html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                                html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                                html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                                html += "</div>";
+                                html += "<div class=imecenakat>"
+                                html += "<h3>" + ime + "</h3>";
+                                html += "<p class=cat>" + kategorija + "</p>";
+                                if (popust != '0') {
+                                    html += "<div class=divcena>"
+                                    html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                                    html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                                    html += "</div>"
+                                } else {
+                                    html += "<div class=price>" + cena + " RSD</div>";
+                                }
+                                html += "<div class=popust type=hidden>" + popust + "</div>";
+                                html += "<p class=desc>" + opis + "</p>";
                                 html += "</div>"
-                            } else {
-                                html += "<div class=price>" + cena + " RSD</div>";
+                                html += "</div>";
                             }
-                            html += "<p class=desc>" + opis + "</p>";
-                            html += "</div>"
-                            html += "</div>";
+
+                            else {
+                                // console.log("nije na stanju")
+                                html += "<div class=product>";
+                                html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                                html += "<div class=divdugizlaz>";
+                                html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                                html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                                html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                                html += "</div>";
+                                html += "<div class=imecenakat>"
+                                html += "<h3>" + ime + "</h3>";
+                                html += "<h2> NIJE NA STANJU <h2>";
+                                html += "<p class=cat>" + kategorija + "</p>";
+                                if (popust != '0') {
+                                    html += "<div class=divcena>"
+                                    html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                                    html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                                    html += "</div>"
+                                } else {
+                                    html += "<div class=price>" + cena + " RSD</div>";
+                                }
+                                html += "<div class=popust type=hidden>" + popust + "</div>";
+                                html += "<p class=desc>" + opis + "</p>";
+                                html += "</div>"
+                                html += "</div>";
+                            }
                         }
                         document.getElementById("data").innerHTML += html;
                     }
                 };
             }
             else {
-                console.log("bban");
                 let data = new Object();
                 for (const key of form_for_sending.keys()) {
                     data[key] = form_for_sending.get(key);
                 }
                 console.log(data);
 
-
-                let html = "";
                 let id = data.id;
                 let ime = data.ime;
                 let cena = data.cena;
@@ -221,50 +250,62 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                 let opis = data.opis;
                 let popust = data.popust;
                 let kategorija = data.kategorija;
-                // var blob = new Blob();
-                html += "<div class=product>";
-                html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
-                html += "<div class=divdugizlaz>";
-                html += "<img id=\"artikl_slika_" + ++add_artikl_pom + "\" src=" + data.file + ">";
-                html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
-                html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
-                html += "</div>";
-                html += "<div class=imecenakat>"
-                if (popust != '0') {
-                    html += "<div class=disc>" + popust + "%</div>";
-                } else {
-                    html += "<div class=disc>" + popust + "%</div>";
-
-                }
-                html += "<h3>" + ime + "</h3>";
-                html += "<p class=cat>" + kategorija + "</p>";
-                if (popust != '0') {
-                    html += "<div class=divcena>"
-                    html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
-                    html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                let na_stanju = data.na_stanju;
+                if (na_stanju) {
+                    html += "<div class=product>";
+                    html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                    html += "<div class=divdugizlaz>";
+                    html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                    html += "</div>";
+                    html += "<div class=imecenakat>"
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<p class=cat>" + kategorija + "</p>";
+                    if (popust != '0') {
+                        html += "<div class=divcena>"
+                        html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                        html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                        html += "</div>"
+                    } else {
+                        html += "<div class=price>" + cena + " RSD</div>";
+                    }
+                    html += "<div class=popust type=hidden>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
-                } else {
-                    html += "<div class=price>" + cena + " RSD</div>";
+                    html += "</div>";
                 }
-                html += "<p class=desc>" + opis + "</p>";
-                html += "</div>"
-                html += "</div>";
+
+                else {
+                    // console.log("nije na stanju")
+                    html += "<div class=product>";
+                    html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
+                    html += "<div class=divdugizlaz>";
+                    html += "<img src=artikliSlike/" + id + "." + slika + ">";
+                    html += "<ion-icon class=dugizlaz name=close-outline onclick=onClickDugmeZaBrisanje(this)>Edit</ion-icon>";
+                    html += "<ion-icon class=dugedit name=pencil onclick=dugmeZaMenjanje(this)></ion-icon><br><br>";
+                    html += "</div>";
+                    html += "<div class=imecenakat>"
+                    html += "<h3>" + ime + "</h3>";
+                    html += "<h2> NIJE NA STANJU <h2>";
+                    html += "<p class=cat>" + kategorija + "</p>";
+                    if (popust != '0') {
+                        html += "<div class=divcena>"
+                        html += "<div class=price>" + cena * (100 - parseInt(popust)) / 100 + " RSD</div>";
+                        html += "<div class=priceprecrtano>" + cena + " RSD</div>"; // precrtaj
+                        html += "</div>"
+                    } else {
+                        html += "<div class=price>" + cena + " RSD</div>";
+                    }
+                    html += "<div class=popust type=hidden>" + popust + "</div>";
+                    html += "<p class=desc>" + opis + "</p>";
+                    html += "</div>"
+                    html += "</div>";
+                }
                 document.getElementById("data").innerHTML += html;
-
-
-                var prikaz = form_for_sending.get("file");
-                var fr = new FileReader();
-                fr.onload = imageHandler;
-                fr.readAsDataURL(prikaz);
-                //if (data == "success") {
-                function imageHandler(e2) {
-                    var store = document.getElementById('artikl_slika_' + add_artikl_pom);
-                    store.src = e2.target.result;
-                }
-                //}
             }
 
         }
+
     };
 });
-

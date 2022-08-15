@@ -74,7 +74,7 @@ $conn->close();
 
 if ($slikaDobra){
     if (move_uploaded_file($_FILES["file"]["tmp_name"], "../artikliSlike/" . $slikaID . "." . $slikaEkstenzija)) {
-        echo "<script type=\"text/javascript\">alert(\"Fajl je uspešno otpremljen!\");</script>";
+        // echo "<script type=\"text/javascript\">alert(\"Fajl je uspešno otpremljen!\");</script>";
     }
 }
 
