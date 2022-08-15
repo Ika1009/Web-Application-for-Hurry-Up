@@ -15,7 +15,7 @@ function dugmeZaMenjanje(element) {
     }
     else {
         cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
-        popust = elementos.getElementsByClassName('popust')[0].innerHTML;
+        popust = elementos.getElementsByClassName('disc')[0].innerHTML;
     }
     let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
     let kategorija = elementos.getElementsByClassName('cat')[0].innerHTML;
@@ -199,7 +199,6 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                                 } else {
                                     html += "<div class=price>" + cena + " RSD</div>";
                                 }
-                                html += "<div class=popust type=hidden>" + popust + "</div>";
                                 html += "<p class=desc>" + opis + "</p>";
                                 html += "</div>"
                                 html += "</div>";
@@ -226,7 +225,6 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                                 } else {
                                     html += "<div class=price>" + cena + " RSD</div>";
                                 }
-                                html += "<div class=popust type=hidden>" + popust + "</div>";
                                 html += "<p class=desc>" + opis + "</p>";
                                 html += "</div>"
                                 html += "</div>";
@@ -242,7 +240,7 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                     data[key] = form_for_sending.get(key);
                 }
                 console.log(data);
-
+                let html = ""
                 let id = data.id;
                 let ime = data.ime;
                 let cena = data.cena;
@@ -270,7 +268,6 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                     } else {
                         html += "<div class=price>" + cena + " RSD</div>";
                     }
-                    html += "<div class=popust type=hidden>" + popust + "</div>";
                     html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
                     html += "</div>";
@@ -297,15 +294,28 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
                     } else {
                         html += "<div class=price>" + cena + " RSD</div>";
                     }
-                    html += "<div class=popust type=hidden>" + popust + "</div>";
                     html += "<p class=desc>" + opis + "</p>";
                     html += "</div>"
                     html += "</div>";
                 }
                 document.getElementById("data").innerHTML += html;
+                var prikaz = form_for_sending.get("file");
+            var fr = new FileReader();
+            fr.onload = imageHandler;
+            fr.readAsDataURL(prikaz);
+            //if (data == "success") {
+            function imageHandler(e2) {
+                var store = document.getElementById('artikl_slika_' + add_artikl_pom);
+                store.src = e2.target.result;
+            }
             }
 
-        }
+            
 
-    };
+            
+            }
+            //}
+
+
+};
 });
