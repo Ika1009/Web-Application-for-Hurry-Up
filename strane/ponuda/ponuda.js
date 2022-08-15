@@ -13,7 +13,7 @@ ajax.onreadystatechange = function () {
       let opis = data[i].opis;
       let popust = data[i].popust;
       let kolicina = data[i].kolicina;
-      
+
       /*html += '<div title="' + opis + '" class=product>';
       html += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
       html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
@@ -223,163 +223,215 @@ ajax1.onreadystatechange = function () {
       html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
     }
     document.getElementById("myDropdown").innerHTML += html;
+
     let cat = "";
-    for (let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
       let kategorija = data[i].ime_kategorije;
-      cat += "<div class=divkategorija> <div class=imekategorija>" + kategorija + "</div></div>";
-    }
-    document.getElementById("data").innerHTML += cat;
-  }
-};
+      cat += "<div class=divkategorija> <div class=imekategorija>" + kategorija + "</div>";
 
-const search = () => {
-  const searchbox = document.getElementById("search-item").value.toUpperCase();
-  const storeitems = document.getElementById("data");
-  const product = document.querySelectorAll(".product");
-  const productname = storeitems.getElementsByTagName("h3");
+      let ajax = new XMLHttpRequest();
+      ajax.open("GET", "../artikli/APIs/data.php", true);
+      ajax.send();
+      ajax.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let data = JSON.parse(this.responseText);
+          for (let i = 0; i < data.length; i++) {
+            let html = "";
+            let id = data[i].id;
+            let ime = data[i].ime;
+            let cena = data[i].cena;
+            let slika = data[i].slika;
+            let opis = data[i].opis;
+            let popust = data[i].popust;
+            let kolicina = data[i].kolicina;
+            let kategorijaArtikla = data[i].kategorija;
+            if (kategorijaArtikla == kategorija) {
+              cat += '<div title="' + opis + '" class=product>';
+              cat += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
+              cat += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
+              cat += "<div class=imecenakat>";
+              cat += "<strong hidden>" + kategorija + "</strong>";
+              cat += "<h3>" + ime + "</h3>";
+              if (popust != "0") {
+                cat += "<div class=divcena>";
+                cat +=
+                  "<div class=price>" +
+                  (cena * (100 - parseInt(popust))) / 100 +
+                  " RSD</div>";
+                cat += "<div class=priceprecrtano>" + cena + "RSD</div>";
+                cat += "</div>";
+              } else {
+                cat += "<div class=price>" + cena + "RSD</div>";
+              }
+              cat += "</div>";
+              cat += "<div class=divdodajukolica>";
+              cat += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
+              cat += "<button class=kolicinaukolica>" + kolicina + "</button>";
+              cat += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
+              cat += "</div>";
+              cat += "</div>";
+              cat +="</div>"
+              console.log(cat);
+            }
 
-  for (let i = 0; i < productname.length; i++) {
-    let match = product[i].getElementsByTagName("h3")[0];
+          }
 
-    if (match) {
-      let textvalue = match.textContent || match.innerHTML;
+        }
 
-      if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
-        product[i].style.display = "";
-      } else {
-        product[i].style.display = "none";
       }
+      document.getElementById("data").innerHTML += cat;
     }
-  }
-};
-
-const navToggler = document.querySelector(".nav-toggler");
-navToggler.addEventListener("click", navToggle);
-
-function navToggle() {
-  navToggler.classList.toggle("active");
-  const nav = document.querySelector(".nav");
-  nav.classList.toggle("open");
-  if (nav.classList.contains("open")) {
-    nav.style.maxHeight = nav.scrollHeight + "px";
-  } else {
-    nav.removeAttribute("style");
-  }
+  };
 }
 
-const naruci = document.querySelector(".button-27");
-const okbtn = document.querySelector(".ok-btn");
-const popupbox = document.querySelector(".popup-overlay");
-const exit = document.querySelector(".exit");
+  const search = () => {
+    const searchbox = document.getElementById("search-item").value.toUpperCase();
+    const storeitems = document.getElementById("data");
+    const product = document.querySelectorAll(".product");
+    const productname = storeitems.getElementsByTagName("h3");
 
-naruci.addEventListener("click", () => {
-  popupbox.classList.add("aktivanpopup");
-});
-
-okbtn.addEventListener("click", setCookie2);
-okbtn.addEventListener("click", setCookie3);
-
-exit.addEventListener("click", () => {
-  popupbox.classList.remove("aktivanpopup");
-});
-
-const kategorije = (element) => {
-  const storeitems = document.getElementById("data");
-  const product = document.querySelectorAll(".product");
-  const productname = storeitems.getElementsByTagName("strong");
-  const cale = document.getElementsByClassName("kategorisani");
-  for (let i = 0; i < cale.length; i++) {
-      if (cale[i].classList.contains("svi")) {
-          cale[i].classList.remove("svi");
-      } 
-      
-      if (cale[i].innerHTML === element.innerHTML) {
-          cale[i].classList.add("svi");
-      }
-  }
-  
-  if (element.innerHTML === 'Svi') {
-    for (let i = 0; i < product.length; i++) {
-      product[i].style.display = "";
-    }
-  } else {
     for (let i = 0; i < productname.length; i++) {
-      let match = product[i].getElementsByTagName("strong")[0];
+      let match = product[i].getElementsByTagName("h3")[0];
+
       if (match) {
         let textvalue = match.textContent || match.innerHTML;
-        if (element.innerHTML === textvalue) {
+
+        if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
           product[i].style.display = "";
         } else {
           product[i].style.display = "none";
         }
       }
     }
-  }
-};
+  };
 
-function toggle() {
-  let element = document.getElementById("sakrij");
-  let konacna_cena = document.getElementById("ukupno").innerHTML;
-  let cena = konacna_cena.slice(0, -3);
-  cena = parseInt(cena);
-  if (cena === 0) {
-    element.setAttribute("hidden", "hidden");
-    popupbox.classList.remove("aktivanpopup");
-  } else {
-    element.removeAttribute("hidden");
-  }
-}
+  const navToggler = document.querySelector(".nav-toggler");
+  navToggler.addEventListener("click", navToggle);
 
-function setCookie() {
-  let date = new Date();
-  let vreme = date.toLocaleString();
-  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  let cname = "vreme_narucivanja";
-  document.cookie = cname + "=" + vreme + ";" + expires;
-}
-
-function setCookie2() {
-  let date = new Date();
-  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  let konacna_cena = document.getElementById("ukupno").innerHTML;
-  let cname = "narudzbina";
-  document.cookie = cname + "=" + konacna_cena + ";" + expires;
-}
-
-function setCookie3() {
-  let date = new Date();
-  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  let narudzbina = [];
-  let narudzbine = document.getElementsByClassName("detail-box");
-  for (let i = 1; i < narudzbine.length; i++) {
-    let ime =
-      narudzbine[i].getElementsByClassName("cart-product-title")[0].innerHTML;
-    let kolicina =
-      narudzbine[i].parentElement.getElementsByClassName("cart-quantity")[0].innerHTML;
-    let cena = narudzbine[i].getElementsByClassName("cart-price")[0].innerHTML;
-    narudzbina.push(ime, kolicina, cena);
-  }
-
-  let string = "";
-  let result = "";
-  narudzbina.forEach((element) => {
-    result += string.concat("&", element);
-  });
-  let cname = "detalji";
-  document.cookie = cname + "=" + result + ";" + expires;
-}
-
-const dugme = document.getElementById("dugfilter");
-const dropdown = document.getElementById("myDropdown");
-dugme.addEventListener("click", () => {
-    if (dropdown.classList.contains('show')) {
-        dropdown.classList.remove("show");
-        dropdown.classList.add("hide");
+  function navToggle() {
+    navToggler.classList.toggle("active");
+    const nav = document.querySelector(".nav");
+    nav.classList.toggle("open");
+    if (nav.classList.contains("open")) {
+      nav.style.maxHeight = nav.scrollHeight + "px";
     } else {
-        dropdown.classList.remove("hide");
-        dropdown.classList.add("show");
+      nav.removeAttribute("style");
     }
-});
+  }
+
+  const naruci = document.querySelector(".button-27");
+  const okbtn = document.querySelector(".ok-btn");
+  const popupbox = document.querySelector(".popup-overlay");
+  const exit = document.querySelector(".exit");
+
+  naruci.addEventListener("click", () => {
+    popupbox.classList.add("aktivanpopup");
+  });
+
+  okbtn.addEventListener("click", setCookie2);
+  okbtn.addEventListener("click", setCookie3);
+
+  exit.addEventListener("click", () => {
+    popupbox.classList.remove("aktivanpopup");
+  });
+
+  const kategorije = (element) => {
+    const storeitems = document.getElementById("data");
+    const product = document.querySelectorAll(".product");
+    const productname = storeitems.getElementsByTagName("strong");
+    const cale = document.getElementsByClassName("kategorisani");
+    for (let i = 0; i < cale.length; i++) {
+      if (cale[i].classList.contains("svi")) {
+        cale[i].classList.remove("svi");
+      }
+
+      if (cale[i].innerHTML === element.innerHTML) {
+        cale[i].classList.add("svi");
+      }
+    }
+
+    if (element.innerHTML === 'Svi') {
+      for (let i = 0; i < product.length; i++) {
+        product[i].style.display = "";
+      }
+    } else {
+      for (let i = 0; i < productname.length; i++) {
+        let match = product[i].getElementsByTagName("strong")[0];
+        if (match) {
+          let textvalue = match.textContent || match.innerHTML;
+          if (element.innerHTML === textvalue) {
+            product[i].style.display = "";
+          } else {
+            product[i].style.display = "none";
+          }
+        }
+      }
+    }
+  };
+
+  function toggle() {
+    let element = document.getElementById("sakrij");
+    let konacna_cena = document.getElementById("ukupno").innerHTML;
+    let cena = konacna_cena.slice(0, -3);
+    cena = parseInt(cena);
+    if (cena === 0) {
+      element.setAttribute("hidden", "hidden");
+      popupbox.classList.remove("aktivanpopup");
+    } else {
+      element.removeAttribute("hidden");
+    }
+  }
+
+  function setCookie() {
+    let date = new Date();
+    let vreme = date.toLocaleString();
+    date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+    let expires = "expires=" + date.toUTCString();
+    let cname = "vreme_narucivanja";
+    document.cookie = cname + "=" + vreme + ";" + expires;
+  }
+
+  function setCookie2() {
+    let date = new Date();
+    date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+    let expires = "expires=" + date.toUTCString();
+    let konacna_cena = document.getElementById("ukupno").innerHTML;
+    let cname = "narudzbina";
+    document.cookie = cname + "=" + konacna_cena + ";" + expires;
+  }
+
+  function setCookie3() {
+    let date = new Date();
+    date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+    let expires = "expires=" + date.toUTCString();
+    let narudzbina = [];
+    let narudzbine = document.getElementsByClassName("detail-box");
+    for (let i = 1; i < narudzbine.length; i++) {
+      let ime =
+        narudzbine[i].getElementsByClassName("cart-product-title")[0].innerHTML;
+      let kolicina =
+        narudzbine[i].parentElement.getElementsByClassName("cart-quantity")[0].innerHTML;
+      let cena = narudzbine[i].getElementsByClassName("cart-price")[0].innerHTML;
+      narudzbina.push(ime, kolicina, cena);
+    }
+
+    let string = "";
+    let result = "";
+    narudzbina.forEach((element) => {
+      result += string.concat("&", element);
+    });
+    let cname = "detalji";
+    document.cookie = cname + "=" + result + ";" + expires;
+  }
+
+  const dugme = document.getElementById("dugfilter");
+  const dropdown = document.getElementById("myDropdown");
+  dugme.addEventListener("click", () => {
+    if (dropdown.classList.contains('show')) {
+      dropdown.classList.remove("show");
+      dropdown.classList.add("hide");
+    } else {
+      dropdown.classList.remove("hide");
+      dropdown.classList.add("show");
+    }
+  });

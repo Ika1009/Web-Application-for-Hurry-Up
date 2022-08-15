@@ -142,30 +142,74 @@ function otvoriPopup(element) {
             for (i = 0; i < artikli_posebno.length; i++) {
                 console.log(artikli_posebno[i]);
                 razdvojene = artikli_posebno[i].split("&");
-                
+
                 for (j = 3; j < razdvojene.length; j = j + 3) {
-                    let ime = razdvojene[j-2]
-                    let kolicina = razdvojene[j-1]
-                    let cena = razdvojene[j-0]
-                    html += "<input hidden type=number min=0 value=1 class=cart-quantity> "+ kolicina +" kom</input>";
-                    html += "<div class=cart-product-title>" + ime +"</div>";
-                    html += "<div class=cart-price>" + cena +"</div>";
+                    let ime = razdvojene[j - 2]
+                    let kolicina = razdvojene[j - 1]
+                    let cena = razdvojene[j - 0]
+                    html += "<input hidden type=number min=0 value=1 class=cart-quantity> " + kolicina + " kom</input>";
+                    html += "<div class=cart-product-title>" + ime + "</div>";
+                    html += "<div class=cart-price>" + cena + "</div>";
                 }
 
             }
             html += "</div>";
             html += "</div>";
             html += "</div>";
-                
+
             document.getElementById("ispis").innerHTML = html;
-            }
         }
+    }
 };
 
 okbtn.addEventListener('click', () => {
     popupbox.classList.remove('aktivanpopup');
 })
+let ajax1 = new XMLHttpRequest();
+setInterval(function () {
+    console.log("refresh");
+    ajax1.open("GET", "./APIs/data.php", true);
+    ajax1.send();
+    ajax1.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+            document.getElementById("aktivne").innerHTML = "";
+            document.getElementById("odbijene").innerHTML = "";
+            document.getElementById("izvrsene").innerHTML = "";
+            for (let i = 0; i < data.length; i++) {
+                let html = "";
+                let id = data[i].id;
+                let ukupna_cena = data[i].ukupna_cena;
+                let vreme_narucivanja = data[i].vreme_narucivanja;
+                let broj_stola = data[i].broj_stola;
+                let status = data[i].status;
+                let detalji = data[i].detalji;
+                let napomena = data[i].napomena;
+                html += "<tr scope=row>";
+                html += "<input class=\"id_reda\" data-id=\"" + id + "\" type=\"hidden\">";
+                html += "<td>" + broj_stola + "</td>";
+                html += "<td>" + ukupna_cena + "</td> <!--ukupna cena-->";
+                html += "<td>" + vreme_narucivanja + "</td>";
+                html += "<td><small class=d-block>" + napomena + "</small></td>"
+                html += "<td><button id=a class=more onclick=otvoriPopup(this)>detalji</button></td>"
+                if (status == "aktivna") {
+                    html += "<td>"
+                    html += "<ion-icon class=stik name=checkmark-outline onclick=izvrsiNarudzbinu(this)></ion-icon>";
+                    html += "<ion-icon class=x name=remove-circle-outline onclick=odbijNarudzbinu(this)></ion-icon>";
+                    html += "</td>"
+                    html += "</tr>"
+                    document.getElementById("aktivne").innerHTML += html;
+                } else if (status == "odbijena") {
+                    html += "</tr>"
+                    document.getElementById("odbijene").innerHTML += html;
+                } else {
+                    html += "</tr>"
+                    document.getElementById("izvrsene").innerHTML += html;
+                }
 
-setTimeout(function() {
-    location.reload();
-  }, 60000);
+            }
+
+        }
+    };
+}, 20000);
+
