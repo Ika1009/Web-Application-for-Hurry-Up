@@ -1,8 +1,3 @@
-<?php 
-session_start();
-
-if (isset($_SESSION['email'])) {
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +12,7 @@ if (isset($_SESSION['email'])) {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://kit.fontawesome.com/a572b64406.js" crossorigin="anonymous"></script>
     <script src="ponuda.js" defer></script>
     <title>Ponuda</title>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
@@ -37,43 +33,36 @@ if (isset($_SESSION['email'])) {
             border-radius: 10px;
         }
 
-        .kategorije {
-            padding: 1rem;
-            width: 90%;
-            min-width: 350px;
-            margin-top: 1rem;
-            margin-right: 5%;
-            margin-left: auto;
-            max-height: 100px;
-            border: none;
-            overflow: auto;
-        }
-
-
-        .jednakat {
-            display: flex;
-            float: left;
-            text-align: center;
-            background-color: #333;
-            color: #f9f9f9;
-            cursor: pointer;
-            padding: 15px 20px;
-            border-radius: 20px;
-            margin-left: 1rem;
-            margin-top: 1rem;
-        }
-
         .svi {
-            display: flex;
-            float: left;
-            text-align: center;
             background-color: #ffb266;
-            color: #f9f9f9;
-            cursor: pointer;
-            padding: 15px 20px;
-            border-radius: 20px;
-            margin-left: 1rem;
-            margin-top: 1rem;
+            color: #fff;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .dropdown-content {
+          position: absolute;
+          left: -100px;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          max-height: 200px;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown a:hover {background-color: #ddd;}
+        
+        .show {
+            display: block;
         }
     </style>
 </head>
@@ -99,12 +88,18 @@ if (isset($_SESSION['email'])) {
             </div>
         </div>
     </header>
-    <form>
-        <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
-    </form>
-    <div class="kategorije" id="category">
-        <!-- ovde treba kod da sa ubace sve kategorije -->
+    <div class="divfiltersearch">
+        <div class="dropdown">
+          <button id="dugfilter" role="button"><i class="fa-solid fa-filter" id="filter"></i></button>
+          <div id="myDropdown" class="dropdown-content hide">
+          </div> 
+        </div>
+        
+        <form>
+            <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
+        </form>
     </div>
+
     <div class="form-modal">
         <div class="text" id="data">
             <!-- nalaze se ovde produkti -->
@@ -145,10 +140,7 @@ if (isset($_SESSION['email'])) {
         </div>
     </div>
     </div>
+    
 </body>
 
 </html>
-<?php
-} else {
-    header('Location: ../../prijava/login.php');
-}

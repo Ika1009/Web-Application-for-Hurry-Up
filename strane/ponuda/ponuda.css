@@ -4,8 +4,195 @@
     box-sizing: border-box;
     
 }
+.icon-eye-open {
+
+    pointer-events:none;
+}
+.form-modal {
+    position: relative;
+    width: 100%;
+    margin-top: 4em;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5rem;
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.text {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 410px));
+    gap: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 2rem;
+}
+
+.divkategorija {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 410px));
+    gap: 1rem;
+    position: relative;
+    width: 400px;
+    min-height: 150px;
+    background: #ebebeb;
+    border-radius: 10px;
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+.product {
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    background: none;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .05);
+    outline: none;
+    border-radius: 0.25rem;
+    min-height: 100px;
+    border-top: 1px solid #333;
+    padding: 15px;
+}
+
+.product img {
+    float: left;
+    width: 5rem;
+    max-height: 4rem;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.product:hover img {
+    transform: scale(1.01);
+}
+.product:hover .product {
+    transform: scale (1.01);
+}
+
+.product:hover .dodajukolica {
+    opacity: 1;
+}
+
+.imecenakat {
+    position: relative;
+    display: flex;
+    padding: 5px;
+}
+
+.disc {
+    text-align: center;
+    font-size: 0.9rem;
+    background: #ffb266;
+    width: 25%;
+    color: #333;
+    border: .1rem solid #333;
+    border-radius: 0.6rem;
+    font-weight: bold;
+    box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
+    padding: 1px 3px;
+}
+
+.product h3 {
+    float: left;
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    color: black;
+}
+
+.divcena {
+    position: absolute;
+    right: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.price {
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.priceprecrtano {
+    font-size: 0.85rem;
+    color: #6d6d6d;
+    margin-left: 0.1rem;
+    text-decoration: line-through;
+}
+
+.desc {
+    font-size: 0.8rem;
+    width: 50%;
+    text-align: start;
+    margin-left: 5.3rem;
+    padding: 5px;
+    margin-bottom: 1rem;
+}
+
+.divdodajukolica {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+.dodajukolica {
+    float: right;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 0.25rem;
+    text-align: center;
+    background: none;
+    color: #333;
+    height: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
 
 
+.dodajukolica:hover .dodajukolica {
+    transform: scale(2);
+}
+.oduzmiizkolica:hover .oduzmiizkolica {
+    transform: scale(2);
+}
+
+.oduzmiizkolica {
+    float: left;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 0.25rem;
+    text-align: center;
+    background: none;
+    color: #333;
+    height: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.kolicinaukolica {
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    line-height: 25px;
+    border: none;
+}
+
+.imekategorija {
+    position: absolute;
+    top: -13px;
+    left: 1.5rem;
+    font-size: 20px;
+    color: #333;
+}
 
 
 .products-container {
@@ -143,182 +330,68 @@
         padding: 13px 50px 13px;
    }
 }
-
-.search {
-    display: flex;
+.divfiltersearch {
+    position: relative;
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-right: auto;
     margin-left: auto;
-    padding: 15px;
-    height: 45px;
-    min-width: 250px;
-    width: 30%;
+    height: 50px;
     border-radius: 15px;
-    border-color: #ffb266;
-    background-color: #333;
+    width: 45%;
+    min-width: 300px;
+    box-shadow: 0 0rem 1rem rgba(0, 0, 0, .3);
+}
+
+.search {
+    float: right;
+    padding: 10px;
+    height: 100%;
+    width: 85%;
+    min-width: 240px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: #fff;
     font-size: 22px;
     font-style: italic;
-    color: #FFB266;
-}
-.form-modal {
-    position: relative;
-    width: 100%;
-    height: 40rem;
-    margin-top: 4em;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 5rem;
-    overflow-y: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    color: #4c4c4c;
 }
 
-.text {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(9.3rem, 8.5rem));
-    gap: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0 auto;
-    width: 90%;
-    margin-top: 2rem;
-}
-
-.product {
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    max-height: 220px;
-    width: 150px;
-    background: #fff;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .4);
-    outline: none;
-    border-radius: 0.25rem;
-    height: 220px;
-}
-
-.product img {
-    width: 100%;
-    height: 120px;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-}
-
-.product:hover img {
-    transform: scale(1.01);
-}
-.product:hover .product {
-    transform: scale (1.01);
-}
-
-.product:hover .dodajukolica {
-    opacity: 1;
-}
-
-.imecenakat {
-    padding: 2px;
-    text-align: left;
-}
-
-.disc {
-    text-align: center;
-    font-size: 0.9rem;
-    background: #ffb266;
-    width: 25%;
-    color: #333;
-    border: .1rem solid #333;
-    border-radius: 0.6rem;
-    font-weight: bold;
-    box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .1);
-    padding: 1px 3px;
-}
-
-.product h3 {
-    margin-top: 0.2rem;
-    font-size: 1.1rem;
-    color: black;
-}
-
-.divcena {
-    margin-top: 0.2rem;
-    text-align: center;
-    align-content: center;
-    display: flex;
-}
-
-.price {
-    font-size: 0.85rem;
-    color: #333;
-    font-weight: bold;
-}
-
-.priceprecrtano {
-    font-size: 0.85rem;
-    color: #6d6d6d;
-    margin-left: 0.1rem;
-    text-decoration: line-through;
-}
-
-.desc {
-    margin-top: 0.1rem;
-    font-size: 0.54rem;
-}
-
-.divdodajukolica {
-    width: 150px;
-    bottom: 0;
-    position: absolute;
-}
-
-.dodajukolica {
+.dropdown {
     float: right;
-    cursor: pointer;
-    width: 30%;
-    border-radius: 0.25rem;
-    text-align: center;
+    width: 8%;
+    position: relative;
+    display: inline-block;
+}
+
+#dugfilter {
     background: #fff;
-    color: #48b02c;
-    height: 40px;
-    font-size: 33px;
-    font-weight: bold;
     border: none;
     outline: none;
-    transition: all 0.3s ease-in-out;
+    width:100%;
+    min-width: 40px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 2;
 }
 
-
-.dodajukolica:hover .dodajukolica {
-    transform: scale(2);
-}
-.oduzmiizkolica:hover .oduzmiizkolica {
-    transform: scale(2);
-}
-
-.oduzmiizkolica {
-    float: left;
-    cursor: pointer;
-    width: 30%;
-    border-radius: 0.25rem;
-    text-align: center;
-    background: #fff;
-    color: #d84438;
-    height: 40px;
-    font-size: 33px;
-    font-weight: bold;
+#filter {  
+    padding: 10px;
     border: none;
     outline: none;
-    transition: all 0.3s ease-in-out;
+    font-size: 30px;
+    cursor: pointer;
+    color: #4c4c4c;
 }
+        
+        
 
-.kolicinaukolica {
-    background: #fff;
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-    line-height: 40px;
-    border: none;
-}
+
+
+
+
 
 .popup-overlay {
     position: fixed;
