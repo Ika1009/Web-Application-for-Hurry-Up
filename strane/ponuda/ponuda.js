@@ -5,7 +5,6 @@ ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
-    let cat = "";
     for (let i = 0; i < data.length; i++) {
       let id = data[i].id;
       let ime = data[i].ime;
@@ -14,10 +13,8 @@ ajax.onreadystatechange = function () {
       let opis = data[i].opis;
       let popust = data[i].popust;
       let kolicina = data[i].kolicina;
-      let kategorija = data[i].kategorija;
-      cat += "<ul id=kategorijeIspis>";
-      cat += "</ul>";
-      html += '<div title="' + opis + '" class=product>';
+      
+      /*html += '<div title="' + opis + '" class=product>';
       html += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
       html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
       html += "<div class=imecenakat>";
@@ -40,11 +37,10 @@ ajax.onreadystatechange = function () {
       html += "<button class=kolicinaukolica>" + kolicina + "</button>";
       html += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
       html += "</div>";
-      html += "</div>";
+      html += "</div>";*/
     }
 
     document.getElementById("data").innerHTML += html;
-    document.getElementById("category").innerHTML += cat;
 
     ready();
 
@@ -221,12 +217,18 @@ ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
-    html += "<span class=svi onclick=kategorije(this)>Svi</span>";
+    html += "<a class=kategorisani onclick=kategorije(this)>Svi</a>";
     for (let i = 0; i < data.length; i++) {
       let kategorija = data[i].ime_kategorije;
-      html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
+      html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
     }
-    document.getElementById("category").innerHTML += html;
+    document.getElementById("myDropdown").innerHTML += html;
+    let cat = "";
+    for (let i = 0; i < data.length; i++){
+      let kategorija = data[i].ime_kategorije;
+      cat += "<div class=divkategorija> <div class=imekategorija>" + kategorija + "</div></div>";
+    }
+    document.getElementById("data").innerHTML += cat;
   }
 };
 
@@ -285,7 +287,17 @@ const kategorije = (element) => {
   const storeitems = document.getElementById("data");
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("strong");
-
+  const cale = document.getElementsByClassName("kategorisani");
+  for (let i = 0; i < cale.length; i++) {
+      if (cale[i].classList.contains("svi")) {
+          cale[i].classList.remove("svi");
+      } 
+      
+      if (cale[i].innerHTML === element.innerHTML) {
+          cale[i].classList.add("svi");
+      }
+  }
+  
   if (element.innerHTML === 'Svi') {
     for (let i = 0; i < product.length; i++) {
       product[i].style.display = "";
@@ -359,3 +371,15 @@ function setCookie3() {
   let cname = "detalji";
   document.cookie = cname + "=" + result + ";" + expires;
 }
+
+const dugme = document.getElementById("dugfilter");
+const dropdown = document.getElementById("myDropdown");
+dugme.addEventListener("click", () => {
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove("show");
+        dropdown.classList.add("hide");
+    } else {
+        dropdown.classList.remove("hide");
+        dropdown.classList.add("show");
+    }
+});
