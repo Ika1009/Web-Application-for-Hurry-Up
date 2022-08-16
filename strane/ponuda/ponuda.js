@@ -44,17 +44,17 @@ ajax.onreadystatechange = function () {
       html += "<div class=imecenakat>";
       html += "<strong hidden>" + kategorija + "</strong>";
       html += "<h3>" + ime + "</h3>";
+      html += "<div class=divcena>";
       if (popust != "0") {
-        html += "<div class=divcena>";
         html +=
           "<div class=price>" +
           (cena * (100 - parseInt(popust))) / 100 +
           " RSD</div>";
         html += "<div class=priceprecrtano>" + cena + "RSD</div>";
-        html += "</div>";
       } else {
         html += "<div class=price>" + cena + "RSD</div>";
       }
+      html += "</div>";
       html += "</div>";
       html += "<div class=divdodajukolica>";
       html += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
