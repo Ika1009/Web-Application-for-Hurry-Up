@@ -1,11 +1,34 @@
+let niz = [];
+
+let ajax1 = new XMLHttpRequest();
+ajax1.open("GET", "../artikli/APIs/kategorijeDobivanje.php", true);
+ajax1.send();
+ajax1.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText);
+    let html = "";
+    let cat = "";
+    html += "<a class=kategorisani onclick=kategorije(this)>Svi</a>";
+    for (let i = 0; i < data.length; i++) {
+      let kategorija = data[i].ime_kategorije;
+      niz.push(kategorija);
+      html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
+      cat = "<div id=categorije class=divkategorija> <div class=imekategorija>" + kategorija + "</div>";
+      document.getElementById("data").innerHTML += cat;
+    }
+    document.getElementById("myDropdown").innerHTML += html;
+  };
+}
+
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "../artikli/APIs/data.php", true);
 ajax.send();
 ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
-    let html = "";
+    
     for (let i = 0; i < data.length; i++) {
+      let html = "";
       let id = data[i].id;
       let ime = data[i].ime;
       let cena = data[i].cena;
@@ -13,8 +36,9 @@ ajax.onreadystatechange = function () {
       let opis = data[i].opis;
       let popust = data[i].popust;
       let kolicina = data[i].kolicina;
+      let kategorija = data[i].kategorija;
 
-      /*html += '<div title="' + opis + '" class=product>';
+      html += '<div title="' + opis + '" class=product>';
       html += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
       html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
       html += "<div class=imecenakat>";
@@ -37,10 +61,24 @@ ajax.onreadystatechange = function () {
       html += "<button class=kolicinaukolica>" + kolicina + "</button>";
       html += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
       html += "</div>";
-      html += "</div>";*/
-    }
+      html += "</div>";
 
-    document.getElementById("data").innerHTML += html;
+      let upisivanje = document.getElementsByClassName('imekategorija');
+      for (let k = 0; k < upisivanje.length; k++) {
+        if (upisivanje[k].innerHTML === kategorija) {
+          document.getElementsByClassName('divkategorija')[k].innerHTML += html;
+        }
+      }
+    } 
+
+    let prazne = document.getElementsByClassName('divkategorija');
+
+    for (let i = 0; i < prazne.length; i++) {
+      if (prazne[i].childNodes.length <= 2) {
+        console.log(prazne[i]);
+        prazne[i].style.display = "none";
+      }
+    }
 
     ready();
 
@@ -210,80 +248,6 @@ ajax.onreadystatechange = function () {
   }
 };
 
-let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "../artikli/APIs/kategorijeDobivanje.php", true);
-ajax1.send();
-ajax1.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    let data = JSON.parse(this.responseText);
-    let html = "";
-    html += "<a class=kategorisani onclick=kategorije(this)>Svi</a>";
-    for (let i = 0; i < data.length; i++) {
-      let kategorija = data[i].ime_kategorije;
-      html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
-    }
-    document.getElementById("myDropdown").innerHTML += html;
-
-    let cat = "";
-    for (let i = 0; i < data.length; i++) {
-      let kategorija = data[i].ime_kategorije;
-      cat += "<div id=categorije class=divkategorija> <div class=imekategorija>" + kategorija + "</div>";
-
-      
-      let ajax = new XMLHttpRequest();
-      ajax.open("GET", "../artikli/APIs/data.php", true);
-      ajax.send();
-      ajax.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          let data = JSON.parse(this.responseText);
-          for (let i = 0; i < data.length; i++) {
-            let muda = "";
-            let id = data[i].id;
-            let ime = data[i].ime;
-            let cena = data[i].cena;
-            let slika = data[i].slika;
-            let opis = data[i].opis;
-            let popust = data[i].popust;
-            let kolicina = data[i].kolicina;
-            let kategorijaArtikla = data[i].kategorija;
-            if (kategorijaArtikla == kategorija) {
-              muda += '<div title="' + opis + '" class=product>';
-              muda += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
-              muda += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
-              muda += "<div class=imecenakat>";
-              muda += "<strong hidden>" + kategorija + "</strong>";
-              muda += "<h3>" + ime + "</h3>";
-              if (popust != "0") {
-                muda += "<div class=divcena>";
-                muda +=
-                  "<div class=price>" +
-                  (cena * (100 - parseInt(popust))) / 100 +
-                  " RSD</div>";
-                muda += "<div class=priceprecrtano>" + cena + "RSD</div>";
-                muda += "</div>";
-              } else {
-                muda += "<div class=price>" + cena + "RSD</div>";
-              }
-              muda += "</div>";
-              muda += "<div class=desc>" + opis + "</div>";
-              muda += "<div class=divdodajukolica>";
-              muda += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
-              muda += "<button class=kolicinaukolica>" + kolicina + "</button>";
-              muda += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
-              muda += "</div>";
-              muda += "</div>";
-              document.getElementById("categorije").innerHTML += muda;
-            }
-
-          }
-        }
-      }
-        cat += "</div>"
-    }
-    document.getElementById("data").innerHTML += cat;
-  };
-}
-
 const search = () => {
   const searchbox = document.getElementById("search-item").value.toUpperCase();
   const storeitems = document.getElementById("data");
@@ -340,6 +304,8 @@ const kategorije = (element) => {
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("strong");
   const cale = document.getElementsByClassName("kategorisani");
+  const prazne = document.getElementsByClassName('divkategorija');
+
   for (let i = 0; i < cale.length; i++) {
     if (cale[i].classList.contains("svi")) {
       cale[i].classList.remove("svi");
@@ -354,6 +320,12 @@ const kategorije = (element) => {
     for (let i = 0; i < product.length; i++) {
       product[i].style.display = "";
     }
+
+    for (let i = 0; i < prazne.length; i++) {
+      if (prazne[i].childNodes.length > 2) {
+        prazne[i].style.display = "";
+      }
+    }
   } else {
     for (let i = 0; i < productname.length; i++) {
       let match = product[i].getElementsByTagName("strong")[0];
@@ -363,6 +335,18 @@ const kategorije = (element) => {
           product[i].style.display = "";
         } else {
           product[i].style.display = "none";
+        }
+      }
+    }
+
+    for (let i = 0; i < prazne.length; i++) {
+      let match = prazne[i].getElementsByClassName("imekategorija")[0];
+      if (match) {
+        let textvalue = match.textContent || match.innerHTML;
+        if (element.innerHTML === textvalue) {
+          prazne[i].style.display = "";
+        } else {
+          prazne[i].style.display = "none";
         }
       }
     }
