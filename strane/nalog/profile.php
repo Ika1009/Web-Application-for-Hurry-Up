@@ -48,6 +48,7 @@ if (isset($_SESSION['email'])) {
         <h1 class="text-center display-4" style="margin-top: -10px; font-size: 2rem;"><?= $_SESSION['ime_firme'] ?></h1>
         <a href="info.php" class="btn btn-info">Izmeni informacije</a>
         <a href="password.php" class="btn btn-change">Promeni lozinku</a>
+        <a href="kontakt.html" class="btn btn-warning">Kontakt</a>
         <a href="../../prijava/logout.php" class="btn btn-warning">Odjava</a>
     </div>
 

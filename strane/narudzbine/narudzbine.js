@@ -211,5 +211,5 @@ setInterval(function () {
 
         }
     };
-}, 20000);
+}, 2000);
 
