@@ -51,6 +51,7 @@ okbtn2.addEventListener("click", () => {
   popupbox2.classList.add("aktivanpopup");
 });
 
+okbtn.addEventListener("click", setCookie);
 okbtn.addEventListener("click", setCookie2);
 okbtn.addEventListener("click", setCookie3);
 okbtn.addEventListener("click", setCookie6);
@@ -135,13 +136,39 @@ function toggle() {
   }
 }
 
+function proveriVreme(i) { 
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function vreme() {
+  let date = new Date();
+  let sati = date.getHours();
+  let minuti = date.getMinutes();
+  let sekunde = date.getSeconds();
+  let dan = date.getDate();
+  let mesec = date.getMonth();
+  let godina = date.getFullYear();
+
+  sati = proveriVreme(sati);
+  minuti = proveriVreme(minuti);
+  sekunde = proveriVreme(sekunde);
+  dan = proveriVreme(dan);
+  mesec = proveriVreme(mesec);
+  mesec = parseInt(mesec) + 1;
+  godina = proveriVreme(godina);
+  
+  return (dan + "/" + mesec + "/" + godina + " " + sati + ":" + minuti + ':' + sekunde);
+}
+
 function setCookie() {
   let date = new Date();
-  let vreme = date.toLocaleString();
   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
   let expires = "expires=" + date.toUTCString();
   let cname = "vreme_narucivanja";
-  document.cookie = cname + "=" + vreme + ";" + expires;
+  document.cookie = cname + "=" + vreme() + ";" + expires;
 }
 
 function setCookie2() {

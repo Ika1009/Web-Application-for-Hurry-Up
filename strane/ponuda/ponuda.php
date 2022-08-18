@@ -143,7 +143,7 @@
                 </div>
             </div>
             <form action="narudzbina.php" method="post">
-                <button type="submit" name="order" onclick="setCookie()" class="ok-btn">Potrvdi narudžbinu</button>
+                <button type="submit" name="order" class="ok-btn">Potrvdi narudžbinu</button>
             </form>
         </div>
     </div>
