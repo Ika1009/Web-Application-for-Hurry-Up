@@ -13,6 +13,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://kit.fontawesome.com/a572b64406.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="ponuda.js" defer></script>
     <title>Ponuda</title>
     <link href="../../slike/hurryup_logo2.ico" rel="icon">
@@ -81,7 +82,7 @@
                     <ul>
                         <li><a href="../narudzbine/narudzbine.php">Narudžbine</a></li>
                         <li><a href="../artikli/login.php">Artikli</a></li>
-                        <li><a class="active" href="../ponuda/ponuda.php?ime_firme=<?php echo $_SESSION['ime_firme'] ?>">Ponuda</a></li>
+                        <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
                         <li><a href="../nalog/profile.php">Moj nalog</a></li>
                     </ul>
                 </nav>
