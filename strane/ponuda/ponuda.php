@@ -79,7 +79,7 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                        <li><a href="../narudzbine/narudzbine.php">Narudžbine</a></li>
                         <li><a href="../artikli/login.php">Artikli</a></li>
                         <li><a class="active" href="../ponuda/ponuda.php?ime_firme=<?php echo $_SESSION['ime_firme'] ?>">Ponuda</a></li>
                         <li><a href="../nalog/profile.php">Moj nalog</a></li>
@@ -129,13 +129,20 @@
                     </div>
                 </div>
 
+                <button type="button" class="ok2-btn">Napomena</button>
+
+                <div class="popup-box-container2">
+                <ion-icon name="arrow-back-outline" class="exit2"></ion-icon><br>
+                    <textarea style="resize: none;" class="napomena2" id="napomena" type="text" name="napomena" placeholder="Napomena"></textarea>
+                </div>
+
                 <div class="total">
-                    <div class="total-title">Ukupno</div>
+                    <div class="total-title">Ukupno:</div>
                     <div class="total-price" id="ukupno">0 RSD</div>
                 </div>
             </div>
             <form action="narudzbina.php" method="post">
-                <button type="submit" name="order" onclick="setCookie()" class="ok-btn">Potrvdi narudzbinu</button>
+                <button type="submit" name="order" onclick="setCookie()" class="ok-btn">Potrvdi narudžbinu</button>
             </form>
         </div>
     </div>

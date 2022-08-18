@@ -6,8 +6,9 @@ if (isset($_POST['order'])) {
     $vreme_narucivanja = $_COOKIE['vreme_narucivanja'];
     $konacna_cena = $_COOKIE['narudzbina'];
     $detalji = $_COOKIE['detalji'];
+    $napomena = $_COOKIE['napomena'];
     $ime_firme = $_SESSION['ime_firme'];
-    $sql = "INSERT INTO `narudzbine` (ukupna_cena, vreme_narucivanja, broj_stola, ime_firme, detalji, napomena) VALUES ('$konacna_cena', '$vreme_narucivanja', 'Šank', '$ime_firme', '$detalji', 'nema')";
+    $sql = "INSERT INTO `narudzbine` (ukupna_cena, vreme_narucivanja, broj_stola, ime_firme, detalji, napomena) VALUES ('$konacna_cena', '$vreme_narucivanja', 'Šank', '$ime_firme', '$detalji', '$napomena')";
     if ($conn->query($sql) === TRUE) {
         ?> <script>window.location.href = "ponuda.php"</script> <?php
     } else {  

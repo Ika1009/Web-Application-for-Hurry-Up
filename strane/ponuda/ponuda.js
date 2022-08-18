@@ -50,9 +50,9 @@ ajax.onreadystatechange = function () {
           "<div class=price>" +
           (cena * (100 - parseInt(popust))) / 100 +
           " RSD</div>";
-        html += "<div class=priceprecrtano>" + cena + "RSD</div>";
+        html += "<div class=priceprecrtano>" + cena + " RSD</div>";
       } else {
-        html += "<div class=price>" + cena + "RSD</div>";
+        html += "<div class=price>" + cena + " RSD</div>";
       }
       html += "</div>";
       html += "</div>";
@@ -170,7 +170,7 @@ ajax.onreadystatechange = function () {
       } else {
         let cartBoxContent = ` 
                                         <h3 class="cart-quantity">${kolicina}</h3>
-                                        <img src="${productImg}" alt="Naravno da nije povezano" class="cart-img">
+                                        <img src="${productImg}" class="cart-img">
 
                                         <div class="detail-box">
                                             <div class="cart-product-title">${title}</div>
@@ -240,7 +240,7 @@ ajax.onreadystatechange = function () {
 
       total = Math.round(total * 100) / 100;
       document.getElementsByClassName("total-price")[0].innerText =
-        total + "RSD";
+        total + " RSD";
       let ukupno = document.getElementById("ukupno").innerHTML;
       document.querySelector(".divdugmenaruci span").textContent = ukupno;
       toggle();
@@ -285,18 +285,30 @@ function navToggle() {
 
 const naruci = document.querySelector(".button-27");
 const okbtn = document.querySelector(".ok-btn");
+const okbtn2 = document.querySelector(".ok2-btn");
 const popupbox = document.querySelector(".popup-overlay");
+const popupbox2 = document.querySelector(".popup-box-container2");
 const exit = document.querySelector(".exit");
+const exit2 = document.querySelector(".exit2");
 
 naruci.addEventListener("click", () => {
   popupbox.classList.add("aktivanpopup");
 });
 
+okbtn2.addEventListener("click", () => {
+  popupbox2.classList.add("aktivanpopup");
+});
+
 okbtn.addEventListener("click", setCookie2);
 okbtn.addEventListener("click", setCookie3);
+okbtn.addEventListener("click", setCookie6);
 
 exit.addEventListener("click", () => {
   popupbox.classList.remove("aktivanpopup");
+});
+
+exit2.addEventListener("click", () => {
+  popupbox2.classList.remove("aktivanpopup");
 });
 
 const kategorije = (element) => {
@@ -304,15 +316,20 @@ const kategorije = (element) => {
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("strong");
   const cale = document.getElementsByClassName("kategorisani");
+  const dropdown2 = document.getElementById("myDropdown");
   const prazne = document.getElementsByClassName('divkategorija');
 
   for (let i = 0; i < cale.length; i++) {
     if (cale[i].classList.contains("svi")) {
       cale[i].classList.remove("svi");
+      dropdown2.classList.remove("show");
+      dropdown2.classList.add("hide");
     }
 
     if (cale[i].innerHTML === element.innerHTML) {
       cale[i].classList.add("svi");
+      dropdown2.classList.remove("show");
+      dropdown2.classList.add("hide");
     }
   }
 
@@ -406,6 +423,15 @@ function setCookie3() {
   });
   let cname = "detalji";
   document.cookie = cname + "=" + result + ";" + expires;
+}
+
+function setCookie6() {
+  let date = new Date();
+  date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+  let expires = "expires=" + date.toUTCString();
+  let napomena = document.getElementById("napomena").value;
+  let cname = "napomena";
+  document.cookie = cname + "=" + napomena + ";" + expires;
 }
 
 const dugme = document.getElementById("dugfilter");

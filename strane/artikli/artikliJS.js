@@ -35,7 +35,7 @@ ajax.onreadystatechange = function () {
                 } else {
                     html += "<div class=price>" + cena + " RSD</div>";
                 }
-                html += "<div class=popust type=hidden>" + popust + "</div>";
+                html += "<strong class=popust hidden>" + popust + "</strong>";
                 html += "<p class=desc>" + opis + "</p>";
                 html += "</div>"
                 html += "</div>";
