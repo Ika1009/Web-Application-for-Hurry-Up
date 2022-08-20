@@ -43,6 +43,7 @@ if (isset($_SESSION['user_pin'])) {
             </div>
         </header>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
+        <button class="dugdodajkategoriju">Izmeni kategorije</button>
 
         <div class="kategorije" id="category">
             <!-- ovde treba kod da sa ubace sve kategorije -->
@@ -55,11 +56,11 @@ if (isset($_SESSION['user_pin'])) {
                 </button>
             </div>
         </div>
-        <button class="dugdodajkategoriju">izmeni kategoriju</button>
+        
         <div class="popup-box-container">
             <div class="products-container">
                 <button class="btn1"><i class="fa fa-close"></i></button>
-                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="ime kategorije">
+                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="Ime kategorije">
                 <div class="divokbtn">
                     <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
                     <input class="ok-btn1" type="button" value="remove" id="rmv">
