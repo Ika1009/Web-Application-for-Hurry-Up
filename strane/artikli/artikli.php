@@ -14,6 +14,7 @@ if (isset($_SESSION['user_pin'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>Artikli</title>
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="artikli.css">
@@ -32,7 +33,7 @@ if (isset($_SESSION['user_pin'])) {
                     </button>
                     <nav class="nav">
                         <ul>
-                            <li><a href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                            <li><a href="../narudzbine/narudzbine.php">Narudžbine</a></li>
                             <li><a class="active" href="artikli.php">Artikli</a></li>
                             <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                             <li><a href="../nalog/profile.php">Moj nalog</a></li>
@@ -141,6 +142,17 @@ if (isset($_SESSION['user_pin'])) {
             btn1.addEventListener('click', () => {
                 popupbox.classList.remove('aktivanpopup');
             })
+            window.addEventListener("load", event => {
+            let image = document.querySelectorAll('img');
+            for (let i = 0; i < image.length - 1; i++) {
+                let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
+                if (!isLoaded) {
+                    let bezSlike = image[i].parentElement;
+                    console.log(bezSlike);
+                    bezSlike.querySelector('img').style.display = "none";
+                }
+            }
+            });
         </script>
     </body>
 

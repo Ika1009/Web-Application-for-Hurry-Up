@@ -1,15 +1,37 @@
 const url = new URL(window.location.href);
 let ime_firme = url.searchParams.get("ime_firme");
 
-let ajax = new XMLHttpRequest();
-ajax.open("GET", "./API/data.php?ime_firme=" + ime_firme, true);
-ajax.send();
-ajax.onreadystatechange = function () {
+let niz = [];
+
+let ajax1 = new XMLHttpRequest();
+ajax1.open("GET", "../artikli/APIs/kategorijeDobivanje.php?ime_firme=" + ime_firme, true);
+ajax1.send();
+ajax1.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
     let html = "";
     let cat = "";
+    html += "<a class=kategorisani onclick=kategorije(this)>Svi</a>";
     for (let i = 0; i < data.length; i++) {
+      let kategorija = data[i].ime_kategorije;
+      niz.push(kategorija);
+      html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
+      cat = "<div id=categorije class=divkategorija> <div class=imekategorija>" + kategorija + "</div>";
+      document.getElementById("data").innerHTML += cat;
+    }
+    document.getElementById("myDropdown").innerHTML += html;
+  };
+}
+
+let ajax = new XMLHttpRequest();
+ajax.open("GET", "../artikli/APIs/data.php?ime_firme=" + ime_firme, true);
+ajax.send();
+ajax.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText);
+    
+    for (let i = 0; i < data.length; i++) {
+      let html = "";
       let id = data[i].id;
       let ime = data[i].ime;
       let cena = data[i].cena;
@@ -18,25 +40,24 @@ ajax.onreadystatechange = function () {
       let popust = data[i].popust;
       let kolicina = data[i].kolicina;
       let kategorija = data[i].kategorija;
-      cat += "<ul id=kategorijeIspis>";
-      cat += "</ul>";
+
       html += '<div title="' + opis + '" class=product>';
       html += '<input class="id_artikla" data-id="' + id + '" type="hidden">';
-      html += "<img src=strane/artikli/artikliSlike/" + id + "." + slika + ">";
+      html += "<img src=../artikli/artikliSlike/" + id + "." + slika + ">";
       html += "<div class=imecenakat>";
       html += "<strong hidden>" + kategorija + "</strong>";
       html += "<h3>" + ime + "</h3>";
+      html += "<div class=divcena>";
       if (popust != "0") {
-        html += "<div class=divcena>";
         html +=
           "<div class=price>" +
           (cena * (100 - parseInt(popust))) / 100 +
           " RSD</div>";
         html += "<div class=priceprecrtano>" + cena + "RSD</div>";
-        html += "</div>";
       } else {
         html += "<div class=price>" + cena + "RSD</div>";
       }
+      html += "</div>";
       html += "</div>";
       html += "<div class=divdodajukolica>";
       html += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
@@ -44,10 +65,23 @@ ajax.onreadystatechange = function () {
       html += "<ion-icon class=oduzmiizkolica name=remove-circle-outline></ion-icon>";
       html += "</div>";
       html += "</div>";
-    }
 
-    document.getElementById("data").innerHTML += html;
-    document.getElementById("category").innerHTML += cat;
+      let upisivanje = document.getElementsByClassName('imekategorija');
+      for (let k = 0; k < upisivanje.length; k++) {
+        if (upisivanje[k].innerHTML === kategorija) {
+          document.getElementsByClassName('divkategorija')[k].innerHTML += html;
+        }
+      }
+    } 
+
+    let prazne = document.getElementsByClassName('divkategorija');
+
+    for (let i = 0; i < prazne.length; i++) {
+      if (prazne[i].childNodes.length <= 2) {
+        console.log(prazne[i]);
+        prazne[i].style.display = "none";
+      }
+    }
 
     ready();
 
@@ -217,22 +251,6 @@ ajax.onreadystatechange = function () {
   }
 };
 
-let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "./API/kategorijeDobivanje.php?ime_firme=" + ime_firme, true);
-ajax1.send();
-ajax1.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    let data = JSON.parse(this.responseText);
-    let html = "";
-    html += "<span class=svi onclick=kategorije(this)>Svi</span>";
-    for (let i = 0; i < data.length; i++) {
-      let kategorija = data[i].ime_kategorije;
-      html += "<span class=jednakat onclick=kategorije(this)>" + kategorija + "</span>";
-    }
-    document.getElementById("category").innerHTML += html;
-  }
-};
-
 const search = () => {
   const searchbox = document.getElementById("search-item").value.toUpperCase();
   const storeitems = document.getElementById("data");
@@ -253,6 +271,20 @@ const search = () => {
     }
   }
 };
+
+const navToggler = document.querySelector(".nav-toggler");
+navToggler.addEventListener("click", navToggle);
+
+function navToggle() {
+  navToggler.classList.toggle("active");
+  const nav = document.querySelector(".nav");
+  nav.classList.toggle("open");
+  if (nav.classList.contains("open")) {
+    nav.style.maxHeight = nav.scrollHeight + "px";
+  } else {
+    nav.removeAttribute("style");
+  }
+}
 
 const naruci = document.querySelector(".button-27");
 const okbtn = document.querySelector(".ok-btn");
@@ -276,10 +308,28 @@ const kategorije = (element) => {
   const storeitems = document.getElementById("data");
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("strong");
+  const cale = document.getElementsByClassName("kategorisani");
+  const prazne = document.getElementsByClassName('divkategorija');
+
+  for (let i = 0; i < cale.length; i++) {
+    if (cale[i].classList.contains("svi")) {
+      cale[i].classList.remove("svi");
+    }
+
+    if (cale[i].innerHTML === element.innerHTML) {
+      cale[i].classList.add("svi");
+    }
+  }
 
   if (element.innerHTML === 'Svi') {
     for (let i = 0; i < product.length; i++) {
       product[i].style.display = "";
+    }
+
+    for (let i = 0; i < prazne.length; i++) {
+      if (prazne[i].childNodes.length > 2) {
+        prazne[i].style.display = "";
+      }
     }
   } else {
     for (let i = 0; i < productname.length; i++) {
@@ -290,6 +340,18 @@ const kategorije = (element) => {
           product[i].style.display = "";
         } else {
           product[i].style.display = "none";
+        }
+      }
+    }
+
+    for (let i = 0; i < prazne.length; i++) {
+      let match = prazne[i].getElementsByClassName("imekategorija")[0];
+      if (match) {
+        let textvalue = match.textContent || match.innerHTML;
+        if (element.innerHTML === textvalue) {
+          prazne[i].style.display = "";
+        } else {
+          prazne[i].style.display = "none";
         }
       }
     }
@@ -311,7 +373,7 @@ function toggle() {
 
 function setCookie() {
   let date = new Date();
-  let vreme = date.toUTCString();
+  let vreme = date.toLocaleString();
   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
   let expires = "expires=" + date.toUTCString();
   let cname = "vreme_narucivanja";
@@ -351,8 +413,6 @@ function setCookie3() {
   document.cookie = cname + "=" + result + ";" + expires;
 }
 
-
-
 function setCookie4() {
   let date = new Date();
   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
@@ -369,3 +429,15 @@ function setCookie5() {
   let cname = "broj_stola";
   document.cookie = cname + "=" + broj_stola + ";" + expires;
 }
+
+const dugme = document.getElementById("dugfilter");
+const dropdown = document.getElementById("myDropdown");
+dugme.addEventListener("click", () => {
+  if (dropdown.classList.contains('show')) {
+    dropdown.classList.remove("show");
+    dropdown.classList.add("hide");
+  } else {
+    dropdown.classList.remove("hide");
+    dropdown.classList.add("show");
+  }
+});

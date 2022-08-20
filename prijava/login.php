@@ -60,6 +60,6 @@
     } else {
         header('Location: ../admin/admin.php');
     }} else {
-        header('Location: ../strane/ponuda/ponuda.php');
+        header('Location: ../strane/narudzbine/narudzbine.php');
     }
     

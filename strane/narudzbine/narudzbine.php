@@ -14,7 +14,7 @@ if (isset($_SESSION['email'])) {
         <script src="https://kit.fontawesome.com/a572b64406.js" crossorigin="anonymous"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <title>Narudzbine</title>
+        <title>Narudžbine</title>
         <link rel="stylesheet" href="narudzbine.css">
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
     </head>
@@ -33,7 +33,7 @@ if (isset($_SESSION['email'])) {
                     </button>
                     <nav class="nav">
                         <ul>
-                            <li><a class="active" href="../narudzbine/narudzbine.php">Narudzbine</a></li>
+                            <li><a class="active" href="../narudzbine/narudzbine.php">Narudžbine</a></li>
                             <li><a href="../artikli/login.php">Artikli</a></li>
                             <li><a href="../ponuda/ponuda.php">Ponuda</a></li>
                             <li><a href="../nalog/profile.php">Moj nalog</a></li>
@@ -56,7 +56,7 @@ if (isset($_SESSION['email'])) {
 
             <div class="form-toggle">
                 <button id="aktivne-toggle" onclick="toggleAktivne()">Aktivne</button>
-                <button id="izvrsene-toggle" onclick="toggleIzvrsene()">Izvrsene</button>
+                <button id="izvrsene-toggle" onclick="toggleIzvrsene()">Izvršene</button>
                 <button id="odbijene-toggle" onclick="toggleOdbijene()"> Odbijene</button>
             </div>
             <div id="divaktivne" class="divaktivne">
@@ -72,7 +72,7 @@ if (isset($_SESSION['email'])) {
                                     <tr>
                                         <th scope="col">Broj Stola</th>
                                         <th scope="col">Ukupna Cena</th>
-                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Vreme narudžbine</th>
                                         <th scope="col">Napomena</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -99,7 +99,7 @@ if (isset($_SESSION['email'])) {
                                     <tr>
                                         <th scope="col">Broj Stola</th>
                                         <th scope="col">Ukupna Cena</th>
-                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Vreme narudžbine</th>
                                         <th scope="col">Napomena</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -127,7 +127,7 @@ if (isset($_SESSION['email'])) {
                                     <tr>
                                         <th scope="col">Broj Stola</th>
                                         <th scope="col">Ukupna Cena</th>
-                                        <th scope="col">Vreme narudzbine</th>
+                                        <th scope="col">Vreme narudžbine</th>
                                         <th scope="col">Napomena</th>
                                         <th scope="col"></th>
                                     </tr>
