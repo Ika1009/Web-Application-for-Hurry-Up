@@ -107,7 +107,6 @@
         </div>
     </div>
 
-
     <div class="divdugmenaruci" id="sakrij" hidden>
         <button class="button-27" role="button">Naruči za <span>0</span></button>
     </div>
@@ -148,7 +147,18 @@
         </div>
     </div>
     </div>
-    
+    <script defer>
+        window.addEventListener("load", event => {
+        let image = document.querySelectorAll('img');
+        for (let i = 0; i < image.length - 1; i++) {
+            let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
+            if (!isLoaded) {
+                let bezSlike = image[i].parentElement;
+                bezSlike.querySelector('img').style.display = "none";
+            }
+        }
+    });
+    </script>
 </body>
 
 </html>

@@ -1,12 +1,20 @@
-let ajax = new XMLHttpRequest();
-ajax.open("GET", "./APIs/data.php", true);
-ajax.send();
-ajax.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        console.log(data);
-        let html = "";
-        for (let i = 0; i < data.length; i++) {
+function ajaxCall() {
+    $.ajax({
+  
+        // Our sample url to make request 
+        url: './APIs/data.php',
+  
+        // Type of Request
+        type: "GET",
+  
+        async: false,
+  
+        // Function to call when to
+        // request is ok 
+        success: function (data) {
+          data = JSON.parse(data);
+          let html = "";
+          for (let i = 0; i < data.length; i++) {
             let id = data[i].id;
             let ime = data[i].ime;
             let cena = data[i].cena;
@@ -67,23 +75,46 @@ ajax.onreadystatechange = function () {
             }
 
         }
-        document.getElementById("data").innerHTML += html;
-    }
-};
-let elementos = document.getElementById("kategorije")
-let ajax1 = new XMLHttpRequest();
-ajax1.open("GET", "./APIs/kategorijeDobivanje.php", true);
-ajax1.send();
-ajax1.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        console.log(data);
-        let html = "";
-        for (let i = 0; i < data.length; i++) {
+            document.getElementById("data").innerHTML += html;
+        },
+  
+        // Error handling 
+        error: function (error) {
+            console.log(`Error ${error}`);
+        } 
+    });
+  }
+  ajaxCall();
+
+  let elementos = document.getElementById("kategorije");
+
+  function ajaxCall2() {
+    $.ajax({
+  
+        // Our sample url to make request 
+        url: './APIs/kategorijeDobivanje.php',
+  
+        // Type of Request
+        type: "GET",
+  
+        async: false,
+  
+        // Function to call when to
+        // request is ok 
+        success: function (data) {
+          data = JSON.parse(data);
+          for (let i = 0; i < data.length; i++) {
             let kategorija = data[i].ime_kategorije;
             var option = document.createElement("option");
             option.text = kategorija;
             elementos.add(option);
-        }
-    }
-};
+          }   
+        },
+  
+        // Error handling 
+        error: function (error) {
+            console.log(`Error ${error}`);
+        } 
+    });
+  }
+  ajaxCall2();
