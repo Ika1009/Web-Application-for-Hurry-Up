@@ -75,7 +75,7 @@ if (isset($_SESSION['user_pin'])) {
                         <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
                         <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
                         <input class="popuptext artikl_input_cena" id="cena" min="0" type="number" name="cena" required placeholder="Cena  (RSD)" />
-                        <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" max="100" name="popust" required placeholder="Popust  (%)" />
+                        <input class="popuptext artikl_input_popust" id="popust" type="number" min="0" max="100" name="popust" placeholder="Popust  (%)" />
                         <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorije" required>
                             <option class="kategorija-naslov" value="" selected disabled hidden>Izaberi kategoriju</option>
                         </select><br>
