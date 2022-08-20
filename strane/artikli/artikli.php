@@ -60,13 +60,35 @@ if (isset($_SESSION['user_pin'])) {
         <div class="popup-box-container">
             <div class="products-container">
                 <button class="btn1"><i class="fa fa-close"></i></button>
-                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="Ime kategorije">
                 <div class="divokbtn">
-                    <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
-                    <input class="ok-btn1" type="button" value="remove" id="rmv">
+                    <input class="ok-btn" type="submit" value="Dodaj" id="dugmedodaj" name="dugmeDodaj">
+                    <input class="ok-btn" type="button" value="Izbriši" id="dugmeizbrisi" name="dugmeIzbrisi">
                 </div>
             </div>
         </div>
+
+        <div class="popup-box-container2">
+            <div class="products-container">
+                <button class="btn2"><i class="fa fa-close"></i></button>
+                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="Ime kategorije">
+                <div class="divokbtn2">
+                    <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-box-container3">
+            <div class="products-container">
+                <button class="btn3"><i class="fa fa-close"></i></button>
+                <select class="kategorija2 artikl_input_kategorija" name="kategorija" id="kategorije" required>
+                    <option class="kategorija-naslov" value="" selected disabled hidden>Izaberi kategoriju</option>
+                </select>
+                <div class="divokbtn2">
+                    <input class="ok-btn" type="button" value="remove" id="rmv">
+                </div>
+            </div>
+        </div>
+
         <div class="popup-overlay1" id="popup-overlay1">
             <div class="popup" id="popup">
                 <button class="btn" onclick="ZatvoriPopUp()"><i class="fa fa-close"></i></button>
@@ -80,7 +102,7 @@ if (isset($_SESSION['user_pin'])) {
                                     <img src="" alt="">
                                 </div>
                                 <ion-icon name="cloud-upload"></ion-icon>
-                                <p class="drag_text"> Prevuci da otpremis fajl</p>
+                                <p class="drag_text">Prevuci da otpremiš fajl</p>
                                 <button class="choose-file">Izaberi Fajl</button>
                             </label>
                         </div>
@@ -97,7 +119,6 @@ if (isset($_SESSION['user_pin'])) {
                 </div>
             </div>
         </div>
-        <script src="artikliJS.js"></script>
         <script src="artikliFunctionsJS.js"></script>
         <script>
             let popup = document.getElementById("popup-overlay1");
@@ -121,37 +142,49 @@ if (isset($_SESSION['user_pin'])) {
                 poputp.classList.add("otvori-Popup");
             }
 
-
             const naruci = document.querySelector('.dugdodajkategoriju');
-            const okbtn = document.querySelector('.ok-btn');
-            const okbtn1 = document.querySelector('.ok-btn1');
             const btn1 = document.querySelector('.btn1');
+            const btn2 = document.querySelector('.btn2');
+            const btn3 = document.querySelector('.btn3');
             const popupbox = document.querySelector('.popup-box-container');
+            const popupbox2 = document.querySelector('.popup-box-container2');
+            const popupbox3 = document.querySelector('.popup-box-container3');
 
             naruci.addEventListener('click', () => {
                 popupbox.classList.add('aktivanpopup');
-            })
+            });
 
-            okbtn.addEventListener('click', () => {
-                popupbox.classList.remove('aktivanpopup');
-            })
-
-            okbtn1.addEventListener('click', () => {
-                popupbox.classList.remove('aktivanpopup');
-            })
             btn1.addEventListener('click', () => {
                 popupbox.classList.remove('aktivanpopup');
-            })
+            });
+
+            btn2.addEventListener('click', () => {
+                popupbox2.classList.remove('aktivanpopup');
+            });
+
+            btn3.addEventListener('click', () => {
+                popupbox3.classList.remove('aktivanpopup');
+            });
+
             window.addEventListener("load", event => {
                 let image = document.querySelectorAll('img');
                 for (let i = 0; i < image.length - 1; i++) {
                     let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
                     if (!isLoaded) {
                         let bezSlike = image[i].parentElement;
-                        console.log(bezSlike);
                         bezSlike.querySelector('img').style.display = "none";
                     }
                 }
+            });
+
+            let dodajDugme = document.getElementById('dugmedodaj');
+            dodajDugme.addEventListener('click', () => {
+                popupbox2.classList.add('aktivanpopup');
+            });
+
+            let izbrisiDugme = document.getElementById('dugmeizbrisi');
+            izbrisiDugme.addEventListener('click', () => {
+                popupbox3.classList.add('aktivanpopup');
             });
         </script>
     </body>

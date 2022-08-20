@@ -316,14 +316,14 @@ document.querySelector("#rmv").addEventListener("click", function (event) {
 
 document.querySelector("#dodajopciju").addEventListener("click", function (event) {
     event.preventDefault();
-    // console.log("alo");
-    var txt = document.getElementById("add-box");
-    var kategorije = document.getElementById("kategorije");
-    var option = document.createElement("option");
+    //console.log("alo");
+    let txt = document.getElementById("add-box");
+    let kategorije = document.getElementById("kategorije");
+    let option = document.createElement("option");
     option.text = txt.value;
     kategorije.add(option);
     kategorije.selectedIndex = kategorije.length - 1;
-    console.log(kategorije.selectedIndex);
+    //console.log(kategorije.selectedIndex);
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./APIs/dodajKategoriju.php?addNewCategory=" + txt.value, true);
     ajax.send();
@@ -336,8 +336,8 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
         }
     };
 });
-var add_artikl_pom = 0;
 
+let add_artikl_pom = 0;
 
 document.querySelector("#artikl_form").addEventListener("submit", function (event) {
     event.preventDefault();
