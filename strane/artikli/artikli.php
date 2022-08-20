@@ -26,7 +26,7 @@ if (isset($_SESSION['user_pin'])) {
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="logo">
-                        <img  src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
+                        <img src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
                     </div>
                     <button type="button" class="nav-toggler">
                         <span></span>
@@ -43,7 +43,7 @@ if (isset($_SESSION['user_pin'])) {
             </div>
         </header>
         <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
-        
+
         <div class="kategorije" id="category">
             <!-- ovde treba kod da sa ubace sve kategorije -->
         </div>
@@ -54,7 +54,17 @@ if (isset($_SESSION['user_pin'])) {
                     <ion-icon name="add"></ion-icon></i>
                 </button>
             </div>
-
+        </div>
+        <button class="dugdodajkategoriju">izmeni kategoriju</button>
+        <div class="popup-box-container">
+            <div class="products-container">
+                <button class="btn1"><i class="fa fa-close"></i></button>
+                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="ime kategorije">
+                <div class="divokbtn">
+                    <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
+                    <input class="ok-btn1" type="button" value="remove" id="rmv">
+                </div>
+            </div>
         </div>
         <div class="popup-overlay1" id="popup-overlay1">
             <div class="popup" id="popup">
@@ -80,17 +90,6 @@ if (isset($_SESSION['user_pin'])) {
                         <select class="kategorija artikl_input_kategorija" name="kategorija" id="kategorije" required>
                             <option class="kategorija-naslov" value="" selected disabled hidden>Izaberi kategoriju</option>
                         </select><br>
-                        <button class="dugdodajkategoriju">izmeni kategoriju</button>
-                        <div class="popup-box-container">
-                            <div class="products-container">
-                                <button class="btn1"><i class="fa fa-close"></i></button>
-                                <input class="popuptext1" id=add-box name="dodavanjeBox" placeholder="ime kategorije">
-                                <div class="divokbtn">
-                                    <input class="ok-btn" type="submit" value="dodaj" id="dodajopciju" name="dodajKategoriju">
-                                    <input class="ok-btn1" type="button" value="remove" id="rmv">
-                                </div>
-                            </div>
-                        </div>
                         <textarea style="resize: none;" class="opis artikl_input_opis" id="opis" type="text" name="opis" placeholder="Opis"></textarea>
                         <button class="submit" type="submit" name="article_add" id="popupDugme" value="add">Dodaj</button>
                     </form>
@@ -143,15 +142,15 @@ if (isset($_SESSION['user_pin'])) {
                 popupbox.classList.remove('aktivanpopup');
             })
             window.addEventListener("load", event => {
-            let image = document.querySelectorAll('img');
-            for (let i = 0; i < image.length - 1; i++) {
-                let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
-                if (!isLoaded) {
-                    let bezSlike = image[i].parentElement;
-                    console.log(bezSlike);
-                    bezSlike.querySelector('img').style.display = "none";
+                let image = document.querySelectorAll('img');
+                for (let i = 0; i < image.length - 1; i++) {
+                    let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
+                    if (!isLoaded) {
+                        let bezSlike = image[i].parentElement;
+                        console.log(bezSlike);
+                        bezSlike.querySelector('img').style.display = "none";
+                    }
                 }
-            }
             });
         </script>
     </body>
