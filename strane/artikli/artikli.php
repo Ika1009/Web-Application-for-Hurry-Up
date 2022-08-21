@@ -96,15 +96,11 @@ if (isset($_SESSION['user_pin'])) {
                 <div id="signup-form">
                     <form id="artikl_form" class="forma" name="form1" action="" method="post" enctype="multipart/form-data">
                         <div class="fajl">
-                            <input class="file" id="file" type="file" name="file" accept=".png, .jpg, .jpeg">
                             <label for="file" class="upload-label">
-                                <div class="image">
-                                    <img src="" alt="">
-                                </div>
                                 <ion-icon name="cloud-upload"></ion-icon>
                                 <p class="drag_text">Prevuci da otpremiš fajl</p>
-                                <button class="choose-file">Izaberi Fajl</button>
                             </label>
+                            <input class="file" id="file" type="file" name="file" accept=".png, .jpg, .jpeg">
                         </div>
                         <input class="popuptext artikl_input_id" id="artikl_input_id" type="hidden" name="id" required placeholder="Id Artikla" />
                         <input class="popuptext artikl_input_ime" id="ime" type="text" name="ime" required placeholder="Ime Artikla" />
@@ -168,7 +164,7 @@ if (isset($_SESSION['user_pin'])) {
 
             window.addEventListener("load", event => {
                 let image = document.querySelectorAll('img');
-                for (let i = 0; i < image.length - 1; i++) {
+                for (let i = 0; i < image.length; i++) {
                     let isLoaded = image[i].complete && image[i].naturalHeight !== 0;
                     if (!isLoaded) {
                         let bezSlike = image[i].parentElement;

@@ -481,6 +481,24 @@
   cursor: pointer;
 }
 
+.ok-btn2 {
+  background-color: #ffb266;
+  border: transparent;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 15px;
+  color: #333;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 95%;
+  font-size: 90%;
+  cursor: pointer;
+}
+
 .ok2-btn {
   background-color: #ffb266;
   border: transparent;
@@ -773,7 +791,7 @@ a {
   height: 150px;
   font-size: 1.4em;
   padding: 1.2em 1.7em 1.2em 1.7em;
-  margin-top: 3em;
+  margin-top: 2em;
   border-radius: 20px;
   border: none;
   background: #ebebeb;

@@ -38,6 +38,7 @@ function navToggle() {
 const naruci = document.querySelector(".button-27");
 const okbtn = document.querySelector(".ok-btn");
 const okbtn2 = document.querySelector(".ok2-btn");
+const okbtn3 = document.querySelector(".ok-btn2");
 const popupbox = document.querySelector(".popup-overlay");
 const popupbox2 = document.querySelector(".popup-box-container2");
 const exit = document.querySelector(".exit");
@@ -49,6 +50,10 @@ naruci.addEventListener("click", () => {
 
 okbtn2.addEventListener("click", () => {
   popupbox2.classList.add("aktivanpopup");
+});
+
+okbtn3.addEventListener("click", () => {
+  popupbox2.classList.remove("aktivanpopup");
 });
 
 okbtn.addEventListener("click", setCookie);

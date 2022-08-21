@@ -132,8 +132,9 @@
                 <button type="button" class="ok2-btn">Napomena</button>
 
                 <div class="popup-box-container2">
-                <ion-icon name="arrow-back-outline" class="exit2"></ion-icon><br>
+                    <ion-icon name="arrow-back-outline" class="exit2"></ion-icon><br>
                     <textarea style="resize: none;" class="napomena2" id="napomena" type="text" name="napomena" placeholder="Napomena"></textarea>
+                    <button type="button" class="ok-btn2">OK</button>
                 </div>
 
                 <div class="total">
