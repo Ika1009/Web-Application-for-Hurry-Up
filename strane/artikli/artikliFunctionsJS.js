@@ -87,6 +87,7 @@ function ajaxCall() {
 ajaxCall();
 
 let elementos = document.getElementById("kategorije");
+let elementos2 = document.getElementById("kategorije2");
 
 function ajaxCall2() {
     $.ajax({
@@ -105,9 +106,12 @@ function ajaxCall2() {
             data = JSON.parse(data);
             for (let i = 0; i < data.length; i++) {
                 let kategorija = data[i].ime_kategorije;
-                var option = document.createElement("option");
+                let option = document.createElement("option");
+                let option2 = document.createElement("option");
                 option.text = kategorija;
+                option2.text = kategorija;
                 elementos.add(option);
+                elementos2.add(option2);
             }
         },
 
@@ -198,25 +202,23 @@ function ispisArtikala() {
 }
 
 function dugmeZaMenjanje(element) {
-
     let elementos = element.closest('.product');
-
     let id = elementos.getElementsByClassName('id_artikla')[0].getAttribute("data-id");
     let ime = elementos.getElementsByTagName('h3')[0].innerHTML;
     let slika = elementos.getElementsByTagName('img')[0].getAttribute("src");
     let cena;
     let popust;
+
     if (typeof (elementos.getElementsByClassName('priceprecrtano')[0]) == "undefined") {
         cena = elementos.getElementsByClassName('price')[0].innerHTML;
         popust = 0;
-    }
-    else {
+    } else {
         cena = elementos.getElementsByClassName('priceprecrtano')[0].innerHTML;
         popust = elementos.getElementsByClassName('popust')[0].innerHTML;
     }
+
     let opis = elementos.getElementsByClassName('desc')[0].innerHTML;
     let kategorija = elementos.getElementsByClassName('cat')[0].innerHTML;
-
 
     document.querySelectorAll(".artikl_input_id")[0].value = id;
     document.querySelectorAll(".artikl_input_ime")[0].value = ime;
@@ -226,10 +228,8 @@ function dugmeZaMenjanje(element) {
     document.querySelectorAll(".artikl_input_kategorija")[0].value = kategorija;
 
     otvoriPopup();
-
-
-    console.log("kliknuto dugme");
 }
+
 // za brisanje
 function onClickDugmeZaBrisanje(element) {
     let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
@@ -265,6 +265,7 @@ function onClickDugmeZaBrisanje(element) {
     elementos.remove()
 
 }
+
 const search = () => {
     const searchbox = document.getElementById("search-item").value.toUpperCase();
     const storeitems = document.getElementById("data");
@@ -285,6 +286,7 @@ const search = () => {
         }
     }
 }
+
 const navToggler = document.querySelector(".nav-toggler");
 navToggler.addEventListener("click", navToggle);
 
@@ -300,7 +302,8 @@ function navToggle() {
 }
 
 document.querySelector("#rmv").addEventListener("click", function (event) {
-    var kategorije = document.getElementById("kategorije")
+    let kategorije = document.getElementById("kategorije");
+    let kategorije2 = document.getElementById("kategorije2");
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./APIs/deleteKategorija.php?obrisiKategoriju=" + kategorije.getElementsByTagName("option")[kategorije.selectedIndex].innerHTML, true);
     ajax.send();
@@ -312,6 +315,18 @@ document.querySelector("#rmv").addEventListener("click", function (event) {
             }
         }
     };
+
+    let ajax2 = new XMLHttpRequest();
+    ajax2.open("GET", "./APIs/deleteKategorija.php?obrisiKategoriju=" + kategorije2.getElementsByTagName("option")[kategorije2.selectedIndex].innerHTML, true);
+    ajax2.send();
+    ajax2.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = this.responseText;
+            if (data == "deleted") {
+                kategorije2.remove(kategorije2.selectedIndex);
+            }
+        }
+    };
 });
 
 document.querySelector("#dodajopciju").addEventListener("click", function (event) {
@@ -319,10 +334,15 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
     //console.log("alo");
     let txt = document.getElementById("add-box");
     let kategorije = document.getElementById("kategorije");
+    let kategorije2 = document.getElementById("kategorije2");
     let option = document.createElement("option");
+    let option2 = document.createElement("option");
     option.text = txt.value;
+    option2.text = txt.value;
     kategorije.add(option);
+    kategorije2.add(option2);
     kategorije.selectedIndex = kategorije.length - 1;
+    kategorije2.selectedIndex = kategorije2.length - 1;
     //console.log(kategorije.selectedIndex);
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "./APIs/dodajKategoriju.php?addNewCategory=" + txt.value, true);
