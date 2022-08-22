@@ -337,6 +337,7 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
     let kategorije2 = document.getElementById("kategorije2");
     let option = document.createElement("option");
     let option2 = document.createElement("option");
+    let popupbox = document.getElementsByClassName("popup-box-container2")[0];
     option.text = txt.value;
     option2.text = txt.value;
     kategorije.add(option);
@@ -355,6 +356,7 @@ document.querySelector("#dodajopciju").addEventListener("click", function (event
             }
         }
     };
+    popupbox.classList.remove('aktivanpopup');
 });
 
 let add_artikl_pom = 0;
