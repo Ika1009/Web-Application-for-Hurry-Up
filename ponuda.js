@@ -311,6 +311,7 @@ function ajaxCall2() {
           }
           html += "</div>";
           html += "</div>";
+          html += "<div class=desc>" + opis + "</div>";
           html += "<div class=divdodajukolica>";
           html += "<ion-icon class=dodajukolica name=add-circle-outline></ion-icon>";
           html += "<button class=kolicinaukolica>" + kolicina + "</button>";

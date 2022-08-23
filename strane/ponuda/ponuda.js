@@ -5,6 +5,7 @@ const search = () => {
   const storeitems = document.getElementById("data");
   const product = document.querySelectorAll(".product");
   const productname = storeitems.getElementsByTagName("h3");
+  const prazne = document.getElementsByClassName('divkategorija');
 
   for (let i = 0; i < productname.length; i++) {
     let match = product[i].getElementsByTagName("h3")[0];
@@ -16,6 +17,17 @@ const search = () => {
         product[i].style.display = "";
       } else {
         product[i].style.display = "none";
+      }
+    }
+  }
+
+  for (let i = 0; i < prazne.length; i++) {
+    for (let j = 1; j < prazne[i].childElementCount; j++) {
+      if (prazne[i].children[j].style.display === ""){
+        prazne[i].style.display = "";
+        break;
+      } else {
+        prazne[i].style.display = "none";
       }
     }
   }
