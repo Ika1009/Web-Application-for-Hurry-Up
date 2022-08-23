@@ -113,6 +113,13 @@ function ajaxCall2() {
                 elementos.add(option);
                 elementos2.add(option2);
             }
+            let html = "";
+            html += "<a class=kategorisani onclick=kategorije(this)>Svi</a>";
+            for (let i = 0; i < data.length; i++) {
+                let kategorija = data[i].ime_kategorije;
+                html += "<a class=kategorisani onclick=kategorije(this)>" + kategorija + "</a>";
+            }
+            document.getElementById("myDropdown").innerHTML += html;
         },
 
         // Error handling 
@@ -233,7 +240,7 @@ function dugmeZaMenjanje(element) {
 // za brisanje
 function onClickDugmeZaBrisanje(element) {
     let nastavitiProvera = confirm("Jel ste sigurni da želite da obrišete ovaj artikal?");
-    console.log(nastavitiProvera); // OK = true, Cancel = false
+    //console.log(nastavitiProvera); // OK = true, Cancel = false
     if (nastavitiProvera == false) {
         return;
     }
@@ -261,10 +268,21 @@ function onClickDugmeZaBrisanje(element) {
     //setCookie(elementos.textContent);
     //console.log(elementos.textContent);
 
-    console.log("kliknuto dugme");
     elementos.remove()
 
 }
+
+const dugme = document.getElementById("dugfilter");
+const dropdown = document.getElementById("myDropdown");
+dugme.addEventListener("click", () => {
+  if (dropdown.classList.contains('show')) {
+    dropdown.classList.remove("show");
+    dropdown.classList.add("hide");
+  } else {
+    dropdown.classList.remove("hide");
+    dropdown.classList.add("show");
+  }
+});
 
 const search = () => {
     const searchbox = document.getElementById("search-item").value.toUpperCase();
@@ -286,6 +304,46 @@ const search = () => {
         }
     }
 }
+
+const kategorije = (element) => {
+    const storeitems = document.getElementById("data");
+    const product = document.querySelectorAll(".product");
+    const productname = storeitems.getElementsByTagName("p");
+    const cale = document.getElementsByClassName("kategorisani");
+    const dropdown2 = document.getElementById("myDropdown");
+  
+    for (let i = 0; i < cale.length; i++) {
+      if (cale[i].classList.contains("svi")) {
+        cale[i].classList.remove("svi");
+        dropdown2.classList.remove("show");
+        dropdown2.classList.add("hide");
+      }
+  
+      if (cale[i].innerHTML === element.innerHTML) {
+        cale[i].classList.add("svi");
+        dropdown2.classList.remove("show");
+        dropdown2.classList.add("hide");
+      }
+    }
+  
+    if (element.innerHTML === 'Svi') {
+      for (let i = 0; i < product.length; i++) {
+        product[i].style.display = "";
+      }
+    } else {
+      for (let i = 0; i < productname.length; i++) {
+        let match = product[i].getElementsByTagName("p")[0];
+        if (match) {
+          let textvalue = match.textContent || match.innerHTML;
+          if (element.innerHTML === textvalue) {
+            product[i].style.display = "";
+          } else {
+            product[i].style.display = "none";
+          }
+        }
+      }
+    }
+  };
 
 const navToggler = document.querySelector(".nav-toggler");
 navToggler.addEventListener("click", navToggle);
@@ -386,7 +444,6 @@ document.querySelector("#artikl_form").addEventListener("submit", function (even
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.responseText;
-            console.log(response);
             ispisArtikala()
         }
 

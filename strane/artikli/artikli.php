@@ -14,10 +14,60 @@ if (isset($_SESSION['user_pin'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://kit.fontawesome.com/a572b64406.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>Artikli</title>
         <link href="../../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="artikli.css">
+        <style>
+            ::-webkit-scrollbar-track {
+                border: 5px solid white;
+                border-color: transparent;
+                background-color: #f9f9f9;
+            }
+
+            ::-webkit-scrollbar {
+                width: 15px;
+                background-color: #f9f9f9;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background-color: #ffb266;
+                border-radius: 10px;
+            }
+
+            .svi {
+                background-color: #ffb266;
+                color: #fff;
+            }
+            
+            .hide {
+                display: none;
+            }
+            
+            .dropdown-content {
+            position: absolute;
+            left: -100px;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            max-height: 200px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+            
+            .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+            
+            .dropdown a:hover {background-color: #ddd;}
+            
+            .show {
+                display: block;
+            }
+        </style>
 
     </head>
 
@@ -42,7 +92,17 @@ if (isset($_SESSION['user_pin'])) {
                 </div>
             </div>
         </header>
-        <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()">
+        <div class="divfiltersearch">
+            <div class="dropdown">
+            <button id="dugfilter" role="button"><i class="fa-solid fa-filter" id="filter"></i></button>
+            <div id="myDropdown" class="dropdown-content hide">
+            </div> 
+            </div>
+            
+            <form>
+                <input class="search" type="text" id="search-item" placeholder="Pretraži" onkeyup="search()" />
+            </form>
+        </div>
         <button class="dugdodajkategoriju">Izmeni kategorije</button>
 
         <div class="kategorije" id="category">

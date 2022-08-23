@@ -179,6 +179,19 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+.divfiltersearch {
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  height: 50px;
+  border-radius: 15px;
+  width: 45%;
+  min-width: 300px;
+  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.3);
+}
+
 .divokbtn {
   display: flex;
   position: absolute;
@@ -276,6 +289,24 @@
 
 .drag_text {
   margin: -40px;
+}
+
+.dropdown {
+  float: right;
+  width: 8%;
+  position: relative;
+  display: inline-block;
+}
+
+#dugfilter {
+  background: #fff;
+  border: none;
+  outline: none;
+  width: 100%;
+  min-width: 40px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  z-index: 2;
 }
 
 .popuptext {
@@ -410,21 +441,29 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+#filter {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #4c4c4c;
+}
+
 .submit:hover {
   background-color: black;
 }
 
 .search {
-  display: flex;
-  margin-top: 1rem;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 15px;
-  height: 45px;
-  min-width: 250px;
-  width: 30%;
-  border-radius: 20px;
-  border-color: #333;
+  float: right;
+  padding: 10px;
+  height: 100%;
+  width: 85%;
+  min-width: 240px;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  border: none;
+  outline: none;
   background-color: #fff;
   font-size: 22px;
   font-style: italic;
