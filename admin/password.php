@@ -37,15 +37,9 @@ if (isset($_SESSION['admin'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
-                            <span class="title">Firme</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
-                            <span class="title">Podešavanja</span>
+                        <a href="firme.php">
+                            <span class="icon"><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
+                            <span class="title">Statistika</span>
                         </a>
                     </li>
                     <li>

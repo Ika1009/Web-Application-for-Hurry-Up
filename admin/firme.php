@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    include('../db.php');
+
     if (isset($_SESSION['admin'])) {
 ?>
 <!DOCTYPE html>
@@ -9,11 +11,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Dashboard</title>
+        <title>Statistika</title>
         <link href="../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="admin.css">
-        <script src="admin.js" defer></script>
+        <link rel="stylesheet" href="firme.css">
+        <script src="firme.js" defer></script>
     </head>
     <body>
         <div class="container">
@@ -26,13 +28,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="admin.php">
                             <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="firme.php">
+                        <a href="#">
                             <span class="icon"><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
                             <span class="title">Statistika</span>
                         </a>
@@ -62,49 +64,11 @@
                         </label>
                     </div>
                 </div>
-                <div class="cardBox">
-                    <div class="card">
-                        <div>
-                            <div class="numbers" id="broj_firmi"></div>
-                            <div class="cardName">Ukupan broj firmi</div>
-                        </div>
-                        <div class="iconBox">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div>
-                            <div class="numbers" id="broj_artikala"></div>
-                            <div class="cardName">Ukupan broj artikala</div>
-                        </div>
-                        <div class="iconBox">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div>
-                            <div class="numbers" id="broj_narudzbina"></div>
-                            <div class="cardName">Ukupan broj narudžbina</div>
-                        </div>
-                        <div class="iconBox">
-                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div>
-                            <div class="numbers" id="ukupan_profit"></div>
-                            <div class="cardName">Ukupan profit</div>
-                        </div>
-                        <div class="iconBox">
-                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="details">
                     <div class="recentCustomers">
                         <div class="cardHeader">
-                            <h2>Nove firme</h2>
+                            <h2>Firme</h2>
                         </div>
                         <table>
                             <tbody id="firme">

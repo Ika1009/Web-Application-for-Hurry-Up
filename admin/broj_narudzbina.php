@@ -1,7 +1,7 @@
 <?php 
 include('../db.php');
 
-$sql = mysqli_query($conn, "SELECT * FROM (SELECT * FROM registracija ORDER BY id DESC LIMIT 5) sub ORDER BY id ASC");
+$sql = mysqli_query($conn, "SELECT * FROM narudzbine");
 $data = array();
 while ($row = mysqli_fetch_object($sql))
 {
