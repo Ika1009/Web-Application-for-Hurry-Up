@@ -7,6 +7,20 @@ function toggleMenu() {
     main.classList.toggle('active');
 }
 
+function firme(element) {
+    let ime_firme = element.getElementsByTagName("h4")[0].innerHTML;
+    let ime = "";
+    for (let i = 0; i < ime_firme.length; i++) {
+        if (ime_firme[i] !== "<") {
+            ime += ime_firme[i];
+        } else {
+            break;
+        }
+    }
+    localStorage.setItem("ime_firme", ime);
+    window.location.href = "statistika/statistika.php";
+}
+
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "firme_db.php", true);
 ajax.send();
@@ -18,7 +32,7 @@ ajax.onreadystatechange = function () {
             let ime_firme = data[i].ime_firme;
             let email = data[i].email;
             if (ime_firme !== 'Hurry Up') {
-                html += "<tr>";
+                html += "<tr onclick=firme(this)>";
                 html += "<td>";
                 html += "<h4>";
                 html += ime_firme;
