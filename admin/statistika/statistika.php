@@ -75,6 +75,15 @@
                     </div>
                     <div class="card">
                         <div>
+                            <div class="numbers" id="broj_kategorija"></div>
+                            <div class="cardName">Broj kategorija</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
                             <div class="numbers" id="broj_narudzbina"></div>
                             <div class="cardName">Broj narudžbina</div>
                         </div>
@@ -88,7 +97,16 @@
                             <div class="cardName">Broj izvršenih narudžbina</div>
                         </div>
                         <div class="iconBox">
-                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers" id="broj_odbijenih"></div>
+                            <div class="cardName">Broj odbijenih narudžbina</div>
+                        </div>
+                        <div class="iconBox">
+                        <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="card">
