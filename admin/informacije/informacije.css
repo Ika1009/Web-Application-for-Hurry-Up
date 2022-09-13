@@ -154,62 +154,13 @@ img {
     top: 2px;
 }
 
-.details {
+.btn {
     position: relative;
-    width: 100%;
-    padding: 20px;
-    padding-top: 0;
-    margin-top: 10px;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 2fr 1fr;
-}
-
-.details table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.details table thead td {
-    font-weight: 600;
-}
-
-.details .recentCustomers {
-    position: relative;
-    min-height: 530px;
-    background: #fff;
-    padding: 20px;
-    cursor: pointer;
-}
-
-.details .recentCustomers table tr td h4 span {
-    font-size: 14px;
-    color: #ffb266;
-}
-
-.details .recentCustomers table tr td {
-    padding: 7px 10px;
-}
-
-.details .recentCustomers table tr td h4 {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2em;
-}
-
-.cardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.cardHeader h2 {
-    font-weight: 600;
-}
-
-.pozicija {
-    float: right;
+    padding: 5px 10px;
+    background: #ffb266;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
 }
 
 @media (max-width: 992px) {
@@ -233,17 +184,6 @@ img {
     }
 }
 
-@media (max-width: 758px) {
-    .details {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .cardHeader h2 {
-        font-weight: 600;
-        font-size: 18px;
-    }
-}
-
 @media (max-width: 480px) {
     .navigation {
         width: 100%;
@@ -256,16 +196,16 @@ img {
         left: 0;
     }
 
-    .main,
-    .main.active {
-        width: 100%;
-        left: 0;
-    }
-
     .toggle.active {
         position: fixed;
         z-index: 10000;
         right: 0;
         left: initial;
+    }
+
+    .main,
+    .main.active {
+        width: 100%;
+        left: 0;
     }
 }

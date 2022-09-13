@@ -15,6 +15,7 @@
         <link href="../slike/hurryup_logo2.ico" rel="icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="firme.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="firme.js" defer></script>
     </head>
     <body>
@@ -66,7 +67,7 @@
                 </div>
 
                 <div class="details">
-                    <div class="recentCustomers">
+                    <div class="recentCustomers firme">
                         <div class="cardHeader">
                             <h2>Firme</h2>
                         </div>
