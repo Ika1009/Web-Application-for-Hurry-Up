@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="details">
-                    <div class="recentCustomers firme">
+                    <div class="recentCustomers">
                         <div class="cardHeader">
                             <h2>Firme</h2>
                         </div>

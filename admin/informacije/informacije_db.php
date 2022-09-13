@@ -13,10 +13,10 @@ if(isset($_POST['update'])){
         $loggedInUser = $_COOKIE['ime_firme'];
         $sql = "UPDATE registracija SET ime_firme = '$loggedInUser', email ='$userNewEmail', ime = '$userNewIme', prezime = '$userNewPrezime', broj_telefona = '$userNewBrojTelefona', pin = '$userNewPin' WHERE ime_firme = '$loggedInUser'";
         $results = mysqli_query($conn,$sql);
-        header('Location:info.php?success=userUpdated');
+        header('Location:informacije.php?success=userUpdated');
         exit;
     } else {
-        header('Location:info.php?error=emptyNameAndEmail');
+        header('Location:informacije.php?error=emptyNameAndEmail');
         exit;
     }}
 ?>
