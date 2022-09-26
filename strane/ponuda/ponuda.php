@@ -60,8 +60,38 @@
           display: block;
         }
         
-        .dropdown a:hover {background-color: #ddd;}
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
         
+        .dropdown-content1 {
+            color: #7f8488;
+            border-radius: 5px;
+            font-weight: bold;
+            position: absolute;
+            left: 0px;
+            background-color: #fff;
+            color: #7f8488;
+            text-align: end;
+            min-width: 110px;
+            max-height: 200px;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dropdown-content1 a {
+            background-color: #fff;
+            color: #7f8488;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
         .show {
             display: block;
         }
@@ -72,18 +102,21 @@
     <header class="header">
         <div class="container">
             <div class="row align-items-center justify-content-between">
-                <div class="logo">
-                    <img src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
-                </div>
                 <button type="button" class="nav-toggler">
                     <span></span>
                 </button>
+                <div class="logo">
+                    <img src="../../slike/hurryup_logo2.jpg" width="auto" height="57px">
+                    <div id="myDropdown1" class="dropdown-content1 hide">
+                        <a href="../nalog/profile.php">Moj Nalog</a>
+                        <a href="../statistika/statistika.php">Statistika</a>
+                    </div>
+                </div>
                 <nav class="nav">
                     <ul>
                         <li><a href="../narudzbine/narudzbine.php">Narudžbine</a></li>
                         <li><a href="../artikli/login.php">Artikli</a></li>
                         <li><a class="active" href="../ponuda/ponuda.php">Ponuda</a></li>
-                        <li><a href="../nalog/profile.php">Moj nalog</a></li>
                     </ul>
                 </nav>
             </div>
@@ -158,7 +191,19 @@
                 bezSlike.querySelector('img').style.display = "none";
             }
         }
-    });
+        });
+
+        const dugme1 = document.getElementsByClassName("logo")[0];
+        const dropdown1 = document.getElementById("myDropdown1");
+        dugme1.addEventListener("click", () => {
+            if (dropdown1.classList.contains('show')) {
+                dropdown1.classList.remove("show");
+                dropdown1.classList.add("hide");
+            } else {
+                dropdown1.classList.remove("hide");
+                dropdown1.classList.add("show");
+            }
+        });
     </script>
 </body>
 
