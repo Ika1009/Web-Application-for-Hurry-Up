@@ -23,7 +23,7 @@ function ajaxCall() {
                 let popust = data[i].popust;
                 let kategorija = data[i].kategorija;
                 let na_stanju = data[i].na_stanju;
-                if (na_stanju) {
+                if (na_stanju == "1") {
                     // console.log("jeste na stanju")
                     html += "<div class=product>";
                     html += "<input class=\"id_artikla\" data-id=\"" + id + "\" type=\"hidden\">";
