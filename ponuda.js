@@ -22,7 +22,7 @@ const search = () => {
     }
   }
 };
-
+ 
 const naruci = document.querySelector(".button-27");
 const okbtn = document.querySelector(".ok-btn");
 const okbtn2 = document.querySelector(".ok2-btn");
@@ -39,6 +39,9 @@ okbtn2.addEventListener("click", () => {
   popupbox2.classList.add("aktivanpopup");
 });
 
+okbtn.addEventListener("click", () => {
+
+});
 okbtn.addEventListener("click", setCookie2);
 okbtn.addEventListener("click", setCookie3);
 okbtn.addEventListener("click", setCookie4);

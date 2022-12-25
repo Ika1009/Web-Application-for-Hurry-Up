@@ -3,7 +3,16 @@ session_start();
 include ('../db.php');
 
 if (isset($_POST['register'])) {  
-    extract($_POST);
+    $ime = $_POST['ime'];
+    $prezime = $_POST['prezime'];
+    $ime_firme= $_POST['ime_firme'];
+    $email = $_POST['email'];
+    $broj_telefona = $_POST['broj_telefona'];
+    $lozinka = $_POST['lozinka'];
+    $confirm_password = $_POST['confirm_password'];
+    $pin = $_POST['pin'];
+    $confirm_pin = $_POST['confirm_pin'];
+
     $mysql = "SELECT * FROM registracija";
     $gotResuslts = mysqli_query($conn, $mysql);
     $imena_firma = array();
@@ -24,9 +33,11 @@ if (isset($_POST['register'])) {
     } else {
         $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
         $datum_kreiranja = $_COOKIE['createdAt'];
-        $sql = "INSERT INTO `registracija` (ime, prezime, ime_firme, email, broj_telefona, lozinka, pin, datum_kreiranja) VALUES ('$ime','$prezime','$ime_firme','$email','$broj_telefona','$lozinka','$pin','$datum_kreiranja')";
-        
-        if ($conn->query($sql) === TRUE) {
+
+        $stmt=$conn->prepare("INSERT INTO `registracija` (ime, prezime, ime_firme, email, broj_telefona, lozinka, pin, datum_kreiranja) VALUES (?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('ssssssss',$ime,$prezime,$ime_firme,$email,$broj_telefona,$lozinka,$pin,$datum_kreiranja);
+ 
+        if ($stmt->execute() === TRUE) {
             header('Location: registration.php?success');  
         } else {  
             echo "Greska: " . $sql . "<br>" . $conn->error;  

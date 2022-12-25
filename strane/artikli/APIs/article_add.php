@@ -1,6 +1,9 @@
 <?php
 session_start();
 extract($_REQUEST);
+
+/**/
+
 // daje podatke slike
 $slika = $_FILES['file'];
 $slikaIme = $_FILES['file']['name'];
